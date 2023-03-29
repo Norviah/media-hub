@@ -6,7 +6,7 @@ import type { Themes } from '@/src/types/Themes';
 /**
  * The default theme to implement into the application.
  */
-export const DEFAULT: Themes = 'light';
+export const DEFAULT: Themes = 'dark';
 
 /**
  * The main color palette used throughout the application.
