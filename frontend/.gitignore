@@ -41,3 +41,4 @@ logs
 
 # files
 .DS_Store
+.env
