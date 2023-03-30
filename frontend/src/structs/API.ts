@@ -52,7 +52,11 @@ export class API {
 
       return response as Response<T>;
     } catch (error) {
-      return { success: false, error: error.message, code: StatusCodes.INTERNAL_SERVER_ERROR };
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : 'Unknown',
+        code: StatusCodes.INTERNAL_SERVER_ERROR,
+      };
     }
   }
 
