@@ -75,7 +75,7 @@ export function systemColorScheme(): Themes {
  * based on the Nord color scheme.
  * @see https://notistack.com/features/customization#override-styles
  */
-export const Notistack = styled(MaterialDesignContent)((props) => ({
+export const Notistack = styled(MaterialDesignContent)(() => ({
   '&.notistack-MuiContent-success': {
     backgroundColor: '#A3BE8C',
   },

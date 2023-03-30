@@ -26,7 +26,7 @@ export class Error extends Component<WithRouterProps> {
    * The component will simply display the error message and provide the user
    * with a way to go back to the previous page or to the home page.
    */
-  render(): JSX.Element {
+  public render(): JSX.Element {
     return (
       <Box
         display="flex"
