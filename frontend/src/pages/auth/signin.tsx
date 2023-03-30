@@ -20,9 +20,8 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
-import { API } from '@/src/structs/API';
 import { enqueueSnackbar } from 'notistack';
-import { ThemeSelector } from '@/src/components/ThemeSelector';
+import { ThemeSelector } from '@/components/ThemeSelector';
 import { signIn } from 'next-auth/react';
 import { Component } from 'react';
 

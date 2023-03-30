@@ -14,11 +14,11 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 import { enqueueSnackbar } from 'notistack';
-import { ThemeSelector } from '@/src/components/ThemeSelector';
+import { ThemeSelector } from '@/components/ThemeSelector';
 import { StatusCodes } from 'http-status-codes';
 import { signIn } from 'next-auth/react';
 import { Component } from 'react';
-import { API } from '@/src/structs/API';
+import { API } from '@/structs/API';
 
 interface AppState {
   showPassword: boolean;
