@@ -26,7 +26,7 @@ async function authorize(
   credentials: Record<'email' | 'password', string> | undefined,
   req: any
 ): Promise<User | null> {
-  const result = await API.Post('user/signin', {
+  const result = await API.Post<any>('user/signin', {
     email: credentials?.email,
     password: credentials?.password,
   });
@@ -57,8 +57,8 @@ export const authOptions: AuthOptions = {
 
     GoogleProvider({
       id: 'google',
-      clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      clientId: process.env.GOOGLE_CLIENT_ID!,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
     }),
   ],
 
