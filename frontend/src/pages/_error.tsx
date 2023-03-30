@@ -4,7 +4,9 @@ import { Box, Button, Typography } from '@mui/material';
 import { Component } from 'react';
 
 export default class Error extends Component {
-  render() {
+  public static noAppbar = true;
+
+  public render(): JSX.Element {
     return (
       <Box
         display="flex"
@@ -13,8 +15,8 @@ export default class Error extends Component {
         alignItems="center"
         minHeight="100vh"
       >
-        <Typography variant="h4" align="center">
-          404: Page Not Found
+        <Typography variant="h5" align="center">
+          An unknown error occurred.
         </Typography>
         <br />
         <Button component={Link} href="/" variant="contained" color="primary" size="small">
