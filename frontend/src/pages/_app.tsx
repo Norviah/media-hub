@@ -160,7 +160,7 @@ export default class App extends Component<AppProps, AppState> {
     const route: string = router.route === '/' ? 'Home' : router.route.split('/')[1];
 
     const renderAppbar: boolean = !(
-      Component.noAppbar ??
+      (Component as typeof Component & { noAppbar?: boolean }).noAppbar ??
       (router.route.startsWith('/auth/') || router.route === '/404')
     );
 
