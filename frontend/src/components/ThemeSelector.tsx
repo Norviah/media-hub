@@ -3,13 +3,13 @@ import LightModeIcon from '@mui/icons-material/LightMode';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 
-import { useTheme } from '@/src/util/useTheme';
+import { useTheme } from '@/util/useTheme';
 import { Divider, IconButton } from '@mui/material';
 import { useState } from 'react';
 
-import type { ThemePresets, Themes } from '@/src/types/Themes';
+import type { ThemePresets, Themes } from '@/types/Themes';
 
-import * as themes from '@/src/util/themes';
+import * as themes from '@/util/themes';
 
 /**
  * The theme toggler component.

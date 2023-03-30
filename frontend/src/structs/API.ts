@@ -1,5 +1,5 @@
 import { StatusCodes } from 'http-status-codes';
-import type { Response } from '@/src/types/Response';
+import type { Response } from '@/types/Response';
 
 export class API {
   /**

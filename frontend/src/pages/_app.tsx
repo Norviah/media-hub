@@ -8,18 +8,18 @@ import CloseIcon from '@mui/icons-material/Close';
 import MenuIcon from '@mui/icons-material/Menu';
 import IconButton from '@mui/material/IconButton';
 
-import { ThemeSelector } from '@/src/components/ThemeSelector';
-import { UserMenu } from '@/src/components/UserMenu';
-import { capitalize } from '@/src/util/capitalize';
-import { ThemeContext } from '@/src/util/useTheme';
+import { ThemeSelector } from '@/components/ThemeSelector';
+import { UserMenu } from '@/components/UserMenu';
+import { capitalize } from '@/util/capitalize';
+import { ThemeContext } from '@/util/useTheme';
 import { ThemeProvider } from '@mui/material/styles';
 import { SessionProvider } from 'next-auth/react';
 import { closeSnackbar, SnackbarProvider } from 'notistack';
 import { Component } from 'react';
 
-import * as themes from '@/src/util/themes';
+import * as themes from '@/util/themes';
 
-import type { ThemePresets, Themes } from '@/src/types/Themes';
+import type { ThemePresets, Themes } from '@/types/Themes';
 import type { AppProps } from 'next/app';
 
 import '@fontsource/roboto/300.css';
