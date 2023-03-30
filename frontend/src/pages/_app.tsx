@@ -1,16 +1,21 @@
-import MenuIcon from '@mui/icons-material/Menu';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
-import IconButton from '@mui/material/IconButton';
+import CssBaseline from '@mui/material/CssBaseline';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 
-import { ThemeContext } from '@/src/util/useTheme';
-import { CssBaseline } from '@mui/material';
-import { ThemeProvider } from '@mui/material/styles';
-import { Component } from 'react';
-import { capitalize } from '../util/capitalize';
+import CloseIcon from '@mui/icons-material/Close';
+import MenuIcon from '@mui/icons-material/Menu';
+import IconButton from '@mui/material/IconButton';
+
 import { ThemeSelector } from '@/src/components/ThemeSelector';
+import { UserMenu } from '@/src/components/UserMenu';
+import { capitalize } from '@/src/util/capitalize';
+import { ThemeContext } from '@/src/util/useTheme';
+import { ThemeProvider } from '@mui/material/styles';
+import { SessionProvider } from 'next-auth/react';
+import { closeSnackbar, SnackbarProvider } from 'notistack';
+import { Component } from 'react';
 
 import * as themes from '@/src/util/themes';
 
@@ -139,7 +144,7 @@ export default class App extends Component<AppProps, AppState> {
    * the current state and props of the component.
    * @see https://reactjs.org/docs/react-component.html#render
    */
-  public render() {
+  public render(): JSX.Element {
     const { Component, pageProps, router } = this.props;
 
     // In order to set the application's theme, we'll first need to determine
@@ -154,30 +159,66 @@ export default class App extends Component<AppProps, AppState> {
     // of the router to determine the current route.
     const route: string = router.route === '/' ? 'Home' : router.route.split('/')[1];
 
+    const renderAppbar: boolean = !(
+      Component.noAppbar ??
+      (router.route.startsWith('/auth/') || router.route === '/404')
+    );
+
     return (
-      <ThemeProvider theme={theme === 'light' ? themes.LIGHT : themes.DARK}>
-        <ThemeContext.Provider
-          value={{ theme: this.state.theme, setTheme: this.setTheme.bind(this) }}
-        >
-          <CssBaseline />
-          <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="static">
-              <Toolbar>
-                <IconButton edge="start" color="inherit" sx={{ mr: 2 }}>
-                  <MenuIcon />
+      <SessionProvider session={pageProps.session}>
+        <ThemeProvider theme={theme === 'light' ? themes.LIGHT : themes.DARK}>
+          <ThemeContext.Provider
+            value={{ theme: this.state.theme, setTheme: this.setTheme.bind(this) }}
+          >
+            <SnackbarProvider
+              maxSnack={3}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'left',
+              }}
+              preventDuplicate
+              action={(key) => (
+                <IconButton
+                  size="small"
+                  onClick={() => {
+                    closeSnackbar(key);
+                  }}
+                >
+                  <CloseIcon />
                 </IconButton>
-                <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                  {router.route.toLowerCase() !== '/_error' && capitalize(route)}
-                </Typography>
-                <ThemeSelector />
-              </Toolbar>
-            </AppBar>
-          </Box>
-          <Box>
-            <Component {...pageProps} />
-          </Box>
-        </ThemeContext.Provider>
-      </ThemeProvider>
+              )}
+              Components={{
+                error: themes.Notistack,
+                info: themes.Notistack,
+                success: themes.Notistack,
+                warning: themes.Notistack,
+                default: themes.Notistack,
+              }}
+            >
+              <CssBaseline />
+              {renderAppbar && (
+                <Box sx={{ flexGrow: 1 }}>
+                  <AppBar position="static">
+                    <Toolbar>
+                      <IconButton edge="start" color="inherit" sx={{ mr: 2 }}>
+                        <MenuIcon />
+                      </IconButton>
+                      <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                        {router.route.toLowerCase() !== '/_error' && capitalize(route)}
+                      </Typography>
+                      <ThemeSelector />
+                      <UserMenu redirect={router.route} />
+                    </Toolbar>
+                  </AppBar>
+                </Box>
+              )}
+              <Box>
+                <Component {...pageProps} />
+              </Box>
+            </SnackbarProvider>
+          </ThemeContext.Provider>
+        </ThemeProvider>
+      </SessionProvider>
     );
   }
 }
