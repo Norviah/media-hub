@@ -5,7 +5,7 @@ import { compare, hashSync } from 'bcryptjs';
 import { Router } from 'express';
 import { StatusCodes } from 'http-status-codes';
 
-import type { User } from '@prisma/client';
+import type { AuthMethod, User } from '@prisma/client';
 import type { Request, Response } from 'express';
 
 export const router: Router = Router();
@@ -27,37 +27,97 @@ export const router: Router = Router();
  *       content:
  *         application/json:
  *           schema:
- *             type: object
- *             properties:
- *               email:
- *                 type: string
- *                 description: The email address of the user.
- *               password:
- *                 type: string
- *                 description: The password of the user.
- *               firstName:
- *                 type: string
- *                 description: The first name of the user.
- *               lastName:
- *                 type: string
- *                 description: The last name of the user.
+ *             oneOf:
+ *               - $ref: '#/components/schemas/CredentialsSignupModel'
+ *               - $ref: '#/components/schemas/GoogleSignupModel'
  *     responses:
- *       200:
+ *       201:
  *         description: The specified user was created.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/MessageModel'
  *       409:
  *         description: The specified user already exists.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/MessageModel'
  *       500:
  *         description: An internal error has occurred, the specified user was
  *                      not created.
+ * components:
+ *   schemas:
+ *     CredentialsSignupModel:
+ *       type: object
+ *       properties:
+ *         email:
+ *           type: string
+ *           description: The user's email address.
+ *         password:
+ *           type: string
+ *           description: The user's password.
+ *         name:
+ *           type: string
+ *           description: The user's username.
+ *         method:
+ *           type: string
+ *           enum: ["CREDENTIALS"]
+ *           description: The method used to authenticate the user.
+ *       required:
+ *         - email
+ *         - password
+ *         - name
+ *         - method
+ *     GoogleSignupModel:
+ *       type: object
+ *       properties:
+ *         email:
+ *           type: string
+ *           description: The user's email address.
+ *         name:
+ *           type: string
+ *           description: The user's username.
+ *         method:
+ *           type: string
+ *           enum: ["GOOGLE"]
+ *           description: The method used to authenticate the user.
+ *       required:
+ *         - email
+ *         - name
+ *         - method
+ *     MessageModel:
+ *       type: object
+ *       properties:
+ *         message:
+ *           type: string
+ *           description: A message regarding the result of the request.
+ *     UserModel:
+ *       type: object
+ *       properties:
+ *         id:
+ *           type: string
+ *           description: The user's unique identifier.
+ *         email:
+ *           type: string
+ *           description: The user's email address.
+ *         name:
+ *           type: string
+ *           description: The user's username.
+ *         method:
+ *           type: string
+ *           enum: ["CREDENTIALS", "GOOGLE"]
+ *           description: The method used to authenticate the user.
  */
-router.post('/signup', async (request: Request<unknown, unknown, { email: string; password: string; firstName: string; lastName: string }>, response: Response) => {
-  // The `user/signup` endpoint, this endpoint implements the logic for creating
-  // a new user within the database, referencing information from the request
-  // body.
+router.post('/signup', async (request: Request<unknown, unknown, { name: string; id?: string; email: string; password: string | undefined; method: AuthMethod }>, response: Response) => {
+  // The `user/signup` endpoint, this endpoint implements the logic for
+  // creating a new user within the database, referencing information from the
+  // request body.
 
-  // First, we'll need to ensure that the user does not already exist within the
-  // database. The `User` model has a unique contstraint on the `email` field,
-  // meaning that we can use this property to find a user within the database.
+  // First, we'll need to ensure that the user does not already exist within
+  // the database. The `User` model has a unique contstraint on the `email`
+  // field, meaning that we can use this property to find a user within the
+  // database.
   const exists: User | null = await client.user.findUnique({
     where: {
       email: request.body.email,
@@ -75,7 +135,13 @@ router.post('/signup', async (request: Request<unknown, unknown, { email: string
   // If the user does not exist within the database, we can create a new user
   // within the database with the provided information.
   const user: User = await client.user.create({
-    data: { ...request.body, password: hashSync(request.body.password) },
+    data: {
+      email: request.body.email,
+      password: request.body.password ? hashSync(request.body.password) : undefined,
+      name: request.body.name,
+      id: request.body.id,
+      method: request.body.method,
+    },
   });
 
   logger.success(`created user: ${user.email} ${user.id}`, { title: 'user/signup', subDir: 'user/signup' });
@@ -84,7 +150,7 @@ router.post('/signup', async (request: Request<unknown, unknown, { email: string
   // indicate that the user was created successfully. We don't need to catch any
   // exceptions here, as we have a global error handler that will catch any
   // errors that occur within the application.
-  return response.status(StatusCodes.OK).json({ message: 'The specified user was created.' });
+  return response.status(StatusCodes.CREATED).json({ message: 'The specified user was created.' });
 });
 
 /**
@@ -95,7 +161,7 @@ router.post('/signup', async (request: Request<unknown, unknown, { email: string
  * authentication and refresh token for the user.
  * @openapi
  * /user/signin:
- *   get:
+ *   post:
  *     summary: Authenticate user
  *     description: Retrieve an authentication and refresh token for the user.
  *     tags:
@@ -109,10 +175,10 @@ router.post('/signup', async (request: Request<unknown, unknown, { email: string
  *             properties:
  *               email:
  *                 type: string
- *                 description: The email address of the user.
+ *                 description: The user's email address.
  *               password:
  *                 type: string
- *                 description: The password of the user.
+ *                 description: The user's password.
  *     responses:
  *       200:
  *         description: The specified user was created.
@@ -127,12 +193,18 @@ router.post('/signup', async (request: Request<unknown, unknown, { email: string
  *                 refresh:
  *                   type: string
  *                   description: The refresh token for the user.
+ *                 user:
+ *                   $ref: '#/components/schemas/UserModel'
  *       401:
  *         description: The provided credentials are invalid.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/MessageModel'
  *       500:
  *         description: An internal error has occurred.
  */
-router.get('/signin', async (request: Request<unknown, unknown, { email: string; password: string }>, response: Response) => {
+router.post('/signin', async (request: Request<unknown, unknown, { email: string; password: string }>, response: Response) => {
   // First, we'll need to ensure that the user exists within the database. As
   // the `User` model has a unique constraint on the `email` field, we can use
   // this property to find the desired user.
@@ -146,14 +218,16 @@ router.get('/signin', async (request: Request<unknown, unknown, { email: string;
   // `Forbidden` status code to indicate that the desired user does not exist
   // within the database.
   if (!user) {
-    return response.sendStatus(StatusCodes.UNAUTHORIZED);
+    return response.sendStatus(StatusCodes.UNAUTHORIZED).json({ message: 'The specified user does not exist.' });
+  } else if (user.method !== 'CREDENTIALS') {
+    return response.status(StatusCodes.UNAUTHORIZED).json({ message: 'The specified account was not created through credentials.' });
   }
 
   // Now that we have a reference to the user, we can compare the provided
   // password with the password stored within the database. `bcrypt` was
   // implemented to hash the password during creation, so we'll use it to
   // compare the provided password against the stored password.
-  const authorized: boolean = await compare(request.body.password, user.password);
+  const authorized: boolean = await compare(request.body.password, user.password!);
 
   if (!authorized) {
     return response.sendStatus(StatusCodes.UNAUTHORIZED);
@@ -162,7 +236,7 @@ router.get('/signin', async (request: Request<unknown, unknown, { email: string;
   // If the user was authorized, we can then generate an access and refresh
   // token for the user. The `Auth` class is responsible for generating these
   // tokens.
-  return response.status(StatusCodes.OK).json({ access: Auth.Generate(user, Auth.DURATION.ACCESS), refresh: Auth.Generate(user, Auth.DURATION.REFRESH) });
+  return response.status(StatusCodes.OK).json({ access: Auth.Generate(user, Auth.DURATION.ACCESS), refresh: Auth.Generate(user, Auth.DURATION.REFRESH), user });
 });
 
 /**
@@ -219,4 +293,8 @@ router.get('/refresh', async (request: Request<unknown, unknown, { refresh: stri
   // If the refresh token is valid, we can then generate a new access token for
   // the user. The `Auth` class is responsible for generating these tokens.
   return response.status(StatusCodes.OK).json({ access: Auth.Generate(user, Auth.DURATION.ACCESS) });
+});
+
+router.post('/validate', async (request: Request<any, any, any>, response: Response) => {
+  return response.status(StatusCodes.OK);
 });
