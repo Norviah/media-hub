@@ -27,6 +27,10 @@ import { Component } from 'react';
 
 import type { WithRouterProps } from 'next/dist/client/with-router';
 
+const ERROR_CODES: Record<string, string> = {
+  CredentialsSignin: 'Invalid credentials.',
+};
+
 interface AppState {
   showPassword: boolean;
 }
@@ -45,16 +49,23 @@ class SignIn extends Component<WithRouterProps, AppState> {
     event.preventDefault();
 
     const data = new FormData(event.currentTarget);
+    let result: any;
 
     try {
-      const result = await signIn('credentials', {
+      result = await signIn('credentials', {
         email: data.get('email'),
         password: data.get('password'),
         callbackUrl: this.callbackUrl(),
+        redirect: false,
       });
 
       if (!result || result?.error) {
-        enqueueSnackbar('Invalid credentials.', { variant: 'error' });
+        enqueueSnackbar(ERROR_CODES[result.error] ?? result.error ?? 'An unknown error occurred', { variant: 'error' });
+      }
+
+      if (result.ok) {
+        enqueueSnackbar('Signed in.', { variant: 'success', autoHideDuration: 2000 });
+        this.props.router.push(result.url ?? this.callbackUrl() ?? '/');
       }
     } catch (error) {
       enqueueSnackbar('An unknown error occurred. Please try again later.', { variant: 'error' });
@@ -92,16 +103,7 @@ class SignIn extends Component<WithRouterProps, AppState> {
               Sign in
             </Typography>
             <Box component="form" onSubmit={(event) => this.handleSubmit(event)} sx={{ mt: 1 }}>
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-                autoFocus
-              />
+              <TextField margin="normal" required fullWidth id="email" label="Email Address" name="email" autoComplete="email" autoFocus />
               <TextField
                 margin="normal"
                 required
@@ -115,10 +117,7 @@ class SignIn extends Component<WithRouterProps, AppState> {
                   endAdornment: (
                     <>
                       <InputAdornment position="start">
-                        <IconButton
-                          edge="end"
-                          onClick={() => this.setState({ showPassword: !this.state.showPassword })}
-                        >
+                        <IconButton edge="end" onClick={() => this.setState({ showPassword: !this.state.showPassword })}>
                           {this.state.showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
                         </IconButton>
                       </InputAdornment>
@@ -126,10 +125,7 @@ class SignIn extends Component<WithRouterProps, AppState> {
                   ),
                 }}
               />
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
-              />
+              <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me" />
               <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
                 Sign In
               </Button>

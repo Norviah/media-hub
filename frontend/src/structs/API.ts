@@ -10,7 +10,7 @@ export class API {
    * variable.
    * @see https://nextjs.org/docs/basic-features/environment-variables
    */
-  private static URL: string = process.env.NEXT_PUBLIC_BACKEND_URL!;
+  private static URL: string = process.env.NEXTAUTH_URL!;
 
   /**
    * A helper method to call the API.
@@ -25,11 +25,7 @@ export class API {
    * @param data The data to send to the API.
    * @param method The HTTP method to use.
    */
-  private static async Call<T>(
-    endpoint: string,
-    data: Record<string, any>,
-    method: 'GET' | 'POST'
-  ): Promise<Response<T>> {
+  private static async Call<T>(endpoint: string, data: Record<string, any>, method: 'GET' | 'POST'): Promise<Response<T>> {
     try {
       // Here is where we'll initially call the API, providing any necessary
       // headers and paramers from the method's arguments.
@@ -42,7 +38,7 @@ export class API {
       })
         //
         .then(async (res) => {
-          return { success: res.ok, data: res.ok ? await res.json() : null, code: res.status };
+          return { success: res.ok, data: await res.json(), code: res.status };
         })
 
         //

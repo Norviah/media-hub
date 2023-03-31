@@ -2,13 +2,15 @@ import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import GoogleProvider from 'next-auth/providers/google';
 
-import { Account, Profile } from 'next-auth';
-import { API } from '@/src/structs/API';
+import { API } from '@/structs/API';
+import { prisma } from '@/util/prisma';
+import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import { StatusCodes } from 'http-status-codes';
+import { Account, Profile } from 'next-auth';
 
-import type { AuthOptions, Awaitable, User, Session } from 'next-auth';
-import type { JWT } from 'next-auth/jwt';
+import type { AuthOptions, Awaitable, Session, User } from 'next-auth';
 import type { AdapterUser } from 'next-auth/adapters';
+import type { JWT } from 'next-auth/jwt';
 
 /**
  * Authenticate the user against our database.
@@ -22,21 +24,29 @@ import type { AdapterUser } from 'next-auth/adapters';
  * @param req The request object.
  * @returns The user object if the user is authenticated, otherwise `null`.
  */
-async function authorize(
-  credentials: Record<'email' | 'password', string> | undefined,
-  req: any
-): Promise<User | null> {
-  const result = await API.Post<any>('user/signin', {
+async function authorize(credentials: Record<'email' | 'password', string> | undefined, req: any): Promise<User | null> {
+  const response = await API.Post<any>('api/user/signin', {
     email: credentials?.email,
     password: credentials?.password,
   });
 
+  if (!response.success && response.code === StatusCodes.CONFLICT) {
+    throw new Error('Please sign in using the original method you used to create your account.');
+  } else if (!response.success) {
+    return null;
+  }
+
   // If the response is not successful, we'll return `null` to indicate that
   // the user is not authenticated.
-  return result.success ? result.data.user : null;
+  return response.data;
 }
 
 export const authOptions: AuthOptions = {
+  /**
+   *
+   */
+  adapter: PrismaAdapter(prisma),
+
   // Configure one or more authentication providers
   providers: [
     CredentialsProvider({
@@ -73,13 +83,7 @@ export const authOptions: AuthOptions = {
   },
 
   callbacks: {
-    jwt: (params: {
-      token: JWT;
-      user?: User | AdapterUser;
-      account?: Account | null;
-      profile?: Profile;
-      isNewUser?: boolean;
-    }): Awaitable<JWT> => {
+    jwt: (params: { token: JWT; user?: User | AdapterUser; account?: Account | null; profile?: Profile; isNewUser?: boolean }): Awaitable<JWT> => {
       return params.token;
     },
 
@@ -90,24 +94,10 @@ export const authOptions: AuthOptions = {
       email?: { verificationRequest?: boolean | undefined } | undefined;
       credentials?: any | undefined;
     }): Promise<boolean> {
-      if (params.account?.provider === 'google') {
-        const result = await API.Post('user/signup', { ...params.user, method: 'GOOGLE' });
-
-        if (result.success || result.code === StatusCodes.CONFLICT) {
-          return true;
-        } else {
-          throw new Error('Failed to sign in through Google, please try again later.');
-        }
-      }
-
       return true;
     },
 
-    session: async (params: {
-      session: Session;
-      user: User | AdapterUser;
-      token: JWT;
-    }): Promise<Session> => {
+    session: async (params: { session: Session; user: User | AdapterUser; token: JWT }): Promise<Session> => {
       return params.session;
     },
   },

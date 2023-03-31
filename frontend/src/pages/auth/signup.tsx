@@ -38,25 +38,22 @@ export default class SignUp extends Component<unknown, AppState> {
 
     const credentials = {
       email: data.get('email'),
-      password: data.get('password'),
       name: data.get('username'),
+      password: data.get('password'),
     };
 
-    const result = await API.Post('user/signup', {
-      ...credentials,
-      method: 'CREDENTIALS',
+    const result = await fetch('/api/user/signup', {
+      method: 'POST',
+      body: JSON.stringify(credentials),
     });
 
-    if (result.success && result.code === StatusCodes.CREATED) {
+    if (result.status === StatusCodes.CREATED) {
       enqueueSnackbar('Account created successfully', { variant: 'success' });
-    } else if (result.code === StatusCodes.CONFLICT) {
+      signIn('credentials', { ...credentials, callbackUrl: '/' });
+    } else if (result.status === StatusCodes.CONFLICT) {
       enqueueSnackbar('Account already exists.', { variant: 'error' });
     } else {
       enqueueSnackbar('Something went wrong, please try again.', { variant: 'error' });
-    }
-
-    if (result.success && result.code === StatusCodes.CREATED) {
-      signIn('credentials', { ...credentials, callbackUrl: '/' });
     }
   }
 
@@ -103,12 +100,7 @@ export default class SignUp extends Component<unknown, AppState> {
                       endAdornment: (
                         <>
                           <InputAdornment position="start">
-                            <IconButton
-                              edge="end"
-                              onClick={() =>
-                                this.setState({ showPassword: !this.state.showPassword })
-                              }
-                            >
+                            <IconButton edge="end" onClick={() => this.setState({ showPassword: !this.state.showPassword })}>
                               {this.state.showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
                             </IconButton>
                           </InputAdornment>

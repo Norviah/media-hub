@@ -151,8 +151,7 @@ export default class App extends Component<AppProps, AppState> {
     // the actual theme that we should use. We'll use the `theme` property of
     // the component's state to determine the theme, and if the theme is set to
     // `system`, we'll grab their system's set theme.
-    const theme: Themes =
-      this.state.theme === 'system' ? themes.systemColorScheme() : this.state.theme;
+    const theme: Themes = this.state.theme === 'system' ? themes.systemColorScheme() : this.state.theme;
 
     // Represents the current route that the user is on, which will be used to
     // determine the title of the application. We'll use the `route` property
@@ -167,9 +166,7 @@ export default class App extends Component<AppProps, AppState> {
     return (
       <SessionProvider session={pageProps.session}>
         <ThemeProvider theme={theme === 'light' ? themes.LIGHT : themes.DARK}>
-          <ThemeContext.Provider
-            value={{ theme: this.state.theme, setTheme: this.setTheme.bind(this) }}
-          >
+          <ThemeContext.Provider value={{ theme: this.state.theme, setTheme: this.setTheme.bind(this) }}>
             <SnackbarProvider
               maxSnack={3}
               anchorOrigin={{
