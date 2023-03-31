@@ -94,7 +94,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(StatusCodes.METHOD_NOT_ALLOWED).json({ message: 'Method not allowed.' });
   }
 
-  const data: RequestBody | void = parse<RequestBody>(req, res, { email: 'string', password: 'string' });
+  const data: RequestBody | void = parse<RequestBody>(req, res, {
+    email: 'string',
+    password: 'string',
+  });
 
   // If the request body was invalid, the `parse` function will return `void`,
   // thus, we can end the function here.
@@ -115,9 +118,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   // `Unauthorized` status code to indicate that the desired user does not exist
   // within the database.
   if (!user) {
-    return res.status(StatusCodes.UNAUTHORIZED).json({ message: 'The specified user does not exist.' });
+    return res
+      .status(StatusCodes.UNAUTHORIZED)
+      .json({ message: 'The specified user does not exist.' });
   } else if (!user.password) {
-    return res.status(StatusCodes.CONFLICT).json({ message: 'The specified account was not created through credentials.' });
+    return res
+      .status(StatusCodes.CONFLICT)
+      .json({ message: 'The specified account was not created through credentials.' });
   }
 
   // Now that we have a reference to the user, we can compare the provided

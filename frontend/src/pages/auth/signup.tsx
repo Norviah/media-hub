@@ -100,7 +100,12 @@ export default class SignUp extends Component<unknown, AppState> {
                       endAdornment: (
                         <>
                           <InputAdornment position="start">
-                            <IconButton edge="end" onClick={() => this.setState({ showPassword: !this.state.showPassword })}>
+                            <IconButton
+                              edge="end"
+                              onClick={() =>
+                                this.setState({ showPassword: !this.state.showPassword })
+                              }
+                            >
                               {this.state.showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
                             </IconButton>
                           </InputAdornment>

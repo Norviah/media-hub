@@ -24,7 +24,10 @@ import type { JWT } from 'next-auth/jwt';
  * @param req The request object.
  * @returns The user object if the user is authenticated, otherwise `null`.
  */
-async function authorize(credentials: Record<'email' | 'password', string> | undefined, req: any): Promise<User | null> {
+async function authorize(
+  credentials: Record<'email' | 'password', string> | undefined,
+  req: any
+): Promise<User | null> {
   const response = await API.Post<any>('api/user/signin', {
     email: credentials?.email,
     password: credentials?.password,
@@ -83,7 +86,13 @@ export const authOptions: AuthOptions = {
   },
 
   callbacks: {
-    jwt: (params: { token: JWT; user?: User | AdapterUser; account?: Account | null; profile?: Profile; isNewUser?: boolean }): Awaitable<JWT> => {
+    jwt: (params: {
+      token: JWT;
+      user?: User | AdapterUser;
+      account?: Account | null;
+      profile?: Profile;
+      isNewUser?: boolean;
+    }): Awaitable<JWT> => {
       return params.token;
     },
 
@@ -97,7 +106,11 @@ export const authOptions: AuthOptions = {
       return true;
     },
 
-    session: async (params: { session: Session; user: User | AdapterUser; token: JWT }): Promise<Session> => {
+    session: async (params: {
+      session: Session;
+      user: User | AdapterUser;
+      token: JWT;
+    }): Promise<Session> => {
       return params.session;
     },
   },

@@ -24,11 +24,18 @@ const codes: ErrorCodes[] = [ErrorCodes.INVALID_TYPE, ErrorCodes.REQUIRED_KEY];
  * @param structure The structure of the request body.
  * @returns An instance of `T` with the values parsed from the request body.
  */
-export function parse<T extends Record<string, any>>(req: NextApiRequest, res: NextApiResponse, structure: Structure<T>): T | void | never {
+export function parse<T extends Record<string, any>>(
+  req: NextApiRequest,
+  res: NextApiResponse,
+  structure: Structure<T>
+): T | void | never {
   let parsed: T;
 
   try {
-    parsed = Config.Parse<T>({ structure, json: typeof req.body === 'string' ? JSON.parse(req.body) : req.body });
+    parsed = Config.Parse<T>({
+      structure,
+      json: typeof req.body === 'string' ? JSON.parse(req.body) : req.body,
+    });
   } catch (error) {
     // When an error occurs, we'll consider what kind of error it is. Initially,
     // we'll check if the error is an instance of `ConfigError`, which is the
@@ -45,7 +52,9 @@ export function parse<T extends Record<string, any>>(req: NextApiRequest, res: N
     // Once we've determined that the error is an instance of `ConfigError` and
     // the error code is one of the codes we're interested in, we'll grab a
     // reference to the respective arguments for the two codes.
-    const args = (error as ConfigError<ErrorCodes.INVALID_TYPE> | ConfigError<ErrorCodes.REQUIRED_KEY>).args;
+    const args = (
+      error as ConfigError<ErrorCodes.INVALID_TYPE> | ConfigError<ErrorCodes.REQUIRED_KEY>
+    ).args;
 
     return res.status(StatusCodes.BAD_REQUEST).json({ field: args[0], message: error.message });
   }

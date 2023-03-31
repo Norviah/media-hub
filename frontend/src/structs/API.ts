@@ -25,7 +25,11 @@ export class API {
    * @param data The data to send to the API.
    * @param method The HTTP method to use.
    */
-  private static async Call<T>(endpoint: string, data: Record<string, any>, method: 'GET' | 'POST'): Promise<Response<T>> {
+  private static async Call<T>(
+    endpoint: string,
+    data: Record<string, any>,
+    method: 'GET' | 'POST'
+  ): Promise<Response<T>> {
     try {
       // Here is where we'll initially call the API, providing any necessary
       // headers and paramers from the method's arguments.
