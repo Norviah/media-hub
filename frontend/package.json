@@ -6,12 +6,13 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint --fix",
+    "postinstall": "prisma generate",
     "prisma:migrate": "npx prisma migrate dev --name $(date +\"%m/%d/%Y\") --schema ./prisma/schema.prisma",
     "prisma:generate": "npx prisma generate --schema ./prisma/schema.prisma",
     "prisma:studio": "pnpx prisma studio",
+    "build:deploy": "pnpx prisma generate && pnpx prisma migrate deploy && next build",
     "build:prisma": "pnpm run prisma:migrate && pnpm run prisma:generate",
-    "build:prisma:reset": "rm -rf ./prisma/migrations ; pnpm run prisma:migrate && pnpm run prisma:generate",
-    "production:deploy": "pnpx prisma generate && pnpx prisma migrate deploy && next build"
+    "build:prisma:reset": "rm -rf ./prisma/migrations ; pnpm run prisma:migrate && pnpm run prisma:generate"
   },
   "repository": {
     "type": "git",
