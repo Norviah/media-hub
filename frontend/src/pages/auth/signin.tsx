@@ -21,8 +21,10 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
+import { authOptions } from '@/pages/api/auth/[...nextauth]';
 import { ThemeSelector } from '@/components/ThemeSelector';
-import { getSession, SessionContext, signIn } from 'next-auth/react';
+import { getServerSession } from 'next-auth';
+import { SessionContext, signIn } from 'next-auth/react';
 import { enqueueSnackbar } from 'notistack';
 import { Component } from 'react';
 
@@ -203,7 +205,7 @@ class SignIn extends Component<WithRouterProps & { session?: Session | null }, A
 export async function getServerSideProps(context: ServerSideContext): Promise<Record<string, any>> {
   return {
     props: {
-      session: await getSession(context),
+      session: await getServerSession(context.req, context.res, authOptions),
     },
   };
 }
