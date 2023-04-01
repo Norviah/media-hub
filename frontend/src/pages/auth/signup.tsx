@@ -7,6 +7,7 @@ import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
+import NextLink from 'next/link';
 import Typography from '@mui/material/Typography';
 
 import HomeIcon from '@mui/icons-material/Home';
@@ -126,7 +127,7 @@ class SignUp extends Component<WithRouterProps, AppState> {
               </Button>
               <Grid container justifyContent="flex-end">
                 <Grid item>
-                  <Link href="/auth/signin" variant="body2">
+                  <Link component={NextLink} href="/auth/signin" variant="body2">
                     Already have an account? Sign in
                   </Link>
                 </Grid>

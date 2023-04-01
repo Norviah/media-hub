@@ -9,7 +9,7 @@ import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import Link from 'next/link';
 
-import { signIn, signOut, useSession } from 'next-auth/react';
+import { signOut, useSession } from 'next-auth/react';
 import { useState } from 'react';
 
 import type { Session } from 'next-auth';
@@ -67,7 +67,7 @@ function SignOut(props: { handleClose: () => void; session: Session }) {
  * will be using the provided `signIn` function to initiate the process.
  * @param props The properties of the component.
  */
-function SignIn(props: { redirect: string | undefined }) {
+function SignIn(props: { redirect: string | undefined; handleClose: () => void }) {
   return (
     <>
       <MenuList
@@ -80,9 +80,9 @@ function SignIn(props: { redirect: string | undefined }) {
           },
         }}
       >
-        <MenuItem onClick={() => signIn(undefined, { callbackUrl: props.redirect ?? '/' })}>
-          Signin
-        </MenuItem>
+        <Link href="/auth/signin" style={{ textDecoration: 'none', color: 'inherit' }}>
+          <MenuItem onClick={props.handleClose}>Sign In</MenuItem>
+        </Link>
       </MenuList>
     </>
   );
@@ -156,7 +156,7 @@ export function UserMenu(props: { redirect?: string }): JSX.Element {
         {session.data?.user ? (
           <SignOut handleClose={handleClose} session={session.data} />
         ) : (
-          <SignIn redirect={props.redirect} />
+          <SignIn redirect={props.redirect} handleClose={handleClose} />
         )}
       </Popover>
     </>

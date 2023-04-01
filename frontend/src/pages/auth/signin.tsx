@@ -13,16 +13,17 @@ import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import withRouter from 'next/dist/client/with-router';
+import NextLink from 'next/link';
 import React from 'react';
 
-import HomeIcon from '@mui/icons-material/Home';
 import GoogleIcon from '@mui/icons-material/Google';
+import HomeIcon from '@mui/icons-material/Home';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
-import { authOptions } from '@/pages/api/auth/[...nextauth]';
 import { ThemeSelector } from '@/components/ThemeSelector';
+import { authOptions } from '@/pages/api/auth/[...nextauth]';
 import { getServerSession } from 'next-auth';
 import { SessionContext, signIn } from 'next-auth/react';
 import { enqueueSnackbar } from 'notistack';
@@ -169,12 +170,12 @@ class SignIn extends Component<WithRouterProps & { session?: Session | null }, A
               </Button>
               <Grid container>
                 <Grid item xs>
-                  <Link href="#" variant="body2">
+                  <Link component={NextLink} href="#" variant="body2">
                     Forgot password?
                   </Link>
                 </Grid>
                 <Grid item>
-                  <Link href="/auth/signup" variant="body2">
+                  <Link component={NextLink} href="/auth/signup" variant="body2">
                     {"Don't have an account? Sign Up"}
                   </Link>
                 </Grid>
