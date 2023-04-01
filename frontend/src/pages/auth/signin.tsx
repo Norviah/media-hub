@@ -20,11 +20,13 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
-import { enqueueSnackbar } from 'notistack';
 import { ThemeSelector } from '@/components/ThemeSelector';
-import { signIn } from 'next-auth/react';
+import { getSession, SessionContext, signIn } from 'next-auth/react';
+import { enqueueSnackbar } from 'notistack';
 import { Component } from 'react';
 
+import type { GetServerSidePropsContext as ServerSideContext } from 'next';
+import type { Session } from 'next-auth';
 import type { WithRouterProps } from 'next/dist/client/with-router';
 
 const ERROR_CODES: Record<string, string> = {
@@ -35,7 +37,7 @@ interface AppState {
   showPassword: boolean;
 }
 
-class SignIn extends Component<WithRouterProps, AppState> {
+class SignIn extends Component<WithRouterProps & { session?: Session | null }, AppState> {
   public static noAppbar = true;
   public state: AppState = { showPassword: false };
 
@@ -43,6 +45,19 @@ class SignIn extends Component<WithRouterProps, AppState> {
     const { callbackUrl: callback } = this.props.router.query;
 
     return callback ? (Array.isArray(callback) ? callback[0] : callback) : '/';
+  }
+
+  public static contextType = SessionContext;
+
+  public context!: React.ContextType<typeof SessionContext>;
+
+  /**
+   *
+   */
+  public componentDidMount(): void {
+    if (this.context?.status === 'authenticated') {
+      this.props.router.push('/');
+    }
   }
 
   public async handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -174,6 +189,19 @@ class SignIn extends Component<WithRouterProps, AppState> {
       </>
     );
   }
+}
+
+/**
+ *
+ * @param context
+ * @returns
+ */
+export async function getServerSideProps(context: ServerSideContext): Promise<Record<string, any>> {
+  return {
+    props: {
+      session: await getSession(context),
+    },
+  };
 }
 
 export default withRouter(SignIn);
