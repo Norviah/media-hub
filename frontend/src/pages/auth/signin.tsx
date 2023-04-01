@@ -15,6 +15,7 @@ import Typography from '@mui/material/Typography';
 import withRouter from 'next/dist/client/with-router';
 import React from 'react';
 
+import HomeIcon from '@mui/icons-material/Home';
 import GoogleIcon from '@mui/icons-material/Google';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import VisibilityIcon from '@mui/icons-material/Visibility';
@@ -101,6 +102,9 @@ class SignIn extends Component<WithRouterProps & { session?: Session | null }, A
         <Grid container justifyContent="flex-end" style={{ padding: 10 }}>
           <Grid item>
             <ThemeSelector />
+            <IconButton onClick={() => this.props.router.push('/')}>
+              <HomeIcon />
+            </IconButton>
           </Grid>
         </Grid>
         <Container component="main" maxWidth="xs">

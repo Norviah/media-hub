@@ -9,22 +9,25 @@ import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 
+import HomeIcon from '@mui/icons-material/Home';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
-import { enqueueSnackbar } from 'notistack';
 import { ThemeSelector } from '@/components/ThemeSelector';
 import { StatusCodes } from 'http-status-codes';
 import { signIn } from 'next-auth/react';
+import { enqueueSnackbar } from 'notistack';
 import { Component } from 'react';
-import { API } from '@/structs/API';
+import withRouter from 'next/dist/client/with-router';
+
+import type { WithRouterProps } from 'next/dist/client/with-router';
 
 interface AppState {
   showPassword: boolean;
 }
 
-export default class SignUp extends Component<unknown, AppState> {
+class SignUp extends Component<WithRouterProps, AppState> {
   public static noAppbar = true;
 
   /**
@@ -63,6 +66,9 @@ export default class SignUp extends Component<unknown, AppState> {
         <Grid container justifyContent="flex-end" style={{ padding: 10 }}>
           <Grid item>
             <ThemeSelector />
+            <IconButton onClick={() => this.props.router.push('/')}>
+              <HomeIcon />
+            </IconButton>
           </Grid>
         </Grid>
         <Container component="main" maxWidth="xs">
@@ -132,3 +138,5 @@ export default class SignUp extends Component<unknown, AppState> {
     );
   }
 }
+
+export default withRouter(SignUp);
