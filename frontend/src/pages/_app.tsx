@@ -22,12 +22,12 @@ import * as themes from '@/util/themes';
 import type { ThemePresets, Themes } from '@/types/Themes';
 import type { AppProps } from 'next/app';
 
-import '@/styles/globals.css';
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import 'react-toastify/dist/ReactToastify.min.css';
+import '@/styles/globals.css';
 
 /**
  * The state of the application.
