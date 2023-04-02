@@ -8,13 +8,13 @@ import CloseIcon from '@mui/icons-material/Close';
 import MenuIcon from '@mui/icons-material/Menu';
 import IconButton from '@mui/material/IconButton';
 
+import { ToastContainer, Slide } from 'react-toastify';
 import { ThemeSelector } from '@/components/ThemeSelector';
 import { UserMenu } from '@/components/UserMenu';
 import { capitalize } from '@/util/capitalize';
 import { ThemeContext } from '@/util/useTheme';
 import { ThemeProvider } from '@mui/material/styles';
 import { SessionProvider } from 'next-auth/react';
-import { closeSnackbar, SnackbarProvider } from 'notistack';
 import { Component } from 'react';
 
 import * as themes from '@/util/themes';
@@ -22,10 +22,12 @@ import * as themes from '@/util/themes';
 import type { ThemePresets, Themes } from '@/types/Themes';
 import type { AppProps } from 'next/app';
 
+import '@/styles/globals.css';
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 /**
  * The state of the application.
@@ -165,35 +167,26 @@ export default class App extends Component<AppProps, AppState> {
     );
 
     return (
-      <SessionProvider session={pageProps.session}>
-        <ThemeProvider theme={theme === 'light' ? themes.LIGHT : themes.DARK}>
-          <ThemeContext.Provider
-            value={{ theme: this.state.theme, setTheme: this.setTheme.bind(this) }}
-          >
-            <SnackbarProvider
-              maxSnack={3}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              preventDuplicate
-              action={(key) => (
-                <IconButton
-                  size="small"
-                  onClick={() => {
-                    closeSnackbar(key);
-                  }}
-                >
-                  <CloseIcon />
-                </IconButton>
-              )}
-              Components={{
-                error: themes.Notistack,
-                info: themes.Notistack,
-                success: themes.Notistack,
-                warning: themes.Notistack,
-                default: themes.Notistack,
-              }}
+      <>
+        <ToastContainer
+          position="bottom-left"
+          newestOnTop={true}
+          draggable={false}
+          limit={3}
+          theme={'colored'}
+          hideProgressBar={true}
+          closeOnClick={false}
+          transition={Slide}
+          closeButton={(props) => (
+            <IconButton size="large" onClick={props.closeToast}>
+              <CloseIcon />
+            </IconButton>
+          )}
+        />
+        <SessionProvider session={pageProps.session}>
+          <ThemeProvider theme={theme === 'light' ? themes.LIGHT : themes.DARK}>
+            <ThemeContext.Provider
+              value={{ theme: this.state.theme, setTheme: this.setTheme.bind(this) }}
             >
               <CssBaseline />
               {renderAppbar && (
@@ -215,10 +208,10 @@ export default class App extends Component<AppProps, AppState> {
               <Box>
                 <Component {...pageProps} />
               </Box>
-            </SnackbarProvider>
-          </ThemeContext.Provider>
-        </ThemeProvider>
-      </SessionProvider>
+            </ThemeContext.Provider>
+          </ThemeProvider>
+        </SessionProvider>
+      </>
     );
   }
 }

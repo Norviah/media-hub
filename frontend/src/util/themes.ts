@@ -1,6 +1,4 @@
 import { createTheme } from '@mui/material/styles';
-import { styled } from '@mui/material/styles';
-import { MaterialDesignContent } from 'notistack';
 
 import type { Theme } from '@mui/material/styles';
 import type { Themes } from '@/types/Themes';
@@ -67,28 +65,3 @@ export const DARK: Theme = createTheme({
 export function systemColorScheme(): Themes {
   return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
 }
-
-/**
- * A styled component for the `notistack` component.
- *
- * This component is responsible for styling the various `notistack` variants,
- * based on the Nord color scheme.
- * @see https://notistack.com/features/customization#override-styles
- */
-export const Notistack = styled(MaterialDesignContent)(() => ({
-  '&.notistack-MuiContent-success': {
-    backgroundColor: '#A3BE8C',
-  },
-  '&.notistack-MuiContent-error': {
-    backgroundColor: '#BF616A',
-  },
-  '&.notistack-MuiContent-warning': {
-    backgroundColor: '#EBCB8B',
-  },
-  '&.notistack-MuiContent-info': {
-    backgroundColor: '#81A1C1',
-  },
-  '&.notistack-MuiContent-default': {
-    backgroundColor: '#4C566A',
-  },
-}));

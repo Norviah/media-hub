@@ -26,8 +26,8 @@ import { ThemeSelector } from '@/components/ThemeSelector';
 import { authOptions } from '@/pages/api/auth/[...nextauth]';
 import { getServerSession } from 'next-auth';
 import { SessionContext, signIn } from 'next-auth/react';
-import { enqueueSnackbar } from 'notistack';
 import { Component } from 'react';
+import { toast } from 'react-toastify';
 
 import type { GetServerSidePropsContext as ServerSideContext } from 'next';
 import type { Session } from 'next-auth';
@@ -79,17 +79,15 @@ class SignIn extends Component<WithRouterProps & { session?: Session | null }, A
       });
 
       if (!result || result?.error) {
-        enqueueSnackbar(ERROR_CODES[result.error] ?? result.error ?? 'An unknown error occurred', {
-          variant: 'error',
-        });
+        toast.error(ERROR_CODES[result.error] ?? result.error ?? 'An unknown error occurred');
       }
 
       if (result.ok) {
-        enqueueSnackbar('Signed in.', { variant: 'success', autoHideDuration: 2000 });
+        toast.success('Signed in.');
         this.props.router.push(result.url ?? this.callbackUrl() ?? '/');
       }
     } catch (error) {
-      enqueueSnackbar('An unknown error occurred. Please try again later.', { variant: 'error' });
+      toast.error('An unknown error occurred. Please try again later.');
     }
   }
 
@@ -97,7 +95,7 @@ class SignIn extends Component<WithRouterProps & { session?: Session | null }, A
     const { error: queryError } = this.props.router.query;
 
     if (queryError) {
-      enqueueSnackbar('Invalid credentials.', { variant: 'error' });
+      toast.error('Invalid credentials.');
     }
 
     return (

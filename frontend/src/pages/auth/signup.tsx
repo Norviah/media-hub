@@ -7,8 +7,9 @@ import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
-import NextLink from 'next/link';
 import Typography from '@mui/material/Typography';
+import withRouter from 'next/dist/client/with-router';
+import NextLink from 'next/link';
 
 import HomeIcon from '@mui/icons-material/Home';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -18,9 +19,8 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { ThemeSelector } from '@/components/ThemeSelector';
 import { StatusCodes } from 'http-status-codes';
 import { signIn } from 'next-auth/react';
-import { enqueueSnackbar } from 'notistack';
 import { Component } from 'react';
-import withRouter from 'next/dist/client/with-router';
+import { toast } from 'react-toastify';
 
 import type { WithRouterProps } from 'next/dist/client/with-router';
 
@@ -52,12 +52,12 @@ class SignUp extends Component<WithRouterProps, AppState> {
     });
 
     if (result.status === StatusCodes.CREATED) {
-      enqueueSnackbar('Account created successfully', { variant: 'success' });
+      toast.success('Account created successfully');
       signIn('credentials', { ...credentials, callbackUrl: '/' });
     } else if (result.status === StatusCodes.CONFLICT) {
-      enqueueSnackbar('Account already exists.', { variant: 'error' });
+      toast.error('Account already exists.');
     } else {
-      enqueueSnackbar('Something went wrong, please try again.', { variant: 'error' });
+      toast.error('Something went wrong, please try again.');
     }
   }
 
