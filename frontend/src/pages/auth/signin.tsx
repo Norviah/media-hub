@@ -9,6 +9,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
+import LoadingButton from '@mui/lab/LoadingButton';
 import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
@@ -29,6 +30,7 @@ import { SessionContext, signIn } from 'next-auth/react';
 import { Component } from 'react';
 import { toast } from 'react-toastify';
 
+import type { SignInResponse } from 'next-auth/react';
 import type { GetServerSidePropsContext as ServerSideContext } from 'next';
 import type { Session } from 'next-auth';
 import type { WithRouterProps } from 'next/dist/client/with-router';
@@ -39,11 +41,12 @@ const ERROR_CODES: Record<string, string> = {
 
 interface AppState {
   showPassword: boolean;
+  loading: boolean;
 }
 
 class SignIn extends Component<WithRouterProps & { session?: Session | null }, AppState> {
   public static noAppbar = true;
-  public state: AppState = { showPassword: false };
+  public state: AppState = { showPassword: false, loading: false };
 
   public callbackUrl(): string {
     const { callbackUrl: callback } = this.props.router.query;
@@ -65,30 +68,38 @@ class SignIn extends Component<WithRouterProps & { session?: Session | null }, A
   }
 
   public async handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    this.setState({ loading: true });
     event.preventDefault();
 
     const data = new FormData(event.currentTarget);
-    let result: any;
 
     try {
-      result = await signIn('credentials', {
+      const result = (await signIn('credentials', {
         email: data.get('email'),
         password: data.get('password'),
         callbackUrl: this.callbackUrl(),
         redirect: false,
-      });
+      })) as SignInResponse;
 
-      if (!result || result?.error) {
-        toast.error(ERROR_CODES[result.error] ?? result.error ?? 'An unknown error occurred');
+      if (result?.error) {
+        toast.error(ERROR_CODES[result.error] ?? result.error ?? 'An unknown error occurred', {
+          toastId: 'signin-error',
+        });
       }
 
       if (result.ok) {
-        toast.success('Signed in.');
+        toast.success('Signed in.', {
+          toastId: 'signin-success',
+        });
         this.props.router.push(result.url ?? this.callbackUrl() ?? '/');
       }
     } catch (error) {
-      toast.error('An unknown error occurred. Please try again later.');
+      toast.error('An unknown error occurred. Please try again later.', {
+        toastId: 'signin-error',
+      });
     }
+
+    this.setState({ loading: false });
   }
 
   public render() {
@@ -163,9 +174,15 @@ class SignIn extends Component<WithRouterProps & { session?: Session | null }, A
                 control={<Checkbox value="remember" color="primary" />}
                 label="Remember me"
               />
-              <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+              <LoadingButton
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+                loading={this.state.loading}
+              >
                 Sign In
-              </Button>
+              </LoadingButton>
               <Grid container>
                 <Grid item xs>
                   <Link component={NextLink} href="#" variant="body2">
@@ -185,6 +202,7 @@ class SignIn extends Component<WithRouterProps & { session?: Session | null }, A
                 startIcon={<GoogleIcon />}
                 fullWidth
                 onClick={() => signIn('google', { callbackUrl: this.callbackUrl() })}
+                disabled={this.state.loading}
               >
                 Sign in with Google
               </Button>

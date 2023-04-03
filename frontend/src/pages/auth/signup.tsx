@@ -1,6 +1,5 @@
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
@@ -10,6 +9,7 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import withRouter from 'next/dist/client/with-router';
 import NextLink from 'next/link';
+import LoadingButton from '@mui/lab/LoadingButton';
 
 import HomeIcon from '@mui/icons-material/Home';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -29,6 +29,7 @@ import type { WithRouterProps } from 'next/dist/client/with-router';
 
 interface AppState {
   showPassword: boolean;
+  loading: boolean;
 }
 
 class SignUp extends Component<WithRouterProps, AppState> {
@@ -37,7 +38,7 @@ class SignUp extends Component<WithRouterProps, AppState> {
   /**
    *
    */
-  public state: AppState = { showPassword: false };
+  public state: AppState = { showPassword: false, loading: false };
 
   public static contextType = SessionContext;
 
@@ -45,6 +46,7 @@ class SignUp extends Component<WithRouterProps, AppState> {
 
   public async handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    this.setState({ loading: true });
     const data = new FormData(event.currentTarget);
 
     const credentials = {
@@ -57,6 +59,8 @@ class SignUp extends Component<WithRouterProps, AppState> {
       method: 'POST',
       body: JSON.stringify(credentials),
     });
+
+    this.setState({ loading: false });
 
     if (result.status === StatusCodes.CREATED) {
       toast.success('Account created successfully');
@@ -103,7 +107,7 @@ class SignUp extends Component<WithRouterProps, AppState> {
             <Typography component="h1" variant="h5">
               Sign Up
             </Typography>
-            <Box component="form" onSubmit={this.handleSubmit} sx={{ mt: 3 }}>
+            <Box component="form" onSubmit={(e) => this.handleSubmit(e)} sx={{ mt: 3 }}>
               <Grid container spacing={2}>
                 <Grid item xs={12}>
                   <TextField required fullWidth id="username" label="Username" name="username" />
@@ -138,9 +142,15 @@ class SignUp extends Component<WithRouterProps, AppState> {
                   />
                 </Grid>
               </Grid>
-              <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+              <LoadingButton
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+                loading={this.state.loading}
+              >
                 Sign Up
-              </Button>
+              </LoadingButton>
               <Grid container justifyContent="flex-end">
                 <Grid item>
                   <Link component={NextLink} href="/auth/signin" variant="body2">
