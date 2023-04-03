@@ -3,12 +3,12 @@ import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
+import Head from 'next/head';
 
 import CloseIcon from '@mui/icons-material/Close';
 import MenuIcon from '@mui/icons-material/Menu';
 import IconButton from '@mui/material/IconButton';
 
-import { ToastContainer, Slide } from 'react-toastify';
 import { ThemeSelector } from '@/components/ThemeSelector';
 import { UserMenu } from '@/components/UserMenu';
 import { capitalize } from '@/util/capitalize';
@@ -16,6 +16,7 @@ import { ThemeContext } from '@/util/useTheme';
 import { ThemeProvider } from '@mui/material/styles';
 import { SessionProvider } from 'next-auth/react';
 import { Component } from 'react';
+import { Slide, ToastContainer } from 'react-toastify';
 
 import * as themes from '@/util/themes';
 
@@ -168,6 +169,15 @@ export default class App extends Component<AppProps, AppState> {
 
     return (
       <>
+        <Head>
+          <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+          <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+          <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+          <link rel="manifest" href="/site.webmanifest" />
+          <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#000000" />
+          <meta name="msapplication-TileColor" content="#81a1c1" />
+          <meta name="theme-color" content={theme === 'light' ? '#fff' : '#2E3440'} />
+        </Head>
         <ToastContainer
           position="bottom-left"
           newestOnTop={true}
