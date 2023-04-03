@@ -17,11 +17,14 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 import { ThemeSelector } from '@/components/ThemeSelector';
+import { authOptions } from '@/pages/api/auth/[...nextauth]';
 import { StatusCodes } from 'http-status-codes';
-import { signIn } from 'next-auth/react';
+import { getServerSession } from 'next-auth';
+import { SessionContext, signIn } from 'next-auth/react';
 import { Component } from 'react';
 import { toast } from 'react-toastify';
 
+import type { GetServerSidePropsContext as ServerSideContext } from 'next';
 import type { WithRouterProps } from 'next/dist/client/with-router';
 
 interface AppState {
@@ -35,6 +38,10 @@ class SignUp extends Component<WithRouterProps, AppState> {
    *
    */
   public state: AppState = { showPassword: false };
+
+  public static contextType = SessionContext;
+
+  public context!: React.ContextType<typeof SessionContext>;
 
   public async handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -58,6 +65,15 @@ class SignUp extends Component<WithRouterProps, AppState> {
       toast.error('Account already exists.');
     } else {
       toast.error('Something went wrong, please try again.');
+    }
+  }
+
+  /**
+   *
+   */
+  public componentDidMount(): void {
+    if (this.context?.status === 'authenticated') {
+      this.props.router.push('/');
     }
   }
 
@@ -138,6 +154,19 @@ class SignUp extends Component<WithRouterProps, AppState> {
       </>
     );
   }
+}
+
+/**
+ *
+ * @param context
+ * @returns
+ */
+export async function getServerSideProps(context: ServerSideContext): Promise<Record<string, any>> {
+  return {
+    props: {
+      session: await getServerSession(context.req, context.res, authOptions),
+    },
+  };
 }
 
 export default withRouter(SignUp);
