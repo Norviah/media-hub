@@ -49,3 +49,15 @@
   --toastify-color-progress-warning: var(--toastify-color-warning);
   --toastify-color-progress-error: var(--toastify-color-error);
 }
+
+.Toastify__toast {
+  animation-duration: 0.3s !important;
+}
+
+.Toastify__toast--rtl {
+  animation-duration: 0.3s !important;
+}
+
+.Toastify__toast-body {
+  animation-duration: 0.3s !important;
+}
