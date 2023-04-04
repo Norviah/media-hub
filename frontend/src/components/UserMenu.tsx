@@ -103,7 +103,7 @@ function SignIn(props: { redirect: string | undefined; handleClose: () => void; 
  * going to profile settings, logging out, etc.
  * @param props The properties of the component.
  */
-export function UserMenu(props: { redirect?: string; pathname: string }): JSX.Element {
+export function UserMenu(props: { redirect?: string }): JSX.Element {
   // Similarly to the `ThemeToggler` component, we will be using the `Menu`
   // component from the Material UI library, which will allow us to provide the
   // user with a menu of options to choose from.
