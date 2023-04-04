@@ -7,7 +7,7 @@ import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
-import Link from 'next/link';
+import Link from '@/components/Link';
 
 import { signOut, useSession } from 'next-auth/react';
 import { useState } from 'react';

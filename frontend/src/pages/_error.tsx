@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from '@/components/Link';
 
 import { Box, Button, Typography } from '@mui/material';
 import { Component } from 'react';

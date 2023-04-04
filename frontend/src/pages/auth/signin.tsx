@@ -10,11 +10,10 @@ import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import LoadingButton from '@mui/lab/LoadingButton';
-import Link from '@mui/material/Link';
+import Link from '@/components/Link';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import withRouter from 'next/dist/client/with-router';
-import NextLink from 'next/link';
 import React from 'react';
 
 import GoogleIcon from '@mui/icons-material/Google';
@@ -185,12 +184,18 @@ class SignIn extends Component<WithRouterProps & { session?: Session | null }, A
               </LoadingButton>
               <Grid container>
                 <Grid item xs>
-                  <Link component={NextLink} href="#" variant="body2">
+                  <Link href="#" variant="body2">
                     Forgot password?
                   </Link>
                 </Grid>
                 <Grid item>
-                  <Link component={NextLink} href="/auth/signup" variant="body2">
+                  <Link
+                    href={{
+                      pathname: '/auth/signup',
+                      query: { callbackUrl: this.callbackUrl() },
+                    }}
+                    variant="body2"
+                  >
                     {"Don't have an account? Sign Up"}
                   </Link>
                 </Grid>

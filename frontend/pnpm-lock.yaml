@@ -21,6 +21,7 @@ specifiers:
   '@typescript-eslint/eslint-plugin': ^5.49.0
   '@typescript-eslint/parser': ^5.49.0
   bcryptjs: ^2.4.3
+  clsx: ^1.2.1
   csstype: ^3.1.1
   eslint: 8.33.0
   eslint-config-next: 13.1.6
@@ -49,6 +50,7 @@ dependencies:
   '@norviah/config': 4.3.0
   '@prisma/client': 4.12.0_prisma@4.12.0
   bcryptjs: 2.4.3
+  clsx: 1.2.1
   csstype: 3.1.1
   http-status-codes: 2.2.0
   next: 13.1.6_pjwopsidmaokadturxaafygjp4

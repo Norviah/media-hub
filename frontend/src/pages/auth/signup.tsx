@@ -4,11 +4,10 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
-import Link from '@mui/material/Link';
+import Link from '@/components/Link';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import withRouter from 'next/dist/client/with-router';
-import NextLink from 'next/link';
 import LoadingButton from '@mui/lab/LoadingButton';
 
 import HomeIcon from '@mui/icons-material/Home';
@@ -39,6 +38,16 @@ class SignUp extends Component<WithRouterProps, AppState> {
    *
    */
   public state: AppState = { showPassword: false, loading: false };
+
+  /**
+   *
+   * @returns
+   */
+  public callbackUrl(): string {
+    const { callbackUrl: callback } = this.props.router.query;
+
+    return callback ? (Array.isArray(callback) ? callback[0] : callback) : '/';
+  }
 
   public static contextType = SessionContext;
 
@@ -153,7 +162,13 @@ class SignUp extends Component<WithRouterProps, AppState> {
               </LoadingButton>
               <Grid container justifyContent="flex-end">
                 <Grid item>
-                  <Link component={NextLink} href="/auth/signin" variant="body2">
+                  <Link
+                    href={{
+                      pathname: '/auth/signin',
+                      query: { callbackUrl: this.callbackUrl() },
+                    }}
+                    variant="body2"
+                  >
                     Already have an account? Sign in
                   </Link>
                 </Grid>

@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from '@/components/Link';
 import Grid from '@mui/material/Grid';
 
 import { withRouter } from 'next/router';
