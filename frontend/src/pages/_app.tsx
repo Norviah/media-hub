@@ -188,7 +188,7 @@ export default class App extends Component<AppProps, AppState> {
           closeOnClick={false}
           transition={Slide}
           closeButton={(props) => (
-            <IconButton onClick={props.closeToast} style={{ margin: 10 }}>
+            <IconButton onClick={props.closeToast} style={{ margin: 4 }}>
               <CloseIcon />
             </IconButton>
           )}
