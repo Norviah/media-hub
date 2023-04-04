@@ -73,7 +73,7 @@ class SignUp extends Component<WithRouterProps, AppState> {
 
     if (result.status === StatusCodes.CREATED) {
       toast.success('Account created successfully');
-      signIn('credentials', { ...credentials, callbackUrl: '/' });
+      signIn('credentials', { ...credentials, callbackUrl: this.callbackUrl() });
     } else if (result.status === StatusCodes.CONFLICT) {
       toast.error('Account already exists.');
     } else {
