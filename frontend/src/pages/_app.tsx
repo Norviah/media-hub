@@ -188,9 +188,11 @@ export default class App extends Component<AppProps, AppState> {
           closeOnClick={false}
           transition={Slide}
           closeButton={(props) => (
-            <IconButton onClick={props.closeToast} style={{ margin: 4 }}>
-              <CloseIcon />
-            </IconButton>
+            <Box display="flex" alignItems="center">
+              <IconButton onClick={props.closeToast}>
+                <CloseIcon />
+              </IconButton>
+            </Box>
           )}
         />
         <SessionProvider session={pageProps.session}>
