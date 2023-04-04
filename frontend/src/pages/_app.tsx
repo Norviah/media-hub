@@ -178,28 +178,28 @@ export default class App extends Component<AppProps, AppState> {
           <meta name="msapplication-TileColor" content="#81a1c1" />
           <meta name="theme-color" content={theme === 'light' ? '#fff' : '#2E3440'} />
         </Head>
-        <ToastContainer
-          position="bottom-left"
-          newestOnTop={true}
-          draggable={false}
-          limit={3}
-          theme={'colored'}
-          hideProgressBar={true}
-          closeOnClick={false}
-          transition={Slide}
-          closeButton={(props) => (
-            <Box display="flex" alignItems="center">
-              <IconButton onClick={props.closeToast}>
-                <CloseIcon />
-              </IconButton>
-            </Box>
-          )}
-        />
         <SessionProvider session={pageProps.session}>
           <ThemeProvider theme={theme === 'light' ? themes.LIGHT : themes.DARK}>
             <ThemeContext.Provider
               value={{ theme: this.state.theme, setTheme: this.setTheme.bind(this) }}
             >
+              <ToastContainer
+                position="bottom-left"
+                newestOnTop={true}
+                draggable={false}
+                limit={3}
+                theme={'colored'}
+                hideProgressBar={true}
+                closeOnClick={false}
+                transition={Slide}
+                closeButton={(props) => (
+                  <Box display="flex" alignItems="center">
+                    <IconButton onClick={props.closeToast}>
+                      <CloseIcon />
+                    </IconButton>
+                  </Box>
+                )}
+              />
               <CssBaseline />
               {renderAppbar && (
                 <Box sx={{ flexGrow: 1 }}>
