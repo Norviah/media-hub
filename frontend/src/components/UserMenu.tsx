@@ -9,7 +9,6 @@ import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import Link from '@/components/Link';
 
-import { useRouter } from 'next/router';
 import { signOut, useSession } from 'next-auth/react';
 import { useState } from 'react';
 
@@ -103,7 +102,7 @@ function SignIn(props: { redirect: string | undefined; handleClose: () => void; 
  * going to profile settings, logging out, etc.
  * @param props The properties of the component.
  */
-export function UserMenu(props: { redirect?: string }): JSX.Element {
+export function UserMenu(props: { redirect: string }): JSX.Element {
   // Similarly to the `ThemeToggler` component, we will be using the `Menu`
   // component from the Material UI library, which will allow us to provide the
   // user with a menu of options to choose from.
@@ -137,9 +136,6 @@ export function UserMenu(props: { redirect?: string }): JSX.Element {
     setAnchorEl(null);
   }
 
-  //
-  const { pathname } = useRouter();
-
   const session = useSession();
 
   return (
@@ -164,9 +160,9 @@ export function UserMenu(props: { redirect?: string }): JSX.Element {
         PaperProps={{ sx: { width: 200 } }}
       >
         {session.data?.user ? (
-          <SignOut handleClose={handleClose} session={session.data} path={pathname} />
+          <SignOut handleClose={handleClose} session={session.data} path={props.redirect} />
         ) : (
-          <SignIn redirect={props.redirect} handleClose={handleClose} path={pathname} />
+          <SignIn redirect={props.redirect} handleClose={handleClose} path={props.redirect} />
         )}
       </Popover>
     </>
