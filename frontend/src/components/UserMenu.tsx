@@ -9,6 +9,7 @@ import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import Link from '@/components/Link';
 
+import { useRouter } from 'next/router';
 import { signOut, useSession } from 'next-auth/react';
 import { useState } from 'react';
 
@@ -22,7 +23,7 @@ import type { Session } from 'next-auth';
  * such as logging out, going to profile settings, etc.
  * @param props The properties of the component.
  */
-function SignOut(props: { handleClose: () => void; session: Session }) {
+function SignOut(props: { handleClose: () => void; session: Session; path: string }) {
   return (
     <>
       <Box
@@ -50,7 +51,7 @@ function SignOut(props: { handleClose: () => void; session: Session }) {
         <Link href="/settings" style={{ textDecoration: 'none', color: 'inherit' }}>
           <MenuItem onClick={props.handleClose}>Settings</MenuItem>
         </Link>
-        <MenuItem onClick={() => signOut({ callbackUrl: '/' })}>Log Out</MenuItem>
+        <MenuItem onClick={() => signOut({ callbackUrl: props.path })}>Log Out</MenuItem>
       </MenuList>
     </>
   );
@@ -67,7 +68,7 @@ function SignOut(props: { handleClose: () => void; session: Session }) {
  * will be using the provided `signIn` function to initiate the process.
  * @param props The properties of the component.
  */
-function SignIn(props: { redirect: string | undefined; handleClose: () => void }) {
+function SignIn(props: { redirect: string | undefined; handleClose: () => void; path: string }) {
   return (
     <>
       <MenuList
@@ -80,7 +81,13 @@ function SignIn(props: { redirect: string | undefined; handleClose: () => void }
           },
         }}
       >
-        <Link href="/auth/signin" style={{ textDecoration: 'none', color: 'inherit' }}>
+        <Link
+          href={{
+            pathname: '/auth/signin',
+            query: { callbackUrl: props.path },
+          }}
+          style={{ textDecoration: 'none', color: 'inherit' }}
+        >
           <MenuItem onClick={props.handleClose}>Sign In</MenuItem>
         </Link>
       </MenuList>
@@ -96,7 +103,7 @@ function SignIn(props: { redirect: string | undefined; handleClose: () => void }
  * going to profile settings, logging out, etc.
  * @param props The properties of the component.
  */
-export function UserMenu(props: { redirect?: string }): JSX.Element {
+export function UserMenu(props: { redirect?: string; pathname: string }): JSX.Element {
   // Similarly to the `ThemeToggler` component, we will be using the `Menu`
   // component from the Material UI library, which will allow us to provide the
   // user with a menu of options to choose from.
@@ -130,6 +137,9 @@ export function UserMenu(props: { redirect?: string }): JSX.Element {
     setAnchorEl(null);
   }
 
+  //
+  const { pathname } = useRouter();
+
   const session = useSession();
 
   return (
@@ -154,9 +164,9 @@ export function UserMenu(props: { redirect?: string }): JSX.Element {
         PaperProps={{ sx: { width: 200 } }}
       >
         {session.data?.user ? (
-          <SignOut handleClose={handleClose} session={session.data} />
+          <SignOut handleClose={handleClose} session={session.data} path={pathname} />
         ) : (
-          <SignIn redirect={props.redirect} handleClose={handleClose} />
+          <SignIn redirect={props.redirect} handleClose={handleClose} path={pathname} />
         )}
       </Popover>
     </>
