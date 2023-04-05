@@ -101,11 +101,13 @@ export default class App extends Component<AppProps, AppState> {
     // what the user's preferred theme. We'll attempt to read their preferred
     // theme from their browser's local storage.
 
-    // Once we have the theme, we'll set the state of the component to the found
-    // theme, which will cause the component to re-render.
-    this.setState({
-      theme: (window?.localStorage.getItem('theme') as ThemePresets) ?? themes.DEFAULT,
-    });
+    // Once we have the theme, we'll set the state of the component to reflect
+    // the theme, if the theme differs from the current theme.
+    const theme = (window?.localStorage.getItem('theme') as ThemePresets) ?? themes.DEFAULT;
+
+    if (this.state.theme !== theme) {
+      this.setState({ theme });
+    }
   }
 
   /**
