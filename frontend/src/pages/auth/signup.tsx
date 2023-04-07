@@ -1,27 +1,27 @@
+import Link from '@/components/Link';
+import LoadingButton from '@mui/lab/LoadingButton';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
-import Link from '@/components/Link';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import withRouter from 'next/dist/client/with-router';
-import LoadingButton from '@mui/lab/LoadingButton';
 
 import HomeIcon from '@mui/icons-material/Home';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
+import { StatusCodes } from 'http-status-codes';
 import { ThemeSelector } from '@/components/ThemeSelector';
 import { authOptions } from '@/pages/api/auth/[...nextauth]';
-import { StatusCodes } from 'http-status-codes';
+import { API } from '@/structs/API';
 import { getServerSession } from 'next-auth';
 import { SessionContext, signIn } from 'next-auth/react';
 import { Component } from 'react';
-import { toast } from 'react-toastify';
 
 import type { GetServerSidePropsContext as ServerSideContext } from 'next';
 import type { WithRouterProps } from 'next/dist/client/with-router';
@@ -55,7 +55,6 @@ class SignUp extends Component<WithRouterProps, AppState> {
 
   public async handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    this.setState({ loading: true });
     const data = new FormData(event.currentTarget);
 
     const credentials = {
@@ -64,20 +63,28 @@ class SignUp extends Component<WithRouterProps, AppState> {
       password: data.get('password'),
     };
 
-    const result = await fetch('/api/user/signup', {
-      method: 'POST',
-      body: JSON.stringify(credentials),
+    const result = await API.Prompt<unknown>({
+      endpoint: '/api/user/signup',
+      data: credentials,
+      codes: {
+        fullfilled: {
+          default: 'Account created successfully.',
+        },
+
+        rejected: {
+          [StatusCodes.CONFLICT]: 'Please provide a different username or email address.',
+          default: 'Something went wrong, please try again.',
+        },
+      },
+      component: this,
     });
 
-    this.setState({ loading: false });
-
-    if (result.status === StatusCodes.CREATED) {
-      toast.success('Account created successfully');
-      signIn('credentials', { ...credentials, callbackUrl: this.callbackUrl() });
-    } else if (result.status === StatusCodes.CONFLICT) {
-      toast.error('Account already exists.');
-    } else {
-      toast.error('Something went wrong, please try again.');
+    if (result.ok) {
+      await signIn('credentials', {
+        email: credentials.email,
+        password: credentials.password,
+        callbackUrl: this.callbackUrl(),
+      });
     }
   }
 

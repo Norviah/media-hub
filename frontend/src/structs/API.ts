@@ -1,70 +1,150 @@
 import { StatusCodes } from 'http-status-codes';
+import { toast } from 'react-toastify';
+
+import type { APIOptions, ExecuteOptions, PromptOptions } from '@/types/APIOptions';
 import type { Response } from '@/types/Response';
 
+/**
+ * A utility class for interacting with the application's API.
+ *
+ * `API` provides a set of methods for making requests to the application's
+ * backend, allowing you to easily send HTTP requests to an endpoint and receive
+ * a response.
+ *
+ * Each method returns a promise resolving to an instance of `Response`, which
+ * contains the data returned by the server.
+ */
 export class API {
   /**
-   * The base URL for the API.
+   * The base URL for the application.
    *
-   * Your Next.js application must expose the `NEXT_PUBLIC_BACKEND_URL`
-   * environment variable to the browser, allowing the browser access to this
-   * variable.
+   * `URL` is the canonical URL for the application, and is used to construct
+   * the final URL for a request. As `API` can be used within the browser, the
+   * `NEXT_PUBLIC_NEXTAUTH_URL` environment variable must be exposed to the
+   * browser.
    * @see https://nextjs.org/docs/basic-features/environment-variables
    */
-  private static URL: string = process.env.NEXTAUTH_URL!;
+  public static URL: string = process.env.NEXT_PUBLIC_NEXTAUTH_URL!;
 
   /**
    * A helper method to call the API.
    *
-   * Given an endpoint and data, `Call` will call the API with the provided
+   * Givenn an endpoint and data, `Call` will call the API with the provided
    * information and return the response as an instance of `Response`, handling
    * any errors that may occur.
    *
-   * This method shouldn't be used directly, it is implemented by other methods.
-   * @template T The type of data to expect from the API.
-   * @param endpoint The endpoint to call.
-   * @param data The data to send to the API.
-   * @param method The HTTP method to use.
+   * `Call` is implemented by other methods, and shouldn't be used directly.
+   * @template T The structure of the data returned by the API.
+   * @param options The options to use when calling the API.
+   * @returns The response from the API.
    */
-  private static async Call<T>(
-    endpoint: string,
-    data: Record<string, any>,
-    method: 'GET' | 'POST'
-  ): Promise<Response<T>> {
+  private static async Call<T>(options: APIOptions): Promise<Response<T>> {
     try {
-      // Here is where we'll initially call the API, providing any necessary
-      // headers and paramers from the method's arguments.
-      const response = await fetch(`${API.URL}/${endpoint}`, {
-        method,
+      const response = await fetch(`${API.URL}/${options.endpoint}`, {
+        method: options.method,
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(options.data),
       })
-        //
-        .then(async (res) => {
-          return { success: res.ok, data: await res.json(), code: res.status };
+        .then(async (response) => {
+          return { ok: response.ok, data: await response.json(), status: response.status };
         })
-
-        //
         .catch((error: Error) => {
-          return { success: false, error: error.message, code: StatusCodes.INTERNAL_SERVER_ERROR };
+          return { ok: false, error: error.message, status: StatusCodes.INTERNAL_SERVER_ERROR };
         });
 
       return response as Response<T>;
-    } catch (error) {
-      return {
-        success: false,
-        error: error instanceof Error ? error.message : 'Unknown',
-        code: StatusCodes.INTERNAL_SERVER_ERROR,
-      };
+    } catch (e: unknown) {
+      return { ok: false, error: (e as Error).message, status: StatusCodes.INTERNAL_SERVER_ERROR };
     }
   }
 
-  public static async Get<T>(endpoint: string, data: Record<string, any>): Promise<Response<T>> {
-    return await API.Call<T>(endpoint, data, 'GET');
+  /**
+   * A helper method to call the API with a GET request.
+   *
+   * Calls the application's API with a `GET` request, returning the response
+   * from the server.
+   * @param options The options to use when calling the API.
+   * @returns The response from the API.
+   */
+  public static async Get<T>(options: Omit<APIOptions, 'method'>): Promise<Response<T>> {
+    return await API.Call<T>({ ...options, method: 'GET' });
   }
 
-  public static async Post<T>(endpoint: string, data: Record<string, any>): Promise<Response<T>> {
-    return await API.Call<T>(endpoint, data, 'POST');
+  /**
+   * A helper method to call the API with a POST request.
+   *
+   * Calls the application's API with a `POST` request, returning the response
+   * from the server.
+   * @param options The options to use when calling the API.
+   * @returns The response from the API.
+   */
+  public static async Post<T>(options: Omit<APIOptions, 'method'>): Promise<Response<T>> {
+    return await API.Call<T>({ ...options, method: 'POST' });
+  }
+
+  /**
+   * A helper method to call the API with a confirmation prompt, informing the
+   * user of the result of the request.
+   *
+   * In regards to calling the backend, `Prompt` is identical to `Post`, but the
+   * method will also display a toast notification to the user, informing them
+   * of the result of the request.
+   *
+   * The contents of the notification is determined by the `messages` parameter,
+   * which is a record containing the messages to display for each state of the
+   * request. Each state can either be a string, or a function that resolves
+   * into a string, if a function is provided, the function will be called with
+   * the response from the server.
+   *
+   * `Prompt` is intended to be used with a component that has a `loading`
+   * state, which is set to `true` when the request is made, and `false` when
+   * the request is complete. This allows the component to dynamically render
+   * in regards to the state of the request.
+   * @template T The structure of the response from the API.
+   * @param options The options to use when calling the API.
+   * @returns The response from the API.
+   */
+  public static async Prompt<T>(options: PromptOptions<T>): Promise<Response<T>> {
+    // Initially, if a component is provided, we'll set the component's
+    // `loading` state to true, indicating that the request is in progress. This
+    // allows the component to reflect the state of the request throughout it's
+    // children.
+
+    // For example, if a user clicks a button to submit a form, the component
+    // can set the disabled state of the button to reflect the `loading` state,
+    // once this method is called, the component's `loading` state will be set
+    // and the buttons will be disabled.
+    if (options.component) {
+      options.component.setState({ loading: true });
+    }
+
+    const result: Response<T> = await API.Call<T>({ ...options, method: 'POST' });
+
+    // Once the request is complete, we will create a toast notification to
+    // inform the user of the result of the request. As previously mentioned,
+    // the contents of the notification is determined by the `messages` option.
+
+    // Thus, we'll store the respective message in a variable, and then display
+    // the notification to the user.
+    const response = result.ok ? options.codes.fullfilled : options.codes.rejected;
+
+    // When displaying the notification, we will use a combination of the
+    // endpoint and the result of the request to determine the id of the toast,
+    // this ensures that for a given request, only one toast notification will
+    // be displayed for a given result.
+
+    toast[result.ok ? 'success' : 'error'](response[result.status] ?? response.default, {
+      toastId: `${options.endpoint}-${result.ok}`,
+    });
+
+    // Finally, if a component was provided, we will set the component's loading
+    // state to false, indicating that the request is complete.
+    if (options.component) {
+      options.component.setState({ loading: false });
+    }
+
+    return result;
   }
 }

@@ -9,6 +9,7 @@ import { StatusCodes } from 'http-status-codes';
 import { Account, Profile } from 'next-auth';
 
 import type { AuthOptions, Awaitable, Session, User } from 'next-auth';
+import type { Response } from '@/types/Response';
 import type { AdapterUser } from 'next-auth/adapters';
 import type { JWT } from 'next-auth/jwt';
 
@@ -28,14 +29,17 @@ async function authorize(
   credentials: Record<'email' | 'password', string> | undefined,
   req: any
 ): Promise<User | null> {
-  const response = await API.Post<any>('api/user/signin', {
-    email: credentials?.email,
-    password: credentials?.password,
+  const response: Response<User> = await API.Post<User>({
+    endpoint: 'api/user/signin',
+    data: {
+      email: credentials?.email,
+      password: credentials?.password,
+    },
   });
 
-  if (!response.success && response.code === StatusCodes.CONFLICT) {
+  if (!response.ok && response.status === StatusCodes.CONFLICT) {
     throw new Error('Please sign in using the original method you used to create your account.');
-  } else if (!response.success) {
+  } else if (!response.ok) {
     return null;
   }
 
