@@ -105,7 +105,7 @@ class SignIn extends Component<WithRouterProps & { session?: Session | null }, A
     const { error: queryError } = this.props.router.query;
 
     if (queryError) {
-      toast.error('Invalid credentials.');
+      toast.error('Invalid credentials.', { toastId: 'signin-error' });
     }
 
     return (
