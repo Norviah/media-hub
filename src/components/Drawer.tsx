@@ -148,7 +148,7 @@ function RenderElement(props: { data: any; open: boolean; route: string }) {
       key={props.data.path}
       style={{ textDecoration: 'none', color: 'inherit' }}
     >
-      <ListItem sx={{ display: 'block' }} style={{ paddingLeft: 10, paddingRight: 10 }}>
+      <ListItem sx={{ display: 'block' }} disablePadding>
         <ListItemButton
           selected={props.route === props.data.path}
           sx={{
