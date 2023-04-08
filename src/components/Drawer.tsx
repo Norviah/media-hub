@@ -173,7 +173,7 @@ function RenderElement(props: { data: any; open: boolean; route: string }) {
   );
 }
 
-export function Sidebar(props: { component: Element; route: string }) {
+export function Sidebar(props: { component: JSX.Element; route: string }) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const session = useSession();
@@ -238,8 +238,10 @@ export function Sidebar(props: { component: Element; route: string }) {
         </List>
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-        <DrawerHeader />
-        {props.component}
+        <>
+          <DrawerHeader />
+          {props.component}
+        </>
       </Box>
     </Box>
   );
