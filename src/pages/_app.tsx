@@ -17,6 +17,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import { SessionProvider } from 'next-auth/react';
 import { Component } from 'react';
 import { Slide, ToastContainer } from 'react-toastify';
+import { Sidebar } from '@/components/Drawer';
 
 import * as themes from '@/util/themes';
 
@@ -203,25 +204,11 @@ export default class App extends Component<AppProps, AppState> {
                 )}
               />
               <CssBaseline />
-              {renderAppbar && (
-                <Box sx={{ flexGrow: 1 }}>
-                  <AppBar position="static">
-                    <Toolbar>
-                      <IconButton edge="start" color="inherit" sx={{ mr: 2 }}>
-                        <MenuIcon />
-                      </IconButton>
-                      <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                        {router.route.toLowerCase() !== '/_error' && capitalize(route)}
-                      </Typography>
-                      <ThemeSelector />
-                      <UserMenu redirect={router.route} />
-                    </Toolbar>
-                  </AppBar>
-                </Box>
-              )}
-              <Box>
+              {renderAppbar ? (
+                <Sidebar component={<Component {...pageProps} />} route={router.route} />
+              ) : (
                 <Component {...pageProps} />
-              </Box>
+              )}
             </ThemeContext.Provider>
           </ThemeProvider>
         </SessionProvider>
