@@ -8,101 +8,22 @@ import MenuList from '@mui/material/MenuList';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import Link from '@/components/Link';
+import Button from '@mui/material/Button';
 
-import { signOut, useSession } from 'next-auth/react';
+import { signIn, signOut, useSession } from 'next-auth/react';
 import { useState } from 'react';
 
 import type { Session } from 'next-auth';
 
 /**
- * The component that represents the logged in state.
+ * The user menu.
  *
- * `SignOut` is the component that will be rendered when the user is signed in,
- * the component will present the user with options related to their account,
- * such as logging out, going to profile settings, etc.
+ * This component represents the actual implementation of the user menu, which
+ * will be rendered within the application's appbar if the user is signed in.
  * @param props The properties of the component.
+ * @returns The user menu.
  */
-function SignOut(props: { handleClose: () => void; session: Session; path: string }) {
-  return (
-    <>
-      <Box
-        sx={{
-          py: 1.5,
-          px: 2,
-        }}
-      >
-        <Typography variant="overline">{props.session.user?.name}</Typography>
-        <Typography color="text.secondary" variant="body2">
-          {props.session.user?.email}
-        </Typography>
-      </Box>
-      <Divider />
-      <MenuList
-        disablePadding
-        dense
-        sx={{
-          p: '8px',
-          '& > *': {
-            borderRadius: 1,
-          },
-        }}
-      >
-        <Link href="/settings" style={{ textDecoration: 'none', color: 'inherit' }}>
-          <MenuItem onClick={props.handleClose}>Settings</MenuItem>
-        </Link>
-        <MenuItem onClick={() => signOut({ callbackUrl: props.path })}>Log Out</MenuItem>
-      </MenuList>
-    </>
-  );
-}
-
-/**
- * The component that represents the sign in state.
- *
- * `SignIn` is the component that will be rendered when the user is not signed
- * in. The component will populate the menu with a single option, which will
- * allow the user to sign in.
- *
- * The application implements the `next-auth` package for authentication, so we
- * will be using the provided `signIn` function to initiate the process.
- * @param props The properties of the component.
- */
-function SignIn(props: { redirect: string | undefined; handleClose: () => void; path: string }) {
-  return (
-    <>
-      <MenuList
-        disablePadding
-        dense
-        sx={{
-          p: '8px',
-          '& > *': {
-            borderRadius: 1,
-          },
-        }}
-      >
-        <Link
-          href={{
-            pathname: '/auth/signin',
-            query: { callbackUrl: props.path },
-          }}
-          style={{ textDecoration: 'none', color: 'inherit' }}
-        >
-          <MenuItem onClick={props.handleClose}>Sign In</MenuItem>
-        </Link>
-      </MenuList>
-    </>
-  );
-}
-
-/**
- * The component that represents the user menu.
- *
- * `UserMenu` is the menu that lies within the bar for the application, this
- * menu will provide the user with options regarding their account, such as
- * going to profile settings, logging out, etc.
- * @param props The properties of the component.
- */
-export function UserMenu(props: { redirect: string }): JSX.Element {
+function Menu(props: { redirect: string; session: Session }): JSX.Element {
   // Similarly to the `ThemeToggler` component, we will be using the `Menu`
   // component from the Material UI library, which will allow us to provide the
   // user with a menu of options to choose from.
@@ -136,14 +57,12 @@ export function UserMenu(props: { redirect: string }): JSX.Element {
     setAnchorEl(null);
   }
 
-  const session = useSession();
-
   return (
     <>
       <IconButton onClick={handleClick}>
-        {session.data?.user ? (
-          <Avatar src={session.data.user.image ?? undefined}>
-            {session.data.user?.name?.charAt(0)}
+        {props.session.user ? (
+          <Avatar src={props.session.user.image ?? undefined}>
+            {props.session.user?.name?.charAt(0)}
           </Avatar>
         ) : (
           <PersonIcon />
@@ -159,12 +78,60 @@ export function UserMenu(props: { redirect: string }): JSX.Element {
         open={Boolean(anchorEl)}
         PaperProps={{ sx: { width: 200 } }}
       >
-        {session.data?.user ? (
-          <SignOut handleClose={handleClose} session={session.data} path={props.redirect} />
-        ) : (
-          <SignIn redirect={props.redirect} handleClose={handleClose} path={props.redirect} />
-        )}
+        <Box
+          sx={{
+            py: 1.5,
+            px: 3,
+          }}
+        >
+          <Typography variant="overline">{props.session.user?.name}</Typography>
+          <Typography color="text.secondary" variant="body2">
+            {props.session.user?.email}
+          </Typography>
+        </Box>
+        <Divider />
+        <MenuList
+          disablePadding
+          dense
+          sx={{
+            p: '8px',
+            '& > *': {
+              borderRadius: 1,
+            },
+          }}
+        >
+          <Link href="/settings" style={{ textDecoration: 'none', color: 'inherit' }}>
+            <MenuItem onClick={handleClose}>Settings</MenuItem>
+          </Link>
+          <MenuItem onClick={() => signOut({ callbackUrl: props.redirect })}>Sign Out</MenuItem>
+        </MenuList>
       </Popover>
     </>
+  );
+}
+
+/**
+ * The user menu.
+ *
+ * This component lies within the application's appbar, and will provide the
+ * user with a menu of options regarding their account, such as signing out,
+ * going to settings, etc.
+ *
+ * If the user is not signed in, the component instead will present the user a
+ * button to sign in.
+ * @param props The properties of the component.
+ */
+export function UserMenu(props: { redirect: string }): JSX.Element {
+  const session = useSession();
+
+  return session.data ? (
+    <Menu redirect={props.redirect} session={session.data} />
+  ) : (
+    <Button
+      color="inherit"
+      onClick={() => signIn('google', { callbackUrl: props.redirect }, { prompt: 'login' })}
+    >
+      Sign In
+    </Button>
   );
 }
