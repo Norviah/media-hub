@@ -1,4 +1,6 @@
+import Link from '@/components/Link';
 import PersonIcon from '@mui/icons-material/Person';
+import Button from '@mui/lab/LoadingButton';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
@@ -7,8 +9,6 @@ import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
-import Link from '@/components/Link';
-import Button from '@mui/material/Button';
 
 import { signIn, signOut, useSession } from 'next-auth/react';
 import { useState } from 'react';
@@ -57,6 +57,8 @@ function Menu(props: { redirect: string; session: Session }): JSX.Element {
     setAnchorEl(null);
   }
 
+  const [disabled, setDisabled] = useState(false);
+
   return (
     <>
       <IconButton onClick={handleClick}>
@@ -103,7 +105,15 @@ function Menu(props: { redirect: string; session: Session }): JSX.Element {
           <Link href="/settings" style={{ textDecoration: 'none', color: 'inherit' }}>
             <MenuItem onClick={handleClose}>Settings</MenuItem>
           </Link>
-          <MenuItem onClick={() => signOut({ callbackUrl: props.redirect })}>Sign Out</MenuItem>
+          <MenuItem
+            onClick={() => {
+              setDisabled(true);
+              signOut({ callbackUrl: props.redirect });
+            }}
+            disabled={disabled}
+          >
+            Sign Out
+          </MenuItem>
         </MenuList>
       </Popover>
     </>
@@ -124,12 +134,18 @@ function Menu(props: { redirect: string; session: Session }): JSX.Element {
 export function UserMenu(props: { redirect: string }): JSX.Element {
   const session = useSession();
 
+  const [disabled, setDisabled] = useState(false);
+
   return session.data ? (
     <Menu redirect={props.redirect} session={session.data} />
   ) : (
     <Button
       color="inherit"
-      onClick={() => signIn('google', { callbackUrl: props.redirect }, { prompt: 'login' })}
+      onClick={() => {
+        setDisabled(true);
+        signIn('google', { callbackUrl: props.redirect });
+      }}
+      loading={disabled}
     >
       Sign In
     </Button>
