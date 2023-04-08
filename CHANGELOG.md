@@ -1,6 +1,7 @@
 
 ## [0.2.0](https://github.com/norviah/watch-together/compare/v0.1.0...v0.2.0) (2023-04-08)
 
+- Implement Authentication
 
 ### Features
 
