@@ -1,9 +1,9 @@
 import { createContext, useContext } from 'react';
 
 import type { Context } from 'react';
-import type { ThemePreference } from '@/src/types/ThemePreference';
+import type { ThemePreference } from '@/types/ThemePreference';
 
-import * as themes from '@/src/util/themes';
+import * as themes from '@/util/themes';
 
 /**
  * The context that is responsible for managing the user's theme preference.

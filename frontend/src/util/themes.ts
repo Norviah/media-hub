@@ -1,7 +1,7 @@
 import { createTheme } from '@mui/material/styles';
 
 import type { Theme } from '@mui/material/styles';
-import type { Themes } from '@/src/types/Themes';
+import type { Themes } from '@/types/Themes';
 
 /**
  * The default theme to implement into the application.

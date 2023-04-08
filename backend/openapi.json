@@ -35,35 +35,38 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "email": {
-                    "type": "string",
-                    "description": "The email address of the user."
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/CredentialsSignupModel"
                   },
-                  "password": {
-                    "type": "string",
-                    "description": "The password of the user."
-                  },
-                  "firstName": {
-                    "type": "string",
-                    "description": "The first name of the user."
-                  },
-                  "lastName": {
-                    "type": "string",
-                    "description": "The last name of the user."
+                  {
+                    "$ref": "#/components/schemas/GoogleSignupModel"
                   }
-                }
+                ]
               }
             }
           }
         },
         "responses": {
-          "200": {
-            "description": "The specified user was created."
+          "201": {
+            "description": "The specified user was created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageModel"
+                }
+              }
+            }
           },
           "409": {
-            "description": "The specified user already exists."
+            "description": "The specified user already exists.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageModel"
+                }
+              }
+            }
           },
           "500": {
             "description": "An internal error has occurred, the specified user was not created."
@@ -72,7 +75,7 @@
       }
     },
     "/user/signin": {
-      "get": {
+      "post": {
         "summary": "Authenticate user",
         "description": "Retrieve an authentication and refresh token for the user.",
         "tags": [
@@ -87,11 +90,11 @@
                 "properties": {
                   "email": {
                     "type": "string",
-                    "description": "The email address of the user."
+                    "description": "The user's email address."
                   },
                   "password": {
                     "type": "string",
-                    "description": "The password of the user."
+                    "description": "The user's password."
                   }
                 }
               }
@@ -113,6 +116,9 @@
                     "refresh": {
                       "type": "string",
                       "description": "The refresh token for the user."
+                    },
+                    "user": {
+                      "$ref": "#/components/schemas/UserModel"
                     }
                   }
                 }
@@ -120,7 +126,14 @@
             }
           },
           "401": {
-            "description": "The provided credentials are invalid."
+            "description": "The provided credentials are invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageModel"
+                }
+              }
+            }
           },
           "500": {
             "description": "An internal error has occurred."
@@ -178,5 +191,97 @@
       }
     }
   },
-  "components": {}
+  "components": {
+    "schemas": {
+      "CredentialsSignupModel": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "The user's email address."
+          },
+          "password": {
+            "type": "string",
+            "description": "The user's password."
+          },
+          "name": {
+            "type": "string",
+            "description": "The user's username."
+          },
+          "method": {
+            "type": "string",
+            "enum": [
+              "CREDENTIALS"
+            ],
+            "description": "The method used to authenticate the user."
+          }
+        },
+        "required": [
+          "email",
+          "password",
+          "name",
+          "method"
+        ]
+      },
+      "GoogleSignupModel": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "The user's email address."
+          },
+          "name": {
+            "type": "string",
+            "description": "The user's username."
+          },
+          "method": {
+            "type": "string",
+            "enum": [
+              "GOOGLE"
+            ],
+            "description": "The method used to authenticate the user."
+          }
+        },
+        "required": [
+          "email",
+          "name",
+          "method"
+        ]
+      },
+      "MessageModel": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "A message regarding the result of the request."
+          }
+        }
+      },
+      "UserModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The user's unique identifier."
+          },
+          "email": {
+            "type": "string",
+            "description": "The user's email address."
+          },
+          "name": {
+            "type": "string",
+            "description": "The user's username."
+          },
+          "method": {
+            "type": "string",
+            "enum": [
+              "CREDENTIALS",
+              "GOOGLE"
+            ],
+            "description": "The method used to authenticate the user."
+          }
+        }
+      }
+    }
+  }
 }

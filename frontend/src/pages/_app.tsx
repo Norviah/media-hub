@@ -1,26 +1,34 @@
-import MenuIcon from '@mui/icons-material/Menu';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
-import IconButton from '@mui/material/IconButton';
+import CssBaseline from '@mui/material/CssBaseline';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
+import Head from 'next/head';
 
-import { ThemeContext } from '@/src/util/useTheme';
-import { CssBaseline } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
+import MenuIcon from '@mui/icons-material/Menu';
+import IconButton from '@mui/material/IconButton';
+
+import { ThemeSelector } from '@/components/ThemeSelector';
+import { UserMenu } from '@/components/UserMenu';
+import { capitalize } from '@/util/capitalize';
+import { ThemeContext } from '@/util/useTheme';
 import { ThemeProvider } from '@mui/material/styles';
+import { SessionProvider } from 'next-auth/react';
 import { Component } from 'react';
-import { capitalize } from '../util/capitalize';
-import { ThemeSelector } from '@/src/components/ThemeSelector';
+import { Slide, ToastContainer } from 'react-toastify';
 
-import * as themes from '@/src/util/themes';
+import * as themes from '@/util/themes';
 
-import type { ThemePresets, Themes } from '@/src/types/Themes';
+import type { ThemePresets, Themes } from '@/types/Themes';
 import type { AppProps } from 'next/app';
 
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
+import 'react-toastify/dist/ReactToastify.min.css';
+import '@/styles/globals.css';
 
 /**
  * The state of the application.
@@ -93,11 +101,13 @@ export default class App extends Component<AppProps, AppState> {
     // what the user's preferred theme. We'll attempt to read their preferred
     // theme from their browser's local storage.
 
-    // Once we have the theme, we'll set the state of the component to the found
-    // theme, which will cause the component to re-render.
-    this.setState({
-      theme: (window?.localStorage.getItem('theme') as ThemePresets) ?? themes.DEFAULT,
-    });
+    // Once we have the theme, we'll set the state of the component to reflect
+    // the theme, if the theme differs from the current theme.
+    const theme = (window?.localStorage.getItem('theme') as ThemePresets) ?? themes.DEFAULT;
+
+    if (this.state.theme !== theme) {
+      this.setState({ theme });
+    }
   }
 
   /**
@@ -139,7 +149,7 @@ export default class App extends Component<AppProps, AppState> {
    * the current state and props of the component.
    * @see https://reactjs.org/docs/react-component.html#render
    */
-  public render() {
+  public render(): JSX.Element {
     const { Component, pageProps, router } = this.props;
 
     // In order to set the application's theme, we'll first need to determine
@@ -154,30 +164,68 @@ export default class App extends Component<AppProps, AppState> {
     // of the router to determine the current route.
     const route: string = router.route === '/' ? 'Home' : router.route.split('/')[1];
 
+    const renderAppbar: boolean = !(
+      (Component as typeof Component & { noAppbar?: boolean }).noAppbar ??
+      (router.route.startsWith('/auth/') || router.route === '/404')
+    );
+
     return (
-      <ThemeProvider theme={theme === 'light' ? themes.LIGHT : themes.DARK}>
-        <ThemeContext.Provider
-          value={{ theme: this.state.theme, setTheme: this.setTheme.bind(this) }}
-        >
-          <CssBaseline />
-          <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="static">
-              <Toolbar>
-                <IconButton edge="start" color="inherit" sx={{ mr: 2 }}>
-                  <MenuIcon />
-                </IconButton>
-                <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                  {router.route.toLowerCase() !== '/_error' && capitalize(route)}
-                </Typography>
-                <ThemeSelector />
-              </Toolbar>
-            </AppBar>
-          </Box>
-          <Box>
-            <Component {...pageProps} />
-          </Box>
-        </ThemeContext.Provider>
-      </ThemeProvider>
+      <>
+        <Head>
+          <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+          <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+          <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+          <link rel="manifest" href="/site.webmanifest" />
+          <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#000000" />
+          <meta name="msapplication-TileColor" content="#81a1c1" />
+          <meta name="theme-color" content={theme === 'light' ? '#fff' : '#2E3440'} />
+        </Head>
+        <SessionProvider session={pageProps.session}>
+          <ThemeProvider theme={theme === 'light' ? themes.LIGHT : themes.DARK}>
+            <ThemeContext.Provider
+              value={{ theme: this.state.theme, setTheme: this.setTheme.bind(this) }}
+            >
+              <ToastContainer
+                position="bottom-left"
+                newestOnTop={true}
+                draggable={false}
+                limit={3}
+                theme={'colored'}
+                hideProgressBar={true}
+                closeOnClick={false}
+                transition={Slide}
+                closeButton={(props) => (
+                  <Box display="flex" alignItems="center">
+                    <IconButton onClick={props.closeToast}>
+                      <CloseIcon />
+                    </IconButton>
+                  </Box>
+                )}
+              />
+              <CssBaseline />
+              {renderAppbar && (
+                <Box sx={{ flexGrow: 1 }}>
+                  <AppBar position="static">
+                    <Toolbar>
+                      <IconButton edge="start" color="inherit" sx={{ mr: 2 }}>
+                        <MenuIcon />
+                      </IconButton>
+                      <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                        {router.route.toLowerCase() !== '/_error' && capitalize(route)}
+                      </Typography>
+                      <ThemeSelector />
+                      <UserMenu redirect={router.route} />
+                    </Toolbar>
+                  </AppBar>
+                </Box>
+              )}
+              <Box>
+                <Component {...pageProps} />
+              </Box>
+            </ThemeContext.Provider>
+          </ThemeProvider>
+        </SessionProvider>
+      </>
     );
   }
 }
