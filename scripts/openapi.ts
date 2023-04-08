@@ -1,6 +1,5 @@
 import { join } from 'path';
 import { writeFileSync } from 'fs';
-import { logger } from '@/structs/Logger';
 import swaggerJsdoc from 'swagger-jsdoc';
 
 import type { Options } from 'swagger-jsdoc';
@@ -34,4 +33,4 @@ const options: Options = {
 
 writeFileSync(paths.OPENAPI, JSON.stringify(swaggerJsdoc(options), null, 2));
 
-logger.success('generated openapi specifications', { title: 'OPENAPI' });
+console.log('[OPENAPI] generated openapi specifications');

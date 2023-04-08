@@ -1,9 +1,0 @@
-# directories
-logs
-build
-node_modules
-certificates
-prisma/migrations
-
-# files
-.env

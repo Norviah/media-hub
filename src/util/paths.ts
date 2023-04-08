@@ -12,19 +12,9 @@ export const ROOT: string = path;
 export const SRC: string = join(ROOT, 'src');
 
 /**
- * The absolute path to the directory containing the database.
- */
-export const DATABASE: string = join(ROOT, 'database');
-
-/**
- * The absolute path to the directory containing system logs.
- */
-export const LOGS: string = join(ROOT, 'logs');
-
-/**
  * The absolute path to the directory containing the endpoints for the API.
  */
-export const CONTROLLERS: string = join(SRC, 'controllers');
+export const CONTROLLERS: string = join(SRC, 'pages', 'api');
 
 /**
  * The absolute path to the file referencing the OpenAPI specification for the
