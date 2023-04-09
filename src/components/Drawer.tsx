@@ -1,38 +1,34 @@
-import * as React from 'react';
-import { styled, useTheme, Theme, CSSObject } from '@mui/material/styles';
+import Link from '@/components/Link';
+import MuiAppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
-import MuiDrawer from '@mui/material/Drawer';
-import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import List from '@mui/material/List';
 import CssBaseline from '@mui/material/CssBaseline';
-import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import MuiDrawer from '@mui/material/Drawer';
+import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
-import { useRouter } from 'next/router';
-import Link from '@/components/Link';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import React from 'react';
 
-import HomeIcon from '@mui/icons-material/Home';
-import ListIcon from '@mui/icons-material/FormatListBulleted';
-import SearchIcon from '@mui/icons-material/Search';
-import ProfileIcon from '@mui/icons-material/Person';
-import InfoIcon from '@mui/icons-material/Info';
-import { ValueOf } from 'type-fest';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import MenuIcon from '@mui/icons-material/Menu';
+import IconButton from '@mui/material/IconButton';
 
-import type { NextComponentType, NextPageContext } from 'next';
 import { capitalize } from '@/util/capitalize';
+import { routes } from '@/util/routes';
+import { BottomNavigation, BottomNavigationAction, Paper } from '@mui/material';
+import { CSSObject, styled, Theme, useTheme } from '@mui/material/styles';
+import { Session } from 'next-auth';
+import { useSession } from 'next-auth/react';
 import { ThemeSelector } from './ThemeSelector';
 import { UserMenu } from './UserMenu';
-import { useSession } from 'next-auth/react';
+
+import type { Route } from '@/types/Route';
+import type { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
 
 const drawerWidth = 240;
 
@@ -65,42 +61,6 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   // necessary for content to be below app bar
   ...theme.mixins.toolbar,
 }));
-
-const routing = [
-  {
-    path: '/',
-    name: 'Home',
-    icon: HomeIcon,
-    authentication: false,
-  },
-  {
-    path: '/search',
-    name: 'Search',
-    icon: SearchIcon,
-    authentication: false,
-  },
-  {
-    path: '/collections',
-    name: 'Collections',
-    icon: ListIcon,
-    authentication: true,
-  },
-];
-
-const routing2 = [
-  {
-    path: '/profile',
-    name: 'Profile',
-    icon: ProfileIcon,
-    authentication: true,
-  },
-  {
-    path: '/about',
-    name: 'About',
-    icon: InfoIcon,
-    authentication: false,
-  },
-];
 
 interface AppBarProps extends MuiAppBarProps {
   open?: boolean;
@@ -141,7 +101,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   })
 );
 
-function RenderElement(props: { data: any; open: boolean; route: string }) {
+function RenderElement(props: { data: Route; open: boolean; route: string }): JSX.Element {
   return (
     <Link
       href={props.data.path}
@@ -164,7 +124,7 @@ function RenderElement(props: { data: any; open: boolean; route: string }) {
               justifyContent: 'center',
             }}
           >
-            {<props.data.icon />}
+            {props.data.icon && <props.data.icon />}
           </ListItemIcon>
           <ListItemText primary={props.data.name} sx={{ opacity: props.open ? 1 : 0 }} />
         </ListItemButton>
@@ -173,10 +133,13 @@ function RenderElement(props: { data: any; open: boolean; route: string }) {
   );
 }
 
-export function Sidebar(props: { component: JSX.Element; route: string }) {
+export function Sidebar(props: {
+  component: JSX.Element;
+  route: string;
+  session: Session | null;
+}): JSX.Element {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  const session = useSession();
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -218,22 +181,43 @@ export function Sidebar(props: { component: JSX.Element; route: string }) {
         </DrawerHeader>
         <Divider />
         <List>
-          {routing.map((obj) => {
-            if (obj.authentication && session.status === 'authenticated') {
-              return <RenderElement data={obj} open={open} key={obj.name} route={props.route} />;
-            } else if (!obj.authentication) {
-              return <RenderElement data={obj} open={open} key={obj.name} route={props.route} />;
+          {routes.map((route: Route) => {
+            if (route.authentication ? props.session === null : false) {
+              return;
             }
-          })}
-        </List>
-        <Divider />
-        <List>
-          {routing2.map((obj) => {
-            if (obj.authentication && session.status === 'authenticated') {
-              return <RenderElement data={obj} open={open} key={obj.name} route={props.route} />;
-            } else if (!obj.authentication) {
-              return <RenderElement data={obj} open={open} key={obj.name} route={props.route} />;
-            }
+
+            return (
+              <React.Fragment key={route.name}>
+                {route.divider && <Divider />}
+                <Link
+                  href={route.path}
+                  key={route.name}
+                  style={{ textDecoration: 'none', color: 'inherit' }}
+                >
+                  <ListItem sx={{ display: 'block' }} disablePadding>
+                    <ListItemButton
+                      selected={props.route === route.path}
+                      sx={{
+                        minHeight: 48,
+                        justifyContent: open ? 'initial' : 'center',
+                        px: 2.5,
+                      }}
+                    >
+                      <ListItemIcon
+                        sx={{
+                          minWidth: 0,
+                          mr: open ? 3 : 'auto',
+                          justifyContent: 'center',
+                        }}
+                      >
+                        {route.icon && <route.icon />}
+                      </ListItemIcon>
+                      <ListItemText primary={route.name} sx={{ opacity: open ? 1 : 0 }} />
+                    </ListItemButton>
+                  </ListItem>
+                </Link>
+              </React.Fragment>
+            );
           })}
         </List>
       </Drawer>
@@ -244,5 +228,64 @@ export function Sidebar(props: { component: JSX.Element; route: string }) {
         </>
       </Box>
     </Box>
+  );
+}
+
+export default function Bottom(props: {
+  component: JSX.Element;
+  route: string;
+  session: Session | null;
+}) {
+  const ref = React.useRef<HTMLDivElement>(null);
+
+  return (
+    <Box sx={{ pb: 7 }} ref={ref}>
+      <CssBaseline />
+      {props.component}
+      <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={6}>
+        <BottomNavigation
+          showLabels
+          value={props.route}
+          sx={{
+            height: 95,
+          }}
+        >
+          {routes.map((obj) => {
+            if (!obj.mobile || (obj.authentication ? props.session === null : false)) {
+              return;
+            }
+
+            return (
+              <BottomNavigationAction
+                disableRipple
+                LinkComponent={Link}
+                label={obj.name}
+                icon={obj.icon ? <obj.icon /> : undefined}
+                href={obj.path}
+                key={obj.name}
+                value={obj.path}
+              />
+            );
+          })}
+        </BottomNavigation>
+      </Paper>
+    </Box>
+  );
+}
+
+export function Navigation(props: { component: JSX.Element; route: string; mobile: boolean }) {
+  const session = useSession();
+
+  // return props.mobile ? (
+  // return <Bottom component={props.component} route={props.route} session={session} />;
+  // ) : (
+  //   <Sidebar component={props.component} route={props.route} />
+  // );
+
+  return (
+    <>
+      <Bottom component={props.component} route={props.route} session={session.data} />;
+      <Sidebar component={props.component} route={props.route} session={session.data} />
+    </>
   );
 }
