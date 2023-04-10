@@ -9,13 +9,12 @@
 
 ### Description
 
-_Watch Together_ is a web application that allows users to create various
-collections of their favorite TV shows and movies. Through these collections,
+_Watch Together_ is a web application that provides a palce for users to create
+various collections of their favorite shows and movies. Through these collections,
 users can easily track and share their favorite media with others.
 
-The live version of the application can be found
-[here](https://watch-together-murex.vercel.app/), the frontend deployed using
-[Vercel](https://vercel.com/), while the backend is deployed using a
-DigitalOcean droplet. This reposity contains the source code for both the
-frontend and the backend of the web application, each in their respective
-subdirectories.
+The live version of the application can be found [here](https://mediahub.vercel.app).
+
+Both the frontend and the backend is deployed using Vercel and Next.js, the backend
+for the application can be found within the <code><a href="/src/pages/api">/src/pages/api</a></code>
+subdirectory.
