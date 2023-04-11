@@ -140,10 +140,11 @@ export function UserMenu(props: { redirect: string }): JSX.Element {
     <Menu redirect={props.redirect} session={session.data} />
   ) : (
     <Button
+      LinkComponent={Link}
       color="inherit"
+      href={`/auth/signin?callbackUrl=${props.redirect}`}
       onClick={() => {
         setDisabled(true);
-        signIn('google', { callbackUrl: props.redirect });
       }}
       loading={disabled}
     >

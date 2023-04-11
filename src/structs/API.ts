@@ -40,7 +40,7 @@ export class API {
    */
   private static async Call<T>(options: APIOptions): Promise<Response<T>> {
     try {
-      const response = await fetch(`${API.URL}/${options.endpoint}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/${options.endpoint}`, {
         method: options.method,
         headers: {
           'Content-Type': 'application/json',
