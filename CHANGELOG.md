@@ -1,6 +1,7 @@
 
 ## [0.3.0](https://github.com/norviah/watch-together/compare/v0.2.0...v0.3.0) (2023-04-11)
 
+- Implement navigation
 
 ### Features
 
@@ -29,7 +30,7 @@
 
 ## [0.2.0](https://github.com/norviah/watch-together/compare/v0.1.0...v0.2.0) (2023-04-08)
 
-- Implement Authentication
+- Implement authentication
 
 ### Features
 
