@@ -133,13 +133,11 @@ function RenderElement(props: { data: Route; open: boolean; route: string }): JS
   );
 }
 
-export function Sidebar(props: {
-  component: JSX.Element;
-  route: string;
-  session: Session | null;
-}): JSX.Element {
+export function Sidebar(props: { component: JSX.Element; route: string }): JSX.Element {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+
+  const session = useSession();
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -182,7 +180,7 @@ export function Sidebar(props: {
         <Divider />
         <List>
           {routes.map((route: Route) => {
-            if (route.authentication ? props.session === null : false) {
+            if (route.authentication ? session.status !== 'authenticated' : false) {
               return;
             }
 
@@ -270,22 +268,5 @@ export default function Bottom(props: {
         </BottomNavigation>
       </Paper>
     </Box>
-  );
-}
-
-export function Navigation(props: { component: JSX.Element; route: string; mobile: boolean }) {
-  const session = useSession();
-
-  // return props.mobile ? (
-  // return <Bottom component={props.component} route={props.route} session={session} />;
-  // ) : (
-  //   <Sidebar component={props.component} route={props.route} />
-  // );
-
-  return (
-    <>
-      <Bottom component={props.component} route={props.route} session={session.data} />;
-      <Sidebar component={props.component} route={props.route} session={session.data} />
-    </>
   );
 }
