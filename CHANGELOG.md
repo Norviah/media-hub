@@ -1,4 +1,32 @@
 
+## [0.3.0](https://github.com/norviah/watch-together/compare/v0.2.0...v0.3.0) (2023-04-11)
+
+
+### Features
+
+* **frontend/components/UserMenu:** implement states to prevent users from spamming buttons ([ee5403a](https://github.com/norviah/watch-together/commit/ee5403a7ae361338c73ba247eb5d8186f7a4fdab))
+* **frontend:** implement a profile page ([b1ac0b5](https://github.com/norviah/watch-together/commit/b1ac0b54e2c3f9fa892dff7bd9b6e4e7cfe1f4a2))
+* **frontend:** implement a sidebar ([7c20a5e](https://github.com/norviah/watch-together/commit/7c20a5e20ff4a7f84b0684776d1666590ed745d9))
+* **frontend:** implement an 'about' page for information regarding the website ([e01500e](https://github.com/norviah/watch-together/commit/e01500e22c513473660c475ee2ef71caab1c8f75))
+* **frontend:** implement an export referencing common paths ([6f4cd3e](https://github.com/norviah/watch-together/commit/6f4cd3eb07796f69bb1daefc94a1fe6d2016be4a))
+* **frontend:** implement routing ([8b57de3](https://github.com/norviah/watch-together/commit/8b57de3c46232b7985e8d6eae419402a24c43713)), closes [#3](https://github.com/norviah/watch-together/issues/3)
+
+
+### Bug Fixes
+
+* **frontend/components/Drawer:** get the current session within the component ([d999ddd](https://github.com/norviah/watch-together/commit/d999ddd49ea236bfae1316eed588290a3942d063))
+* **frontend/components/Drawer:** wrap the children of a Box component in a fragment ([c9b5ca9](https://github.com/norviah/watch-together/commit/c9b5ca94b380d01b2f81017d1ec06558cbcc9949))
+
+
+### Formatting
+
+* **frontend/components/Drawer:** remove padding on list items ([34acaa6](https://github.com/norviah/watch-together/commit/34acaa652ff870bff3d34819de88bc6697eff1bf))
+
+
+### Reverted Features
+
+* re-implement support for authenticating via credentials ([dfe8877](https://github.com/norviah/watch-together/commit/dfe88776d727bb3de3f32c744a23a1540c933077))
+
 ## [0.2.0](https://github.com/norviah/watch-together/compare/v0.1.0...v0.2.0) (2023-04-08)
 
 - Implement Authentication
