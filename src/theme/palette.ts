@@ -9,7 +9,7 @@ import * as colors from '@/theme/colors';
  */
 export const THEME = { ...colors.NORD, GREY: colors.GREY };
 
-const BASE: Omit<PaletteOptions, 'mode'> = {
+export const BASE: Omit<PaletteOptions, 'mode'> = {
   common: {
     black: '#000',
     white: '#fff',

@@ -469,7 +469,8 @@ const top100Films = [
 ];
 
 import Backdrop from '@mui/material/Backdrop';
-import { Stack } from '@mui/material';
+import { Fab, Stack } from '@mui/material';
+import { enqueueSnackbar } from 'notistack';
 
 function SimpleBackdrop() {
   const [open, setOpen] = React.useState(false);
@@ -575,6 +576,20 @@ export default function MediaCard() {
         </Stack>
       </Grid>
       <Box sx={{ p: 2 }}>
+        <Button
+          variant="contained"
+          onClick={() => {
+            enqueueSnackbar('default');
+            enqueueSnackbar('error', { variant: 'error' });
+            enqueueSnackbar('warning', { variant: 'warning' });
+            enqueueSnackbar('info', { variant: 'info' });
+            enqueueSnackbar('success', { variant: 'success' });
+          }}
+        >
+          Alert
+        </Button>
+      </Box>
+      <Box sx={{ p: 2 }}>
         <Button variant="text">1</Button>
       </Box>
       <Box
@@ -655,6 +670,18 @@ export default function MediaCard() {
       </Box>
       <SimpleBackdrop />
       <Rating name="ds" />
+      <Fab
+        color="primary"
+        aria-label="add"
+        style={{
+          position: 'fixed',
+          bottom: '20px',
+          right: '20px',
+        }}
+        size="large"
+      >
+        <FavoriteIcon />
+      </Fab>
     </>
   );
 }

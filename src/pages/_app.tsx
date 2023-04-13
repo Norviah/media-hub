@@ -1,9 +1,13 @@
 import styled from '@emotion/styled';
 
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
+
 import { Component } from 'react';
 import { GlobalStyles } from '@/theme/globalStyles';
-import { CssBaseline, ThemeProvider, StyledEngineProvider } from '@mui/material';
+import { CssBaseline, ThemeProvider, StyledEngineProvider, Button } from '@mui/material';
 import { ThemeContext } from '@/hooks/useTheme';
+import { SnackbarProvider, closeSnackbar } from 'notistack';
 
 import { Navigation } from '@/components/nav';
 import { Header } from '@/components/header/Header';
@@ -19,6 +23,7 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 
 import '@/styles/globals.css';
+import { Components } from '@/theme/notistack';
 
 const APP_BAR_MOBILE = 64;
 const APP_BAR_DESKTOP = 92;
@@ -146,22 +151,42 @@ export default class App extends Component<AppProps, AppState> {
           <ThemeContext.Provider
             value={{ theme: this.state.theme, setTheme: this.setTheme.bind(this) }}
           >
-            <CssBaseline />
-            <GlobalStyles />
-            {style ? (
-              <StyledRoot>
-                <Header onOpenNav={() => this.setState({ open: true })} />{' '}
-                <Navigation
-                  openNav={this.state.open}
-                  onCloseNav={() => this.setState({ open: false })}
-                />
-                <Main>
-                  <Component {...pageProps} />
-                </Main>
-              </StyledRoot>
-            ) : (
-              <Component {...pageProps} />
-            )}
+            <SnackbarProvider
+              maxSnack={3}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'left',
+              }}
+              preventDuplicate
+              action={(key) => (
+                <IconButton
+                  size="small"
+                  onClick={() => {
+                    closeSnackbar(key);
+                  }}
+                >
+                  <CloseIcon fontSize="small" />
+                </IconButton>
+              )}
+              Components={Components}
+            >
+              <CssBaseline />
+              <GlobalStyles />
+              {style ? (
+                <StyledRoot>
+                  <Header onOpenNav={() => this.setState({ open: true })} />{' '}
+                  <Navigation
+                    openNav={this.state.open}
+                    onCloseNav={() => this.setState({ open: false })}
+                  />
+                  <Main>
+                    <Component {...pageProps} />
+                  </Main>
+                </StyledRoot>
+              ) : (
+                <Component {...pageProps} />
+              )}
+            </SnackbarProvider>
           </ThemeContext.Provider>
         </ThemeProvider>
       </StyledEngineProvider>
