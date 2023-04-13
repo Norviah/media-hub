@@ -68,39 +68,39 @@ class SignIn extends Component<WithRouterProps, AppState> {
               Sign In
             </Typography>
           </Box>
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
-          />
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type={this.state.showPassword ? 'text' : 'password'}
-            id="password"
-            autoComplete="current-password"
-            InputProps={{
-              endAdornment: (
-                <>
-                  <InputAdornment position="start">
-                    <IconButton
-                      edge="end"
-                      onClick={() => this.setState({ showPassword: !this.state.showPassword })}
-                    >
-                      {this.state.showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
-                    </IconButton>
-                  </InputAdornment>
-                </>
-              ),
-            }}
-          />
+          <Stack useFlexGap spacing={2} sx={{ pt: 2 }}>
+            <TextField
+              required
+              fullWidth
+              id="email"
+              label="Email Address"
+              name="email"
+              autoComplete="email"
+            />
+            <TextField
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type={this.state.showPassword ? 'text' : 'password'}
+              id="password"
+              autoComplete="current-password"
+              InputProps={{
+                endAdornment: (
+                  <>
+                    <InputAdornment position="start">
+                      <IconButton
+                        edge="end"
+                        onClick={() => this.setState({ showPassword: !this.state.showPassword })}
+                      >
+                        {this.state.showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
+                      </IconButton>
+                    </InputAdornment>
+                  </>
+                ),
+              }}
+            />
+          </Stack>
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"

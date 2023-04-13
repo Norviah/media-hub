@@ -56,12 +56,21 @@ class SignUp extends Component<WithRouterProps, AppState> {
               alignItems: 'center',
             }}
           >
-            <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-              <LockOutlinedIcon />
-            </Avatar>
-            <Typography component="h1" variant="h5">
-              Sign Up
-            </Typography>
+            <Box
+              sx={{
+                marginTop: 8,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+              }}
+            >
+              <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+                <LockOutlinedIcon />
+              </Avatar>
+              <Typography component="h1" variant="h5">
+                Sign Up
+              </Typography>
+            </Box>
             <Stack useFlexGap spacing={2} sx={{ pt: 2 }}>
               <TextField required fullWidth id="username" label="Username" name="username" />
               <TextField
