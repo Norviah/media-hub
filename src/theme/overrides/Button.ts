@@ -31,6 +31,18 @@ export const DARK: ComponentOverrides = merge(BASE, {
           backgroundColor: palettes.DARK.grey[400],
         },
       },
+      containedError: {
+        boxShadow: shadows.DARK.error,
+      },
+      containedWarning: {
+        boxShadow: shadows.DARK.warning,
+      },
+      containedInfo: {
+        boxShadow: shadows.DARK.info,
+      },
+      containedSuccess: {
+        boxShadow: shadows.DARK.success,
+      },
       containedPrimary: {
         boxShadow: shadows.DARK.primary,
       },
@@ -61,6 +73,18 @@ export const LIGHT: ComponentOverrides = merge(BASE, {
         '&:hover': {
           backgroundColor: palettes.LIGHT.grey[400],
         },
+      },
+      containedError: {
+        boxShadow: shadows.LIGHT.error,
+      },
+      containedWarning: {
+        boxShadow: shadows.LIGHT.warning,
+      },
+      containedInfo: {
+        boxShadow: shadows.LIGHT.info,
+      },
+      containedSuccess: {
+        boxShadow: shadows.LIGHT.success,
       },
       containedPrimary: {
         boxShadow: shadows.LIGHT.primary,

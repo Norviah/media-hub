@@ -1,11 +1,11 @@
-import { alpha } from '@mui/material/styles';
+import { alpha, darken } from '@mui/material/styles';
 
 import type { Shadows } from '@mui/material/styles';
 
 import * as palettes from '@/theme/palette';
 
 const colors = {
-  LIGHT: palettes.THEME.GREY[500],
+  LIGHT: palettes.THEME.GREY[900],
   DARK: '#000',
 };
 
@@ -81,12 +81,12 @@ export const LIGHT = {
     colors.LIGHT,
     0.24
   )}`,
-  primary: `0 8px 16px 0 ${alpha(palettes.LIGHT.primary.main, 0.24)}`,
-  info: `0 8px 16px 0 ${alpha(palettes.LIGHT.info.main, 0.24)}`,
-  secondary: `0 8px 16px 0 ${alpha(palettes.LIGHT.secondary.main, 0.24)}`,
-  success: `0 8px 16px 0 ${alpha(palettes.LIGHT.success.main, 0.24)}`,
-  warning: `0 8px 16px 0 ${alpha(palettes.LIGHT.warning.main, 0.24)}`,
-  error: `0 8px 16px 0 ${alpha(palettes.LIGHT.error.main, 0.24)}`,
+  primary: `0 8px 16px 0 ${alpha(palettes.LIGHT.primary.main, 0.5)}`,
+  info: `0 8px 16px 0 ${alpha(palettes.LIGHT.info.main, 0.5)}`,
+  secondary: `0 8px 16px 0 ${alpha(palettes.LIGHT.secondary.main, 0.5)}`,
+  success: `0 8px 16px 0 ${alpha(palettes.LIGHT.success.main, 0.5)}`,
+  warning: `0 8px 16px 0 ${alpha(palettes.LIGHT.warning.main, 0.5)}`,
+  error: `0 8px 16px 0 ${alpha(palettes.LIGHT.error.main, 0.5)}`,
   card: `0 0 2px 0 ${alpha(colors.LIGHT, 0.2)}, 0 12px 24px -4px ${alpha(colors.LIGHT, 0.12)}`,
 };
 
@@ -103,10 +103,16 @@ export const DARK = {
     colors.DARK,
     0.24
   )}`,
-  primary: `0 8px 16px 0 ${alpha(palettes.DARK.primary.main, 0.24)}`,
-  info: `0 8px 16px 0 ${alpha(palettes.DARK.info.main, 0.24)}`,
-  secondary: `0 8px 16px 0 ${alpha(palettes.DARK.secondary.main, 0.24)}`,
-  success: `0 8px 16px 0 ${alpha(palettes.DARK.success.main, 0.24)}`,
-  warning: `0 8px 16px 0 ${alpha(palettes.DARK.warning.main, 0.24)}`,
+  // primary: `0 8px 16px 0 ${alpha(palettes.DARK.primary.main, 0.24)}`,
+  // info: `0 8px 16px 0 ${alpha(palettes.DARK.info.main, 0.24)}`,
+  // secondary: `0 8px 16px 0 ${alpha(palettes.DARK.secondary.main, 0.24)}`,
+  // success: `0 8px 16px 0 ${alpha(palettes.DARK.success.main, 0.24)}`,
+  // warning: `0 8px 16px 0 ${alpha(palettes.DARK.warning.main, 0.24)}`,
+  primary: `0 8px 16px 0 ${darken(palettes.DARK.primary.main, 0.5)}`,
+  info: `0 8px 16px 0 ${darken(palettes.DARK.info.main, 0.6)}`,
+  secondary: `0 8px 16px 0 ${darken(palettes.DARK.secondary.main, 0.5)}`,
+  success: `0 8px 16px 0 ${darken(palettes.DARK.success.main, 0.6)}`,
+  error: `0 8px 16px 0 ${darken(palettes.DARK.error.main, 0.6)}`,
+  warning: `0 8px 16px 0 ${darken(palettes.DARK.warning.main, 0.65)}`,
   card: `rgba(0, 0, 0, 0.2) 0px 0px 20px 0px, rgba(0, 0, 0, 0.12) 0px 12px 24px -4px`,
 };
