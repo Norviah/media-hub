@@ -20,6 +20,7 @@ import TableRow from '@mui/material/TableRow';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 import React from 'react';
+import LoadingButton from '@mui/lab/LoadingButton';
 
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -210,6 +211,16 @@ const MyCard2 = () => {
             />
           </IconButton>
         </div>
+        {/* <LoadingButton
+          startIcon={<FavoriteIcon />}
+          loading={loading}
+          onClick={async () => {
+            setLoading(true);
+            await new Promise((resolve) => setTimeout(resolve, 1500));
+            setLiked(!liked);
+            setLoading(false);
+          }}
+        /> */}
         <IconButton aria-label="share">
           <LibraryAddIcon />
         </IconButton>
@@ -458,6 +469,7 @@ const top100Films = [
 ];
 
 import Backdrop from '@mui/material/Backdrop';
+import { Stack } from '@mui/material';
 
 function SimpleBackdrop() {
   const [open, setOpen] = React.useState(false);
@@ -542,12 +554,26 @@ export default function MediaCard() {
       <Box sx={{ p: 2 }}>
         <ComboBox />
       </Box>
-      <Box sx={{ p: 2 }}>
-        <Button color="error" variant="contained">
-          1
-        </Button>
-        <Button variant="contained">1</Button>
-      </Box>
+      <Grid container sx={{ p: 2 }}>
+        <Stack direction={'row'} spacing={1}>
+          <Button variant="contained">1</Button>
+          <Button color="secondary" variant="contained">
+            1
+          </Button>
+          <Button color="error" variant="contained">
+            2
+          </Button>
+          <Button color="warning" variant="contained">
+            4
+          </Button>
+          <Button color="info" variant="contained">
+            4
+          </Button>
+          <Button color="success" variant="contained">
+            5
+          </Button>
+        </Stack>
+      </Grid>
       <Box sx={{ p: 2 }}>
         <Button variant="text">1</Button>
       </Box>

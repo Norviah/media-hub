@@ -77,3 +77,11 @@ export const GREY: Color = {
   A400: '#bdbdbd',
   A700: '#616161',
 };
+
+export const GOOGLE = {
+  RED: '#DE5246',
+};
+
+export const TWITTER = {
+  BLUE: '#1DA1F2',
+};

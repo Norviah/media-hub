@@ -126,7 +126,7 @@ export default class App extends Component<AppProps, AppState> {
   }
 
   public render(): JSX.Element {
-    const { Component, pageProps } = this.props;
+    const { Component, pageProps, router } = this.props;
 
     // In order to set the application's theme, we'll first need to determine
     // the actual theme that we should use. We'll use the `theme` property of
@@ -134,6 +134,11 @@ export default class App extends Component<AppProps, AppState> {
     // `system`, we'll grab their system's set theme.
     const theme: Themes =
       this.state.theme === 'system' ? themes.systemColorScheme() : this.state.theme;
+
+    const style: boolean = !(
+      (Component as typeof Component & { noAppbar?: boolean }).noAppbar ??
+      (router.route.startsWith('/auth/') || router.route === '/404')
+    );
 
     return (
       <StyledEngineProvider injectFirst>
@@ -143,18 +148,20 @@ export default class App extends Component<AppProps, AppState> {
           >
             <CssBaseline />
             <GlobalStyles />
-            <StyledRoot>
-              <Header onOpenNav={() => this.setState({ open: true })} />
-
-              <Navigation
-                openNav={this.state.open}
-                onCloseNav={() => this.setState({ open: false })}
-              />
-
-              <Main>
-                <Component {...pageProps} />
-              </Main>
-            </StyledRoot>
+            {style ? (
+              <StyledRoot>
+                <Header onOpenNav={() => this.setState({ open: true })} />{' '}
+                <Navigation
+                  openNav={this.state.open}
+                  onCloseNav={() => this.setState({ open: false })}
+                />
+                <Main>
+                  <Component {...pageProps} />
+                </Main>
+              </StyledRoot>
+            ) : (
+              <Component {...pageProps} />
+            )}
           </ThemeContext.Provider>
         </ThemeProvider>
       </StyledEngineProvider>
