@@ -1,19 +1,36 @@
+import { merge } from '@/util/merge';
 import { alpha } from '@mui/material/styles';
 
-import type { ThemeOptions } from '@/types/mui/ThemeOptions';
 import type { Components as ComponentOverrides } from '@mui/material/styles/components';
 
-export function Backdrop(theme: ThemeOptions): ComponentOverrides {
-  return {
-    MuiBackdrop: {
-      styleOverrides: {
-        root: {
-          backgroundColor: alpha(theme.palette.grey[800], 0.8),
-        },
-        invisible: {
-          background: 'transparent',
-        },
+import * as palettes from '@/theme/palette';
+
+const BASE: ComponentOverrides = {
+  MuiBackdrop: {
+    styleOverrides: {
+      invisible: {
+        background: 'transparent',
       },
     },
-  };
-}
+  },
+};
+
+export const DARK: ComponentOverrides = merge(BASE, {
+  MuiBackdrop: {
+    styleOverrides: {
+      root: {
+        backgroundColor: alpha(palettes.DARK.grey[800], 0.8),
+      },
+    },
+  },
+});
+
+export const LIGHT: ComponentOverrides = merge(BASE, {
+  MuiBackdrop: {
+    styleOverrides: {
+      root: {
+        backgroundColor: alpha(palettes.LIGHT.grey[800], 0.8),
+      },
+    },
+  },
+});

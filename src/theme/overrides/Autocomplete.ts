@@ -1,14 +1,23 @@
-import type { ThemeOptions } from '@/types/mui/ThemeOptions';
 import type { Components as ComponentOverrides } from '@mui/material/styles/components';
 
-export function Autocomplete(theme: ThemeOptions): ComponentOverrides {
-  return {
-    MuiAutocomplete: {
-      styleOverrides: {
-        paper: {
-          boxShadow: theme.customShadows.z20,
-        },
+import * as shadows from '@/theme/shadows';
+
+export const DARK: ComponentOverrides = {
+  MuiAutocomplete: {
+    styleOverrides: {
+      paper: {
+        boxShadow: shadows.DARK.z20,
       },
     },
-  };
-}
+  },
+};
+
+export const LIGHT: ComponentOverrides = {
+  MuiAutocomplete: {
+    styleOverrides: {
+      paper: {
+        boxShadow: shadows.LIGHT.z20,
+      },
+    },
+  },
+};

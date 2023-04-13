@@ -2,15 +2,23 @@ import { alpha } from '@mui/material/styles';
 
 import type { Shadows } from '@mui/material/styles';
 
-import * as colors from '@/theme/colors';
+import * as palettes from '@/theme/palette';
 
-const color = colors.GREY[900];
+const colors = {
+  LIGHT: palettes.THEME.GREY[500],
+  DARK: '#000',
+};
 
-const transparent1: string = alpha(color, 0.2);
-const transparent2: string = alpha(color, 0.14);
-const transparent3: string = alpha(color, 0.12);
+const transparents = {
+  LIGHT: alpha(colors.LIGHT, 0.16),
+  DARK: alpha(colors.DARK, 0.16),
+};
 
-export const shadows: Shadows = [
+const transparent1: string = alpha(colors.LIGHT, 0.2);
+const transparent2: string = alpha(colors.LIGHT, 0.14);
+const transparent3: string = alpha(colors.LIGHT, 0.12);
+
+export const array: Shadows = [
   'none',
   `0px 2px 1px -1px ${transparent1},0px 1px 1px 0px ${transparent2},0px 1px 3px 0px ${transparent3}`,
   `0px 3px 1px -2px ${transparent1},0px 2px 2px 0px ${transparent2},0px 1px 5px 0px ${transparent3}`,
@@ -37,3 +45,46 @@ export const shadows: Shadows = [
   `0px 11px 14px -7px ${transparent1},0px 23px 36px 3px ${transparent2},0px 9px 44px 8px ${transparent3}`,
   `0px 11px 15px -7px ${transparent1},0px 24px 38px 3px ${transparent2},0px 9px 46px 8px ${transparent3}`,
 ];
+
+export const LIGHT = {
+  z1: `0 1px 2px 0 ${transparents.LIGHT}`,
+  z4: `0 4px 8px 0 ${transparents.LIGHT}`,
+  z8: `0 8px 16px 0 ${transparents.LIGHT}`,
+  z12: `0 12px 24px -4px ${transparents.LIGHT}`,
+  z16: `0 16px 32px -4px ${transparents.LIGHT}`,
+  z20: `0 20px 40px -4px ${transparents.LIGHT}`,
+  z24: `0 24px 48px 0 ${transparents.LIGHT}`,
+  dialog: `-40px 40px 80px -8px ${alpha(colors.LIGHT, 0.24)}`,
+  dropdown: `0 0 2px 0 ${alpha(colors.LIGHT, 0.24)}, -20px 20px 40px -4px ${alpha(
+    colors.LIGHT,
+    0.24
+  )}`,
+  primary: `0 8px 16px 0 ${alpha(palettes.LIGHT.primary.main, 0.24)}`,
+  info: `0 8px 16px 0 ${alpha(palettes.LIGHT.info.main, 0.24)}`,
+  secondary: `0 8px 16px 0 ${alpha(palettes.LIGHT.secondary.main, 0.24)}`,
+  success: `0 8px 16px 0 ${alpha(palettes.LIGHT.success.main, 0.24)}`,
+  warning: `0 8px 16px 0 ${alpha(palettes.LIGHT.warning.main, 0.24)}`,
+  error: `0 8px 16px 0 ${alpha(palettes.LIGHT.error.main, 0.24)}`,
+  card: `0 0 2px 0 ${alpha(colors.LIGHT, 0.2)}, 0 12px 24px -4px ${alpha(colors.LIGHT, 0.12)}`,
+};
+
+export const DARK = {
+  z1: `0 1px 2px 0 ${transparents.DARK}`,
+  z4: `0 4px 8px 0 ${transparents.DARK}`,
+  z8: `0 8px 16px 0 ${transparents.DARK}`,
+  z12: `0 12px 24px -4px ${transparents.DARK}`,
+  z16: `0 16px 32px -4px ${transparents.DARK}`,
+  z20: `0 20px 40px -4px ${transparents.DARK}`,
+  z24: `0 24px 48px 0 ${transparents.DARK}`,
+  dialog: `-40px 40px 80px -8px ${alpha(colors.DARK, 0.24)}`,
+  dropdown: `0 0 2px 0 ${alpha(colors.DARK, 0.24)}, -20px 20px 40px -4px ${alpha(
+    colors.DARK,
+    0.24
+  )}`,
+  primary: `0 8px 16px 0 ${alpha(palettes.DARK.primary.main, 0.24)}`,
+  info: `0 8px 16px 0 ${alpha(palettes.DARK.info.main, 0.24)}`,
+  secondary: `0 8px 16px 0 ${alpha(palettes.DARK.secondary.main, 0.24)}`,
+  success: `0 8px 16px 0 ${alpha(palettes.DARK.success.main, 0.24)}`,
+  warning: `0 8px 16px 0 ${alpha(palettes.DARK.warning.main, 0.24)}`,
+  card: `rgba(0, 0, 0, 0.2) 0px 0px 20px 0px, rgba(0, 0, 0, 0.12) 0px 12px 24px -4px`,
+};

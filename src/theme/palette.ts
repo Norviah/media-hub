@@ -7,7 +7,7 @@ import * as colors from '@/theme/colors';
 /**
  *
  */
-export const THEME = colors.NORD;
+export const THEME = { ...colors.NORD, GREY: colors.GREY };
 
 const BASE: Omit<PaletteOptions, 'mode'> = {
   common: {
@@ -32,18 +32,18 @@ const BASE: Omit<PaletteOptions, 'mode'> = {
   error: {
     main: THEME.RED.MAIN,
   },
-  grey: colors.GREY,
-  divider: alpha(colors.GREY[500], 0.24),
+  grey: THEME.GREY,
+  divider: alpha(THEME.GREY[500], 0.24),
   text: {
-    disabled: colors.GREY[500],
+    disabled: THEME.GREY[500],
   },
   action: {
-    active: colors.GREY[600],
-    hover: alpha(colors.GREY[500], 0.08),
-    selected: alpha(colors.GREY[500], 0.16),
-    disabled: alpha(colors.GREY[500], 0.8),
-    disabledBackground: alpha(colors.GREY[500], 0.24),
-    focus: alpha(colors.GREY[500], 0.24),
+    active: THEME.GREY[600],
+    hover: alpha(THEME.GREY[500], 0.08),
+    selected: alpha(THEME.GREY[500], 0.16),
+    disabled: alpha(THEME.GREY[500], 0.8),
+    disabledBackground: alpha(THEME.GREY[500], 0.24),
+    focus: alpha(THEME.GREY[500], 0.24),
     hoverOpacity: 0.08,
     disabledOpacity: 0.48,
   },
@@ -55,14 +55,14 @@ const BASE: Omit<PaletteOptions, 'mode'> = {
 export const LIGHT: PaletteOptions = {
   ...BASE,
   mode: 'light',
-  divider: alpha(colors.GREY[500], 0.24),
+  divider: alpha(THEME.GREY[500], 0.24),
   background: {
-    default: colors.GREY[100],
+    default: THEME.GREY[100],
   },
   text: {
-    primary: colors.GREY[700],
-    secondary: colors.GREY[600],
-    disabled: colors.GREY[500],
+    primary: THEME.GREY[700],
+    secondary: THEME.GREY[600],
+    disabled: THEME.GREY[500],
   },
 };
 
@@ -72,14 +72,14 @@ export const LIGHT: PaletteOptions = {
 export const DARK: PaletteOptions = {
   ...BASE,
   mode: 'dark',
-  divider: alpha(colors.GREY[600], 0.24),
+  divider: alpha(THEME.GREY[600], 0.24),
   background: {
     paper: THEME.BLACK.DARK,
     default: THEME.BLACK.DARKER,
   },
   text: {
-    primary: colors.GREY[200],
-    secondary: colors.GREY[500],
-    disabled: colors.GREY[500],
+    primary: THEME.GREY[200],
+    secondary: THEME.GREY[500],
+    disabled: THEME.GREY[500],
   },
 };

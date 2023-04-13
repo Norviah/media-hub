@@ -1,17 +1,26 @@
 import { THEME } from '@/theme/palette';
-
-import type { ThemeOptions } from '@/types/mui/ThemeOptions';
 import type { Components as ComponentOverrides } from '@mui/material/styles/components';
 
-export function Table(theme: ThemeOptions): ComponentOverrides {
-  return {
-    MuiTableCell: {
-      styleOverrides: {
-        head: {
-          color: theme.palette.text?.secondary,
-          backgroundColor: theme.palette.mode === 'light' ? THEME.WHITE.LIGHT : THEME.BLACK.DARKER,
-        },
+import * as palettes from '@/theme/palette';
+
+export const DARK: ComponentOverrides = {
+  MuiTableCell: {
+    styleOverrides: {
+      head: {
+        color: palettes.DARK.text?.secondary,
+        backgroundColor: THEME.BLACK.DARKER,
       },
     },
-  };
-}
+  },
+};
+
+export const LIGHT: ComponentOverrides = {
+  MuiTableCell: {
+    styleOverrides: {
+      head: {
+        color: palettes.LIGHT.text?.secondary,
+        backgroundColor: THEME.WHITE.LIGHT,
+      },
+    },
+  },
+};

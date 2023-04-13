@@ -1,39 +1,58 @@
-import type { ThemeOptions } from '@/types/mui/ThemeOptions';
+import { merge } from '@/util/merge';
 import type { Components as ComponentOverrides } from '@mui/material/styles/components';
 
-export function Card(theme: ThemeOptions): ComponentOverrides {
-  return {
-    MuiCard: {
-      styleOverrides: {
-        root: {
-          boxShadow: theme.customShadows.card,
-          borderRadius: theme.shape?.borderRadius ? theme.shape.borderRadius * 1.5 : 1,
-          position: 'relative',
-          zIndex: 0, // Fix Safari overflow: hidden with border radius
-        },
+import * as shadows from '@/theme/shadows';
+
+const BASE: ComponentOverrides = {
+  MuiCard: {
+    styleOverrides: {
+      root: {
+        borderRadius: 3,
+        position: 'relative',
+        zIndex: 0,
       },
     },
-    MuiCardHeader: {
-      defaultProps: {
-        titleTypographyProps: {
-          variant: 'h6',
-        },
-        subheaderTypographyProps: {
-          variant: 'body2',
-        },
+  },
+  MuiCardHeader: {
+    defaultProps: {
+      titleTypographyProps: {
+        variant: 'h6',
       },
-      styleOverrides: {
-        root: {
-          // padding: theme.spacing(3, 3, 0),
-        },
+      subheaderTypographyProps: {
+        variant: 'body2',
       },
     },
-    MuiCardContent: {
-      styleOverrides: {
-        root: {
-          // padding: theme.spacing(3),
-        },
+    styleOverrides: {
+      root: {
+        // padding: theme.spacing(3, 3, 0),
       },
     },
-  };
-}
+  },
+  MuiCardContent: {
+    styleOverrides: {
+      root: {
+        // padding: theme.spacing(3),
+      },
+    },
+  },
+};
+
+export const LIGHT: ComponentOverrides = merge(BASE, {
+  MuiCard: {
+    styleOverrides: {
+      root: {
+        boxShadow: shadows.LIGHT.card,
+      },
+    },
+  },
+});
+
+export const DARK: ComponentOverrides = merge(BASE, {
+  MuiCard: {
+    styleOverrides: {
+      root: {
+        boxShadow: shadows.DARK.card,
+      },
+    },
+  },
+});

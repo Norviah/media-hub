@@ -1,27 +1,33 @@
-import { Autocomplete } from '@/theme/overrides/Autocomplete';
-import { Backdrop } from '@/theme/overrides/Backdrop';
-import { Button } from '@/theme/overrides/Button';
-import { Card } from '@/theme/overrides/Card';
-import { Input } from '@/theme/overrides/Input';
-import { Paper } from '@/theme/overrides/Paper';
-import { Rating } from '@/theme/overrides/Rating';
-import { Table } from '@/theme/overrides/Table';
-import { Tooltip } from '@/theme/overrides/Tooltip';
-import { Typography } from '@/theme/overrides/Typography';
+import * as Autocomplete from '@/theme/overrides/Autocomplete';
+import * as Backdrop from '@/theme/overrides/Backdrop';
+import * as Button from '@/theme/overrides/Button';
+import * as Card from '@/theme/overrides/Card';
+import * as Input from '@/theme/overrides/Input';
+import * as Paper from '@/theme/overrides/Paper';
+import * as Rating from '@/theme/overrides/Rating';
+import * as Table from '@/theme/overrides/Table';
+import * as Tooltip from '@/theme/overrides/Tooltip';
 
-import type { ThemeOptions } from '@/types/mui/ThemeOptions';
+export const LIGHT = {
+  ...Card.LIGHT,
+  ...Table.LIGHT,
+  ...Autocomplete.LIGHT,
+  ...Button.LIGHT,
+  ...Tooltip.LIGHT,
+  ...Backdrop.LIGHT,
+  ...Rating.LIGHT,
+  ...Input.LIGHT,
+  ...Paper.LIGHT,
+};
 
-export function ComponentsOverrides(theme: ThemeOptions): void {
-  return Object.assign(
-    Paper(),
-    Card(theme),
-    Table(theme),
-    Input(theme),
-    Button(theme),
-    Tooltip(theme),
-    Backdrop(theme),
-    Typography(theme),
-    Autocomplete(theme),
-    Rating()
-  );
-}
+export const DARK = {
+  ...Card.DARK,
+  ...Table.DARK,
+  ...Autocomplete.DARK,
+  ...Button.DARK,
+  ...Tooltip.DARK,
+  ...Backdrop.DARK,
+  ...Rating.DARK,
+  ...Input.DARK,
+  ...Paper.DARK,
+};
