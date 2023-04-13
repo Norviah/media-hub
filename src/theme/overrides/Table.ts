@@ -8,7 +8,7 @@ export const DARK: ComponentOverrides = {
     styleOverrides: {
       head: {
         color: palettes.DARK.text?.secondary,
-        backgroundColor: THEME.BLACK.DARKER,
+        backgroundColor: THEME.BLACK.DARK,
       },
     },
   },

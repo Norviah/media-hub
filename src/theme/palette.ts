@@ -74,7 +74,7 @@ export const DARK: PaletteOptions = {
   mode: 'dark',
   divider: alpha(THEME.GREY[600], 0.24),
   background: {
-    paper: THEME.BLACK.DARK,
+    paper: THEME.BLACK.MAIN,
     default: THEME.BLACK.DARKER,
   },
   text: {
