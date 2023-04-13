@@ -72,7 +72,7 @@ export const LIGHT: PaletteOptions = {
 export const DARK: PaletteOptions = {
   ...BASE,
   mode: 'dark',
-  divider: alpha(THEME.GREY[600], 0.24),
+  divider: THEME.BLACK.LIGHT,
   background: {
     paper: THEME.BLACK.MAIN,
     default: THEME.BLACK.DARKER,

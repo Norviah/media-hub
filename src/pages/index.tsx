@@ -1,162 +1,36 @@
-// import * as React from 'react';
-// import { styled } from '@mui/material/styles';
-// import Card from '@mui/material/Card';
-// import CardHeader from '@mui/material/CardHeader';
-// import CardMedia from '@mui/material/CardMedia';
-// import CardContent from '@mui/material/CardContent';
-// import CardActions from '@mui/material/CardActions';
-// import Collapse from '@mui/material/Collapse';
-// import Avatar from '@mui/material/Avatar';
-// import IconButton, { IconButtonProps } from '@mui/material/IconButton';
-// import Typography from '@mui/material/Typography';
-// import { red } from '@mui/material/colors';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import ShareIcon from '@mui/icons-material/Share';
-// import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-// import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { THEME } from '@/theme/palette';
-// import { Box, Rating } from '@mui/material';
-// import { LoadingButton } from '@mui/lab';
-
-// interface ExpandMoreProps extends IconButtonProps {
-//   expand: boolean;
-// }
-
-// const ExpandMore = styled((props: ExpandMoreProps) => {
-//   const { expand, ...other } = props;
-//   return <IconButton {...other} />;
-// })(({ theme, expand }) => ({
-//   transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
-//   marginLeft: 'auto',
-//   transition: theme.transitions.create('transform', {
-//     duration: theme.transitions.duration.shortest,
-//   }),
-// }));
-
-// export default function RecipeReviewCard() {
-//   const [expanded, setExpanded] = React.useState(false);
-//   const [liked, setLiked] = React.useState(false);
-
-//   const handleExpandClick = () => {
-//     setExpanded(!expanded);
-//   };
-
-//   return (
-//     <Box sx={{ p: 2 }}>
-//       <Card sx={{ maxWidth: 345 }}>
-//         <CardHeader
-//           action={
-//             <IconButton aria-label="settings">
-//               <MoreVertIcon />
-//             </IconButton>
-//           }
-//           title="Your Lie in April"
-//           subheader="September 14, 2016"
-//         />
-//         <CardMedia
-//           component="img"
-//           height="194"
-//           image="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/IGbeFv5Ji4W0x530JcSHiQpamY.jpg"
-//           alt="Paella dish"
-//         />
-//         <CardContent>
-//           <Typography variant="body2" color="text.secondary">
-//             <Rating precision={0.5} sx={{ color: THEME.YELLOW }} />
-//           </Typography>
-//           <Typography variant="body2" color="text.secondary">
-//             This impressive paella is a perfect party dish and a fun meal to cook together with your
-//             guests. Add 1 cup of frozen peas along with the mussels, if you like.
-//           </Typography>
-//         </CardContent>
-//         <CardActions disableSpacing>
-//           {/* <IconButton aria-label="add to favorites" onClick={() => setLiked(!liked)}> */}
-//           <LoadingButton aria-label="add to favorites" onClick={() => setLiked(!liked)}>
-//             HI
-//             {/* <FavoriteIcon sx={{ color: liked ? THEME.RED : undefined }} /> */}
-//           </LoadingButton>
-//           <IconButton aria-label="share">
-//             <ShareIcon />
-//           </IconButton>
-//           <ExpandMore
-//             expand={expanded}
-//             onClick={handleExpandClick}
-//             aria-expanded={expanded}
-//             aria-label="show more"
-//           >
-//             <ExpandMoreIcon />
-//           </ExpandMore>
-//         </CardActions>
-//         <Collapse in={expanded} timeout="auto" unmountOnExit>
-//           <CardContent>
-//             <Typography paragraph>Method:</Typography>
-//             <Typography paragraph>
-//               Heat 1/2 cup of the broth in a pot until simmering, add saffron and set aside for 10
-//               minutes.
-//             </Typography>
-//             <Typography paragraph>
-//               Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over medium-high
-//               heat. Add chicken, shrimp and chorizo, and cook, stirring occasionally until lightly
-//               browned, 6 to 8 minutes. Transfer shrimp to a large plate and set aside, leaving
-//               chicken and chorizo in the pan. Add pimentón, bay leaves, garlic, tomatoes, onion,
-//               salt and pepper, and cook, stirring often until thickened and fragrant, about 10
-//               minutes. Add saffron broth and remaining 4 1/2 cups chicken broth; bring to a boil.
-//             </Typography>
-//             <Typography paragraph>
-//               Add rice and stir very gently to distribute. Top with artichokes and peppers, and cook
-//               without stirring, until most of the liquid is absorbed, 15 to 18 minutes. Reduce heat
-//               to medium-low, add reserved shrimp and mussels, tucking them down into the rice, and
-//               cook again without stirring, until mussels have opened and rice is just tender, 5 to 7
-//               minutes more. (Discard any mussels that don&apos;t open.)
-//             </Typography>
-//             <Typography>
-//               Set aside off of the heat to let rest for 10 minutes, and then serve.
-//             </Typography>
-//           </CardContent>
-//         </Collapse>
-//       </Card>
-//     </Box>
-//   );
-// }
-
-import * as React from 'react';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import {
-  Box,
-  CircularProgress,
-  Divider,
-  Grid,
-  Icon,
-  IconButton,
-  Link,
-  Rating,
-  Stack,
-  Tooltip,
-} from '@mui/material';
-import { LoadingButton } from '@mui/lab';
-
+import CircularProgress from '@mui/material/CircularProgress';
+import Collapse from '@mui/material/Collapse';
+import Divider from '@mui/material/Divider';
+import Grid from '@mui/material/Grid';
+import IconButton from '@mui/material/IconButton';
+import Paper from '@mui/material/Paper';
+import Rating from '@mui/material/Rating';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
+import Tooltip from '@mui/material/Tooltip';
+import Typography from '@mui/material/Typography';
+import React from 'react';
 
-import { styled } from '@mui/material/styles';
-import CardHeader from '@mui/material/CardHeader';
-
-import Collapse from '@mui/material/Collapse';
-import Avatar from '@mui/material/Avatar';
-import { IconButtonProps } from '@mui/material/IconButton';
-import { red } from '@mui/material/colors';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
-import * as colors from '@/theme/colors';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import LibraryAddIcon from '@mui/icons-material/LibraryAdd';
+import ShareIcon from '@mui/icons-material/Share';
+
+import { Link } from '@/components/Link';
+import { THEME } from '@/theme/palette';
+import { styled } from '@mui/material/styles';
+
+import type { IconButtonProps } from '@mui/material/IconButton';
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -279,7 +153,7 @@ const MyCard2 = () => {
               transition: 'all .1s',
             },
           }}
-          image="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/6cmtMbEZAYm3aWzthFRk6048LFi.jpg"
+          image="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/n30CBH4BoN5Z34tCpOWIPGJYOaS.jpg"
         >
           <div
             style={{
@@ -301,7 +175,7 @@ const MyCard2 = () => {
               color: 'white',
             }}
           >
-            <Typography variant="h5">The Great Pretender</Typography>
+            <Typography variant="h5">Made In Abyss</Typography>
           </CardContent>
         </CardMedia>
       </Link>
@@ -331,14 +205,13 @@ const MyCard2 = () => {
             ) : null}
             <FavoriteIcon
               style={{
-                // color: liked ? THEME.RED : undefined,
                 color: loading ? THEME.BLACK.MEDIUM : liked ? THEME.RED.MAIN : undefined,
               }}
             />
           </IconButton>
         </div>
         <IconButton aria-label="share">
-          <ShareIcon />
+          <LibraryAddIcon />
         </IconButton>
         <ExpandMore
           expand={expanded}
@@ -441,8 +314,8 @@ const MyCard2 = () => {
   // );
 };
 
-import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
+import TextField from '@mui/material/TextField';
 
 export function ComboBox() {
   return (
@@ -670,6 +543,9 @@ export default function MediaCard() {
         <ComboBox />
       </Box>
       <Box sx={{ p: 2 }}>
+        <Button color="error" variant="contained">
+          1
+        </Button>
         <Button variant="contained">1</Button>
       </Box>
       <Box sx={{ p: 2 }}>
