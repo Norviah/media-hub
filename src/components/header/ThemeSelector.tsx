@@ -11,6 +11,7 @@ import { useTheme } from '@/hooks/useTheme';
 import { useState } from 'react';
 
 import type { IconButtonProps } from '@mui/material/IconButton';
+import type { SvgIconProps } from '@mui/material/SvgIcon';
 import type { ThemePresets, Themes } from '@/types/Themes';
 
 import * as themes from '@/theme/themes';
@@ -31,7 +32,10 @@ import * as themes from '@/theme/themes';
  *
  * This component can be used anywhere within the application.
  */
-export function ThemeSelector(props: IconButtonProps): JSX.Element {
+export function ThemeSelector(props?: {
+  button?: IconButtonProps;
+  icon?: SvgIconProps;
+}): JSX.Element {
   // To create the theme selector, we will be using the `Menu` component from
   // the Material UI library, which will allow us to provide the user with a
   // meny of options to choose from.
@@ -97,8 +101,8 @@ export function ThemeSelector(props: IconButtonProps): JSX.Element {
 
   return (
     <>
-      <IconButton onClick={handleClick} {...props}>
-        {theme === 'light' ? <LightModeIcon /> : <DarkModeIcon />}
+      <IconButton onClick={handleClick} {...props?.button}>
+        {theme === 'light' ? <LightModeIcon {...props?.icon} /> : <DarkModeIcon {...props?.icon} />}
       </IconButton>
       <Popover
         open={Boolean(anchorEl)}

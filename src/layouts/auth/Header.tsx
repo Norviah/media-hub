@@ -12,14 +12,12 @@ export function Header(props: { router: NextRouter }): JSX.Element {
   return (
     <>
       <Grid container justifyContent="flex-end" style={{ padding: 10 }}>
-        <Box>
-          <Logo />
-        </Box>
+        <Logo />
         <Box sx={{ flexGrow: 1 }} />
         <Grid item>
-          <ThemeSelector sx={{ color: 'text.primary' }} />
+          <ThemeSelector icon={{ fontSize: 'large' }} />
           <IconButton onClick={() => props.router.push('/')}>
-            <HomeIcon sx={{ color: 'text.primary' }} />
+            <HomeIcon fontSize="large" />
           </IconButton>
         </Grid>
       </Grid>
