@@ -50,6 +50,13 @@ const BASE: Shadows = [
   `0px 11px 15px -7px transparent1,0px 24px 38px 3px transparent2,0px 9px 46px 8px transparent3`,
 ];
 
+const SHADOWS = {
+  BUTTON: {
+    MAIN: '0 8px 16px 0 [color]',
+    HOVER: '0 4px 8px 0 [color]',
+  },
+} as const;
+
 export const arrays = {
   LIGHT: BASE.map(
     (item) =>
@@ -68,6 +75,13 @@ export const arrays = {
   ) as Shadows[],
 };
 
+function shadowConfig(color: string) {
+  return {
+    main: SHADOWS.BUTTON.MAIN.replace('[color]', color),
+    hover: SHADOWS.BUTTON.HOVER.replace('[color]', color),
+  };
+}
+
 export const LIGHT = {
   z1: `0 1px 2px 0 ${transparents.LIGHT}`,
   z4: `0 4px 8px 0 ${transparents.LIGHT}`,
@@ -81,12 +95,12 @@ export const LIGHT = {
     colors.LIGHT,
     0.24
   )}`,
-  primary: `0 8px 16px 0 ${alpha(palettes.LIGHT.primary.main, 0.75)}`,
-  info: `0 8px 16px 0 ${alpha(palettes.LIGHT.info.main, 0.75)}`,
-  secondary: `0 8px 16px 0 ${alpha(palettes.LIGHT.secondary.main, 0.75)}`,
-  success: `0 8px 16px 0 ${alpha(palettes.LIGHT.success.main, 0.75)}`,
-  warning: `0 8px 16px 0 ${alpha(palettes.LIGHT.warning.main, 0.75)}`,
-  error: `0 8px 16px 0 ${alpha(palettes.LIGHT.error.main, 0.75)}`,
+  primary: shadowConfig(alpha(palettes.LIGHT.primary.main, 0.75)),
+  info: shadowConfig(alpha(palettes.LIGHT.info.main, 0.75)),
+  secondary: shadowConfig(alpha(palettes.LIGHT.secondary.main, 0.75)),
+  success: shadowConfig(alpha(palettes.LIGHT.success.main, 0.75)),
+  warning: shadowConfig(alpha(palettes.LIGHT.warning.main, 0.75)),
+  error: shadowConfig(alpha(palettes.LIGHT.error.main, 0.75)),
   card: `0 0 2px 0 ${alpha(colors.LIGHT, 0.2)}, 0 12px 24px -4px ${alpha(colors.LIGHT, 0.12)}`,
 };
 
@@ -103,11 +117,11 @@ export const DARK = {
     colors.DARK,
     0.24
   )}`,
-  primary: `0 8px 16px 0 ${darken(palettes.DARK.primary.main, 0.8)}`,
-  info: `0 8px 16px 0 ${darken(palettes.DARK.info.main, 0.8)}`,
-  secondary: `0 8px 16px 0 ${darken(palettes.DARK.secondary.main, 0.75)}`,
-  success: `0 8px 16px 0 ${darken(palettes.DARK.success.main, 0.75)}`,
-  error: `0 8px 16px 0 ${darken(palettes.DARK.error.main, 0.7)}`,
-  warning: `0 8px 16px 0 ${darken(palettes.DARK.warning.main, 0.8)}`,
+  primary: shadowConfig(darken(palettes.DARK.primary.main, 0.8)),
+  info: shadowConfig(darken(palettes.DARK.info.main, 0.8)),
+  secondary: shadowConfig(darken(palettes.DARK.secondary.main, 0.75)),
+  success: shadowConfig(darken(palettes.DARK.success.main, 0.8)),
+  error: shadowConfig(darken(palettes.DARK.error.main, 0.7)),
+  warning: shadowConfig(darken(palettes.DARK.warning.main, 0.8)),
   card: `rgba(0, 0, 0, 0.2) 0px 0px 20px 0px, rgba(0, 0, 0, 0.12) 0px 12px 24px -4px`,
 };

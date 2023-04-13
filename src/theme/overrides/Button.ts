@@ -32,27 +32,45 @@ export const DARK: ComponentOverrides = merge(BASE, {
         },
       },
       containedError: {
-        boxShadow: shadows.DARK.error,
+        boxShadow: shadows.DARK.error.main,
+        '&:hover': {
+          boxShadow: shadows.DARK.error.hover,
+        },
       },
       containedWarning: {
-        boxShadow: shadows.DARK.warning,
+        boxShadow: shadows.DARK.warning.main,
+        '&:hover': {
+          boxShadow: shadows.DARK.warning.hover,
+        },
       },
       containedInfo: {
-        boxShadow: shadows.DARK.info,
+        boxShadow: shadows.DARK.info.main,
+        '&:hover': {
+          boxShadow: shadows.DARK.info.hover,
+        },
       },
       containedSuccess: {
-        boxShadow: shadows.DARK.success,
+        boxShadow: shadows.DARK.success.main,
+        '&:hover': {
+          boxShadow: shadows.DARK.success.hover,
+        },
       },
       containedPrimary: {
-        boxShadow: shadows.DARK.primary,
+        boxShadow: shadows.DARK.primary.main,
+        '&:hover': {
+          boxShadow: shadows.DARK.primary.hover,
+        },
       },
       containedSecondary: {
-        boxShadow: shadows.DARK.secondary,
+        boxShadow: shadows.DARK.secondary.main,
+        '&:hover': {
+          boxShadow: shadows.DARK.secondary.hover,
+        },
       },
       outlinedInherit: {
         border: `1px solid ${alpha(palettes.DARK.grey[500], 0.32)}`,
         '&:hover': {
-          backgroundColor: palettes.DARK.action?.hover,
+          ackgroundColor: palettes.DARK.action?.hover,
         },
       },
       textInherit: {
@@ -75,22 +93,40 @@ export const LIGHT: ComponentOverrides = merge(BASE, {
         },
       },
       containedError: {
-        boxShadow: shadows.LIGHT.error,
+        boxShadow: shadows.LIGHT.error.main,
+        '&:hover': {
+          boxShadow: shadows.LIGHT.error.hover,
+        },
       },
       containedWarning: {
-        boxShadow: shadows.LIGHT.warning,
+        boxShadow: shadows.LIGHT.warning.main,
+        '&:hover': {
+          boxShadow: shadows.LIGHT.warning.hover,
+        },
       },
       containedInfo: {
-        boxShadow: shadows.LIGHT.info,
+        boxShadow: shadows.LIGHT.info.main,
+        '&:hover': {
+          boxShadow: shadows.LIGHT.info.hover,
+        },
       },
       containedSuccess: {
-        boxShadow: shadows.LIGHT.success,
+        boxShadow: shadows.LIGHT.success.main,
+        '&:hover': {
+          boxShadow: shadows.LIGHT.success.hover,
+        },
       },
       containedPrimary: {
-        boxShadow: shadows.LIGHT.primary,
+        boxShadow: shadows.LIGHT.primary.main,
+        '&:hover': {
+          boxShadow: shadows.LIGHT.primary.hover,
+        },
       },
       containedSecondary: {
-        boxShadow: shadows.LIGHT.secondary,
+        boxShadow: shadows.LIGHT.secondary.main,
+        '&:hover': {
+          boxShadow: shadows.LIGHT.secondary.hover,
+        },
       },
       outlinedInherit: {
         border: `1px solid ${alpha(palettes.LIGHT.grey[500], 0.32)}`,
