@@ -10,6 +10,7 @@ import Stack from '@mui/material/Stack';
 import { useTheme } from '@/hooks/useTheme';
 import { useState } from 'react';
 
+import type { IconButtonProps } from '@mui/material/IconButton';
 import type { ThemePresets, Themes } from '@/types/Themes';
 
 import * as themes from '@/theme/themes';
@@ -30,7 +31,7 @@ import * as themes from '@/theme/themes';
  *
  * This component can be used anywhere within the application.
  */
-export function ThemeSelector(): JSX.Element {
+export function ThemeSelector(props: IconButtonProps): JSX.Element {
   // To create the theme selector, we will be using the `Menu` component from
   // the Material UI library, which will allow us to provide the user with a
   // meny of options to choose from.
@@ -96,7 +97,7 @@ export function ThemeSelector(): JSX.Element {
 
   return (
     <>
-      <IconButton onClick={handleClick}>
+      <IconButton onClick={handleClick} {...props}>
         {theme === 'light' ? <LightModeIcon /> : <DarkModeIcon />}
       </IconButton>
       <Popover
@@ -143,27 +144,6 @@ export function ThemeSelector(): JSX.Element {
           System
         </MenuItem>
       </Popover>
-      {/* <Menu
-        keepMounted
-        anchorEl={anchorEl}
-        open={Boolean(anchorEl)}
-        onClose={handleClose}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-        transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-      >
-        <MenuItem onClick={() => handleThemeChange('light')} selected={prefers.theme === 'light'}>
-          <LightModeIcon fontSize="small" />
-          Light Mode
-        </MenuItem>
-        <MenuItem onClick={() => handleThemeChange('dark')} selected={prefers.theme === 'dark'}>
-          <DarkModeIcon fontSize="small" />
-          Dark Mode
-        </MenuItem>
-        <Divider />
-        <MenuItem onClick={() => handleThemeChange('system')} selected={prefers.theme === 'system'}>
-          System
-        </MenuItem>
-      </Menu> */}
     </>
   );
 }
