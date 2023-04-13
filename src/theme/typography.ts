@@ -25,7 +25,7 @@ export function responsiveFontSizes(args: {
 /**
  *
  */
-export const FONT = 'Roboto';
+export const FONT = 'outfit, inter, sans-serif';
 
 export const typography: ThemeOptions['typography'] = {
   fontFamily: FONT,

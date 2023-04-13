@@ -8,6 +8,7 @@ import { GlobalStyles } from '@/theme/globalStyles';
 import { CssBaseline, ThemeProvider, StyledEngineProvider, Button } from '@mui/material';
 import { ThemeContext } from '@/hooks/useTheme';
 import { SnackbarProvider, closeSnackbar } from 'notistack';
+import { StyledComponents } from '@/theme/notistack';
 
 import { Navigation } from '@/components/nav';
 import { Header } from '@/components/header/Header';
@@ -17,13 +18,16 @@ import * as themes from '@/theme/themes';
 import type { AppProps } from 'next/app';
 import type { ThemePresets, Themes } from '@/types/Themes';
 
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
+import '@fontsource/inter/300.css';
+import '@fontsource/inter/400.css';
+import '@fontsource/inter/500.css';
+import '@fontsource/inter/700.css';
+import '@fontsource/outfit/300.css';
+import '@fontsource/outfit/400.css';
+import '@fontsource/outfit/500.css';
+import '@fontsource/outfit/700.css';
 
 import '@/styles/globals.css';
-import { Components } from '@/theme/notistack';
 
 const APP_BAR_MOBILE = 64;
 const APP_BAR_DESKTOP = 92;
@@ -168,7 +172,7 @@ export default class App extends Component<AppProps, AppState> {
                   <CloseIcon fontSize="small" />
                 </IconButton>
               )}
-              Components={Components}
+              Components={StyledComponents}
             >
               <CssBaseline />
               <GlobalStyles />
