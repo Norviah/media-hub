@@ -21,7 +21,7 @@ const Style = styled(MaterialDesignContent)(() => ({
   },
 }));
 
-export const Components = {
+export const StyledComponents = {
   success: Style,
   error: Style,
   info: Style,
