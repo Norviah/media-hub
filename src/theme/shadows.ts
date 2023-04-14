@@ -53,7 +53,8 @@ const BASE: Shadows = [
 const SHADOWS = {
   BUTTON: {
     MAIN: '0 8px 16px 0 [color]',
-    HOVER: '0 4px 8px 0 [color]',
+    HOVER: '0 6px 8px 0 [color]',
+    ACTIVE: '0 4px 8px 0 [color]',
   },
 } as const;
 
@@ -79,6 +80,7 @@ function shadowConfig(color: string) {
   return {
     main: SHADOWS.BUTTON.MAIN.replace('[color]', color),
     hover: SHADOWS.BUTTON.HOVER.replace('[color]', color),
+    active: SHADOWS.BUTTON.ACTIVE.replace('[color]', color),
   };
 }
 

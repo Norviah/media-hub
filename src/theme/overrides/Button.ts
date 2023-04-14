@@ -9,14 +9,19 @@ import type { Components as ComponentOverrides } from '@mui/material/styles/comp
 const BASE: ComponentOverrides = {
   MuiButton: {
     styleOverrides: {
-      root: {
-        '&:hover': {
-          boxShadow: 'none',
-        },
-      },
       sizeLarge: {
         height: 48,
       },
+      //   containedError: {
+      //     '&:active': {
+      //       transition: 'box-shadow 0.1s',
+      //     },
+      //   },
+      // containedPrimary: {
+      //   '&:active': {
+      //     // transition: 'box-shadow 0.1s',
+      //   },
+      // },
     },
   },
 };
@@ -36,11 +41,19 @@ export const DARK: ComponentOverrides = merge(BASE, {
         '&:hover': {
           boxShadow: shadows.DARK.error.hover,
         },
+        '&:active': {
+          boxShadow: shadows.DARK.error.active,
+          transition: 'box-shadow 0.1s',
+        },
       },
       containedWarning: {
         boxShadow: shadows.DARK.warning.main,
         '&:hover': {
           boxShadow: shadows.DARK.warning.hover,
+        },
+        '&:active': {
+          boxShadow: shadows.DARK.warning.active,
+          transition: 'box-shadow 0.1s',
         },
       },
       containedInfo: {
@@ -48,11 +61,19 @@ export const DARK: ComponentOverrides = merge(BASE, {
         '&:hover': {
           boxShadow: shadows.DARK.info.hover,
         },
+        '&:active': {
+          boxShadow: shadows.DARK.info.active,
+          transition: 'box-shadow 0.1s',
+        },
       },
       containedSuccess: {
         boxShadow: shadows.DARK.success.main,
         '&:hover': {
           boxShadow: shadows.DARK.success.hover,
+        },
+        '&:active': {
+          boxShadow: shadows.DARK.success.active,
+          transition: 'box-shadow 0.1s',
         },
       },
       containedPrimary: {
@@ -60,11 +81,19 @@ export const DARK: ComponentOverrides = merge(BASE, {
         '&:hover': {
           boxShadow: shadows.DARK.primary.hover,
         },
+        '&:active': {
+          boxShadow: shadows.DARK.primary.active,
+          transition: 'box-shadow 0.1s',
+        },
       },
       containedSecondary: {
         boxShadow: shadows.DARK.secondary.main,
         '&:hover': {
           boxShadow: shadows.DARK.secondary.hover,
+        },
+        '&:active': {
+          boxShadow: shadows.DARK.secondary.active,
+          transition: 'box-shadow 0.1s',
         },
       },
       outlinedInherit: {
@@ -97,11 +126,19 @@ export const LIGHT: ComponentOverrides = merge(BASE, {
         '&:hover': {
           boxShadow: shadows.LIGHT.error.hover,
         },
+        '&:active': {
+          boxShadow: shadows.LIGHT.error.active,
+          transition: 'box-shadow 0.1s',
+        },
       },
       containedWarning: {
         boxShadow: shadows.LIGHT.warning.main,
         '&:hover': {
           boxShadow: shadows.LIGHT.warning.hover,
+        },
+        '&:active': {
+          boxShadow: shadows.LIGHT.warning.active,
+          transition: 'box-shadow 0.1s',
         },
       },
       containedInfo: {
@@ -109,11 +146,19 @@ export const LIGHT: ComponentOverrides = merge(BASE, {
         '&:hover': {
           boxShadow: shadows.LIGHT.info.hover,
         },
+        '&:active': {
+          boxShadow: shadows.LIGHT.info.active,
+          transition: 'box-shadow 0.1s',
+        },
       },
       containedSuccess: {
         boxShadow: shadows.LIGHT.success.main,
         '&:hover': {
           boxShadow: shadows.LIGHT.success.hover,
+        },
+        '&:active': {
+          boxShadow: shadows.LIGHT.success.active,
+          transition: 'box-shadow 0.1s',
         },
       },
       containedPrimary: {
@@ -121,11 +166,19 @@ export const LIGHT: ComponentOverrides = merge(BASE, {
         '&:hover': {
           boxShadow: shadows.LIGHT.primary.hover,
         },
+        '&:active': {
+          boxShadow: shadows.LIGHT.primary.active,
+          transition: 'box-shadow 0.1s',
+        },
       },
       containedSecondary: {
         boxShadow: shadows.LIGHT.secondary.main,
         '&:hover': {
           boxShadow: shadows.LIGHT.secondary.hover,
+        },
+        '&:active': {
+          boxShadow: shadows.LIGHT.secondary.active,
+          transition: 'box-shadow 0.1s',
         },
       },
       outlinedInherit: {
