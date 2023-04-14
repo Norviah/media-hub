@@ -121,7 +121,7 @@ export default function NotificationsPopover() {
             mt: 1.5,
             ml: 0.75,
             width: 330,
-            maxHeight: 550,
+            maxHeight: 450,
             display: 'flex',
             flexDirection: 'column',
           },
