@@ -125,5 +125,5 @@ export const DARK = {
   success: shadowConfig(darken(palettes.DARK.success.main, 0.8)),
   error: shadowConfig(darken(palettes.DARK.error.main, 0.7)),
   warning: shadowConfig(darken(palettes.DARK.warning.main, 0.8)),
-  card: `rgba(0, 0, 0, 0.2) 0px 0px 20px 0px, rgba(0, 0, 0, 0.12) 0px 12px 24px -4px`,
+  card: `rgba(0, 0, 0, 0.3) 0px 0px 25px 0px, rgba(0, 0, 0, 0.12) 0px 12px 24px -4px`,
 };
