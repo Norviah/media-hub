@@ -6,14 +6,12 @@ import Input from '@mui/material/Input';
 import InputAdornment from '@mui/material/InputAdornment';
 import Slide from '@mui/material/Slide';
 
-import { bgBlur } from '@/util/cssStyles';
+import { bgBlur } from '@/util/css';
 import { styled } from '@mui/material/styles';
 import { useState } from 'react';
 
 import * as shadows from '@/theme/shadows';
-
-const HEADER_MOBILE = 64;
-const HEADER_DESKTOP = 92;
+import * as constants from '@/util/constants';
 
 const StyledSearchbar = styled('div')(({ theme }) => ({
   ...bgBlur({ color: theme.palette.background.default }),
@@ -24,11 +22,11 @@ const StyledSearchbar = styled('div')(({ theme }) => ({
   display: 'flex',
   position: 'absolute',
   alignItems: 'center',
-  height: HEADER_MOBILE,
+  height: constants.SPACING.MOBILE,
   padding: theme.spacing(0, 3),
   boxShadow: (theme.palette.mode === 'light' ? shadows.LIGHT : shadows.DARK).z8,
   [theme.breakpoints.up('md')]: {
-    height: HEADER_DESKTOP,
+    height: constants.SPACING.DESKTOP,
     padding: theme.spacing(0, 5),
   },
 }));

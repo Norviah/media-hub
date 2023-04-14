@@ -1,5 +1,4 @@
 import { alpha, darken } from '@mui/material/styles';
-
 import type { Shadows } from '@mui/material/styles';
 
 import * as palettes from '@/theme/palette';

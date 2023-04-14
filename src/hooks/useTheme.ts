@@ -1,7 +1,7 @@
 import { createContext, useContext } from 'react';
 
 import type { Context } from 'react';
-import type { ThemePreference } from '@/types/ThemePreference';
+import type { ThemePreference } from '@/types/theme';
 
 import * as themes from '@/theme/themes';
 

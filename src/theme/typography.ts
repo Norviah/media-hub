@@ -1,34 +1,8 @@
-import type { ThemeOptions } from '@mui/material';
+import { pxToRem, responsiveFontSizes } from '@/util/typography';
+import type { TypographyOptions } from '@mui/material/styles/createTypography';
 
-export function pxToRem(value: number): string {
-  return `${value / 16}rem`;
-}
-
-export function responsiveFontSizes(args: {
-  sm: number;
-  md: number;
-  lg: number;
-}): Record<string, any> {
-  return {
-    '@media (min-width:600px)': {
-      fontSize: pxToRem(args.sm),
-    },
-    '@media (min-width:900px)': {
-      fontSize: pxToRem(args.md),
-    },
-    '@media (min-width:1200px)': {
-      fontSize: pxToRem(args.lg),
-    },
-  };
-}
-
-/**
- *
- */
-export const FONT = 'outfit, inter, sans-serif';
-
-export const typography: ThemeOptions['typography'] = {
-  fontFamily: FONT,
+export const typography: TypographyOptions = {
+  fontFamily: 'outfit, inter, sans-serif',
   fontWeightRegular: 400,
   fontWeightMedium: 600,
   fontWeightBold: 700,

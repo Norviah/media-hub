@@ -1,15 +1,15 @@
+import account from '@/components/_mock/account';
+import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
-import Typography from '@mui/material/Typography';
-import Stack from '@mui/material/Stack';
-import MenuItem from '@mui/material/MenuItem';
-import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
+import MenuItem from '@mui/material/MenuItem';
 import Popover from '@mui/material/Popover';
-import account from '@/components/_mock/account';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
 
-import { useState } from 'react';
 import { alpha } from '@mui/material/styles';
+import { useState } from 'react';
 
 export default function AccountPopover() {
   const [open, setOpen] = useState(null);

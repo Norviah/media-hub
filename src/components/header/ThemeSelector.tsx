@@ -7,14 +7,13 @@ import IconButton from '@mui/material/IconButton';
 import Popover from '@mui/material/Popover';
 import Stack from '@mui/material/Stack';
 
+import { systemColorScheme } from '@/util/theme';
 import { useTheme } from '@/hooks/useTheme';
 import { useState } from 'react';
 
 import type { IconButtonProps } from '@mui/material/IconButton';
 import type { SvgIconProps } from '@mui/material/SvgIcon';
-import type { ThemePresets, Themes } from '@/types/Themes';
-
-import * as themes from '@/theme/themes';
+import type { ThemePresets, Themes } from '@/types/theme';
 
 /**
  * The theme toggler component.
@@ -58,7 +57,7 @@ export function ThemeSelector(props?: {
 
   // Represents the current theme of the application retrieved from the
   // `useTheme` hook, which is specified from the `_app` component.
-  const theme: Themes = prefers.theme === 'system' ? themes.systemColorScheme() : prefers.theme;
+  const theme: Themes = prefers.theme === 'system' ? systemColorScheme() : prefers.theme;
 
   /**
    * Handles the click event of the anchored element.

@@ -1,19 +1,30 @@
-export function merge<T>(object1: T, object2: T): T {
-  const mergedObject = {} as T;
+/**
+ * Merges two objects together.
+ *
+ * Given two objects, `merge` will initialize a new object consisting of
+ * properties from both objects. `overrides` will act as a source of truth
+ * for properties that exist in both objects, and will override the values
+ * of the `source` object.
+ * @template T The type of the objects.
+ * @param source The source object.
+ * @param overrides Values to override in the resulting object.
+ */
+export function merge<T>(source: T, overrides: T): T {
+  const object: Record<string, any> = {};
 
-  for (const key in object1) {
-    if (typeof object1[key] === 'object' && typeof object2[key] === 'object') {
-      mergedObject[key] = merge(object1[key], object2[key]);
+  for (const key in source) {
+    if (typeof source[key] === 'object' && typeof overrides[key] === 'object') {
+      object[key] = merge(source[key], overrides[key]);
     } else {
-      mergedObject[key] = object1[key];
+      object[key] = source[key];
     }
   }
 
-  for (const key in object2) {
-    if (typeof object1[key] === 'undefined') {
-      mergedObject[key] = object2[key];
+  for (const key in overrides) {
+    if (typeof source[key] === 'undefined') {
+      object[key] = overrides[key];
     }
   }
 
-  return mergedObject;
+  return object as T;
 }

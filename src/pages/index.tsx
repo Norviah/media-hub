@@ -189,6 +189,14 @@ const MyCard2 = () => {
               await new Promise((resolve) => setTimeout(resolve, 1500));
               setLiked(!liked);
               setLoading(false);
+              enqueueSnackbar(
+                `${!liked ? 'Added' : 'Removed'} 'Made In Abyss' ${
+                  !liked ? 'to' : 'from'
+                } your favorites`,
+                {
+                  variant: 'success',
+                }
+              );
             }}
             disabled={loading}
           >
@@ -469,8 +477,9 @@ const top100Films = [
 ];
 
 import Backdrop from '@mui/material/Backdrop';
-import { Fab, Stack } from '@mui/material';
+import { Fab, Stack, Tab, Tabs } from '@mui/material';
 import { enqueueSnackbar } from 'notistack';
+import { bgGradient, hideScrollbarX, hideScrollbarY } from '@/util/css';
 
 function SimpleBackdrop() {
   const [open, setOpen] = React.useState(false);
@@ -495,6 +504,30 @@ function SimpleBackdrop() {
   );
 }
 
+export function ColorTabs() {
+  const [value, setValue] = React.useState('one');
+
+  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+    setValue(newValue);
+  };
+
+  return (
+    <Box sx={{ width: '100%' }}>
+      <Tabs
+        value={value}
+        onChange={handleChange}
+        textColor="secondary"
+        indicatorColor="secondary"
+        aria-label="secondary tabs example"
+      >
+        <Tab value="one" label="Item One" disableRipple />
+        <Tab value="two" label="Item Two" disableRipple />
+        <Tab value="three" label="Item Three" disableRipple />
+      </Tabs>
+    </Box>
+  );
+}
+
 export default function MediaCard() {
   const [liked, setLiked] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
@@ -510,178 +543,186 @@ export default function MediaCard() {
 
   return (
     <>
-      <Box sx={{ p: 2 }}>
-        <Card sx={{ width: 350 }}>
-          <CardMedia
-            sx={{ height: 200 }}
-            image="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/IGbeFv5Ji4W0x530JcSHiQpamY.jpg"
-            title="green iguana"
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              Your Lie In April
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-              across all continents except Antarctica
-            </Typography>
-          </CardContent>
-          <Divider />
+      <Box>
+        <Box sx={{ p: 2 }}>
+          <Typography variant="h3" component="div" gutterBottom>
+            Media Card
+          </Typography>
+        </Box>
+        <Box sx={{ p: 2 }}>
+          <Card sx={{ width: 350 }}>
+            <CardMedia
+              sx={{ height: 200 }}
+              image="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/IGbeFv5Ji4W0x530JcSHiQpamY.jpg"
+              title="green iguana"
+            />
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="div">
+                Your Lie In April
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                Lizards are a widespread group of squamate reptiles, with over 6,000 species,
+                ranging across all continents except Antarctica
+              </Typography>
+            </CardContent>
+            <Divider />
 
-          <CardActions style={{ display: 'flex', justifyContent: 'flex-end' }}>
-            <IconButton style={{ marginRight: 'auto' }} onClick={() => setLiked(!liked)}>
-              <FavoriteIcon style={{ color: liked ? THEME.RED.MAIN : undefined }} />
-            </IconButton>
-            <IconButton>
-              <ShareIcon />
-            </IconButton>
-            <IconButton>
-              <ShareIcon />
-            </IconButton>
-          </CardActions>
-        </Card>
-      </Box>
-      <Box sx={{ p: 2 }}>
-        <MyCard />
-      </Box>
-      <Box sx={{ p: 2 }}>
-        <MyCard2 />
-      </Box>
-      <Box sx={{ p: 2 }}>
-        <Card>
-          <BasicTable />
-        </Card>
-      </Box>
-      <Box sx={{ p: 2 }}>
-        <ComboBox />
-      </Box>
-      <Grid container sx={{ p: 2 }}>
-        <Stack direction={'row'} spacing={1}>
-          <Button variant="contained">1</Button>
-          <Button color="secondary" variant="contained">
-            1
+            <CardActions style={{ display: 'flex', justifyContent: 'flex-end' }}>
+              <IconButton style={{ marginRight: 'auto' }} onClick={() => setLiked(!liked)}>
+                <FavoriteIcon style={{ color: liked ? THEME.RED.MAIN : undefined }} />
+              </IconButton>
+              <IconButton>
+                <ShareIcon />
+              </IconButton>
+              <IconButton>
+                <ShareIcon />
+              </IconButton>
+            </CardActions>
+          </Card>
+        </Box>
+        <Box sx={{ p: 2 }}>
+          <MyCard />
+        </Box>
+        <Box sx={{ p: 2 }}>
+          <MyCard2 />
+        </Box>
+        <Box sx={{ p: 2 }}>
+          <Card>
+            <BasicTable />
+          </Card>
+        </Box>
+        <Box sx={{ p: 2 }}>
+          <ComboBox />
+        </Box>
+        <Grid container sx={{ p: 2 }}>
+          <Stack direction={'row'} spacing={1}>
+            <Button variant="contained">1</Button>
+            <Button color="secondary" variant="contained">
+              1
+            </Button>
+            <Button color="error" variant="contained">
+              2
+            </Button>
+            <Button color="warning" variant="contained">
+              4
+            </Button>
+            <Button color="info" variant="contained">
+              4
+            </Button>
+            <Button color="success" variant="contained">
+              5
+            </Button>
+          </Stack>
+        </Grid>
+        <Box sx={{ p: 2 }}>
+          <Button
+            variant="contained"
+            onClick={() => {
+              enqueueSnackbar('default');
+              enqueueSnackbar('error', { variant: 'error' });
+              enqueueSnackbar('warning', { variant: 'warning' });
+              enqueueSnackbar('info', { variant: 'info' });
+              enqueueSnackbar('success', { variant: 'success' });
+            }}
+          >
+            Alert
           </Button>
-          <Button color="error" variant="contained">
-            2
-          </Button>
-          <Button color="warning" variant="contained">
-            4
-          </Button>
-          <Button color="info" variant="contained">
-            4
-          </Button>
-          <Button color="success" variant="contained">
-            5
-          </Button>
-        </Stack>
-      </Grid>
-      <Box sx={{ p: 2 }}>
-        <Button
-          variant="contained"
-          onClick={() => {
-            enqueueSnackbar('default');
-            enqueueSnackbar('error', { variant: 'error' });
-            enqueueSnackbar('warning', { variant: 'warning' });
-            enqueueSnackbar('info', { variant: 'info' });
-            enqueueSnackbar('success', { variant: 'success' });
+        </Box>
+        <Box sx={{ p: 2 }}>
+          <Button variant="text">1</Button>
+        </Box>
+        <Box
+          component="form"
+          sx={{
+            '& > :not(style)': { m: 1, width: '25ch' },
+            p: 2,
           }}
+          noValidate
+          autoComplete="off"
         >
-          Alert
-        </Button>
-      </Box>
-      <Box sx={{ p: 2 }}>
-        <Button variant="text">1</Button>
-      </Box>
-      <Box
-        component="form"
-        sx={{
-          '& > :not(style)': { m: 1, width: '25ch' },
-          p: 2,
-        }}
-        noValidate
-        autoComplete="off"
-      >
-        <TextField id="outlined-basic" label="Outlined" variant="outlined" />
-        <TextField id="filled-basic" label="Filled" variant="filled" />
-        <TextField id="standard-basic" label="Standard" variant="standard" />
-      </Box>
-      <Box sx={{ width: 500 }}>
-        <Grid container justifyContent="center">
-          <Grid item>
-            <Tooltip title="Add" placement="top-start">
-              <Button>top-start</Button>
-            </Tooltip>
-            <Tooltip title="Add" placement="top">
-              <Button>top</Button>
-            </Tooltip>
-            <Tooltip title="Add" placement="top-end">
-              <Button>top-end</Button>
-            </Tooltip>
-          </Grid>
-        </Grid>
-        <Grid container justifyContent="center">
-          <Grid item xs={6}>
-            <Tooltip title="Add" placement="left-start">
-              <Button>left-start</Button>
-            </Tooltip>
-            <br />
-            <Tooltip title="Add" placement="left">
-              <Button>left</Button>
-            </Tooltip>
-            <br />
-            <Tooltip title="Add" placement="left-end">
-              <Button>left-end</Button>
-            </Tooltip>
-          </Grid>
-          <Grid item container xs={6} alignItems="flex-end" direction="column">
+          <TextField id="outlined-basic" label="Outlined" variant="outlined" />
+          <TextField id="filled-basic" label="Filled" variant="filled" />
+          <TextField id="standard-basic" label="Standard" variant="standard" />
+        </Box>
+        <Box sx={{ width: 500 }}>
+          <Grid container justifyContent="center">
             <Grid item>
-              <Tooltip title="Add" placement="right-start">
-                <Button>right-start</Button>
+              <Tooltip title="Add" placement="top-start">
+                <Button>top-start</Button>
               </Tooltip>
-            </Grid>
-            <Grid item>
-              <Tooltip title="Add" placement="right">
-                <Button>right</Button>
+              <Tooltip title="Add" placement="top">
+                <Button>top</Button>
               </Tooltip>
-            </Grid>
-            <Grid item>
-              <Tooltip title="Add" placement="right-end">
-                <Button>right-end</Button>
+              <Tooltip title="Add" placement="top-end">
+                <Button>top-end</Button>
               </Tooltip>
             </Grid>
           </Grid>
-        </Grid>
-        <Grid container justifyContent="center">
-          <Grid item>
-            <Tooltip title="Add" placement="bottom-start">
-              <Button>bottom-start</Button>
-            </Tooltip>
-            <Tooltip title="Add" placement="bottom">
-              <Button>bottom</Button>
-            </Tooltip>
-            <Tooltip title="Add" placement="bottom-end">
-              <Button>bottom-end</Button>
-            </Tooltip>
+          <Grid container justifyContent="center">
+            <Grid item xs={6}>
+              <Tooltip title="Add" placement="left-start">
+                <Button>left-start</Button>
+              </Tooltip>
+              <br />
+              <Tooltip title="Add" placement="left">
+                <Button>left</Button>
+              </Tooltip>
+              <br />
+              <Tooltip title="Add" placement="left-end">
+                <Button>left-end</Button>
+              </Tooltip>
+            </Grid>
+            <Grid item container xs={6} alignItems="flex-end" direction="column">
+              <Grid item>
+                <Tooltip title="Add" placement="right-start">
+                  <Button>right-start</Button>
+                </Tooltip>
+              </Grid>
+              <Grid item>
+                <Tooltip title="Add" placement="right">
+                  <Button>right</Button>
+                </Tooltip>
+              </Grid>
+              <Grid item>
+                <Tooltip title="Add" placement="right-end">
+                  <Button>right-end</Button>
+                </Tooltip>
+              </Grid>
+            </Grid>
           </Grid>
-        </Grid>
-        <Tooltip title="Add" arrow>
-          <Button>Arrow</Button>
-        </Tooltip>
+          <Grid container justifyContent="center">
+            <Grid item>
+              <Tooltip title="Add" placement="bottom-start">
+                <Button>bottom-start</Button>
+              </Tooltip>
+              <Tooltip title="Add" placement="bottom">
+                <Button>bottom</Button>
+              </Tooltip>
+              <Tooltip title="Add" placement="bottom-end">
+                <Button>bottom-end</Button>
+              </Tooltip>
+            </Grid>
+          </Grid>
+          <Tooltip title="Add" arrow>
+            <Button>Arrow</Button>
+          </Tooltip>
+        </Box>
+        <SimpleBackdrop />
+        <Rating name="ds" />
+        <Fab
+          color="primary"
+          aria-label="add"
+          style={{
+            position: 'fixed',
+            bottom: '20px',
+            right: '20px',
+          }}
+          size="large"
+        >
+          <FavoriteIcon />
+        </Fab>
+        <ColorTabs />
       </Box>
-      <SimpleBackdrop />
-      <Rating name="ds" />
-      <Fab
-        color="primary"
-        aria-label="add"
-        style={{
-          position: 'fixed',
-          bottom: '20px',
-          right: '20px',
-        }}
-        size="large"
-      >
-        <FavoriteIcon />
-      </Fab>
     </>
   );
 }

@@ -17,7 +17,7 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import DoneAllIcon from '@mui/icons-material/DoneAll';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 
-import { fToNow } from '@/util/formatTime';
+import { toString } from '@/util/time';
 import { faker } from '@faker-js/faker';
 import { useTheme } from '@mui/material';
 import { noCase } from 'change-case';
@@ -235,7 +235,7 @@ function NotificationItem({ notification }) {
             }}
           >
             <AccessTimeIcon sx={{ mr: 0.5, width: 16, height: 16 }} />
-            {fToNow(notification.createdAt)}
+            {toString(notification.createdAt)}
           </Typography>
         }
       />

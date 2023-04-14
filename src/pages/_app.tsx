@@ -1,22 +1,21 @@
-import styled from '@emotion/styled';
-
-import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
+import IconButton from '@mui/material/IconButton';
 
-import { Component } from 'react';
-import { GlobalStyles } from '@/theme/globalStyles';
-import { CssBaseline, ThemeProvider, StyledEngineProvider, Button } from '@mui/material';
-import { ThemeContext } from '@/hooks/useTheme';
-import { SnackbarProvider, closeSnackbar } from 'notistack';
-import { StyledComponents } from '@/theme/notistack';
-
+import { Base } from '@/sections/root';
+import { Header } from '@/components/header';
 import { Navigation } from '@/components/nav';
-import { Header } from '@/components/header/Header';
+import { ThemeContext } from '@/hooks/useTheme';
+import { GlobalStyles } from '@/theme/global';
+import { StyledComponents } from '@/theme/notistack';
+import { systemColorScheme } from '@/util/theme';
+import { Box, CssBaseline, StyledEngineProvider, ThemeProvider } from '@mui/material';
+import { SnackbarProvider, closeSnackbar } from 'notistack';
+import { Component } from 'react';
 
 import * as themes from '@/theme/themes';
 
+import type { ThemePresets, Themes } from '@/types/theme/Themes';
 import type { AppProps } from 'next/app';
-import type { ThemePresets, Themes } from '@/types/Themes';
 
 import '@fontsource/inter/300.css';
 import '@fontsource/inter/400.css';
@@ -28,28 +27,6 @@ import '@fontsource/outfit/500.css';
 import '@fontsource/outfit/700.css';
 
 import '@/styles/globals.css';
-
-const APP_BAR_MOBILE = 64;
-const APP_BAR_DESKTOP = 92;
-
-const StyledRoot = styled('div')({
-  display: 'flex',
-  minHeight: '100%',
-  overflow: 'hidden',
-});
-
-const Main = styled('div')(({ theme }) => ({
-  flexGrow: 1,
-  overflow: 'auto',
-  minHeight: '100%',
-  paddingTop: APP_BAR_MOBILE + 24,
-  paddingBottom: theme.spacing(10),
-  [theme.breakpoints.up('lg')]: {
-    paddingTop: APP_BAR_DESKTOP + 24,
-    paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(2),
-  },
-}));
 
 /**
  * The state of the application.
@@ -71,10 +48,7 @@ interface AppState {
 }
 
 export default class App extends Component<AppProps, AppState> {
-  public state: AppState = {
-    theme: 'dark',
-    open: false,
-  };
+  public state: AppState = { theme: themes.DEFAULT, open: false };
 
   /**
    * Executed after the component is mounted.
@@ -85,14 +59,8 @@ export default class App extends Component<AppProps, AppState> {
    * fully mounted, such as fetching data from an API, initializing a
    * third-party library, etc.
    *
-   * The method is called only once during the lifecycle of the component, after
-   * the `render` method has been called for the first time, meaning that any
-   * updates to the component's state or props will cause the component to
-   * re-render, but will not cause another call to `componentDidMount`.
-   *
-   * As for our application, we will implement this method to change the theme
-   * of the application to the user's preferred theme, if set within their
-   * browser's local storage.
+   * We'll implement this method to ensure the application's theme is set to
+   * the user's preferred theme, if set within their browser's local storage.
    * @see https://reactjs.org/docs/react-component.html#componentdidmount
    */
   public componentDidMount(): void {
@@ -112,19 +80,10 @@ export default class App extends Component<AppProps, AppState> {
   /**
    * Sets the theme of the application.
    *
-   * `setTheme` changes the component's state to the provided theme, which will
-   * cause the component to re-render, allowing the application to reflect the
+   * This will change the component's state to the provided theme, which will
+   * force the component to re-render, allowing the application to reflect the
    * new theme.
-   *
-   * `setTheme` is provided as a callback to the theme's context provider.
-   * Context providers allows components to provide data through the tree
-   * without having to pass properties down manually at every level.
-   *
-   * Using the context provider, we can provide this method to components that
-   * use the `useTheme` hook, allowing them to change the theme of the
-   * application from anywhere in the application.
    * @param preset The theme preset to set.
-   * @see https://reactjs.org/docs/context.html
    */
   public setTheme(preset: ThemePresets): void {
     if (typeof window !== 'undefined' && window.localStorage) {
@@ -141,8 +100,7 @@ export default class App extends Component<AppProps, AppState> {
     // the actual theme that we should use. We'll use the `theme` property of
     // the component's state to determine the theme, and if the theme is set to
     // `system`, we'll grab their system's set theme.
-    const theme: Themes =
-      this.state.theme === 'system' ? themes.systemColorScheme() : this.state.theme;
+    const theme: Themes = this.state.theme === 'system' ? systemColorScheme() : this.state.theme;
 
     const style: boolean = !(
       (Component as typeof Component & { noAppbar?: boolean }).noAppbar ??
@@ -177,16 +135,16 @@ export default class App extends Component<AppProps, AppState> {
               <CssBaseline />
               <GlobalStyles />
               {style ? (
-                <StyledRoot>
-                  <Header onOpenNav={() => this.setState({ open: true })} />{' '}
+                <Box sx={{ display: 'flex', minHeight: '100%', overflow: 'hidden' }}>
+                  <Header onOpenNav={() => this.setState({ open: true })} />
                   <Navigation
                     openNav={this.state.open}
                     onCloseNav={() => this.setState({ open: false })}
                   />
-                  <Main>
+                  <Base>
                     <Component {...pageProps} />
-                  </Main>
-                </StyledRoot>
+                  </Base>
+                </Box>
               ) : (
                 <Component {...pageProps} />
               )}

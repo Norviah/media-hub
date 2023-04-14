@@ -25,7 +25,7 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import * as colors from '@/theme/colors';
 
 import { Link } from '@/components/Link';
-import { Header } from '@/layouts/auth/Header';
+import { Header } from '@/sections/auth';
 import { Component } from 'react';
 
 import type { WithRouterProps } from 'next/dist/client/with-router';

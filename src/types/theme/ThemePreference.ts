@@ -1,4 +1,4 @@
-import type { ThemePresets } from '@/types/Themes';
+import type { ThemePresets } from '@/types/theme/Themes';
 
 /**
  * Defines the structure to implement when creating a context that will be used

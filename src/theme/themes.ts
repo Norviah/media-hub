@@ -7,7 +7,7 @@ import * as palettes from '@/theme/palette';
 
 import type { ThemeOptions } from '@/types/mui/ThemeOptions';
 import type { Theme } from '@mui/material';
-import type { Themes } from '@/types/Themes';
+import type { Themes } from '@/types/theme';
 
 const BASE_OPTIONS: Partial<ThemeOptions> = {
   shape: {
@@ -33,16 +33,5 @@ export const LIGHT: Theme = createTheme({
     ...overrides.LIGHT,
   },
 });
-
-/**
- * Gets the set color scheme from the user's system.
- *
- * `window.matchMedia` is implemented to check their system's color scheme
- * preference.
- * @returns The set color scheme from the user's system.
- */
-export function systemColorScheme(): Themes {
-  return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-}
 
 export const DEFAULT: Themes = 'dark';

@@ -5,10 +5,10 @@ import Stack from '@mui/material/Stack';
 
 import { Link } from '@/components/Link';
 import { StyledNavItem, StyledNavItemIcon } from '@/components/nav/styles';
-import { routes } from '@/util/routes';
+import { routes } from '@/components/nav/routes';
 import { alpha } from '@mui/material/styles';
 
-import type { Route } from '@/types/Route';
+import type { Route } from '@/types/components/nav/Route';
 import type { BoxProps } from '@mui/material';
 
 function NavItem(props: { item: Route }) {
@@ -32,10 +32,10 @@ function NavItem(props: { item: Route }) {
   );
 }
 
-export default function NavSection(props: { data: Route[]; other?: BoxProps }): JSX.Element {
+export default function NavSection(props?: BoxProps): JSX.Element {
   return (
-    <Box {...props?.other}>
-      <List sx={{ p: 1 }}>
+    <Box {...props}>
+      <List sx={{ p: 1, pl: 2, pr: 2 }}>
         <Stack spacing={1}>
           {routes.map((item: Route) => (
             <NavItem key={item.name} item={item} />

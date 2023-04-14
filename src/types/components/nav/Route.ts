@@ -24,11 +24,6 @@ export interface Route {
   icon: (OverridableComponent<SvgIconTypeMap<{}, 'svg'>> & { muiName: string }) | null;
 
   /**
-   * Whether if the route should be displayed in the navigation menu.
-   */
-  display: boolean;
-
-  /**
    * Whether if the route requires authentication.
    *
    * If true, the route will not be accessible in the navigation drawer if the
@@ -36,9 +31,4 @@ export interface Route {
    * inaccessible if the user is not authenticated.
    */
   authentication: boolean;
-
-  /**
-   * Whether if the route should be displayed with a divider.
-   */
-  divider?: boolean;
 }

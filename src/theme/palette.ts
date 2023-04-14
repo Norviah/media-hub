@@ -1,14 +1,9 @@
 import { alpha } from '@mui/material/styles';
+import { NORD, GREY } from '@/theme/colors';
 
-import type { PaletteOptions } from '@/types/mui/ThemeOptions';
+import type { PaletteOptions } from '@/types/mui';
 
-import * as colors from '@/theme/colors';
-import { merge } from '@/util/merge';
-
-/**
- *
- */
-export const THEME = { ...colors.NORD, GREY: colors.GREY };
+export const THEME = { ...NORD, GREY };
 
 export const BASE: Omit<PaletteOptions, 'mode'> = {
   common: {
@@ -51,13 +46,10 @@ export const BASE: Omit<PaletteOptions, 'mode'> = {
   },
 };
 
-/**
- *
- */
 export const LIGHT: PaletteOptions = {
   ...BASE,
   mode: 'light',
-  divider: alpha(THEME.GREY[500], 0.24),
+  divider: alpha(THEME.GREY[500], 0.25),
   background: {
     default: THEME.GREY[200],
   },
@@ -68,9 +60,6 @@ export const LIGHT: PaletteOptions = {
   },
 };
 
-/**
- * The dark theme.
- */
 export const DARK: PaletteOptions = {
   ...BASE,
   mode: 'dark',

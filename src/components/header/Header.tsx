@@ -8,28 +8,26 @@ import AccountPopover from './AccountPopover';
 import NotificationsPopover from './NotificationsPopover';
 import Searchbar from './Searchbar';
 
-import { bgBlur } from '@/util/cssStyles';
 import { styled } from '@mui/material/styles';
-import { ThemeSelector } from '@/components/header/ThemeSelector';
+import { bgBlur } from '@/util/css';
+import { ThemeSelector } from '@/components/header';
 
-const NAV_WIDTH = 280;
-
-const HEADER_MOBILE = 64;
-
-const HEADER_DESKTOP = 92;
+import * as constants from '@/util/constants';
 
 const StyledRoot = styled(AppBar)(({ theme }) => ({
-  ...bgBlur({ color: theme.palette.background.default }),
+  ...bgBlur({
+    color: theme.palette.background.default,
+  }),
   boxShadow: 'none',
   [theme.breakpoints.up('lg')]: {
-    width: `calc(100% - ${NAV_WIDTH + 1}px)`,
+    width: `calc(100% - ${constants.SPACING.NAV + 1}px)`,
   },
 }));
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
-  minHeight: HEADER_MOBILE,
+  minHeight: constants.SPACING.MOBILE,
   [theme.breakpoints.up('lg')]: {
-    minHeight: HEADER_DESKTOP,
+    minHeight: constants.SPACING.DESKTOP,
     padding: theme.spacing(0, 5),
   },
 }));
