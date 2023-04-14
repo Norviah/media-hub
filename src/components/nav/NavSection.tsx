@@ -6,6 +6,7 @@ import Stack from '@mui/material/Stack';
 import { Link } from '@/components/Link';
 import { StyledNavItem, StyledNavItemIcon } from '@/components/nav/styles';
 import { routes } from '@/util/routes';
+import { alpha } from '@mui/material/styles';
 
 import type { Route } from '@/types/Route';
 import type { BoxProps } from '@mui/material';
@@ -18,7 +19,9 @@ function NavItem(props: { item: Route }) {
       sx={{
         '&.active': {
           color: 'primary.main',
-          bgcolor: 'action.selected',
+          bgcolor: (theme) => {
+            return alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity);
+          },
           fontWeight: 'fontWeightBold',
         },
       }}
