@@ -3,6 +3,7 @@ import { alpha } from '@mui/material/styles';
 import type { PaletteOptions } from '@/types/mui/ThemeOptions';
 
 import * as colors from '@/theme/colors';
+import { merge } from '@/util/merge';
 
 /**
  *
@@ -46,6 +47,7 @@ export const BASE: Omit<PaletteOptions, 'mode'> = {
     focus: alpha(THEME.GREY[500], 0.24),
     hoverOpacity: 0.08,
     disabledOpacity: 0.48,
+    selectedOpacity: 0.2,
   },
 };
 
