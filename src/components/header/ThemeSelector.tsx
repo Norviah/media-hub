@@ -45,6 +45,8 @@ export function ThemeSelector(props?: {
   // provide the `Menu` component with the anchor element as a prop.
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
+  const open: boolean = Boolean(anchorEl);
+
   // Additionally, we will implement our custom context, which represents
   // information regarding the theme of the application. Our implementation of
   // the `_app` component provides the theme context to all components within
@@ -101,10 +103,26 @@ export function ThemeSelector(props?: {
   return (
     <>
       <IconButton onClick={handleClick} {...props?.button}>
-        {theme === 'light' ? <LightModeIcon {...props?.icon} /> : <DarkModeIcon {...props?.icon} />}
+        {theme === 'light' ? (
+          <LightModeIcon
+            {...props?.icon}
+            sx={{
+              color: open ? 'primary.main' : undefined,
+              transition: 'color 0.2s ease-in-out',
+            }}
+          />
+        ) : (
+          <DarkModeIcon
+            {...props?.icon}
+            sx={{
+              color: open ? 'primary.main' : undefined,
+              transition: 'color 0.2s ease-in-out',
+            }}
+          />
+        )}
       </IconButton>
       <Popover
-        open={Boolean(anchorEl)}
+        open={open}
         anchorEl={anchorEl}
         onClose={handleClose}
         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}

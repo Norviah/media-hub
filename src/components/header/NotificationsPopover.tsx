@@ -101,9 +101,13 @@ export default function NotificationsPopover() {
   return (
     <>
       <IconButton
-        color={open ? 'primary' : 'default'}
         onClick={handleOpen}
-        sx={{ width: 40, height: 40 }}
+        sx={{
+          width: 40,
+          height: 40,
+          color: open ? 'primary.main' : 'default',
+          transition: 'color .2s ease-in-out',
+        }}
       >
         <Badge badgeContent={totalUnRead} color="error">
           <NotificationsIcon />
