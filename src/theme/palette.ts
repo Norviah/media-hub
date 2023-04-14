@@ -59,7 +59,7 @@ export const LIGHT: PaletteOptions = {
   mode: 'light',
   divider: alpha(THEME.GREY[500], 0.24),
   background: {
-    default: THEME.GREY[100],
+    default: THEME.GREY[200],
   },
   text: {
     primary: THEME.GREY[700],
