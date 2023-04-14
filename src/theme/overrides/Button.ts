@@ -12,16 +12,6 @@ const BASE: ComponentOverrides = {
       sizeLarge: {
         height: 48,
       },
-      //   containedError: {
-      //     '&:active': {
-      //       transition: 'box-shadow 0.1s',
-      //     },
-      //   },
-      // containedPrimary: {
-      //   '&:active': {
-      //     // transition: 'box-shadow 0.1s',
-      //   },
-      // },
     },
   },
 };
