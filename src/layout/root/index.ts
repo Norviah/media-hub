@@ -1,1 +1,2 @@
-export { Base } from './Base';
+export * from './Padding';
+export * from './PageContent';

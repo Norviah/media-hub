@@ -15,7 +15,6 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 import { Link } from '@/components/Link';
-import { Header } from '@/sections/auth';
 import { Component } from 'react';
 
 import type { WithRouterProps } from 'next/dist/client/with-router';
@@ -46,7 +45,6 @@ class SignUp extends Component<WithRouterProps, AppState> {
   public render() {
     return (
       <>
-        <Header />
         <Container component="main" maxWidth="xs">
           <Box
             sx={{

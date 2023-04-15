@@ -1,7 +1,7 @@
 import { styled } from '@mui/material/styles';
 import * as constants from '@/util/constants';
 
-export const Base = styled('div')(({ theme }) => ({
+export const Padding = styled('div')(({ theme }) => ({
   flexGrow: 1,
   overflow: 'auto',
   minHeight: '100%',

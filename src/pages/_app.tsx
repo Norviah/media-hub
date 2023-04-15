@@ -1,22 +1,19 @@
 import CloseIcon from '@mui/icons-material/Close';
-import Head from 'next/head';
 import IconButton from '@mui/material/IconButton';
+import Head from 'next/head';
 
-import { Base } from '@/sections/root';
-import { Header } from '@/components/header';
-import { Navigation } from '@/components/nav';
 import { ThemeContext } from '@/hooks/useTheme';
-import { GlobalStyles } from '@/theme/global';
+import { PageContent } from '@/layout/root';
 import { StyledComponents } from '@/theme/notistack';
 import { systemColorScheme } from '@/util/theme';
-import { Box, CssBaseline, StyledEngineProvider, ThemeProvider } from '@mui/material';
+import { StyledEngineProvider, ThemeProvider } from '@mui/material';
 import { SnackbarProvider, closeSnackbar } from 'notistack';
 import { Component } from 'react';
 
 import * as themes from '@/theme/themes';
 
-import type { Theme } from '@mui/material';
 import type { ThemePresets, Themes } from '@/types/theme/Themes';
+import type { Theme } from '@mui/material';
 import type { AppProps } from 'next/app';
 
 import '@fontsource/inter/300.css';
@@ -96,8 +93,6 @@ export default class App extends Component<AppProps, AppState> {
   }
 
   public render(): JSX.Element {
-    const { Component, pageProps, router } = this.props;
-
     // In order to set the application's theme, we'll first need to determine
     // the actual theme that we should use. We'll use the `theme` property of
     // the component's state to determine the theme, and if the theme is set to
@@ -105,11 +100,6 @@ export default class App extends Component<AppProps, AppState> {
     const preset: Themes = this.state.theme === 'system' ? systemColorScheme() : this.state.theme;
 
     const theme: Theme = preset === 'dark' ? themes.DARK : themes.LIGHT;
-
-    const style: boolean = !(
-      (Component as typeof Component & { noAppbar?: boolean }).noAppbar ??
-      (router.route.startsWith('/auth/') || router.route === '/404')
-    );
 
     return (
       <>
@@ -150,22 +140,15 @@ export default class App extends Component<AppProps, AppState> {
                 )}
                 Components={StyledComponents}
               >
-                <CssBaseline />
-                <GlobalStyles />
-                {style ? (
-                  <Box sx={{ display: 'flex', minHeight: '100%', overflow: 'hidden' }}>
-                    <Header onOpenNav={() => this.setState({ open: true })} />
-                    <Navigation
-                      openNav={this.state.open}
-                      onCloseNav={() => this.setState({ open: false })}
-                    />
-                    <Base>
-                      <Component {...pageProps} />
-                    </Base>
-                  </Box>
-                ) : (
-                  <Component {...pageProps} />
-                )}
+                <PageContent
+                  props={this.props}
+                  router={this.props.router}
+                  theme={theme}
+                  drawer={{
+                    open: this.state.open,
+                    set: (open: boolean) => this.setState({ open }),
+                  }}
+                />
               </SnackbarProvider>
             </ThemeContext.Provider>
           </ThemeProvider>
