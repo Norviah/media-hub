@@ -102,24 +102,16 @@ export function ThemeSelector(props?: {
 
   return (
     <>
-      <IconButton onClick={handleClick} {...props?.button}>
-        {theme === 'light' ? (
-          <LightModeIcon
-            {...props?.icon}
-            sx={{
-              color: open ? 'primary.main' : undefined,
-              transition: 'color 0.2s ease-in-out',
-            }}
-          />
-        ) : (
-          <DarkModeIcon
-            {...props?.icon}
-            sx={{
-              color: open ? 'primary.main' : undefined,
-              transition: 'color 0.2s ease-in-out',
-            }}
-          />
-        )}
+      <IconButton
+        onClick={handleClick}
+        {...props?.button}
+        sx={{
+          color: open ? 'primary.main' : 'default',
+          transition: 'color 0.2s ease-in-out',
+          ...props?.button?.sx,
+        }}
+      >
+        {theme === 'light' ? <LightModeIcon {...props?.icon} /> : <DarkModeIcon {...props?.icon} />}
       </IconButton>
       <Popover
         open={open}
