@@ -46,7 +46,7 @@ class SignUp extends Component<WithRouterProps, AppState> {
   public render() {
     return (
       <>
-        <Header router={this.props.router} />
+        <Header />
         <Container component="main" maxWidth="xs">
           <Box
             sx={{
