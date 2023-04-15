@@ -1,4 +1,5 @@
 import CloseIcon from '@mui/icons-material/Close';
+import Head from 'next/head';
 import IconButton from '@mui/material/IconButton';
 
 import { Base } from '@/sections/root';
@@ -14,6 +15,7 @@ import { Component } from 'react';
 
 import * as themes from '@/theme/themes';
 
+import type { Theme } from '@mui/material';
 import type { ThemePresets, Themes } from '@/types/theme/Themes';
 import type { AppProps } from 'next/app';
 
@@ -100,7 +102,9 @@ export default class App extends Component<AppProps, AppState> {
     // the actual theme that we should use. We'll use the `theme` property of
     // the component's state to determine the theme, and if the theme is set to
     // `system`, we'll grab their system's set theme.
-    const theme: Themes = this.state.theme === 'system' ? systemColorScheme() : this.state.theme;
+    const preset: Themes = this.state.theme === 'system' ? systemColorScheme() : this.state.theme;
+
+    const theme: Theme = preset === 'dark' ? themes.DARK : themes.LIGHT;
 
     const style: boolean = !(
       (Component as typeof Component & { noAppbar?: boolean }).noAppbar ??
@@ -108,50 +112,65 @@ export default class App extends Component<AppProps, AppState> {
     );
 
     return (
-      <StyledEngineProvider injectFirst>
-        <ThemeProvider theme={theme === 'dark' ? themes.DARK : themes.LIGHT}>
-          <ThemeContext.Provider
-            value={{ theme: this.state.theme, setTheme: this.setTheme.bind(this) }}
-          >
-            <SnackbarProvider
-              maxSnack={3}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              preventDuplicate
-              action={(key) => (
-                <IconButton
-                  size="small"
-                  onClick={() => {
-                    closeSnackbar(key);
-                  }}
-                >
-                  <CloseIcon fontSize="small" />
-                </IconButton>
-              )}
-              Components={StyledComponents}
+      <>
+        <Head>
+          <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+          <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+          <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
+          <link rel="manifest" href="/favicon/site.webmanifest" />
+          <link
+            rel="mask-icon"
+            href="/favicon/safari-pinned-tab.svg"
+            color={theme.palette.primary.main}
+          />
+          <meta name="msapplication-TileColor" content={theme.palette.background.default} />
+          <meta name="theme-color" content={theme.palette.background.default} />
+        </Head>
+        <StyledEngineProvider injectFirst>
+          <ThemeProvider theme={theme}>
+            <ThemeContext.Provider
+              value={{ theme: this.state.theme, setTheme: this.setTheme.bind(this) }}
             >
-              <CssBaseline />
-              <GlobalStyles />
-              {style ? (
-                <Box sx={{ display: 'flex', minHeight: '100%', overflow: 'hidden' }}>
-                  <Header onOpenNav={() => this.setState({ open: true })} />
-                  <Navigation
-                    openNav={this.state.open}
-                    onCloseNav={() => this.setState({ open: false })}
-                  />
-                  <Base>
-                    <Component {...pageProps} />
-                  </Base>
-                </Box>
-              ) : (
-                <Component {...pageProps} />
-              )}
-            </SnackbarProvider>
-          </ThemeContext.Provider>
-        </ThemeProvider>
-      </StyledEngineProvider>
+              <SnackbarProvider
+                maxSnack={3}
+                anchorOrigin={{
+                  vertical: 'bottom',
+                  horizontal: 'left',
+                }}
+                preventDuplicate
+                action={(key) => (
+                  <IconButton
+                    size="small"
+                    onClick={() => {
+                      closeSnackbar(key);
+                    }}
+                  >
+                    <CloseIcon fontSize="small" />
+                  </IconButton>
+                )}
+                Components={StyledComponents}
+              >
+                <CssBaseline />
+                <GlobalStyles />
+                {style ? (
+                  <Box sx={{ display: 'flex', minHeight: '100%', overflow: 'hidden' }}>
+                    <Header onOpenNav={() => this.setState({ open: true })} />
+                    <Navigation
+                      openNav={this.state.open}
+                      onCloseNav={() => this.setState({ open: false })}
+                    />
+                    <Base>
+                      <Component {...pageProps} />
+                    </Base>
+                  </Box>
+                ) : (
+                  <Component {...pageProps} />
+                )}
+              </SnackbarProvider>
+            </ThemeContext.Provider>
+          </ThemeProvider>
+        </StyledEngineProvider>
+      </>
     );
   }
 }
