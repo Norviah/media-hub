@@ -20,7 +20,6 @@ import Scrollbar from '@/components/scrollbar';
 import CloseIcon from '@mui/icons-material/Close';
 import ClearAllIcon from '@mui/icons-material/ClearAll';
 import FilterListIcon from '@mui/icons-material/FilterList';
-import { ColorMultiPicker } from '@/components/color-utils';
 
 // ----------------------------------------------------------------------
 

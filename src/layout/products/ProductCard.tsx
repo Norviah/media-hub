@@ -1,30 +1,18 @@
-import React from 'react';
-import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import Link from '@mui/material/Link';
-import Typography from '@mui/material/Typography';
-import Stack from '@mui/material/Stack';
-import CardMedia from '@mui/material/CardMedia';
-import CardContent from '@mui/material/CardContent';
-import CardActions from '@mui/material/CardActions';
-import IconButton from '@mui/material/IconButton';
-import CircularProgress from '@mui/material/CircularProgress';
-import Collapse from '@mui/material/Collapse';
-import Button from '@mui/material/Button';
 import Label from '@/components/label/Label';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Card from '@mui/material/Card';
+import IconButton from '@mui/material/IconButton';
+import Link from '@mui/material/Link';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
+import React from 'react';
 
-import LibraryAddIcon from '@mui/icons-material/LibraryAdd';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import ShareIcon from '@mui/icons-material/Share';
+import LibraryAddIcon from '@mui/icons-material/LibraryAdd';
 
-import { styled } from '@mui/material/styles';
-import { fCurrency } from '@/util/currency';
-import { enqueueSnackbar } from 'notistack';
 import { THEME } from '@/theme/palette';
-import { FlipIcon } from '@/components/FlipIcon';
-import { Divider } from '@mui/material';
-import Image from 'next/image';
+import { styled } from '@mui/material/styles';
 
 const StyledProductImg = styled('img')({
   top: 0,
@@ -33,9 +21,6 @@ const StyledProductImg = styled('img')({
   objectFit: 'cover',
   position: 'absolute',
 });
-
-const Lorem =
-  `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut sem in diam sollicitudin tincidunt. Fusce rhoncus metus quis posuere ultricies. Praesent ut lorem vel ex mollis laoreet a ut nisl. Sed molestie felis ut sollicitudin lobortis. Quisque laoreet urna eget pulvinar volutpat. Donec in porta ligula. Nam at lobortis ex. Aenean ornare arcu quam, quis fermentum eros pellentesque sed. Ut eget neque nisi. Nam hendrerit massa non euismod aliquam. Nunc dui leo, euismod ac arcu nec, porta congue ex. Nulla ut eros eu justo feugiat consectetur varius tincidunt nunc. Curabitur neque tellus, mattis nec turpis ut, eleifend sagittis tortor. Mauris et lacus eu quam facilisis dictum in nec nulla. Fusce ac ultricies orci. Vestibulum nulla lacus, tempor sollicitudin gravida porttitor, lobortis et eros. Cras quis molestie magna. Duis felis felis, molestie in lectus at, imperdiet semper nisi. Curabitur vitae varius enim, non tincidunt dolor. Nunc in tortor suscipit, semper augue id, consectetur dui. Proin ullamcorper finibus lorem in sodales. Nunc eget elementum mauris, at malesuada erat. Curabitur porttitor lacus ut tortor maximus tristique. Fusce ac odio eget dui dictum dignissim. Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed eu lobortis lacus. Vivamus id mauris varius, venenatis risus non, maximus orci. Suspendisse ultricies varius odio, a lacinia massa ullamcorper ac. Donec mollis, quam at hendrerit suscipit, ipsum neque rutrum erat, eu efficitur turpis dui eu quam. Donec in lacus felis. Sed nec odio et mauris gravida interdum. Maecenas feugiat magna augue, nec dapibus ante convallis a. Integer et magna et est viverra iaculis ac nec justo. Pellentesque cursus urna non ultricies malesuada. Mauris pharetra, erat ac gravida dapibus, orci tellus eleifend nulla, ut sollicitudin nunc elit non lorem. Quisque lobortis tincidunt mi, vitae gravida augue aliquam efficitur. Vivamus et nisi dapibus, ullamcorper erat hendrerit, vulputate quam. Duis sodales eget sapien ut vehicula. Nunc tincidunt dui nibh, sit amet euismod nisl commodo non. Maecenas diam eros, ornare nec scelerisque in, fringilla ut enim. Nullam sit amet mi sit amet urna elementum egestas. Donec consectetur turpis leo, quis facilisis arcu maximus quis. Donec ut aliquet velit, vitae dapibus sapien. Nullam aliquam, elit ac facilisis maximus, urna lorem rutrum leo, et ultricies sem leo sed purus. Aliquam auctor ante erat. Nam sed enim ultrices lacus tempor scelerisque porta eget diam. Mauris ullamcorper sapien fringilla, maximus nisi non, facilisis turpis. Suspendisse ac mauris lorem. Quisque nec maximus felis. Nullam ac sapien mattis, consectetur massa nec, tincidunt magna. Nam non est aliquet, pulvinar libero egestas, consequat odio. Suspendisse feugiat urna ut nulla venenatis, quis convallis ex tristique. Etiam in enim varius, pretium nisi fringilla, efficitur tellus. Sed nisi arcu, dictum eget eros at, tempor pretium arcu. Phasellus varius id lorem a finibus. Cras semper nec elit ac lobortis. Nulla facilisi. Etiam consectetur at mauris ac rhoncus. Nunc malesuada justo ut nisl tincidunt vestibulum. Aliquam id lorem fringilla, vulputate lectus ac, facilisis ex. Vestibulum euismod cursus arcu, posuere volutpat sem fringilla ut. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis pharetra accumsan facilisis. `.split();
 
 export default function ShopProductCard({ product }) {
   const { name, cover, price, colors, status, priceSale } = product;
@@ -86,7 +71,7 @@ export default function ShopProductCard({ product }) {
           height={400}
         /> */}
 
-      <Stack spacing={2} sx={{ p: 3 }}>
+      <Stack spacing={2} sx={{ p: 2 }}>
         <Link color="inherit" underline="hover">
           <Typography variant="subtitle2" noWrap>
             {name}
@@ -96,7 +81,21 @@ export default function ShopProductCard({ product }) {
           </Typography>
         </Link>
 
-        <Stack direction="row" alignItems="center" justifyContent="space-between">
+        <Stack direction="row">
+          {/* <FavoriteIcon /> */}
+          <>
+            <IconButton>
+              <FavoriteIcon style={{ color: liked ? THEME.RED.MAIN : 'default' }} />
+            </IconButton>
+            <IconButton>
+              <LibraryAddIcon />
+            </IconButton>
+          </>
+          <Box sx={{ flexGrow: 1 }} />
+          <Button variant="text">Details</Button>
+        </Stack>
+
+        {/* <Stack direction="row" alignItems="center" justifyContent="space-between">
           <Typography variant="subtitle1">
             <Typography
               component="span"
@@ -106,14 +105,15 @@ export default function ShopProductCard({ product }) {
                 textDecoration: 'line-through',
               }}
             >
-              {/* {priceSale && fCurrency(priceSale)} */}
+              {priceSale && fCurrency(priceSale)}
               {'$$$'}
             </Typography>
             &nbsp;
-            {/* {fCurrency(price)} */}
+            {fCurrency(price)}
             {'$$$'}
           </Typography>
-        </Stack>
+          <Button variant="contained">Details</Button>
+        </Stack> */}
       </Stack>
     </Card>
 

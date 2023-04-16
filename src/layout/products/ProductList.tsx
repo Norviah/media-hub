@@ -20,7 +20,6 @@ import ShareIcon from '@mui/icons-material/Share';
 
 import { styled } from '@mui/material/styles';
 import { fCurrency } from '@/util/currency';
-import { ColorPreview } from '@/components/color-utils';
 import { enqueueSnackbar } from 'notistack';
 import { THEME } from '@/theme/palette';
 import { FlipIcon } from '@/components/FlipIcon';
