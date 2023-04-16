@@ -20,6 +20,7 @@ import TableRow from '@mui/material/TableRow';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 import React from 'react';
+import { FlipIcon } from '@/components/FlipIcon';
 import LoadingButton from '@mui/lab/LoadingButton';
 
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -33,20 +34,20 @@ import { styled } from '@mui/material/styles';
 
 import type { IconButtonProps } from '@mui/material/IconButton';
 
-interface ExpandMoreProps extends IconButtonProps {
-  expand: boolean;
-}
+// interface ExpandMoreProps extends IconButtonProps {
+//   expand: boolean;
+// }
 
-const ExpandMore = styled((props: ExpandMoreProps) => {
-  const { expand, ...other } = props;
-  return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-  transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
-  marginLeft: 'auto',
-  transition: theme.transitions.create('transform', {
-    duration: theme.transitions.duration.shortest,
-  }),
-}));
+// const ExpandMore = styled((props: ExpandMoreProps) => {
+//   const { expand, ...other } = props;
+//   return <IconButton {...other} />;
+// })(({ theme, expand }) => ({
+//   transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
+//   marginLeft: 'auto',
+//   transition: theme.transitions.create('transform', {
+//     duration: theme.transitions.duration.shortest,
+//   }),
+// }));
 
 function createData(name: string, calories: number, fat: number, carbs: number, protein: number) {
   return { name, calories, fat, carbs, protein };
@@ -163,7 +164,7 @@ const MyCard2 = () => {
               left: 0,
               right: 0,
               top: 0,
-              background: 'linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.8))',
+              background: 'linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.55))',
             }}
           />
           <CardContent
@@ -232,14 +233,10 @@ const MyCard2 = () => {
         <IconButton aria-label="share">
           <LibraryAddIcon />
         </IconButton>
-        <ExpandMore
-          expand={expanded}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-          <ExpandMoreIcon />
-        </ExpandMore>
+        <Box sx={{ flexGrow: 1 }} />
+        <IconButton onClick={handleExpandClick} aria-expanded={expanded} aria-label="show more">
+          <FlipIcon icon={ExpandMoreIcon} open={expanded} />
+        </IconButton>
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
@@ -477,7 +474,7 @@ const top100Films = [
 ];
 
 import Backdrop from '@mui/material/Backdrop';
-import { Fab, Stack, Tab, Tabs } from '@mui/material';
+import { Container, Fab, Skeleton, Stack, Tab, Tabs } from '@mui/material';
 import { enqueueSnackbar } from 'notistack';
 import { bgGradient, hideScrollbarX, hideScrollbarY } from '@/util/css';
 
@@ -543,12 +540,10 @@ export default function MediaCard() {
 
   return (
     <>
-      <Box>
-        <Box sx={{ p: 2 }}>
-          <Typography variant="h3" component="div" gutterBottom>
-            Media Card
-          </Typography>
-        </Box>
+      <Container>
+        <Typography variant="h4" sx={{ mb: 5 }}>
+          Home
+        </Typography>
         <Box sx={{ p: 2 }}>
           <Card sx={{ width: 350 }}>
             <CardMedia
@@ -584,7 +579,12 @@ export default function MediaCard() {
           <MyCard />
         </Box>
         <Box sx={{ p: 2 }}>
-          <MyCard2 />
+          <Stack direction="row" spacing={2}>
+            <MyCard2 />
+            <Stack spacing={1}>
+              <Skeleton variant="rectangular" height={581} width={350} />
+            </Stack>
+          </Stack>
         </Box>
         <Box sx={{ p: 2 }}>
           <Card>
@@ -722,7 +722,7 @@ export default function MediaCard() {
           <FavoriteIcon />
         </Fab>
         <ColorTabs />
-      </Box>
+      </Container>
     </>
   );
 }
