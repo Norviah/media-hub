@@ -28,7 +28,6 @@ export default function ProductsPage() {
         <Typography variant="h4" sx={{ mb: 5 }}>
           Search
         </Typography>
-
         <Stack
           direction="row"
           flexWrap="wrap-reverse"

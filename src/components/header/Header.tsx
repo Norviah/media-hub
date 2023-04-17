@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import Stack from '@mui/material/Stack';
 import Toolbar from '@mui/material/Toolbar';
-import AccountPopover from './AccountPopover';
+import UserMenu from './UserMenu';
 import NotificationsPopover from './NotificationsPopover';
 import Searchbar from './Searchbar';
 
@@ -32,7 +32,7 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   },
 }));
 
-export function Header({ onOpenNav }) {
+export function Header({ onOpenNav, route }) {
   return (
     <StyledRoot>
       <StyledToolbar>
@@ -60,8 +60,7 @@ export function Header({ onOpenNav }) {
           }}
         >
           <ThemeSelector />
-          <NotificationsPopover />
-          <AccountPopover />
+          <UserMenu redirect={route} />
         </Stack>
       </StyledToolbar>
     </StyledRoot>

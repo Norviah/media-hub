@@ -29,7 +29,7 @@ export const routes: Route[] = [
     path: '/profile',
     name: 'Profile',
     icon: ProfileIcon,
-    authentication: false,
+    authentication: true,
   },
   {
     path: '/about',

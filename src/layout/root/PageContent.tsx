@@ -29,7 +29,7 @@ export function PageContent(props: {
       <Box sx={{ display: 'flex', minHeight: '100%', overflow: 'hidden' }}>
         <CssBaseline />
         <GlobalStyles />
-        <Header onOpenNav={() => props.drawer.set(true)} />
+        <Header onOpenNav={() => props.drawer.set(true)} route={props.router.route} />
         <Navigation openNav={props.drawer.open} onCloseNav={() => props.drawer.set(false)} />
         <Padding>
           <Component {...pageProps} />

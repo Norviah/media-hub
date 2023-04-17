@@ -1,4 +1,4 @@
-export * from './AccountPopover';
+export * from './UserMenu';
 export * from './Header';
 export * from './NotificationsPopover';
 export * from './Searchbar';

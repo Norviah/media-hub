@@ -1,5 +1,6 @@
 import { alpha } from '@mui/material/styles';
 import { NORD, GREY } from '@/theme/colors';
+import { merge } from '@/util/merge';
 
 import type { PaletteOptions } from '@/types/mui';
 
@@ -46,8 +47,7 @@ export const BASE: Omit<PaletteOptions, 'mode'> = {
   },
 };
 
-export const LIGHT: PaletteOptions = {
-  ...BASE,
+export const LIGHT: PaletteOptions = merge<PaletteOptions>(BASE, {
   mode: 'light',
   divider: alpha(THEME.GREY[500], 0.25),
   background: {
@@ -58,10 +58,9 @@ export const LIGHT: PaletteOptions = {
     secondary: THEME.GREY[600],
     disabled: THEME.GREY[500],
   },
-};
+});
 
-export const DARK: PaletteOptions = {
-  ...BASE,
+export const DARK: PaletteOptions = merge<PaletteOptions>(BASE, {
   mode: 'dark',
   divider: THEME.BLACK.LIGHT,
   background: {
@@ -73,4 +72,4 @@ export const DARK: PaletteOptions = {
     secondary: THEME.GREY[500],
     disabled: THEME.GREY[500],
   },
-};
+});

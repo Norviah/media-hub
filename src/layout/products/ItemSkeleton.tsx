@@ -24,18 +24,9 @@ export function ItemSkeleton(): JSX.Element {
         </Typography>
       </CardContent>
 
-      <CardActions sx={{ display: 'flex', justifyContent: 'flex-end', m: 1 }}>
-        <Stack direction="row">
-          <IconButton>
-            <FavoriteIcon />
-          </IconButton>
-          <IconButton>
-            <LibraryAddIcon />
-          </IconButton>
-        </Stack>
-        <Box sx={{ flexGrow: 1 }} />
-        <Skeleton variant="rectangular" width={100} height={36} />
-      </CardActions>
+      <CardContent>
+        <Skeleton />
+      </CardContent>
     </Card>
   );
 }

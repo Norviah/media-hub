@@ -4,6 +4,9 @@ import { MaterialDesignContent } from 'notistack';
 import * as palettes from '@/theme/palette';
 
 const Style = styled(MaterialDesignContent)(() => ({
+  '&.notistack-MuiContent': {
+    padding: 10,
+  },
   '&.notistack-MuiContent-success': {
     backgroundColor: palettes.BASE.success.main,
   },

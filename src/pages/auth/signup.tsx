@@ -3,20 +3,19 @@ import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
-import IconButton from '@mui/material/IconButton';
-import InputAdornment from '@mui/material/InputAdornment';
-import Stack from '@mui/material/Stack';
-import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import withRouter from 'next/dist/client/with-router';
 
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 import { Link } from '@/components/Link';
+import { SignUpForm } from '@/layout/auth';
+import { getServerSession } from 'next-auth';
+import { SessionContext } from 'next-auth/react';
 import { Component } from 'react';
+import { authOptions } from '../api/auth/[...nextauth]';
 
+import type { GetServerSidePropsContext as ServerSideContext } from 'next';
 import type { WithRouterProps } from 'next/dist/client/with-router';
 
 interface AppState {
@@ -40,6 +39,19 @@ class SignUp extends Component<WithRouterProps, AppState> {
     const { callbackUrl: callback } = this.props.router.query;
 
     return callback ? (Array.isArray(callback) ? callback[0] : callback) : '/';
+  }
+
+  public static contextType = SessionContext;
+
+  public context!: React.ContextType<typeof SessionContext>;
+
+  /**
+   *
+   */
+  public componentDidMount(): void {
+    if (this.context?.status === 'authenticated') {
+      this.props.router.push('/');
+    }
   }
 
   public render() {
@@ -69,49 +81,18 @@ class SignUp extends Component<WithRouterProps, AppState> {
                 Sign Up
               </Typography>
             </Box>
-            <Stack useFlexGap spacing={2} sx={{ pt: 2 }}>
-              <TextField required fullWidth id="username" label="Username" name="username" />
-              <TextField
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-              />
-              <TextField
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type={this.state.showPassword ? 'text' : 'password'}
-                id="password"
-                autoComplete="current-password"
-                InputProps={{
-                  endAdornment: (
-                    <>
-                      <InputAdornment position="start">
-                        <IconButton
-                          edge="end"
-                          onClick={() => this.setState({ showPassword: !this.state.showPassword })}
-                        >
-                          {this.state.showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
-                        </IconButton>
-                      </InputAdornment>
-                    </>
-                  ),
-                }}
-              />
-            </Stack>
-            <LoadingButton
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 5, mb: 2 }}
-              loading={this.state.loading}
-            >
-              Sign In
-            </LoadingButton>
+            <SignUpForm
+              callbackUrl={this.callbackUrl()}
+              password={{
+                show: this.state.showPassword,
+                set: (show: boolean) => this.setState({ showPassword: show }),
+              }}
+              loading={{
+                value: this.state.loading,
+                set: (loading: boolean) => this.setState({ loading: loading }),
+              }}
+            />
+
             <Grid container justifyContent="flex-end">
               <Grid item>
                 <Link
@@ -130,6 +111,19 @@ class SignUp extends Component<WithRouterProps, AppState> {
       </>
     );
   }
+}
+
+/**
+ *
+ * @param context
+ * @returns
+ */
+export async function getServerSideProps(context: ServerSideContext): Promise<Record<string, any>> {
+  return {
+    props: {
+      session: await getServerSession(context.req, context.res, authOptions),
+    },
+  };
 }
 
 export default withRouter(SignUp);

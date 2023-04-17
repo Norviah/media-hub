@@ -26,6 +26,7 @@ import { FlipIcon } from '@/components/FlipIcon';
 import { CardActionArea, Divider, Grid } from '@mui/material';
 import { FavoriteBorderOutlined, ShareOutlined } from '@mui/icons-material';
 import ShopProductCard from './ProductCard';
+import { ItemSkeleton } from './ItemSkeleton';
 
 const showImageUrl = 'https://www.themoviedb.org/t/p/original/IGbeFv5Ji4W0x530JcSHiQpamY.jpg';
 
@@ -40,6 +41,7 @@ export default function ProductList({ products, ...other }) {
       {products.map((product) => (
         <Grid key={product.id} item xs={12} sm={6} md={3}>
           <ShopProductCard product={product} />
+          {/* <ItemSkeleton /> */}
         </Grid>
         // <Grid key={product.id} item xs={12} sm={6} md={4}>
         //   <ShopProductCard product={product} />

@@ -2,6 +2,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import IconButton from '@mui/material/IconButton';
 import Head from 'next/head';
 
+import { SessionProvider } from 'next-auth/react';
 import { ThemeContext } from '@/hooks/useTheme';
 import { PageContent } from '@/layout/root';
 import { StyledComponents } from '@/theme/notistack';
@@ -116,43 +117,46 @@ export default class App extends Component<AppProps, AppState> {
           <meta name="msapplication-TileColor" content={theme.palette.background.default} />
           <meta name="theme-color" content={theme.palette.background.default} />
         </Head>
-        <StyledEngineProvider injectFirst>
-          <ThemeProvider theme={theme}>
-            <ThemeContext.Provider
-              value={{ theme: this.state.theme, setTheme: this.setTheme.bind(this) }}
-            >
-              <SnackbarProvider
-                maxSnack={3}
-                anchorOrigin={{
-                  vertical: 'bottom',
-                  horizontal: 'left',
-                }}
-                preventDuplicate
-                action={(key) => (
-                  <IconButton
-                    size="small"
-                    onClick={() => {
-                      closeSnackbar(key);
-                    }}
-                  >
-                    <CloseIcon fontSize="small" />
-                  </IconButton>
-                )}
-                Components={StyledComponents}
+        <SessionProvider session={this.props.pageProps.session}>
+          <StyledEngineProvider injectFirst>
+            <ThemeProvider theme={theme}>
+              <ThemeContext.Provider
+                value={{ theme: this.state.theme, setTheme: this.setTheme.bind(this) }}
               >
-                <PageContent
-                  props={this.props}
-                  router={this.props.router}
-                  theme={theme}
-                  drawer={{
-                    open: this.state.open,
-                    set: (open: boolean) => this.setState({ open }),
+                <SnackbarProvider
+                  maxSnack={3}
+                  anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'left',
                   }}
-                />
-              </SnackbarProvider>
-            </ThemeContext.Provider>
-          </ThemeProvider>
-        </StyledEngineProvider>
+                  preventDuplicate
+                  action={(key) => (
+                    <IconButton
+                      size="small"
+                      onClick={() => {
+                        closeSnackbar(key);
+                      }}
+                    >
+                      <CloseIcon fontSize="small" sx={{ color: 'grey.800' }} />
+                    </IconButton>
+                  )}
+                  Components={StyledComponents}
+                  autoHideDuration={7000}
+                >
+                  <PageContent
+                    props={this.props}
+                    router={this.props.router}
+                    theme={theme}
+                    drawer={{
+                      open: this.state.open,
+                      set: (open: boolean) => this.setState({ open }),
+                    }}
+                  />
+                </SnackbarProvider>
+              </ThemeContext.Provider>
+            </ThemeProvider>
+          </StyledEngineProvider>
+        </SessionProvider>
       </>
     );
   }

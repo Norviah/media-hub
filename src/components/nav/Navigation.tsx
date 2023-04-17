@@ -6,12 +6,14 @@ import Drawer from '@mui/material/Drawer';
 
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
+import { useSession } from 'next-auth/react';
 
 import * as constants from '@/util/constants';
 
 export function Navigation({ openNav, onCloseNav }) {
   const { pathname } = useRouter();
 
+  const session = useSession();
   const isDesktop = useResponsive('up', 'lg');
 
   useEffect(() => {
@@ -26,7 +28,7 @@ export function Navigation({ openNav, onCloseNav }) {
       <Box sx={{ px: 2.5, py: 3, display: 'inline-flex' }}>
         <Logo />
       </Box>
-      <NavSection />
+      <NavSection authenticated={session.status === 'authenticated'} />
     </>
   );
 

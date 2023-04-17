@@ -11,11 +11,11 @@ import { alpha } from '@mui/material/styles';
 import type { Route } from '@/types/components/nav/Route';
 import type { BoxProps } from '@mui/material';
 
-function NavItem(props: { item: Route }) {
+function NavItem(props: { route: Route }) {
   return (
     <StyledNavItem
       component={Link}
-      href={props.item.path}
+      href={props.route.path}
       sx={{
         '&.active': {
           color: 'primary.main',
@@ -26,20 +26,26 @@ function NavItem(props: { item: Route }) {
         },
       }}
     >
-      <StyledNavItemIcon>{props.item.icon && <props.item.icon />}</StyledNavItemIcon>
-      <ListItemText disableTypography primary={props.item.name} />
+      <StyledNavItemIcon>{props.route.icon && <props.route.icon />}</StyledNavItemIcon>
+      <ListItemText disableTypography primary={props.route.name} />
     </StyledNavItem>
   );
 }
 
-export default function NavSection(props?: BoxProps): JSX.Element {
+export default function NavSection(props: { authenticated: boolean; box?: BoxProps }): JSX.Element {
   return (
-    <Box {...props}>
+    <Box {...props.box}>
       <List sx={{ p: 1, pl: 2, pr: 2 }}>
         <Stack spacing={1}>
-          {routes.map((item: Route) => (
-            <NavItem key={item.name} item={item} />
-          ))}
+          {routes.map((route: Route) => {
+            //  route.authentication && props.authenticated ? ()
+
+            if (route.authentication && !props.authenticated) {
+              return;
+            }
+
+            return <NavItem key={route.name} route={route} />;
+          })}
         </Stack>
       </List>
     </Box>
