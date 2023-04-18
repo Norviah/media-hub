@@ -30,7 +30,7 @@ export function PageContent(props: {
         <CssBaseline />
         <GlobalStyles />
         <Header onOpenNav={() => props.drawer.set(true)} route={props.router.route} />
-        <Navigation openNav={props.drawer.open} onCloseNav={() => props.drawer.set(false)} />
+        <Navigation onCloseNav={() => props.drawer.set(false)} openNav={props.drawer.open} />
         <Padding>
           <Component {...pageProps} />
         </Padding>
