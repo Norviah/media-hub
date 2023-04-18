@@ -6,7 +6,7 @@ import type { PaletteOptions } from '@/types/mui';
 
 export const THEME = { ...NORD, GREY };
 
-export const BASE: Omit<PaletteOptions, 'mode'> = {
+const BASE = {
   common: {
     black: '#000',
     white: '#fff',
@@ -35,19 +35,13 @@ export const BASE: Omit<PaletteOptions, 'mode'> = {
     disabled: THEME.GREY[500],
   },
   action: {
-    active: THEME.GREY[600],
-    hover: alpha(THEME.GREY[500], 0.08),
-    selected: alpha(THEME.GREY[500], 0.16),
-    disabled: alpha(THEME.GREY[500], 0.8),
-    disabledBackground: alpha(THEME.GREY[500], 0.24),
-    focus: alpha(THEME.GREY[500], 0.24),
     hoverOpacity: 0.08,
     disabledOpacity: 0.48,
     selectedOpacity: 0.2,
   },
-};
+} as const;
 
-export const LIGHT: PaletteOptions = merge<PaletteOptions>(BASE, {
+export const LIGHT: PaletteOptions = merge<PaletteOptions>(BASE as PaletteOptions, {
   mode: 'light',
   divider: alpha(THEME.GREY[500], 0.25),
   background: {
@@ -58,9 +52,17 @@ export const LIGHT: PaletteOptions = merge<PaletteOptions>(BASE, {
     secondary: THEME.GREY[600],
     disabled: THEME.GREY[500],
   },
+  action: {
+    active: BASE.grey[600],
+    hover: alpha(BASE.grey[500], 0.08),
+    selected: alpha(BASE.primary.main, BASE.action.selectedOpacity),
+    disabled: alpha(BASE.grey[500], 0.8),
+    disabledBackground: alpha(BASE.grey[500], 0.24),
+    focus: alpha(BASE.grey[500], 0.24),
+  },
 });
 
-export const DARK: PaletteOptions = merge<PaletteOptions>(BASE, {
+export const DARK: PaletteOptions = merge<PaletteOptions>(BASE as PaletteOptions, {
   mode: 'dark',
   divider: THEME.BLACK.LIGHT,
   background: {
@@ -71,5 +73,13 @@ export const DARK: PaletteOptions = merge<PaletteOptions>(BASE, {
     primary: THEME.GREY[200],
     secondary: THEME.GREY[500],
     disabled: THEME.GREY[500],
+  },
+  action: {
+    active: BASE.grey[600],
+    hover: alpha(BASE.grey[500], 0.08),
+    selected: alpha(BASE.primary.main, BASE.action.selectedOpacity),
+    disabled: alpha(BASE.grey[500], 0.8),
+    disabledBackground: alpha(BASE.grey[500], 0.24),
+    focus: alpha(BASE.grey[500], 0.24),
   },
 });
