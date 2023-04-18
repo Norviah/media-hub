@@ -79,6 +79,7 @@ export default function SignInForm(props: FormProps): JSX.Element {
       <Stack useFlexGap spacing={2} sx={{ pt: 2 }}>
         <TextField
           fullWidth
+          required
           id="email"
           label="Email Address"
           autoComplete="email"
@@ -87,6 +88,7 @@ export default function SignInForm(props: FormProps): JSX.Element {
           {...register('email', { required: true, pattern: regex.FORM.EMAIL })}
         />
         <TextField
+          required
           fullWidth
           label="Password"
           type={props.password.show ? 'text' : 'password'}
