@@ -6,7 +6,7 @@ import SearchIcon from '@mui/icons-material/Search';
 
 import type { Route } from '@/types/components/nav';
 
-export const routes: Route[] = [
+const routes: Route[] = [
   {
     path: '/',
     name: 'Home',
@@ -38,3 +38,5 @@ export const routes: Route[] = [
     authentication: false,
   },
 ];
+
+export default routes;

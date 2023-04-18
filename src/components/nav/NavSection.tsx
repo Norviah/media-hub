@@ -3,9 +3,10 @@ import List from '@mui/material/List';
 import ListItemText from '@mui/material/ListItemText';
 import Stack from '@mui/material/Stack';
 
+import routes from './routes';
+import { StyledNavItem, StyledNavItemIcon } from './styles';
+
 import { Link } from '@/components/Link';
-import { StyledNavItem, StyledNavItemIcon } from '@/components/nav/styles';
-import { routes } from '@/components/nav/routes';
 import { alpha } from '@mui/material/styles';
 
 import type { Route } from '@/types/components/nav/Route';

@@ -1,7 +1,5 @@
-import type { Response } from '@/types/Response';
+import type { StatusCodes } from 'http-status-codes';
 import type { Component } from 'react';
-
-import { StatusCodes } from 'http-status-codes';
 
 export interface APIOptions {
   /**
@@ -52,15 +50,3 @@ interface BasePromptOptions<T> {
 }
 
 export type PromptOptions<T> = Omit<APIOptions, 'method'> & BasePromptOptions<T>;
-
-export interface ExecuteOptions<T> extends BasePromptOptions<T> {
-  /**
-   *
-   */
-  promise: () => Promise<T>;
-
-  /**
-   *
-   */
-  id: string;
-}

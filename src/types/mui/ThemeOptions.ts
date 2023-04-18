@@ -1,6 +1,5 @@
 import type { PaletteOptions as BasePaletteOptions } from '@mui/material/styles/createPalette';
 import type { Color, ThemeOptions as BaseThemeOptions } from '@mui/material';
-
 import type { SimplePaletteColorOptions } from '@mui/material/styles/createPalette';
 
 export type PaletteOptions = BasePaletteOptions & {

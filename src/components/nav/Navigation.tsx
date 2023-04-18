@@ -1,27 +1,24 @@
 import Logo from '@/components/Logo';
-import NavSection from '@/components/nav/NavSection';
-import useResponsive from '@/hooks/useResponsive';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 
-import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import NavSection from './NavSection';
+
+import { useResponsive } from '@/hooks/useResponsive';
 import { useSession } from 'next-auth/react';
 
 import * as constants from '@/util/constants';
 
-export function Navigation({ openNav, onCloseNav }) {
-  const { pathname } = useRouter();
-
+export default function Navigation({ openNav, onCloseNav }) {
   const session = useSession();
   const isDesktop = useResponsive('up', 'lg');
 
-  useEffect(() => {
-    if (openNav) {
-      onCloseNav();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pathname]);
+  // useEffect(() => {
+  //   if (openNav) {
+  //     onCloseNav();
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [pathname]);
 
   const renderContent = (
     <>
