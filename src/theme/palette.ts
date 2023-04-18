@@ -6,7 +6,7 @@ import type { PaletteOptions } from '@/types/mui';
 
 export const THEME = { ...NORD, GREY };
 
-const BASE = {
+export const BASE = {
   common: {
     black: '#000',
     white: '#fff',
