@@ -18,7 +18,10 @@ const BASE_OPTIONS: Partial<ThemeOptions> = {
 
 export const DARK: Theme = createTheme({
   ...BASE_OPTIONS,
-  palette: palettes.DARK,
+  palette: {
+    ...palettes.DARK,
+    shadows: shadows.DARK,
+  },
   shadows: shadows.arrays.DARK,
   components: {
     ...overrides.DARK,
@@ -27,7 +30,10 @@ export const DARK: Theme = createTheme({
 
 export const LIGHT: Theme = createTheme({
   ...BASE_OPTIONS,
-  palette: palettes.LIGHT,
+  palette: {
+    ...palettes.LIGHT,
+    shadows: shadows.LIGHT,
+  },
   shadows: shadows.arrays.LIGHT,
   components: {
     ...overrides.LIGHT,
