@@ -4,7 +4,7 @@ import type { Shadows } from '@mui/material/styles';
 import * as palettes from '@/theme/palette';
 
 const colors = {
-  LIGHT: palettes.THEME.GREY[900],
+  LIGHT: palettes.SOURCE.grey[900],
   DARK: '#000',
 };
 

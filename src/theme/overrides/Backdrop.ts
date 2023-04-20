@@ -15,7 +15,7 @@ const BASE: ComponentOverrides = {
   },
 };
 
-export const DARK: ComponentOverrides = merge(BASE, {
+export const DARK = merge(BASE, {
   MuiBackdrop: {
     styleOverrides: {
       root: {
@@ -23,9 +23,9 @@ export const DARK: ComponentOverrides = merge(BASE, {
       },
     },
   },
-});
+}) as ComponentOverrides;
 
-export const LIGHT: ComponentOverrides = merge(BASE, {
+export const LIGHT = merge(BASE, {
   MuiBackdrop: {
     styleOverrides: {
       root: {
@@ -33,4 +33,4 @@ export const LIGHT: ComponentOverrides = merge(BASE, {
       },
     },
   },
-});
+}) as ComponentOverrides;

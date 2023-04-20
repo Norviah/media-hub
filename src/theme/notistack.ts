@@ -20,7 +20,7 @@ const Style = styled(MaterialDesignContent)(() => ({
     backgroundColor: palettes.BASE.warning.main,
   },
   '&.notistack-MuiContent-default': {
-    backgroundColor: palettes.THEME.BLACK.LIGHT,
+    backgroundColor: palettes.SOURCE.BLACK.light,
   },
 }));
 

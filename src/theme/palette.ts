@@ -4,7 +4,7 @@ import { merge } from '@/util/merge';
 
 import type { PaletteOptions } from '@/types/mui';
 
-export const THEME = { ...NORD, GREY };
+export const SOURCE = { ...NORD, grey: GREY };
 
 export const BASE = {
   common: {
@@ -12,45 +12,46 @@ export const BASE = {
     white: '#fff',
   },
   primary: {
-    main: THEME.BLUE.MAIN,
+    main: SOURCE.blue.main,
   },
   secondary: {
-    main: THEME.BLUE.DARK,
+    main: SOURCE.blue.dark,
   },
   info: {
-    main: THEME.BLUE.LIGHT,
+    main: SOURCE.blue.light,
   },
   success: {
-    main: THEME.GREEN.MAIN,
+    main: SOURCE.green.main,
   },
   warning: {
-    main: THEME.YELLOW.MAIN,
+    main: SOURCE.yellow.main,
   },
   error: {
-    main: THEME.RED.MAIN,
+    main: SOURCE.red.main,
   },
-  grey: THEME.GREY,
-  divider: alpha(THEME.GREY[500], 0.24),
+  grey: SOURCE.grey,
+  divider: alpha(SOURCE.grey[500], 0.24),
   text: {
-    disabled: THEME.GREY[500],
+    disabled: SOURCE.grey[500],
   },
   action: {
     hoverOpacity: 0.08,
     disabledOpacity: 0.48,
     selectedOpacity: 0.2,
   },
-} as const;
+  source: SOURCE,
+};
 
-export const LIGHT: PaletteOptions = merge<PaletteOptions>(BASE as PaletteOptions, {
+export const LIGHT = merge(BASE, {
   mode: 'light',
-  divider: alpha(THEME.GREY[500], 0.25),
+  divider: alpha(SOURCE.grey[500], 0.25),
   background: {
-    default: THEME.GREY[200],
+    default: SOURCE.grey[200],
   },
   text: {
-    primary: THEME.GREY[700],
-    secondary: THEME.GREY[600],
-    disabled: THEME.GREY[500],
+    primary: SOURCE.grey[700],
+    secondary: SOURCE.grey[600],
+    disabled: SOURCE.grey[500],
   },
   action: {
     active: BASE.grey[600],
@@ -60,19 +61,19 @@ export const LIGHT: PaletteOptions = merge<PaletteOptions>(BASE as PaletteOption
     disabledBackground: alpha(BASE.grey[500], 0.24),
     focus: alpha(BASE.grey[500], 0.24),
   },
-});
+}) as PaletteOptions;
 
-export const DARK: PaletteOptions = merge<PaletteOptions>(BASE as PaletteOptions, {
+export const DARK = merge(BASE, {
   mode: 'dark',
-  divider: THEME.BLACK.LIGHT,
+  divider: SOURCE.BLACK.light,
   background: {
-    paper: THEME.BLACK.MAIN,
-    default: THEME.BLACK.DARK,
+    paper: SOURCE.BLACK.main,
+    default: SOURCE.BLACK.dark,
   },
   text: {
-    primary: THEME.GREY[200],
-    secondary: THEME.GREY[500],
-    disabled: THEME.GREY[500],
+    primary: SOURCE.grey[200],
+    secondary: SOURCE.grey[500],
+    disabled: SOURCE.grey[500],
   },
   action: {
     active: BASE.grey[600],
@@ -82,4 +83,4 @@ export const DARK: PaletteOptions = merge<PaletteOptions>(BASE as PaletteOptions
     disabledBackground: alpha(BASE.grey[500], 0.24),
     focus: alpha(BASE.grey[500], 0.24),
   },
-});
+}) as PaletteOptions;

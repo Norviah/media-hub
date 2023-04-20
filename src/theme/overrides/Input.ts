@@ -3,7 +3,7 @@ import type { Components as ComponentOverrides } from '@mui/material/styles/comp
 
 import * as palettes from '@/theme/palette';
 
-export const DARK: ComponentOverrides = {
+export const DARK = {
   MuiInputBase: {
     styleOverrides: {
       root: {
@@ -25,7 +25,7 @@ export const DARK: ComponentOverrides = {
     styleOverrides: {
       underline: {
         '&:before': {
-          borderBottomColor: alpha(palettes.THEME.GREY[500], 0.56),
+          borderBottomColor: alpha(palettes.SOURCE.grey[500], 0.56),
         },
       },
     },
@@ -33,9 +33,9 @@ export const DARK: ComponentOverrides = {
   MuiFilledInput: {
     styleOverrides: {
       root: {
-        backgroundColor: alpha(palettes.THEME.GREY[500], 0.12),
+        backgroundColor: alpha(palettes.SOURCE.grey[500], 0.12),
         '&:hover': {
-          backgroundColor: alpha(palettes.THEME.GREY[500], 0.16),
+          backgroundColor: alpha(palettes.SOURCE.grey[500], 0.16),
         },
         '&.Mui-focused': {
           backgroundColor: palettes.DARK.action?.focus,
@@ -46,7 +46,7 @@ export const DARK: ComponentOverrides = {
       },
       underline: {
         '&:before': {
-          borderBottomColor: alpha(palettes.THEME.GREY[500], 0.56),
+          borderBottomColor: alpha(palettes.SOURCE.grey[500], 0.56),
         },
       },
     },
@@ -55,7 +55,7 @@ export const DARK: ComponentOverrides = {
     styleOverrides: {
       root: {
         '& .MuiOutlinedInput-notchedOutline': {
-          borderColor: alpha(palettes.THEME.GREY[500], 0.32),
+          borderColor: alpha(palettes.SOURCE.grey[500], 0.32),
         },
         '&.Mui-disabled': {
           '& .MuiOutlinedInput-notchedOutline': {
@@ -65,9 +65,9 @@ export const DARK: ComponentOverrides = {
       },
     },
   },
-};
+} as ComponentOverrides;
 
-export const LIGHT: ComponentOverrides = {
+export const LIGHT = {
   MuiInputBase: {
     styleOverrides: {
       root: {
@@ -89,7 +89,7 @@ export const LIGHT: ComponentOverrides = {
     styleOverrides: {
       underline: {
         '&:before': {
-          borderBottomColor: alpha(palettes.THEME.GREY[500], 0.56),
+          borderBottomColor: alpha(palettes.SOURCE.grey[500], 0.56),
         },
       },
     },
@@ -97,9 +97,9 @@ export const LIGHT: ComponentOverrides = {
   MuiFilledInput: {
     styleOverrides: {
       root: {
-        backgroundColor: alpha(palettes.THEME.GREY[500], 0.12),
+        backgroundColor: alpha(palettes.SOURCE.grey[500], 0.12),
         '&:hover': {
-          backgroundColor: alpha(palettes.THEME.GREY[500], 0.16),
+          backgroundColor: alpha(palettes.SOURCE.grey[500], 0.16),
         },
         '&.Mui-focused': {
           backgroundColor: palettes.LIGHT.action?.focus,
@@ -110,7 +110,7 @@ export const LIGHT: ComponentOverrides = {
       },
       underline: {
         '&:before': {
-          borderBottomColor: alpha(palettes.THEME.GREY[500], 0.56),
+          borderBottomColor: alpha(palettes.SOURCE.grey[500], 0.56),
         },
       },
     },
@@ -119,7 +119,7 @@ export const LIGHT: ComponentOverrides = {
     styleOverrides: {
       root: {
         '& .MuiOutlinedInput-notchedOutline': {
-          borderColor: alpha(palettes.THEME.GREY[500], 0.32),
+          borderColor: alpha(palettes.SOURCE.grey[500], 0.32),
         },
         '&.Mui-disabled': {
           '& .MuiOutlinedInput-notchedOutline': {
@@ -129,4 +129,4 @@ export const LIGHT: ComponentOverrides = {
       },
     },
   },
-};
+} as ComponentOverrides;

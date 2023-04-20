@@ -6,10 +6,10 @@ export const DARK: ComponentOverrides = {
   MuiTooltip: {
     styleOverrides: {
       tooltip: {
-        backgroundColor: palettes.THEME.BLACK.MEDIUM,
+        backgroundColor: palettes.SOURCE.BLACK.medium,
       },
       arrow: {
-        color: palettes.THEME.BLACK.MEDIUM,
+        color: palettes.SOURCE.BLACK.medium,
       },
     },
   },
@@ -19,10 +19,10 @@ export const LIGHT: ComponentOverrides = {
   MuiTooltip: {
     styleOverrides: {
       tooltip: {
-        backgroundColor: palettes.THEME.GREY[600],
+        backgroundColor: palettes.SOURCE.grey[600],
       },
       arrow: {
-        color: palettes.THEME.GREY[600],
+        color: palettes.SOURCE.grey[600],
       },
     },
   },

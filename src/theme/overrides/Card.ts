@@ -37,7 +37,7 @@ const BASE: ComponentOverrides = {
   },
 };
 
-export const LIGHT: ComponentOverrides = merge(BASE, {
+export const LIGHT = merge(BASE, {
   MuiCard: {
     styleOverrides: {
       root: {
@@ -45,9 +45,9 @@ export const LIGHT: ComponentOverrides = merge(BASE, {
       },
     },
   },
-});
+}) as ComponentOverrides;
 
-export const DARK: ComponentOverrides = merge(BASE, {
+export const DARK = merge(BASE, {
   MuiCard: {
     styleOverrides: {
       root: {
@@ -55,4 +55,4 @@ export const DARK: ComponentOverrides = merge(BASE, {
       },
     },
   },
-});
+}) as ComponentOverrides;

@@ -1,4 +1,4 @@
-import { THEME } from '@/theme/palette';
+import { SOURCE } from '@/theme/palette';
 import type { Components as ComponentOverrides } from '@mui/material/styles/components';
 
 import * as palettes from '@/theme/palette';
@@ -8,7 +8,7 @@ export const DARK: ComponentOverrides = {
     styleOverrides: {
       head: {
         color: palettes.DARK.text?.secondary,
-        backgroundColor: THEME.BLACK.DARK,
+        backgroundColor: SOURCE.BLACK.dark,
       },
     },
   },
@@ -19,7 +19,7 @@ export const LIGHT: ComponentOverrides = {
     styleOverrides: {
       head: {
         color: palettes.LIGHT.text?.secondary,
-        backgroundColor: THEME.WHITE.LIGHT,
+        backgroundColor: SOURCE.white.light,
       },
     },
   },

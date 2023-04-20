@@ -16,7 +16,7 @@ const BASE: ComponentOverrides = {
   },
 };
 
-export const DARK: ComponentOverrides = merge(BASE, {
+export const DARK = merge(BASE, {
   MuiButton: {
     styleOverrides: {
       containedInherit: {
@@ -99,9 +99,9 @@ export const DARK: ComponentOverrides = merge(BASE, {
       },
     },
   },
-});
+}) as ComponentOverrides;
 
-export const LIGHT: ComponentOverrides = merge(BASE, {
+export const LIGHT = merge(BASE, {
   MuiButton: {
     styleOverrides: {
       containedInherit: {
@@ -184,4 +184,4 @@ export const LIGHT: ComponentOverrides = merge(BASE, {
       },
     },
   },
-});
+}) as ComponentOverrides;

@@ -9,53 +9,38 @@ import type { Color } from '@mui/material';
  */
 export const NORD = {
   BLACK: {
-    DARKER: '#292E39',
-    DARK: '#2E3440',
-    MAIN: '#3B4252',
-    MEDIUM: '#434C5E',
-    LIGHT: '#4C566A',
+    darker: '#292E39',
+    dark: '#2E3440',
+    main: '#3B4252',
+    medium: '#434C5E',
+    light: '#4C566A',
   },
-  WHITE: {
-    LIGHT: '#ECEFF4',
-    MAIN: '#E5E9F0',
-    DARK: '#D8DEE9',
+  white: {
+    light: '#ECEFF4',
+    main: '#E5E9F0',
+    dark: '#D8DEE9',
   },
-  BLUE: {
-    LIGHT: '#88C0D0',
-    MAIN: '#81A1C1',
-    DARK: '#5E81AC',
-    GREEN: '#8FBCBB',
+  blue: {
+    light: '#88C0D0',
+    main: '#81A1C1',
+    dark: '#5E81AC',
+    green: '#8FBCBB',
   },
-  RED: {
-    MAIN: '#BF616A',
+  red: {
+    main: '#BF616A',
   },
-  ORANGE: {
-    MAIN: '#D08770',
+  orange: {
+    main: '#D08770',
   },
-  YELLOW: {
-    MAIN: '#EBCB8B',
+  yellow: {
+    main: '#EBCB8B',
   },
-  GREEN: {
-    MAIN: '#A3BE8C',
+  green: {
+    main: '#A3BE8C',
   },
-  PURPLE: {
-    MAIN: '#B48EAD',
+  purple: {
+    main: '#B48EAD',
   },
-};
-
-/**
- * The Discord color palette.
- *
- * @see https://discord.com/branding
- */
-export const DISCORD = {
-  BLURPLE: '#5865F2',
-  GREEN: '#57F287',
-  YELLOW: '#FEE75C',
-  FUCHSIA: '#EB459E',
-  RED: '#ED4245',
-  WHITE: '#FFFFFF',
-  BLACK: '#000000',
 };
 
 /**
@@ -79,9 +64,9 @@ export const GREY: Color = {
 };
 
 export const GOOGLE = {
-  RED: '#DE5246',
+  red: '#DE5246',
 };
 
 export const TWITTER = {
-  BLUE: '#1DA1F2',
+  blue: '#1DA1F2',
 };
