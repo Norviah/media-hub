@@ -13,6 +13,7 @@ export default function RoutesContainer(props: {
   authenticated: boolean;
   boxProps?: BoxProps;
   drawer: DrawerContext;
+  isDesktop: boolean;
 }): JSX.Element {
   return (
     <Box {...props.boxProps}>
@@ -25,10 +26,10 @@ export default function RoutesContainer(props: {
 
             return (
               <RouteEntry
-                open={props.drawer.open}
+                isDesktop={props.isDesktop}
+                drawer={props.drawer}
                 key={route.name}
                 route={route}
-                close={() => props.drawer.to(false)}
               />
             );
           })}

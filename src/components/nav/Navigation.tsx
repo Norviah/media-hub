@@ -47,7 +47,11 @@ export default function Navigation(): JSX.Element {
       <Box sx={{ px: 2.5, py: 3, display: 'inline-flex' }}>
         <Logo />
       </Box>
-      <RoutesContainer drawer={drawer} authenticated={session.status === 'authenticated'} />
+      <RoutesContainer
+        isDesktop={isDesktop}
+        drawer={drawer}
+        authenticated={session.status === 'authenticated'}
+      />
     </>
   );
 

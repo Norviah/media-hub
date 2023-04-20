@@ -5,17 +5,18 @@ import RouteItem from '../components/RouteItem';
 
 import { alpha } from '@mui/material/styles';
 
+import type { DrawerContext } from '@/types/hooks/DrawerContext';
 import type { Route } from '@/types/components/nav/Route';
 
 export default function RouteEntry(props: {
   route: Route;
-  open: boolean;
-  close: () => void;
+  drawer: DrawerContext;
+  isDesktop: boolean;
 }): JSX.Element {
   return (
     <RouteItem
       href={props.route.path}
-      onClick={props.close}
+      onClick={() => (props.isDesktop ? undefined : props.drawer.to(false))}
       sx={{
         '&.active': {
           color: 'primary.main',
@@ -31,7 +32,7 @@ export default function RouteEntry(props: {
           <props.route.icon />
         </RouteIcon>
       )}
-      {props.open && <ListItemText disableTypography primary={props.route.name} />}
+      {props.drawer.open && <ListItemText disableTypography primary={props.route.name} />}
     </RouteItem>
   );
 }
