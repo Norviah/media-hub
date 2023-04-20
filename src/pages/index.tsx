@@ -235,17 +235,17 @@ const MyCard2 = () => {
         </IconButton>
         <Box sx={{ flexGrow: 1 }} />
         <IconButton onClick={handleExpandClick} aria-expanded={expanded} aria-label="show more">
-          <FlipIcon icon={ExpandMoreIcon} open={expanded} />
+          <FlipIcon icon={ExpandMoreIcon} active={expanded} direction="horizontal" />
         </IconButton>
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           <Typography variant="h6">Overview</Typography>
           <Typography paragraph sx={{ color: 'text.secondary' }}>
-            ousei Arima was a genius pianist until his mother's sudden death took away his ability
-            to play. Each day was dull for Kousei. But, then he meets a violinist named Kaori
-            Miyazono who has an eccentric playing style. Can the heartfelt sounds of the girl's
-            violin lead the boy to play the piano again?
+            ousei Arima was a genius pianist until his mother&apos;s sudden death took away his
+            ability to play. Each day was dull for Kousei. But, then he meets a violinist named
+            Kaori Miyazono who has an eccentric playing style. Can the heartfelt sounds of the
+            girl&apos;s violin lead the boy to play the piano again?
           </Typography>
           <Button variant="contained" color="primary">
             More

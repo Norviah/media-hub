@@ -47,7 +47,14 @@ function Menu(props: { redirect: string; session: Session }): JSX.Element {
           }),
         }}
       >
-        <Avatar src={props.session.user?.image ?? undefined} alt="photoURL">
+        <Avatar
+          src={props.session.user?.image ?? undefined}
+          alt="photoURL"
+          sx={{
+            width: 45,
+            height: 45,
+          }}
+        >
           {props.session.user?.name[0]}
         </Avatar>
       </IconButton>

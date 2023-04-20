@@ -5,6 +5,7 @@ import Head from 'next/head';
 import { SessionProvider } from 'next-auth/react';
 import { ThemeContext } from '@/hooks/useTheme';
 import { PageContent } from '@/layout/root';
+import { DrawerContext } from '@/hooks/useDrawer';
 import { StyledComponents } from '@/theme/notistack';
 import { systemColorScheme } from '@/util/theme';
 import { StyledEngineProvider, ThemeProvider } from '@mui/material';
@@ -123,36 +124,37 @@ export default class App extends Component<AppProps, AppState> {
               <ThemeContext.Provider
                 value={{ theme: this.state.theme, setTheme: this.setTheme.bind(this) }}
               >
-                <SnackbarProvider
-                  maxSnack={3}
-                  anchorOrigin={{
-                    vertical: 'bottom',
-                    horizontal: 'left',
+                <DrawerContext.Provider
+                  value={{
+                    open: this.state.open,
+                    to: (value: boolean) => {
+                      this.setState({ open: value });
+                    },
                   }}
-                  preventDuplicate
-                  action={(key) => (
-                    <IconButton
-                      size="small"
-                      onClick={() => {
-                        closeSnackbar(key);
-                      }}
-                    >
-                      <CloseIcon fontSize="small" sx={{ color: 'grey.800' }} />
-                    </IconButton>
-                  )}
-                  Components={StyledComponents}
-                  autoHideDuration={7000}
                 >
-                  <PageContent
-                    props={this.props}
-                    router={this.props.router}
-                    theme={theme}
-                    drawer={{
-                      open: this.state.open,
-                      set: (open: boolean) => this.setState({ open }),
+                  <SnackbarProvider
+                    maxSnack={3}
+                    anchorOrigin={{
+                      vertical: 'bottom',
+                      horizontal: 'left',
                     }}
-                  />
-                </SnackbarProvider>
+                    preventDuplicate
+                    action={(key) => (
+                      <IconButton
+                        size="small"
+                        onClick={() => {
+                          closeSnackbar(key);
+                        }}
+                      >
+                        <CloseIcon fontSize="small" sx={{ color: 'grey.800' }} />
+                      </IconButton>
+                    )}
+                    Components={StyledComponents}
+                    autoHideDuration={7000}
+                  >
+                    <PageContent props={this.props} router={this.props.router} theme={theme} />
+                  </SnackbarProvider>
+                </DrawerContext.Provider>
               </ThemeContext.Provider>
             </ThemeProvider>
           </StyledEngineProvider>

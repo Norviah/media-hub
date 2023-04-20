@@ -12,7 +12,7 @@ import { alpha } from '@mui/material/styles';
 import type { Route } from '@/types/components/nav/Route';
 import type { BoxProps } from '@mui/material';
 
-function NavItem(props: { route: Route }) {
+function NavItem(props: { route: Route; open: boolean }) {
   return (
     <StyledNavItem
       component={Link}
@@ -28,24 +28,26 @@ function NavItem(props: { route: Route }) {
       }}
     >
       <StyledNavItemIcon>{props.route.icon && <props.route.icon />}</StyledNavItemIcon>
-      <ListItemText disableTypography primary={props.route.name} />
+      {props.open && <ListItemText disableTypography primary={props.route.name} />}
     </StyledNavItem>
   );
 }
 
-export default function NavSection(props: { authenticated: boolean; box?: BoxProps }): JSX.Element {
+export default function NavSection(props: {
+  authenticated: boolean;
+  box?: BoxProps;
+  open: boolean;
+}): JSX.Element {
   return (
     <Box {...props.box}>
       <List sx={{ p: 1, pl: 2, pr: 2 }}>
         <Stack spacing={1}>
           {routes.map((route: Route) => {
-            //  route.authentication && props.authenticated ? ()
-
             if (route.authentication && !props.authenticated) {
               return;
             }
 
-            return <NavItem key={route.name} route={route} />;
+            return <NavItem open={props.open} key={route.name} route={route} />;
           })}
         </Stack>
       </List>

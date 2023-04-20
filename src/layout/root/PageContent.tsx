@@ -14,7 +14,6 @@ import type { Theme } from '@mui/material';
 export function PageContent(props: {
   props: AppProps;
   router: NextRouter;
-  drawer: { open: boolean; set: (value: boolean) => void };
   theme: Theme;
 }): JSX.Element {
   const { Component, pageProps, router } = props.props;
@@ -29,8 +28,8 @@ export function PageContent(props: {
       <Box sx={{ display: 'flex', minHeight: '100%', overflow: 'hidden' }}>
         <CssBaseline />
         <GlobalStyles />
-        <Header onOpenNav={() => props.drawer.set(true)} route={props.router.route} />
-        <Navigation onCloseNav={() => props.drawer.set(false)} openNav={props.drawer.open} />
+        <Header route={props.router.route} />
+        <Navigation />
         <Padding>
           <Component {...pageProps} />
         </Padding>
