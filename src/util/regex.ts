@@ -11,7 +11,7 @@ export const FORM = {
    * .{8,}               Ensure the string is at least 8 characters long.
    * $                   End anchor.
    */
-  PASSWORD: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-\.]).{8,}$/,
+  PASSWORD: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-\.])[^\s]{8,}$/,
 
   /**
    * Matches any string that is 3-16 characters long and contains only
