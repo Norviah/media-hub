@@ -1,43 +1,19 @@
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { useTheme } from '@mui/material/styles';
 
-export function useResponsive(query, start, end) {
-  const theme = useTheme();
+import type { Theme } from '@mui/material/styles';
+import type { BetweenQuery, MediaQuery } from '@/types/hooks/MediaQuery';
 
-  const mediaUp = useMediaQuery(theme.breakpoints.up(start));
+/**
+ * Calls a media query on a specific breakpoint.
+ *
+ * @see https://mui.com/material-ui/react-use-media-query/#using-muis-breakpoint-helpers
+ * @param args The media query arguments.
+ * @returns Whether the media query matches.
+ */
+export function useResponsive(args: MediaQuery): boolean {
+  const query = useMediaQuery((theme: Theme) => {
+    return theme.breakpoints[args.query](args.start, (args as BetweenQuery).end);
+  });
 
-  const mediaDown = useMediaQuery(theme.breakpoints.down(start));
-
-  const mediaBetween = useMediaQuery(theme.breakpoints.between(start, end));
-
-  const mediaOnly = useMediaQuery(theme.breakpoints.only(start));
-
-  if (query === 'up') {
-    return mediaUp;
-  }
-
-  if (query === 'down') {
-    return mediaDown;
-  }
-
-  if (query === 'between') {
-    return mediaBetween;
-  }
-
-  return mediaOnly;
-}
-
-export function useWidth() {
-  const theme = useTheme();
-
-  const keys = [...theme.breakpoints.keys].reverse();
-
-  return (
-    keys.reduce((output, key) => {
-      // eslint-disable-next-line react-hooks/rules-of-hooks
-      const matches = useMediaQuery(theme.breakpoints.up(key));
-
-      return !output && matches ? key : output;
-    }, null) || 'xs'
-  );
+  return query;
 }
