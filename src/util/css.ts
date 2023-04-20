@@ -1,5 +1,5 @@
 import { alpha } from '@mui/material/styles';
-import type { SxProps } from '@mui/material/styles';
+import type { CSSObject } from '@emotion/styled';
 
 /**
  * Creates a blur effect for the background from the given color.
@@ -7,7 +7,7 @@ import type { SxProps } from '@mui/material/styles';
  * @param args Represents information about the blur effect.
  * @returns The CSS properties generated from the given arguments.
  */
-export function bgBlur(args: { color: string; blur?: number; opacity?: number }): SxProps {
+export function bgBlur(args: { color: string; blur?: number; opacity?: number }): CSSObject {
   const blur = args?.blur || 10;
 
   return {
@@ -23,7 +23,7 @@ export function bgBlur(args: { color: string; blur?: number; opacity?: number })
  * @param args Represents information about the gradient.
  * @returns The CSS properties generated from the given arguments.
  */
-export function bgGradient(args: { direction?: string; start: string; end: string }): SxProps {
+export function bgGradient(args: { direction?: string; start: string; end: string }): CSSObject {
   return {
     background: `linear-gradient(${args?.direction ?? 'to bottom'}, ${args.start}, ${args.end})`,
   };
