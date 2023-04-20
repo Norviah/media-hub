@@ -1,11 +1,11 @@
-import Head from 'next/head';
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+import Head from 'next/head';
 
-import { useState } from 'react';
-import { ProductSort, ProductList, ProductFilterSidebar } from '@/layout/products';
 import PRODUCTS from '@/components/_mock/products';
+import { ProductFilterSidebar, ProductList, ProductSort } from '@/layout/products';
+import { useState } from 'react';
 
 export default function ProductsPage(): JSX.Element {
   const [openFilter, setOpenFilter] = useState(false);

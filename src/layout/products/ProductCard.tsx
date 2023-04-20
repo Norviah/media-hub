@@ -6,7 +6,11 @@ import IconButton from '@mui/material/IconButton';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+import Image from 'next/image';
 import React from 'react';
+
+import ChevronLeft from '@mui/icons-material/ChevronLeft';
+import ChevronRight from '@mui/icons-material/ChevronRight';
 
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import LibraryAddIcon from '@mui/icons-material/LibraryAdd';
@@ -40,36 +44,38 @@ export default function ShopProductCard({ product }) {
           <Label
             variant="filled"
             color={(status === 'sale' && 'error') || 'info'}
-            sx={{
-              zIndex: 9,
+            spacing={{
               top: 16,
               right: 16,
-              position: 'absolute',
+            }}
+            sx={{
+              zIndex: 9,
               textTransform: 'uppercase',
             }}
-          >
-            {status}
-          </Label>
+            data={status}
+          ></Label>
         )}
-        <StyledProductImg alt={name} src={cover} />
-      </Box>
-
-      {/* <Image
+        <Image
           loader={({ src }) => {
             return `${src}`;
           }}
           alt={name}
           src={
-            'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/n30CBH4BoN5Z34tCpOWIPGJYOaS.jpg'
+            // 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/n30CBH4BoN5Z34tCpOWIPGJYOaS.jpg'
+            cover
           }
           style={{
             top: 0,
             objectFit: 'cover',
             position: 'absolute',
+            height: 'auto',
+            weight: 'auto',
           }}
-          width={300}
-          height={400}
-        /> */}
+          width={400}
+          height={250}
+        />
+        {/* <StyledProductImg alt={name} src={cover} /> */}
+      </Box>
 
       <Stack spacing={2} sx={{ p: 2 }}>
         <Link color="inherit" underline="hover">

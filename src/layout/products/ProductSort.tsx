@@ -29,7 +29,7 @@ export default function ShopProductSort() {
         color="inherit"
         disableRipple
         onClick={handleOpen}
-        endIcon={<FlipIcon icon={ExpandMoreIcon} open={Boolean(open)} />}
+        endIcon={<FlipIcon icon={ExpandMoreIcon} active={Boolean(open)} direction="horizontal" />}
         sx={{
           backgroundColor: Boolean(open) ? 'action.hover' : 'default',
         }}
