@@ -1,4 +1,4 @@
-import account from '@/components/_mock/account';
+import Button from '@mui/lab/LoadingButton';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
@@ -7,25 +7,25 @@ import MenuItem from '@mui/material/MenuItem';
 import Popover from '@mui/material/Popover';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/lab/LoadingButton';
-import NotificationsPopover from './NotificationsPopover';
+
+import Notifications from './Notifications';
 
 import { Link } from '@/components/Link';
-import { signOut, useSession } from 'next-auth/react';
 import { alpha } from '@mui/material/styles';
+import { signOut, useSession } from 'next-auth/react';
 import { useState } from 'react';
 
 import type { Session } from 'next-auth';
 
 function Menu(props: { redirect: string; session: Session }): JSX.Element {
-  const [open, setOpen] = useState(null);
+  const [anchor, setAnchor] = useState<null | HTMLElement>(null);
 
-  const handleOpen = (event) => {
-    setOpen(event.currentTarget);
+  const handleOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchor(event.currentTarget);
   };
 
   const handleClose = () => {
-    setOpen(null);
+    setAnchor(null);
   };
 
   return (
@@ -34,7 +34,7 @@ function Menu(props: { redirect: string; session: Session }): JSX.Element {
         onClick={handleOpen}
         sx={{
           p: 0,
-          ...(open && {
+          ...(anchor && {
             '&:before': {
               zIndex: 1,
               content: "''",
@@ -55,13 +55,13 @@ function Menu(props: { redirect: string; session: Session }): JSX.Element {
             height: 45,
           }}
         >
-          {props.session.user?.name[0]}
+          {(props.session.user?.name ?? '?')[0]}
         </Avatar>
       </IconButton>
 
       <Popover
-        open={Boolean(open)}
-        anchorEl={open}
+        open={Boolean(anchor)}
+        anchorEl={anchor}
         onClose={handleClose}
         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
         transformOrigin={{ vertical: 'top', horizontal: 'right' }}
@@ -128,7 +128,7 @@ export default function UserMenu(props: { redirect: string }): JSX.Element {
 
   return session.data ? (
     <>
-      {/* <NotificationsPopover /> */}
+      {/* <Notifications /> */}
       <Menu redirect={props.redirect} session={session.data} />
     </>
   ) : (

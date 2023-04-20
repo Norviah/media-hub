@@ -1,15 +1,16 @@
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 
-import { GlobalStyles } from '@/theme/global';
-import { Padding } from './Padding';
+import Padding from '../components/Padding';
+import SimpleHeader from './SimpleHeader';
+
 import { Header } from '@/components/header';
 import { Navigation } from '@/components/nav';
-import { Header as SimpleHeader } from '@/layout/root/Header';
+import { GlobalStyles } from '@/theme/global';
 
+import type { Theme } from '@mui/material';
 import type { AppProps } from 'next/app';
 import type { NextRouter } from 'next/router';
-import type { Theme } from '@mui/material';
 
 export function PageContent(props: {
   props: AppProps;

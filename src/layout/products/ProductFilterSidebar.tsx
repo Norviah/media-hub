@@ -1,28 +1,21 @@
-// @mui
-import {
-  Box,
-  Radio,
-  Stack,
-  Button,
-  Drawer,
-  Rating,
-  Divider,
-  Checkbox,
-  FormGroup,
-  IconButton,
-  Typography,
-  RadioGroup,
-  FormControlLabel,
-  Chip,
-} from '@mui/material';
-// components
-// import Iconify from '../../../components/iconify';
-import Scrollbar from '@/components/scrollbar';
+import Box from '@mui/material/Box';
+import Radio from '@mui/material/Radio';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import Drawer from '@mui/material/Drawer';
+import Rating from '@mui/material/Rating';
+import Divider from '@mui/material/Divider';
+import Checkbox from '@mui/material/Checkbox';
+import FormGroup from '@mui/material/FormGroup';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Chip from '@mui/material/Chip';
+
 import CloseIcon from '@mui/icons-material/Close';
 import ClearAllIcon from '@mui/icons-material/ClearAll';
 import FilterListIcon from '@mui/icons-material/FilterList';
-
-// ----------------------------------------------------------------------
 
 export const SORT_BY_OPTIONS = [
   { value: 'featured', label: 'Featured' },
@@ -67,19 +60,25 @@ const GENRES = [
   { id: 37, name: 'Western' },
 ];
 
-// ----------------------------------------------------------------------
-
-export default function ShopFilterSidebar({ openFilter, onOpenFilter, onCloseFilter }) {
+export default function ShopFilterSidebar(props: {
+  open: boolean;
+  to: (value: boolean) => void;
+}): JSX.Element {
   return (
     <>
-      <Button disableRipple color="inherit" endIcon={<FilterListIcon />} onClick={onOpenFilter}>
+      <Button
+        disableRipple
+        color="inherit"
+        endIcon={<FilterListIcon />}
+        onClick={() => props.to(true)}
+      >
         Filters&nbsp;
       </Button>
 
       <Drawer
         anchor="right"
-        open={openFilter}
-        onClose={onCloseFilter}
+        open={props.open}
+        onClose={() => props.to(false)}
         PaperProps={{
           sx: { width: 280, border: 'none', display: 'flex', flexDirection: 'column' },
         }}
@@ -93,7 +92,7 @@ export default function ShopFilterSidebar({ openFilter, onOpenFilter, onCloseFil
           <Typography variant="subtitle1" sx={{ ml: 1 }}>
             Filters
           </Typography>
-          <IconButton onClick={onCloseFilter}>
+          <IconButton onClick={() => props.to(false)}>
             <CloseIcon />
           </IconButton>
         </Stack>

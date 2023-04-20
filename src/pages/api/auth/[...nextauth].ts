@@ -1,11 +1,11 @@
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
-import GoogleProvider from 'next-auth/providers/google';
 import DiscordProvider from 'next-auth/providers/discord';
+import GoogleProvider from 'next-auth/providers/google';
 
+import { API } from '@/structs/API';
 import { prisma } from '@/util/prisma';
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
-import { API } from '@/structs/API';
 import { StatusCodes } from 'http-status-codes';
 
 import type { AuthOptions, User } from 'next-auth';

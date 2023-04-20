@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import { Link } from '@/components/Link';
 import { Palette, useTheme } from '@mui/material/styles';
 
+import type { LogoProps } from '@/types/components/LogoProps';
 import type { SxProps } from '@mui/material/styles';
 import type { BoxProps } from '@mui/material/Box';
 
@@ -28,11 +29,7 @@ function Icon(props: {
   );
 }
 
-export default function Logo(props: {
-  disabledLink?: boolean;
-  sx?: SxProps;
-  props?: BoxProps;
-}): JSX.Element {
+export default function Logo(props: LogoProps): JSX.Element {
   const theme = useTheme();
 
   return props.disabledLink ? (

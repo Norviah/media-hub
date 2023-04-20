@@ -6,44 +6,27 @@ import InputAdornment from '@mui/material/InputAdornment';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 
-import AuthErrors from '../util/AuthErrors';
-import ValidationErrors from '../util/ValidationErrors';
-
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
-import { signIn } from 'next-auth/react';
-import { useForm } from 'react-hook-form';
 import { Toast } from '@/structs/Toast';
+import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/router';
+import { useForm } from 'react-hook-form';
 
 import * as regex from '@/util/regex';
+import * as constants from '../util/constants';
 
 import type { FormProps } from '@/types/layout/auth/FormProps';
 import type { SignInResponse } from 'next-auth/react';
-import { useRouter } from 'next/router';
-
-function findError(type: string, field: string): string | undefined {
-  if (!ValidationErrors[type as keyof typeof ValidationErrors]) {
-    return undefined;
-  }
-
-  //
-  else if (typeof ValidationErrors[type] === 'function') {
-    return ValidationErrors[type](field);
-  }
-
-  //
-  else {
-    return ValidationErrors[type][field];
-  }
-}
+import type { SignInFormData } from '../types/SignInFormData';
 
 export default function SignInForm(props: FormProps): JSX.Element {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm<SignInFormData>();
 
   const router = useRouter();
 
@@ -59,7 +42,10 @@ export default function SignInForm(props: FormProps): JSX.Element {
       })) as SignInResponse;
 
       if (result?.error) {
-        Toast.Error({ message: AuthErrors[result?.error] });
+        Toast.Error({
+          message:
+            constants.ERRORS.AUTH[result?.error as keyof (typeof constants)['ERRORS']['AUTH']],
+        });
       }
 
       if (result.ok) {
@@ -84,8 +70,17 @@ export default function SignInForm(props: FormProps): JSX.Element {
           label="Email Address"
           autoComplete="email"
           error={errors.email ? true : false}
-          helperText={errors.email ? findError(errors.email.type, 'email') : ''}
-          {...register('email', { required: true, pattern: regex.FORM.EMAIL })}
+          helperText={errors.email ? (errors.email.message as string) : undefined}
+          {...register('email', {
+            required: {
+              value: true,
+              message: constants.ERRORS.FORM.REQUIRED,
+            },
+            pattern: {
+              value: regex.FORM.EMAIL,
+              message: constants.ERRORS.FORM.EMAIL.PATTERN,
+            },
+          })}
         />
         <TextField
           required
@@ -95,7 +90,7 @@ export default function SignInForm(props: FormProps): JSX.Element {
           id="password"
           autoComplete="current-password"
           error={errors.password ? true : false}
-          helperText={errors.password ? findError(errors.password.type, 'password') : ''}
+          helperText={errors.password ? (errors.password.message as string) : undefined}
           InputProps={{
             endAdornment: (
               <>
@@ -108,13 +103,21 @@ export default function SignInForm(props: FormProps): JSX.Element {
             ),
           }}
           {...register('password', {
-            required: true,
-            minLength: 8,
-            pattern: regex.FORM.PASSWORD,
+            required: {
+              value: true,
+              message: constants.ERRORS.FORM.REQUIRED,
+            },
+            minLength: {
+              value: constants.PASSWORD.MIN_LENGTH,
+              message: constants.ERRORS.FORM.PASSWORD.MIN_LENGTH,
+            },
+            pattern: {
+              value: regex.FORM.PASSWORD,
+              message: constants.ERRORS.FORM.PASSWORD.PATTERN,
+            },
           })}
         />
       </Stack>
-      {errors.exampleRequired && <span>This field is required</span>}
       <FormControlLabel
         control={<Checkbox value="remember" color="primary" />}
         label="Remember me"

@@ -1,6 +1,6 @@
 import Box from '@mui/material/Box';
-import IconStyle from './styles/icon';
 import LayoutContainer from './layout/LabelContainer';
+import IconStyle from './styles/IconStyle';
 
 import { useTheme } from '@mui/material/styles';
 

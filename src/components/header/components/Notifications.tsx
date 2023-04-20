@@ -19,7 +19,6 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 
 import { toString } from '@/util/time';
 import { faker } from '@faker-js/faker';
-import { useTheme } from '@mui/material';
 import { noCase } from 'change-case';
 import { set, sub } from 'date-fns';
 import { useState } from 'react';
@@ -72,21 +71,19 @@ const NOTIFICATIONS = [
   },
 ];
 
-export default function NotificationsPopover() {
+export default function Notifications(): JSX.Element {
   const [notifications, setNotifications] = useState(NOTIFICATIONS);
 
   const totalUnRead = notifications.filter((item) => item.isUnRead === true).length;
 
-  const [open, setOpen] = useState(null);
+  const [anchor, setAnchor] = useState<null | HTMLElement>(null);
 
-  const theme = useTheme();
-
-  const handleOpen = (event) => {
-    setOpen(event.currentTarget);
+  const handleOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchor(event.currentTarget);
   };
 
   const handleClose = () => {
-    setOpen(null);
+    setAnchor(null);
   };
 
   const handleMarkAllAsRead = () => {
@@ -105,7 +102,7 @@ export default function NotificationsPopover() {
         sx={{
           width: 40,
           height: 40,
-          color: open ? 'primary.main' : 'default',
+          color: anchor ? 'primary.main' : 'default',
           transition: 'color .2s ease-in-out',
         }}
       >
@@ -115,8 +112,8 @@ export default function NotificationsPopover() {
       </IconButton>
 
       <Popover
-        open={Boolean(open)}
-        anchorEl={open}
+        open={Boolean(anchor)}
+        anchorEl={anchor}
         onClose={handleClose}
         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
         transformOrigin={{ vertical: 'top', horizontal: 'right' }}
@@ -207,10 +204,8 @@ export default function NotificationsPopover() {
   );
 }
 
-// ----------------------------------------------------------------------
-
-function NotificationItem({ notification }) {
-  const { avatar, title } = renderContent(notification);
+function NotificationItem(props: { notification: any }) {
+  const { avatar, title } = renderContent(props);
 
   return (
     <ListItemButton
@@ -218,7 +213,7 @@ function NotificationItem({ notification }) {
         py: 1.5,
         px: 2.5,
         mt: '1px',
-        ...(notification.isUnRead && {
+        ...(props.notification.isUnRead && {
           bgcolor: 'action.selected',
         }),
       }}
@@ -239,7 +234,7 @@ function NotificationItem({ notification }) {
             }}
           >
             <AccessTimeIcon sx={{ mr: 0.5, width: 16, height: 16 }} />
-            {toString(notification.createdAt)}
+            {toString(props.notification.createdAt)}
           </Typography>
         }
       />
@@ -247,44 +242,48 @@ function NotificationItem({ notification }) {
   );
 }
 
-// ----------------------------------------------------------------------
-
-function renderContent(notification) {
+function renderContent(props: { notification: any }) {
   const title = (
     <Typography variant="subtitle2">
-      {notification.title}
+      {props.notification.title}
       <Typography component="span" variant="body2" sx={{ color: 'text.secondary' }}>
-        &nbsp; {noCase(notification.description)}
+        &nbsp; {noCase(props.notification.description)}
       </Typography>
     </Typography>
   );
 
-  if (notification.type === 'order_placed') {
+  if (props.notification.type === 'order_placed') {
     return {
-      avatar: <img alt={notification.title} src="/assets/icons/ic_notification_package.svg" />,
+      avatar: (
+        <img alt={props.notification.title} src="/assets/icons/ic_notification_package.svg" />
+      ),
       title,
     };
   }
-  if (notification.type === 'order_shipped') {
+  if (props.notification.type === 'order_shipped') {
     return {
-      avatar: <img alt={notification.title} src="/assets/icons/ic_notification_shipping.svg" />,
+      avatar: (
+        <img alt={props.notification.title} src="/assets/icons/ic_notification_shipping.svg" />
+      ),
       title,
     };
   }
-  if (notification.type === 'mail') {
+  if (props.notification.type === 'mail') {
     return {
-      avatar: <img alt={notification.title} src="/assets/icons/ic_notification_mail.svg" />,
+      avatar: <img alt={props.notification.title} src="/assets/icons/ic_notification_mail.svg" />,
       title,
     };
   }
-  if (notification.type === 'chat_message') {
+  if (props.notification.type === 'chat_message') {
     return {
-      avatar: <img alt={notification.title} src="/assets/icons/ic_notification_chat.svg" />,
+      avatar: <img alt={props.notification.title} src="/assets/icons/ic_notification_chat.svg" />,
       title,
     };
   }
   return {
-    avatar: notification.avatar ? <img alt={notification.title} src={notification.avatar} /> : null,
+    avatar: props.notification.avatar ? (
+      <img alt={props.notification.title} src={props.notification.avatar} />
+    ) : null,
     title,
   };
 }

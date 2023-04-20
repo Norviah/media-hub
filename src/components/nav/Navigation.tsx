@@ -2,7 +2,7 @@ import Logo from '@/components/Logo';
 import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
 
-import NavSection from './NavSection';
+import RoutesContainer from './layout/RoutesContainer';
 
 import { useDrawer } from '@/hooks/useDrawer';
 import { useResponsive } from '@/hooks/useResponsive';
@@ -47,7 +47,7 @@ export default function Navigation(): JSX.Element {
       <Box sx={{ px: 2.5, py: 3, display: 'inline-flex' }}>
         <Logo />
       </Box>
-      <NavSection open={drawer.open} authenticated={session.status === 'authenticated'} />
+      <RoutesContainer open={drawer.open} authenticated={session.status === 'authenticated'} />
     </>
   );
 

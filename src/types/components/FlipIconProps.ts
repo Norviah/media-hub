@@ -1,5 +1,5 @@
-import type { SvgIconProps, SvgIconTypeMap } from '@mui/material';
-import type { OverridableComponent } from '@mui/material/OverridableComponent';
+import type { SvgIconComponent } from '@mui/icons-material';
+import type { SvgIconProps } from '@mui/material';
 
 export interface FlipIconProps extends SvgIconProps {
   /**
@@ -10,5 +10,5 @@ export interface FlipIconProps extends SvgIconProps {
   /**
    * The icon to be displayed.
    */
-  icon: OverridableComponent<SvgIconTypeMap<{}, 'svg'>> & { muiName: string };
+  icon: SvgIconComponent;
 }

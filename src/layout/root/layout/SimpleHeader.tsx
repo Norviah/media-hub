@@ -1,14 +1,14 @@
+import Logo from '@/components/Logo';
+import HomeIcon from '@mui/icons-material/Home';
+import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
-import Box from '@mui/material/Box';
-import HomeIcon from '@mui/icons-material/Home';
-import Logo from '@/components/Logo';
 import Stack from '@mui/material/Stack';
 
 import { Link } from '@/components/Link';
 import { ThemeSelector } from '@/components/header';
 
-export function Header(): JSX.Element {
+export default function Header(): JSX.Element {
   return (
     <>
       <Grid container justifyContent="flex-end" sx={{ px: 2.5, py: 3, display: 'inline-flex' }}>

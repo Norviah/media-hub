@@ -1,2 +1,1 @@
-export * from './Padding';
-export * from './PageContent';
+export * from './layout/PageContent';

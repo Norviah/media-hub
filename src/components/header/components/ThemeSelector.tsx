@@ -1,19 +1,19 @@
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
-import Typography from '@mui/material/Typography';
-import MenuItem from '@mui/material/MenuItem';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
+import MenuItem from '@mui/material/MenuItem';
 import Popover from '@mui/material/Popover';
 import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
 
-import { systemColorScheme } from '@/util/theme';
 import { useTheme } from '@/hooks/useTheme';
+import { systemColorScheme } from '@/util/theme';
 import { useState } from 'react';
 
+import type { ThemePresets, Themes } from '@/types/theme';
 import type { IconButtonProps } from '@mui/material/IconButton';
 import type { SvgIconProps } from '@mui/material/SvgIcon';
-import type { ThemePresets, Themes } from '@/types/theme';
 
 /**
  * The theme toggler component.
@@ -31,7 +31,7 @@ import type { ThemePresets, Themes } from '@/types/theme';
  *
  * This component can be used anywhere within the application.
  */
-export function ThemeSelector(props?: {
+export default function ThemeSelector(props?: {
   button?: IconButtonProps;
   icon?: SvgIconProps;
 }): JSX.Element {

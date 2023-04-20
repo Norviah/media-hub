@@ -1,6 +1,6 @@
+import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
 import Head from 'next/head';
 
 import { Link } from '@/components/Link';

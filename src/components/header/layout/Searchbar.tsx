@@ -31,7 +31,7 @@ const StyledSearchbar = styled('div')(({ theme }) => ({
   },
 }));
 
-export default function Searchbar() {
+export default function Searchbar(): JSX.Element {
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {

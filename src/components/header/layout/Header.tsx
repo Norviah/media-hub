@@ -1,16 +1,17 @@
-import MenuIcon from '@mui/icons-material/Menu';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import Stack from '@mui/material/Stack';
 import Toolbar from '@mui/material/Toolbar';
+
 import Searchbar from './Searchbar';
-import UserMenu from './UserMenu';
+import ThemeSelector from '../components/ThemeSelector';
+import UserMenu from '../components/UserMenu';
 
-import ChevronLeft from '@mui/icons-material/ChevronLeft';
-import ChevronRight from '@mui/icons-material/ChevronRight';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import MenuIcon from '@mui/icons-material/Menu';
 
-import { ThemeSelector } from '@/components/header';
 import { useDrawer } from '@/hooks/useDrawer';
 import { useResponsive } from '@/hooks/useResponsive';
 import { bgBlur } from '@/util/css';
@@ -60,7 +61,7 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   },
 }));
 
-export function Header(props: { route: string }): JSX.Element {
+export default function Header(props: { route: string }): JSX.Element {
   const isDesktop = useResponsive({ query: 'up', start: 'lg' });
 
   const drawer = useDrawer();
@@ -74,7 +75,7 @@ export function Header(props: { route: string }): JSX.Element {
             mr: 1,
           }}
         >
-          {isDesktop ? drawer.open ? <ChevronLeft /> : <ChevronRight /> : <MenuIcon />}
+          {isDesktop ? drawer.open ? <ChevronLeftIcon /> : <ChevronRightIcon /> : <MenuIcon />}
         </IconButton>
 
         <Searchbar />

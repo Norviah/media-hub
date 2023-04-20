@@ -1,3 +1,4 @@
+import { FlipIcon } from '@/components/FlipIcon';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
@@ -20,8 +21,6 @@ import TableRow from '@mui/material/TableRow';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 import React from 'react';
-import { FlipIcon } from '@/components/FlipIcon';
-import LoadingButton from '@mui/lab/LoadingButton';
 
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -29,10 +28,6 @@ import LibraryAddIcon from '@mui/icons-material/LibraryAdd';
 import ShareIcon from '@mui/icons-material/Share';
 
 import { Link } from '@/components/Link';
-import { THEME } from '@/theme/palette';
-import { styled } from '@mui/material/styles';
-
-import type { IconButtonProps } from '@mui/material/IconButton';
 
 // interface ExpandMoreProps extends IconButtonProps {
 //   expand: boolean;
@@ -214,8 +209,9 @@ const MyCard2 = () => {
               />
             ) : null}
             <FavoriteIcon
-              style={{
-                color: loading ? THEME.BLACK.MEDIUM : liked ? THEME.RED.MAIN : undefined,
+              sx={{
+                // color: loading ? THEME.BLACK.MEDIUM : liked ? THEME.RED.MAIN : undefined,
+                color: 'source.red.main',
               }}
             />
           </IconButton>
@@ -473,10 +469,9 @@ const top100Films = [
   { label: 'Monty Python and the Holy Grail', year: 1975 },
 ];
 
-import Backdrop from '@mui/material/Backdrop';
 import { Container, Fab, Skeleton, Stack, Tab, Tabs } from '@mui/material';
+import Backdrop from '@mui/material/Backdrop';
 import { enqueueSnackbar } from 'notistack';
-import { bgGradient, hideScrollbarX, hideScrollbarY } from '@/util/css';
 
 function SimpleBackdrop() {
   const [open, setOpen] = React.useState(false);
@@ -564,7 +559,7 @@ export default function MediaCard() {
 
             <CardActions style={{ display: 'flex', justifyContent: 'flex-end' }}>
               <IconButton style={{ marginRight: 'auto' }} onClick={() => setLiked(!liked)}>
-                <FavoriteIcon style={{ color: liked ? THEME.RED.MAIN : undefined }} />
+                <FavoriteIcon sx={{ color: liked ? 'source.red.main' : undefined }} />
               </IconButton>
               <IconButton>
                 <ShareIcon />

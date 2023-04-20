@@ -1,9 +1,12 @@
-import React from 'react';
-import { useState } from 'react';
+import Button from '@mui/material/Button';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import Typography from '@mui/material/Typography';
+
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { Menu, Button, MenuItem, Typography } from '@mui/material';
 
 import { FlipIcon } from '@/components/FlipIcon';
+import { useState } from 'react';
 
 const SORT_BY_OPTIONS = [
   { value: 'featured', label: 'Featured' },
@@ -12,15 +15,15 @@ const SORT_BY_OPTIONS = [
   { value: 'priceAsc', label: 'Price: Low-High' },
 ];
 
-export default function ShopProductSort() {
-  const [open, setOpen] = useState(null);
+export default function ShopProductSort(): JSX.Element {
+  const [anchor, setAnchor] = useState<null | HTMLElement>(null);
 
-  const handleOpen = (event) => {
-    setOpen(event.currentTarget);
+  const handleOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchor(event.currentTarget);
   };
 
   const handleClose = () => {
-    setOpen(null);
+    setAnchor(null);
   };
 
   return (
@@ -29,9 +32,9 @@ export default function ShopProductSort() {
         color="inherit"
         disableRipple
         onClick={handleOpen}
-        endIcon={<FlipIcon icon={ExpandMoreIcon} active={Boolean(open)} direction="horizontal" />}
+        endIcon={<FlipIcon icon={ExpandMoreIcon} active={Boolean(anchor)} direction="horizontal" />}
         sx={{
-          backgroundColor: Boolean(open) ? 'action.hover' : 'default',
+          backgroundColor: Boolean(anchor) ? 'action.hover' : 'default',
         }}
       >
         Sort By:&nbsp;&nbsp; Newest
@@ -43,8 +46,8 @@ export default function ShopProductSort() {
       </Button>
       <Menu
         keepMounted
-        anchorEl={open}
-        open={Boolean(open)}
+        anchorEl={anchor}
+        open={Boolean(anchor)}
         onClose={handleClose}
         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
         transformOrigin={{ vertical: 'top', horizontal: 'right' }}

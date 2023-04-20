@@ -1,5 +1,5 @@
-import { styled } from '@mui/material/styles';
 import * as constants from '@/util/constants';
+import { styled } from '@mui/material/styles';
 
 export const Padding = styled('div')(({ theme }) => ({
   flexGrow: 1,
@@ -13,3 +13,5 @@ export const Padding = styled('div')(({ theme }) => ({
     paddingTop: constants.SPACING.DESKTOP + 24,
   },
 }));
+
+export default Padding;

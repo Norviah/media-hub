@@ -1,4 +1,4 @@
-const icon = {
+const IconStyle = {
   width: 16,
   height: 16,
   '& svg, img': {
@@ -8,4 +8,4 @@ const icon = {
   },
 };
 
-export default icon;
+export default IconStyle;

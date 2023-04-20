@@ -2,8 +2,8 @@ import Box from '@mui/material/Box';
 
 import { alpha, styled } from '@mui/material/styles';
 
-import type { Theme } from '@mui/material/styles';
 import type { LabelProps } from '@/types/components/label';
+import type { Theme } from '@mui/material/styles';
 
 export const LayoutContainer = styled(Box)((props: LabelProps & { theme: Theme }) => {
   const { theme, variant } = props;

@@ -9,13 +9,10 @@ import Typography from '@mui/material/Typography';
 import Image from 'next/image';
 import React from 'react';
 
-import ChevronLeft from '@mui/icons-material/ChevronLeft';
-import ChevronRight from '@mui/icons-material/ChevronRight';
-
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import LibraryAddIcon from '@mui/icons-material/LibraryAdd';
 
-import { THEME } from '@/theme/palette';
+import { SOURCE } from '@/theme/palette';
 import { styled } from '@mui/material/styles';
 
 const StyledProductImg = styled('img')({
@@ -26,8 +23,8 @@ const StyledProductImg = styled('img')({
   position: 'absolute',
 });
 
-export default function ShopProductCard({ product }) {
-  const { name, cover, price, colors, status, priceSale } = product;
+export default function ShopProductCard(props: { product: any }) {
+  const { name, cover, price, colors, status, priceSale } = props.product;
 
   const [expanded, setExpanded] = React.useState(false);
   const [liked, setLiked] = React.useState(false);
@@ -69,7 +66,6 @@ export default function ShopProductCard({ product }) {
             objectFit: 'cover',
             position: 'absolute',
             height: 'auto',
-            weight: 'auto',
           }}
           width={400}
           height={250}
@@ -91,7 +87,7 @@ export default function ShopProductCard({ product }) {
           {/* <FavoriteIcon /> */}
           <>
             <IconButton>
-              <FavoriteIcon style={{ color: liked ? THEME.RED.MAIN : 'default' }} />
+              <FavoriteIcon style={{ color: liked ? SOURCE.red.main : 'default' }} />
             </IconButton>
             <IconButton>
               <LibraryAddIcon />

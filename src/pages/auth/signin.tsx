@@ -14,16 +14,17 @@ import GoogleIcon from '@mui/icons-material/Google';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import TwitterIcon from '@mui/icons-material/Twitter';
 
-import * as colors from '@/theme/colors';
-
-import { SignInForm, AuthErrors } from '@/layout/auth';
 import { Link } from '@/components/Link';
+import { SignInForm, constants } from '@/layout/auth';
 import { Toast } from '@/structs/Toast';
 import { getServerSession } from 'next-auth';
 import { SessionContext, signIn } from 'next-auth/react';
 import { Component } from 'react';
 import { authOptions } from '../api/auth/[...nextauth]';
 
+import * as colors from '@/theme/colors';
+
+import type { AuthErrors } from '@/types/layout/auth/AuthErrors';
 import type { GetServerSidePropsContext as ServerSideContext } from 'next';
 import type { WithRouterProps } from 'next/dist/client/with-router';
 
@@ -32,7 +33,7 @@ interface AppState {
   loading: boolean;
 }
 
-class SignIn extends Component<WithRouterProps & { error?: keyof typeof AuthErrors }, AppState> {
+class SignIn extends Component<WithRouterProps & { error?: AuthErrors }, AppState> {
   public static noAppbar = true;
   public state: AppState = {
     showPassword: false,
@@ -63,7 +64,7 @@ class SignIn extends Component<WithRouterProps & { error?: keyof typeof AuthErro
     }
 
     if (this.props.error) {
-      Toast.Error({ message: AuthErrors[this.props.error] });
+      Toast.Error({ message: constants.ERRORS.AUTH[this.props.error] });
     }
   }
 
@@ -124,10 +125,10 @@ class SignIn extends Component<WithRouterProps & { error?: keyof typeof AuthErro
               onClick={() => this.signInWithProvider('google')}
               disabled={this.state.loading}
             >
-              <GoogleIcon sx={{ color: colors.GOOGLE.RED, width: 22, height: 22 }} />
+              <GoogleIcon sx={{ color: colors.GOOGLE.red, width: 22, height: 22 }} />
             </Button>
             <Button fullWidth size="large" variant="outlined" disabled={this.state.loading}>
-              <TwitterIcon sx={{ color: colors.TWITTER.BLUE, width: 22, height: 22 }} />
+              <TwitterIcon sx={{ color: colors.TWITTER.blue, width: 22, height: 22 }} />
             </Button>
             <Button
               fullWidth
@@ -153,16 +154,14 @@ class SignIn extends Component<WithRouterProps & { error?: keyof typeof AuthErro
  * @returns
  */
 export async function getServerSideProps(context: ServerSideContext): Promise<{
-  props: { session: any; error: keyof typeof AuthErrors | null };
+  props: { session: any; error: AuthErrors | null };
 }> {
   const error = Array.isArray(context.query.error) ? context.query.error[0] : context.query.error;
 
   return {
     props: {
       session: await getServerSession(context.req, context.res, authOptions),
-      error: (AuthErrors[error as keyof typeof AuthErrors] ? error : null) as
-        | keyof typeof AuthErrors
-        | null,
+      error: (constants.ERRORS.AUTH[error as AuthErrors] ? error : null) as AuthErrors | null,
     },
   };
 }

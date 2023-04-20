@@ -2,13 +2,13 @@ import CloseIcon from '@mui/icons-material/Close';
 import IconButton from '@mui/material/IconButton';
 import Head from 'next/head';
 
-import { SessionProvider } from 'next-auth/react';
+import { DrawerContext } from '@/hooks/useDrawer';
 import { ThemeContext } from '@/hooks/useTheme';
 import { PageContent } from '@/layout/root';
-import { DrawerContext } from '@/hooks/useDrawer';
 import { StyledComponents } from '@/theme/notistack';
 import { systemColorScheme } from '@/util/theme';
 import { StyledEngineProvider, ThemeProvider } from '@mui/material';
+import { SessionProvider } from 'next-auth/react';
 import { SnackbarProvider, closeSnackbar } from 'notistack';
 import { Component } from 'react';
 
