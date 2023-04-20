@@ -5,14 +5,14 @@ import Stack from '@mui/material/Stack';
 import routes from '../routes';
 import RouteEntry from './RouteEntry';
 
-import { BoxProps } from '@mui/material';
-
+import type { DrawerContext } from '@/types/hooks/DrawerContext';
 import type { Route } from '@/types/components/nav/Route';
+import type { BoxProps } from '@mui/material';
 
 export default function RoutesContainer(props: {
   authenticated: boolean;
   boxProps?: BoxProps;
-  open: boolean;
+  drawer: DrawerContext;
 }): JSX.Element {
   return (
     <Box {...props.boxProps}>
@@ -23,7 +23,14 @@ export default function RoutesContainer(props: {
               return;
             }
 
-            return <RouteEntry open={props.open} key={route.name} route={route} />;
+            return (
+              <RouteEntry
+                open={props.drawer.open}
+                key={route.name}
+                route={route}
+                close={() => props.drawer.to(false)}
+              />
+            );
           })}
         </Stack>
       </List>

@@ -7,10 +7,15 @@ import { alpha } from '@mui/material/styles';
 
 import type { Route } from '@/types/components/nav/Route';
 
-export default function RouteEntry(props: { route: Route; open: boolean }): JSX.Element {
+export default function RouteEntry(props: {
+  route: Route;
+  open: boolean;
+  close: () => void;
+}): JSX.Element {
   return (
     <RouteItem
       href={props.route.path}
+      onClick={props.close}
       sx={{
         '&.active': {
           color: 'primary.main',
