@@ -58,21 +58,19 @@ const SHADOWS = {
 } as const;
 
 export const arrays = {
-  LIGHT: BASE.map(
-    (item) =>
-      item
-        .replace(/transparent1/g, transparent1)
-        .replace(/transparent2/g, transparent2)
-        .replace(/transparent3/g, transparent3) as unknown as Shadows
-  ) as Shadows[],
+  LIGHT: BASE.map((string) =>
+    string
+      .replace(/transparent1/g, transparent1)
+      .replace(/transparent2/g, transparent2)
+      .replace(/transparent3/g, transparent3)
+  ) as Shadows,
 
-  DARK: BASE.map(
-    (item) =>
-      item
-        .replace(/transparent1/g, transparent4)
-        .replace(/transparent2/g, transparent5)
-        .replace(/transparent3/g, transparent6) as unknown as Shadows
-  ) as Shadows[],
+  DARK: BASE.map((string) =>
+    string
+      .replace(/transparent1/g, transparent4)
+      .replace(/transparent2/g, transparent5)
+      .replace(/transparent3/g, transparent6)
+  ) as Shadows,
 };
 
 function shadowConfig(color: string) {
