@@ -76,6 +76,9 @@ dependencies:
   simplebar-react:
     specifier: ^3.2.3
     version: 3.2.3(react@18.2.0)
+  ts-deepmerge:
+    specifier: ^6.0.3
+    version: 6.0.3
 
 devDependencies:
   '@types/bcryptjs':
@@ -3222,6 +3225,11 @@ packages:
     dependencies:
       is-number: 7.0.0
     dev: true
+
+  /ts-deepmerge@6.0.3:
+    resolution: {integrity: sha512-MBBJL0UK/mMnZRONMz4J1CRu5NsGtsh+gR1nkn8KLE9LXo/PCzeHhQduhNary8m5/m9ryOOyFwVKxq81cPlaow==}
+    engines: {node: '>=14.13.1'}
+    dev: false
 
   /ts-node@10.9.1(@types/node@18.15.11)(typescript@5.0.4):
     resolution: {integrity: sha512-NtVysVPkxxrwFGUUxGYhfux8k78pQB3JqYBXlLRZgdGUqTO5wU/UyHop5p70iEbGhB7q5KmiZiU0Y3KlJrScEw==}
