@@ -7,9 +7,9 @@ export const Padding = styled('div')(({ theme }) => ({
   minHeight: '100%',
   paddingTop: constants.SPACING.MOBILE + 24,
   paddingBottom: theme.spacing(10),
+  paddingLeft: theme.spacing(2),
+  paddingRight: theme.spacing(2),
   [theme.breakpoints.up('lg')]: {
     paddingTop: constants.SPACING.DESKTOP + 24,
-    paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(2),
   },
 }));
