@@ -59,8 +59,8 @@ interface RequestBody {
  *                   description: The user's email.
  *                 user:
  *                   oneOf:
- *                     type: string
- *                     type: null
+ *                     - string
+ *                     - null
  *       400:
  *         description: Invalid request body.
  *         content:
