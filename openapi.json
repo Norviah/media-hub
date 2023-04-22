@@ -1,0 +1,231 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Watch Together",
+    "version": "0.1.0",
+    "license": {
+      "name": "MIT",
+      "url": "https://raw.githubusercontent.com/Norviah/watch-together/master/LICENSE"
+    }
+  },
+  "x-tagGroups": [
+    {
+      "name": "User Management",
+      "tags": [
+        "user"
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "name": "user",
+      "description": "Operations related to a user."
+    }
+  ],
+  "paths": {
+    "/user/signin": {
+      "post": {
+        "summary": "Sign in",
+        "description": "Retrieve a user's basic information within the database.",
+        "tags": [
+          "user"
+        ],
+        "requestBody": {
+          "description": "Information of the desired user to authenticate.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "description": "The user's email address."
+                  },
+                  "password": {
+                    "type": "string",
+                    "description": "The user's password."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The specified user was authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "The user's username."
+                    },
+                    "email": {
+                      "type": "string",
+                      "description": "The user's email."
+                    },
+                    "user": {
+                      "oneOf": [
+                        "string",
+                        null
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request body.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvalidBodyModel"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid credentials were provided.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageModel"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "An invalid HTTP method was used.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageModel"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "The user attempted to authenticate using a different method that was originally used to create the account.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageModel"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An internal error has occurred."
+          }
+        }
+      }
+    },
+    "/user/signup": {
+      "post": {
+        "summary": "New user",
+        "description": "Create a new user within the database.",
+        "tags": [
+          "user"
+        ],
+        "requestBody": {
+          "description": "The user to create.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "description": "The user's email address."
+                  },
+                  "password": {
+                    "type": "string",
+                    "description": "The user's password."
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "The user's username."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "The specified user was created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageModel"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request body.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvalidBodyModel"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "An invalid HTTP method was used.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageModel"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "The specified user already exists.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageModel"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An internal error has occurred, the specified user was not created."
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "MessageModel": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "A message regarding the result of the request."
+          }
+        }
+      },
+      "InvalidBodyModel": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "A message regarding the result of the request."
+          },
+          "field": {
+            "type": "string",
+            "description": "The field that was invalid."
+          }
+        }
+      }
+    }
+  }
+}
