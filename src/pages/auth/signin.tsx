@@ -127,9 +127,6 @@ class SignIn extends Component<WithRouterProps & { error?: AuthErrors }, AppStat
             >
               <GoogleIcon sx={{ color: colors.GOOGLE.red, width: 22, height: 22 }} />
             </Button>
-            <Button fullWidth size="large" variant="outlined" disabled={this.state.loading}>
-              <TwitterIcon sx={{ color: colors.TWITTER.blue, width: 22, height: 22 }} />
-            </Button>
             <Button
               fullWidth
               size="large"
