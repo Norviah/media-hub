@@ -1,8 +1,8 @@
 import { StatusCodes } from 'http-status-codes';
-import { toast } from 'react-toastify';
+import { Toast } from './Toast';
 
-import type { APIOptions, ExecuteOptions, PromptOptions } from '@/types/APIOptions';
-import type { Response } from '@/types/Response';
+import type { APIOptions, PromptOptions } from '@/types/structs/APIOptions';
+import type { Response } from '@/types/structs/Response';
 
 /**
  * A utility class for interacting with the application's API.
@@ -135,8 +135,8 @@ export class API {
     // this ensures that for a given request, only one toast notification will
     // be displayed for a given result.
 
-    toast[result.ok ? 'success' : 'error'](response[result.status] ?? response.default, {
-      toastId: `${options.endpoint}-${result.ok}`,
+    Toast[result.ok ? 'Success' : 'Error']({
+      message: response[result.status] ?? response.default,
     });
 
     // Finally, if a component was provided, we will set the component's loading

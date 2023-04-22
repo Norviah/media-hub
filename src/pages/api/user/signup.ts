@@ -20,7 +20,7 @@ interface RequestBody {
   /**
    * The user's name.
    */
-  name: string;
+  username: string;
 }
 
 /**
@@ -105,7 +105,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const data: RequestBody | void = parse<RequestBody>(req, res, {
     email: 'string',
     password: 'string',
-    name: 'string',
+    username: 'string',
   });
 
   // If the request body was invalid, the `parse` function will return `void`,
@@ -140,7 +140,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     data: {
       email: data.email,
       password: hashSync(data.password, 10),
-      name: data.name,
+      name: data.username,
     },
   });
 

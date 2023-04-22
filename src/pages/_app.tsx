@@ -1,34 +1,32 @@
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import CssBaseline from '@mui/material/CssBaseline';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
+import CloseIcon from '@mui/icons-material/Close';
+import IconButton from '@mui/material/IconButton';
 import Head from 'next/head';
 
-import CloseIcon from '@mui/icons-material/Close';
-import MenuIcon from '@mui/icons-material/Menu';
-import IconButton from '@mui/material/IconButton';
-
-import { ThemeSelector } from '@/components/ThemeSelector';
-import { UserMenu } from '@/components/UserMenu';
-import { capitalize } from '@/util/capitalize';
-import { ThemeContext } from '@/util/useTheme';
-import { ThemeProvider } from '@mui/material/styles';
+import { DrawerContext } from '@/hooks/useDrawer';
+import { ThemeContext } from '@/hooks/useTheme';
+import { PageContent } from '@/layout/root';
+import { StyledComponents } from '@/theme/notistack';
+import { systemColorScheme } from '@/util/theme';
+import { StyledEngineProvider, ThemeProvider } from '@mui/material';
 import { SessionProvider } from 'next-auth/react';
+import { SnackbarProvider, closeSnackbar } from 'notistack';
 import { Component } from 'react';
-import { Slide, ToastContainer } from 'react-toastify';
-import { Sidebar } from '@/components/Drawer';
 
-import * as themes from '@/util/themes';
+import * as themes from '@/theme/themes';
 
-import type { ThemePresets, Themes } from '@/types/Themes';
+import type { ThemePresets, Themes } from '@/types/theme/Themes';
+import type { Theme } from '@mui/material';
 import type { AppProps } from 'next/app';
 
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
-import 'react-toastify/dist/ReactToastify.min.css';
+import '@fontsource/inter/300.css';
+import '@fontsource/inter/400.css';
+import '@fontsource/inter/500.css';
+import '@fontsource/inter/700.css';
+import '@fontsource/outfit/300.css';
+import '@fontsource/outfit/400.css';
+import '@fontsource/outfit/500.css';
+import '@fontsource/outfit/700.css';
+
 import '@/styles/globals.css';
 
 /**
@@ -47,36 +45,11 @@ import '@/styles/globals.css';
  */
 interface AppState {
   theme: ThemePresets;
+  open: boolean;
 }
 
-/**
- * The entry point of the application.
- *
- * In a Next.js application, the `_app` component is a special component that
- * allows you to override the default behavior of the default component that is
- * used to render a page. The `_app` component can be manually created to wrap
- * your entire application with custom components, global CSS styles, etc.
- *
- * The `_app` component takes two props: `Component` and `pageProps`,
- * representing the component that Next.js is rendering for the current page and
- * an object containing any initial props that were passed to the page
- * component.
- *
- * An important thing to note when defining a custom `_app` component is that it
- * is only rendered on the client-side. It is not used during server-side, as
- * server-side rendering bypasses the client-side JavaScript and renders the
- * page directly on the server. This means that any code you write in the `_app`
- * component that depends on client-side JavaScript will not work during
- * server-side rendering.
- * @see https://nextjs.org/docs/advanced-features/custom-app
- */
 export default class App extends Component<AppProps, AppState> {
-  /**
-   * Represents the component's state.
-   *
-   * The state of the component will only reference the active theme.
-   */
-  public state: AppState = { theme: themes.DEFAULT };
+  public state: AppState = { theme: themes.DEFAULT, open: false };
 
   /**
    * Executed after the component is mounted.
@@ -87,14 +60,8 @@ export default class App extends Component<AppProps, AppState> {
    * fully mounted, such as fetching data from an API, initializing a
    * third-party library, etc.
    *
-   * The method is called only once during the lifecycle of the component, after
-   * the `render` method has been called for the first time, meaning that any
-   * updates to the component's state or props will cause the component to
-   * re-render, but will not cause another call to `componentDidMount`.
-   *
-   * As for our application, we will implement this method to change the theme
-   * of the application to the user's preferred theme, if set within their
-   * browser's local storage.
+   * We'll implement this method to ensure the application's theme is set to
+   * the user's preferred theme, if set within their browser's local storage.
    * @see https://reactjs.org/docs/react-component.html#componentdidmount
    */
   public componentDidMount(): void {
@@ -114,19 +81,10 @@ export default class App extends Component<AppProps, AppState> {
   /**
    * Sets the theme of the application.
    *
-   * `setTheme` changes the component's state to the provided theme, which will
-   * cause the component to re-render, allowing the application to reflect the
+   * This will change the component's state to the provided theme, which will
+   * force the component to re-render, allowing the application to reflect the
    * new theme.
-   *
-   * `setTheme` is provided as a callback to the theme's context provider.
-   * Context providers allows components to provide data through the tree
-   * without having to pass properties down manually at every level.
-   *
-   * Using the context provider, we can provide this method to components that
-   * use the `useTheme` hook, allowing them to change the theme of the
-   * application from anywhere in the application.
    * @param preset The theme preset to set.
-   * @see https://reactjs.org/docs/context.html
    */
   public setTheme(preset: ThemePresets): void {
     if (typeof window !== 'undefined' && window.localStorage) {
@@ -136,81 +94,70 @@ export default class App extends Component<AppProps, AppState> {
     this.setState({ theme: preset });
   }
 
-  /**
-   * Represents what should be rendered on the screen.
-   *
-   * The `render` method is the only required method in a class component,
-   * and is responsible for rendering the component to the screen. It is called
-   * each time the state or properties of a component are updated, and is
-   * responsible for updating the UI to reflect the changes.
-   *
-   * It is important to note that the `render` method should be a pure function,
-   * meaning that it should not modify the component's state and not cause any
-   * side effects. Instead, it should only return the desired output based on
-   * the current state and props of the component.
-   * @see https://reactjs.org/docs/react-component.html#render
-   */
   public render(): JSX.Element {
-    const { Component, pageProps, router } = this.props;
-
     // In order to set the application's theme, we'll first need to determine
     // the actual theme that we should use. We'll use the `theme` property of
     // the component's state to determine the theme, and if the theme is set to
     // `system`, we'll grab their system's set theme.
-    const theme: Themes =
-      this.state.theme === 'system' ? themes.systemColorScheme() : this.state.theme;
+    const preset: Themes = this.state.theme === 'system' ? systemColorScheme() : this.state.theme;
 
-    // Represents the current route that the user is on, which will be used to
-    // determine the title of the application. We'll use the `route` property
-    // of the router to determine the current route.
-    const route: string = router.route === '/' ? 'Home' : router.route.split('/')[1];
-
-    const renderAppbar: boolean = !(
-      (Component as typeof Component & { noAppbar?: boolean }).noAppbar ??
-      (router.route.startsWith('/auth/') || router.route === '/404')
-    );
+    const theme: Theme = preset === 'dark' ? themes.DARK : themes.LIGHT;
 
     return (
       <>
         <Head>
-          <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-          <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-          <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-          <link rel="manifest" href="/site.webmanifest" />
-          <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#000000" />
-          <meta name="msapplication-TileColor" content="#81a1c1" />
-          <meta name="theme-color" content={theme === 'light' ? '#fff' : '#2E3440'} />
+          <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+          <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+          <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
+          <link rel="manifest" href="/favicon/site.webmanifest" />
+          <link
+            rel="mask-icon"
+            href="/favicon/safari-pinned-tab.svg"
+            color={theme.palette.primary.main}
+          />
+          <meta name="msapplication-TileColor" content={theme.palette.background.default} />
+          <meta name="theme-color" content={theme.palette.background.default} />
         </Head>
-        <SessionProvider session={pageProps.session}>
-          <ThemeProvider theme={theme === 'light' ? themes.LIGHT : themes.DARK}>
-            <ThemeContext.Provider
-              value={{ theme: this.state.theme, setTheme: this.setTheme.bind(this) }}
-            >
-              <ToastContainer
-                position="bottom-left"
-                newestOnTop={true}
-                draggable={false}
-                limit={3}
-                theme={'colored'}
-                hideProgressBar={true}
-                closeOnClick={false}
-                transition={Slide}
-                closeButton={(props) => (
-                  <Box display="flex" alignItems="center">
-                    <IconButton onClick={props.closeToast}>
-                      <CloseIcon />
-                    </IconButton>
-                  </Box>
-                )}
-              />
-              <CssBaseline />
-              {renderAppbar ? (
-                <Sidebar component={<Component {...pageProps} />} route={router.route} />
-              ) : (
-                <Component {...pageProps} />
-              )}
-            </ThemeContext.Provider>
-          </ThemeProvider>
+        <SessionProvider session={this.props.pageProps.session}>
+          <StyledEngineProvider injectFirst>
+            <ThemeProvider theme={theme}>
+              <ThemeContext.Provider
+                value={{ theme: this.state.theme, setTheme: this.setTheme.bind(this) }}
+              >
+                <DrawerContext.Provider
+                  value={{
+                    open: this.state.open,
+                    to: (value: boolean) => {
+                      this.setState({ open: value });
+                    },
+                  }}
+                >
+                  <SnackbarProvider
+                    maxSnack={3}
+                    anchorOrigin={{
+                      vertical: 'bottom',
+                      horizontal: 'left',
+                    }}
+                    preventDuplicate
+                    action={(key) => (
+                      <IconButton
+                        size="small"
+                        onClick={() => {
+                          closeSnackbar(key);
+                        }}
+                      >
+                        <CloseIcon fontSize="small" sx={{ color: 'grey.800' }} />
+                      </IconButton>
+                    )}
+                    Components={StyledComponents}
+                    autoHideDuration={7000}
+                  >
+                    <PageContent props={this.props} router={this.props.router} theme={theme} />
+                  </SnackbarProvider>
+                </DrawerContext.Provider>
+              </ThemeContext.Provider>
+            </ThemeProvider>
+          </StyledEngineProvider>
         </SessionProvider>
       </>
     );

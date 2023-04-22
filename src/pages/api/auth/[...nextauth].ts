@@ -1,10 +1,11 @@
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
+import DiscordProvider from 'next-auth/providers/discord';
 import GoogleProvider from 'next-auth/providers/google';
 
+import { API } from '@/structs/API';
 import { prisma } from '@/util/prisma';
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
-import { API } from '@/structs/API';
 import { StatusCodes } from 'http-status-codes';
 
 import type { AuthOptions, User } from 'next-auth';
@@ -67,6 +68,12 @@ export const authOptions: AuthOptions = {
       id: 'google',
       clientId: process.env.GOOGLE_CLIENT_ID!,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+    }),
+
+    DiscordProvider({
+      id: 'discord',
+      clientId: process.env.DISCORD_CLIENT_ID!,
+      clientSecret: process.env.DISCORD_CLIENT_SECRET!,
     }),
   ],
 

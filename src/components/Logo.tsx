@@ -1,0 +1,42 @@
+import Box from '@mui/material/Box';
+
+import { Link } from '@/components/Link';
+import { Palette, useTheme } from '@mui/material/styles';
+
+import type { LogoProps } from '@/types/components/LogoProps';
+import type { SxProps } from '@mui/material/styles';
+import type { BoxProps } from '@mui/material/Box';
+
+function Icon(props: {
+  palette: Palette;
+  disabledLink?: boolean;
+  sx?: SxProps;
+  props?: BoxProps;
+}): JSX.Element {
+  return (
+    <Box sx={{ width: 40, height: 40, ...props.sx }}>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 30 30"
+        version="1.1"
+        width="100%"
+        height="100%"
+        fill={props.palette.primary.main}
+      >
+        <path d="M 8 0 L 7.1875 2.1875 L 5 3 L 7.1875 3.8125 L 8 6 L 8.8125 3.8125 L 11 3 L 8.8125 2.1875 Z M 3 6 L 2.1875 8.1875 L 0 9 L 2.1875 9.8125 L 3 12 L 3.8125 9.8125 L 6 9 L 3.8125 8.1875 Z M 15 6 C 10.054688 6 6 10.054688 6 15 C 6 19.945313 10.054688 24 15 24 C 19.707031 24 23.550781 20.40625 24 15.8125 L 24.125 14.34375 L 22.71875 14.75 C 22.078125 14.933594 21.605469 15 21 15 C 18.246094 15 16 12.753906 16 10 C 16 9.082031 16.257813 8.273438 16.6875 7.5 L 17.5 6 Z M 14.5 8.09375 C 14.3125 8.722656 14 9.304688 14 10 C 14 13.84375 17.15625 17 21 17 C 21.21875 17 21.417969 16.925781 21.625 16.90625 C 20.757813 19.832031 18.214844 22 15 22 C 11.144531 22 8 18.855469 8 15 C 8 11.320313 10.890625 8.363281 14.5 8.09375 Z "></path>
+      </svg>
+    </Box>
+  );
+}
+
+export default function Logo(props: LogoProps): JSX.Element {
+  const theme = useTheme();
+
+  return props.disabledLink ? (
+    <Icon palette={theme.palette} {...props} />
+  ) : (
+    <Link href="/" sx={{ display: 'contents' }}>
+      <Icon palette={theme.palette} {...props} />
+    </Link>
+  );
+}

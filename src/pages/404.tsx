@@ -1,58 +1,46 @@
-import Link from '@/components/Link';
-import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import Head from 'next/head';
 
-import { withRouter } from 'next/router';
-import { Box, Button, Typography } from '@mui/material';
-import { Component } from 'react';
+import { Link } from '@/components/Link';
 
-import type { WithRouterProps } from 'next/dist/client/with-router';
-
-/**
- * The 404 page.
- *
- * This component represents the 404 page, which is shown when a user tries to
- * access a page that does not exist.
- * @see https://nextjs.org/docs/advanced-features/custom-error-page#404-page
- */
-class Error extends Component<WithRouterProps> {
-  /**
-   * Determines if the application's appbar should be rendered.
-   */
-  public static noAppbar = true;
-
-  public render(): JSX.Element {
-    return (
+export default function Page404(): JSX.Element {
+  return (
+    <>
+      <Head>
+        <title>404: Page Not Found</title>
+      </Head>
       <Box
-        display="flex"
-        flexDirection="column"
-        justifyContent="center"
-        alignItems="center"
-        minHeight="100vh"
+        sx={{
+          maxWidth: 480,
+          margin: 'auto',
+          display: 'flex',
+          justifyContent: 'center',
+          flexDirection: 'column',
+          padding: (theme) => theme.spacing(10, 0),
+          textAlign: 'center',
+          alignItems: 'center',
+        }}
       >
-        <Typography variant="h4" align="center">
-          404: Page Not Found
+        <Typography variant="h3" paragraph>
+          Sorry, page not found!
         </Typography>
-        <br />
-        <Grid container spacing={2} justifyContent="center">
-          <Grid item>
-            <Button
-              variant="contained"
-              color="primary"
-              size="small"
-              onClick={() => this.props.router.back()}
-            >
-              Go Back
-            </Button>
-          </Grid>
-          <Grid item>
-            <Button component={Link} href="/" variant="contained" color="secondary" size="small">
-              Go to home page
-            </Button>
-          </Grid>
-        </Grid>
-      </Box>
-    );
-  }
-}
 
-export default withRouter(Error);
+        <Typography sx={{ color: 'text.secondary' }}>
+          Sorry, we couldn’t find the page you’re looking for. Perhaps you’ve mistyped the URL? Be
+          sure to check your spelling.
+        </Typography>
+        <Box
+          component="img"
+          src="/assets/illustrations/illustration_404.svg"
+          sx={{ height: 260, mx: 'auto', my: { xs: 5, sm: 10 } }}
+        />
+
+        <Button href="/" size="large" variant="contained" component={Link}>
+          Go to Home
+        </Button>
+      </Box>
+    </>
+  );
+}
