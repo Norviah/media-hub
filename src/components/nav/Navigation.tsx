@@ -88,6 +88,11 @@ export default function Navigation(): JSX.Element {
                 '& .MuiDrawer-paper': closedMixin(theme),
               }),
             }}
+            PaperProps={{
+              sx: {
+                borderRightStyle: 'dashed',
+              },
+            }}
           >
             {content}
           </MuiDrawer>
