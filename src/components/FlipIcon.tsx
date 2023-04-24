@@ -75,7 +75,9 @@ import type { FlipIconProps } from '@/types/components/FlipIconProps';
 //   }),
 // }));
 
-export const FlipIcon = styled(SvgIcon)<FlipIconProps>(({ theme, active }) => ({
+export const FlipIcon = styled(SvgIcon, {
+  shouldForwardProp: (prop) => prop !== 'active',
+})<FlipIconProps>(({ theme, active }) => ({
   transform: !active ? 'rotate(0deg)' : 'rotate(180deg)',
   marginLeft: 'auto',
   transition: theme.transitions.create('transform', {
