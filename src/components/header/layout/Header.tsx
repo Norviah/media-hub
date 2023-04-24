@@ -27,7 +27,7 @@ interface AppBarProps extends MuiAppBarProps {
 }
 
 const StyledRoot = styled(AppBar, {
-  shouldForwardProp: (prop) => prop !== 'open',
+  shouldForwardProp: (prop) => prop !== 'open' && prop !== 'desktop',
 })<AppBarProps>(({ theme, open, desktop }) => ({
   ...bgBlur({
     color: theme.palette.background.default,

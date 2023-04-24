@@ -1,3 +1,5 @@
+import SvgIcon from '@mui/material/SvgIcon';
+
 import { styled } from '@mui/material/styles';
 
 import type { Theme } from '@mui/material/styles';
@@ -63,12 +65,20 @@ import type { FlipIconProps } from '@/types/components/FlipIconProps';
  * The menu's open state is passed to `FlipIcon`, allowing the icon to flip
  * accordingly.
  */
-export const FlipIcon = styled((props: FlipIconProps): JSX.Element => {
-  return <props.icon {...props} />;
-})((props: { active: boolean; theme: Theme }) => ({
-  transform: !props.active ? 'rotate(0deg)' : 'rotate(180deg)',
+// export const FlipIcon = styled((props: FlipIconProps): JSX.Element => {
+//   return <props.icon {...props} />;
+// })((props: { active: boolean; theme: Theme }) => ({
+//   transform: !props.active ? 'rotate(0deg)' : 'rotate(180deg)',
+//   marginLeft: 'auto',
+//   transition: props.theme.transitions.create('transform', {
+//     duration: props.theme.transitions.duration.shortest,
+//   }),
+// }));
+
+export const FlipIcon = styled(SvgIcon)<FlipIconProps>(({ theme, active }) => ({
+  transform: !active ? 'rotate(0deg)' : 'rotate(180deg)',
   marginLeft: 'auto',
-  transition: props.theme.transitions.create('transform', {
-    duration: props.theme.transitions.duration.shortest,
+  transition: theme.transitions.create('transform', {
+    duration: theme.transitions.duration.shortest,
   }),
 }));

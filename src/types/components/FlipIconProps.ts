@@ -10,5 +10,5 @@ export interface FlipIconProps extends SvgIconProps {
   /**
    * The icon to be displayed.
    */
-  icon: SvgIconComponent;
+  component: SvgIconComponent;
 }
