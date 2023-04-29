@@ -32,7 +32,13 @@ export default function ShopProductSort(): JSX.Element {
         color="inherit"
         disableRipple
         onClick={handleOpen}
-        endIcon={<FlipIcon icon={ExpandMoreIcon} active={Boolean(anchor)} direction="horizontal" />}
+        endIcon={
+          <FlipIcon
+            component={ExpandMoreIcon}
+            active={anchor ? true : false}
+            direction="horizontal"
+          />
+        }
         sx={{
           backgroundColor: Boolean(anchor) ? 'action.hover' : 'default',
         }}

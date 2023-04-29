@@ -1,6 +1,7 @@
 import { Config, ConfigError, ErrorCodes } from '@norviah/config';
 import { StatusCodes } from 'http-status-codes';
 
+import type { JsonObject } from 'type-fest';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import type { Structure } from '@norviah/config';
 
@@ -24,17 +25,18 @@ const codes: ErrorCodes[] = [ErrorCodes.INVALID_TYPE, ErrorCodes.REQUIRED_KEY];
  * @param structure The structure of the request body.
  * @returns An instance of `T` with the values parsed from the request body.
  */
-export function parse<T extends Record<string, any>>(
-  req: NextApiRequest,
-  res: NextApiResponse,
-  structure: Structure<T>
-): T | void | never {
+export function parse<T extends Record<string, any>>(params: {
+  req: NextApiRequest;
+  res: NextApiResponse;
+  structure: Structure<T>;
+  json: JsonObject | string;
+}): T | void | never {
   let parsed: T;
 
   try {
     parsed = Config.Parse<T>({
-      structure,
-      json: typeof req.body === 'string' ? JSON.parse(req.body) : req.body,
+      structure: params.structure,
+      json: params.json === 'string' ? JSON.parse(params.req.body) : params.json,
     });
   } catch (error) {
     // When an error occurs, we'll consider what kind of error it is. Initially,
@@ -52,11 +54,13 @@ export function parse<T extends Record<string, any>>(
     // Once we've determined that the error is an instance of `ConfigError` and
     // the error code is one of the codes we're interested in, we'll grab a
     // reference to the respective arguments for the two codes.
-    const args = (
-      error as ConfigError<ErrorCodes.INVALID_TYPE> | ConfigError<ErrorCodes.REQUIRED_KEY>
-    ).args;
+    const { args } = error as
+      | ConfigError<ErrorCodes.INVALID_TYPE>
+      | ConfigError<ErrorCodes.REQUIRED_KEY>;
 
-    return res.status(StatusCodes.BAD_REQUEST).json({ field: args[0], message: error.message });
+    return params.res
+      .status(StatusCodes.BAD_REQUEST)
+      .json({ field: args[0], message: error.message });
   }
 
   return parsed;

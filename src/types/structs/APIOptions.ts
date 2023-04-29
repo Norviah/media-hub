@@ -10,7 +10,7 @@ export interface APIOptions {
   /**
    * The data to send to the API.
    */
-  data: Record<string, any>;
+  data?: Record<string, any>;
 
   /**
    * The HTTP method to use when calling the API.

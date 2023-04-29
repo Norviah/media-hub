@@ -45,7 +45,7 @@ export class API {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(options.data),
+        body: options.data ? JSON.stringify(options.data) : undefined,
       })
         .then(async (response) => {
           return { ok: response.ok, data: await response.json(), status: response.status };

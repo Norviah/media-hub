@@ -231,7 +231,7 @@ const MyCard2 = () => {
         </IconButton>
         <Box sx={{ flexGrow: 1 }} />
         <IconButton onClick={handleExpandClick} aria-expanded={expanded} aria-label="show more">
-          <FlipIcon icon={ExpandMoreIcon} active={expanded} direction="horizontal" />
+          <FlipIcon component={ExpandMoreIcon} active={expanded} direction="horizontal" />
         </IconButton>
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>

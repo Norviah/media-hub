@@ -24,6 +24,10 @@ const options: Options = {
         name: 'User Management',
         tags: ['user'],
       },
+      {
+        name: 'Search',
+        tags: ['search'],
+      },
     ],
     tags: [{ name: 'user', description: 'Operations related to a user.' }],
   },

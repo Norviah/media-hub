@@ -1,40 +1,95 @@
-import Container from '@mui/material/Container';
-import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
-import Head from 'next/head';
+import SearchResults from '@/layout/search/SearchResults';
+import withRouter from 'next/dist/client/with-router';
 
-import PRODUCTS from '@/components/_mock/products';
-import { ProductFilterSidebar, ProductList, ProductSort } from '@/layout/products';
-import { useState } from 'react';
+import { API } from '@/structs/API';
+import { parameter } from '@/util/parameter';
+import { Component } from 'react';
 
-export default function ProductsPage(): JSX.Element {
-  const [openFilter, setOpenFilter] = useState(false);
+import { Title } from '@/components/Title';
+import { SearchResult } from '@/types/api/search/SearchResult';
+import type { LoadingState, ResultState } from '@/types/layout/search/Result';
+import type { WithRouterProps } from 'next/dist/client/with-router';
 
-  return (
-    <>
-      <Head>
-        <title>Search</title>
-      </Head>
-
-      <Container>
-        <Typography variant="h4" sx={{ mb: 5 }}>
-          Search
-        </Typography>
-        <Stack
-          direction="row"
-          flexWrap="wrap-reverse"
-          alignItems="center"
-          justifyContent="flex-end"
-          sx={{ mb: 5 }}
-        >
-          <Stack direction="row" spacing={1} flexShrink={0} sx={{ my: 1 }}>
-            <ProductFilterSidebar open={openFilter} to={(value: boolean) => setOpenFilter(value)} />
-            <ProductSort />
-          </Stack>
-        </Stack>
-
-        <ProductList products={PRODUCTS} />
-      </Container>
-    </>
-  );
+interface State {
+  filter: boolean;
+  results: ResultState | LoadingState | null;
 }
+
+export class Search extends Component<WithRouterProps, State> {
+  /**
+   * The component's initial state.
+   */
+  public state: State = { filter: false, results: null };
+
+  public async componentDidMount(): Promise<void> {
+    const query = parameter(this.props.router, 'query');
+
+    if (query) {
+      await this.search(query);
+    }
+  }
+
+  /**
+   *
+   */
+  public async search(query: string): Promise<void> {
+    this.props.router.push(`/search?query=${query}`);
+    this.setState({
+      results: {
+        query,
+        results: null,
+      },
+    });
+
+    const results = await API.Get<SearchResult>({
+      endpoint: `/api/search/multi?query=${query}&page=1`,
+    });
+
+    if (!results.ok) {
+      return;
+    }
+
+    this.setState({
+      results: {
+        query,
+        ...results.data,
+        // results: results.data.results,
+        // page,
+        // totalPages: results.data.total_pages,
+      },
+    });
+  }
+
+  public async update(): Promise<void> {
+    console.log('update');
+  }
+
+  /**
+   * The component's render method.
+   */
+  public render(): JSX.Element {
+    const { results } = this.state;
+
+    return (
+      <>
+        <Title title="Search" />
+        {results ? (
+          <SearchResults
+            result={results}
+            filter={{
+              open: this.state.filter,
+              to: (value: boolean) => {
+                this.setState({ filter: value });
+              },
+            }}
+            search={(query: string) => this.search(query)}
+          />
+        ) : (
+          <div>Search</div>
+        )}
+      </>
+    );
+  }
+}
+
+export default withRouter(Search);

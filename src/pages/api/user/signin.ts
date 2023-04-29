@@ -94,9 +94,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(StatusCodes.METHOD_NOT_ALLOWED).json({ message: 'Method not allowed.' });
   }
 
-  const data: RequestBody | void = parse<RequestBody>(req, res, {
-    email: 'string',
-    password: 'string',
+  const data: RequestBody | void = parse<RequestBody>({
+    req,
+    res,
+    structure: { email: 'string', password: 'string' },
+    json: req.body,
   });
 
   // If the request body was invalid, the `parse` function will return `void`,
