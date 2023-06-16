@@ -1,0 +1,23 @@
+'use client';
+
+import * as React from 'react';
+import * as ContextMenuPrimitive from '@radix-ui/react-context-menu';
+
+import { cn } from '@/utils/cn';
+
+const ContextMenuSubContent = React.forwardRef<
+  React.ElementRef<typeof ContextMenuPrimitive.SubContent>,
+  React.ComponentPropsWithoutRef<typeof ContextMenuPrimitive.SubContent>
+>(({ className, ...props }, ref) => (
+  <ContextMenuPrimitive.SubContent
+    ref={ref}
+    className={cn(
+      'z-50 min-w-[8rem] overflow-hidden rounded-md border bg-card p-1 text-card-foreground shadow-md animate-in slide-in-from-left-1',
+      className
+    )}
+    {...props}
+  />
+));
+ContextMenuSubContent.displayName = ContextMenuPrimitive.SubContent.displayName;
+
+export default ContextMenuSubContent;

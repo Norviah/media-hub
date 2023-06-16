@@ -1,77 +1,53 @@
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
+  relationMode = "prisma"
 }
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
 }
 
-///
-/// The User model.
-///
-/// The User model stores information regarding a user, such as a user's name 
-/// and email address.
-/// @see https://next-auth.js.org/v3/adapters/models#user
-model User {
-  id            String    @id @default(cuid())
-  name          String
-  email         String    @unique
-  emailVerified DateTime?
-  password      String?
-  image         String?
-  createdAt     DateTime  @default(now())
-  accounts      Account[]
-  sessions      Session[]
-}
-
-///
-/// The Account model.
-///
-/// The Account model stores information about OAuth accounts associated with a
-/// specific user, a single user can hae multiple accounts but an account can
-/// only be associated with a single user.
-/// @see https://next-auth.js.org/v3/adapters/models#account
 model Account {
-  id                String  @id @default(cuid())
-  userId            String
-  type              String
-  provider          String
-  providerAccountId String
-  refresh_token     String? @db.Text
-  access_token      String? @db.Text
-  expires_at        Int?
-  token_type        String?
-  scope             String?
-  id_token          String? @db.Text
-  session_state     String?
+  id                 String  @id @default(cuid())
+  userId             String
+  type               String
+  provider           String
+  providerAccountId  String
+  refresh_token      String?  @db.Text
+  access_token       String?  @db.Text
+  expires_at         Int?
+  token_type         String?
+  scope              String?
+  id_token           String?  @db.Text
+  session_state      String?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
+  @@index([userId])
 }
 
-///
-/// The Session model.
-///
-/// The Session model stores information about a user's session, such as the
-/// session token, expiry date and the user the session is associated with.
-/// @see https://next-auth.js.org/v3/adapters/models#session
 model Session {
   id           String   @id @default(cuid())
   sessionToken String   @unique
   userId       String
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
 }
 
-///
-/// The VerificationRequest model.
-/// 
-/// The VerificationRequest model is used to store tokens for passwordless
-/// authentication. A single User can have multiple open Verification Requests
-/// (e.g. to sign in to different devices).
-/// @see https://next-auth.js.org/v3/adapters/models#verificationrequest
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
+}
+
 model VerificationToken {
   identifier String
   token      String   @unique

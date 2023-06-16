@@ -1,9 +1,24 @@
-import SvgIcon from '@mui/material/SvgIcon';
+import { Icon } from 'lucide-react';
+import { cn } from '@/utils/cn';
 
-import { styled } from '@mui/material/styles';
+import type { LucideProps } from 'lucide-react';
 
-import type { Theme } from '@mui/material/styles';
-import type { FlipIconProps } from '@/types/components/FlipIconProps';
+export interface FlipIconProps extends LucideProps {
+  /**
+   * Whether if the icon's respective data is active, causing the icon to flip.
+   */
+  active: boolean;
+
+  /**
+   * The icon to be displayed.
+   */
+  component: Icon;
+
+  /**
+   * The direction of the flip.
+   */
+  direction?: 'horizontal' | 'vertical';
+}
 
 /**
  * A component that flips an icon when active.
@@ -65,22 +80,16 @@ import type { FlipIconProps } from '@/types/components/FlipIconProps';
  * The menu's open state is passed to `FlipIcon`, allowing the icon to flip
  * accordingly.
  */
-// export const FlipIcon = styled((props: FlipIconProps): JSX.Element => {
-//   return <props.icon {...props} />;
-// })((props: { active: boolean; theme: Theme }) => ({
-//   transform: !props.active ? 'rotate(0deg)' : 'rotate(180deg)',
-//   marginLeft: 'auto',
-//   transition: props.theme.transitions.create('transform', {
-//     duration: props.theme.transitions.duration.shortest,
-//   }),
-// }));
+export function FlipIcon(props: FlipIconProps): JSX.Element {
+  const rotationClass = props.active ? 'rotate-180' : '';
 
-export const FlipIcon = styled(SvgIcon, {
-  shouldForwardProp: (prop) => prop !== 'active',
-})<FlipIconProps>(({ theme, active }) => ({
-  transform: !active ? 'rotate(0deg)' : 'rotate(180deg)',
-  marginLeft: 'auto',
-  transition: theme.transitions.create('transform', {
-    duration: theme.transitions.duration.shortest,
-  }),
-}));
+  return (
+    <props.component
+      {...props}
+      className={cn(
+        `relative top-[1px] ml-1 h-3 w-3 transition duration-200 ${rotationClass}`,
+        props.className
+      )}
+    />
+  );
+}
