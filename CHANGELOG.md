@@ -1,5 +1,9 @@
 ## Unreleased
 
+### Build System
+
+- **nextjs**: enable the experimental statically typed links feature <code>[cea61de](https://github.com/Norviah/media-hub/commit/cea61deee7f87032fb3eef9a449e17980e3e77ec)</code>
+
 ### Init
 
 - implement app router template <code>[cc633bf](https://github.com/Norviah/media-hub/commit/cc633bfd67c6d69eef4736c9e9e4236cff8bcc4d)</code>
