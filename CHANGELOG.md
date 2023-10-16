@@ -1,3 +1,9 @@
+## Unreleased
+
+### Init
+
+- implement app router template <code>[cc633bf](https://github.com/Norviah/media-hub/commit/cc633bfd67c6d69eef4736c9e9e4236cff8bcc4d)</code>
+
 ## [v0.3.0](https://github.com/Norviah/media-hub/compare/v0.2.0...v0.3.0) (2023-04-11)
 
 ### Reverted
