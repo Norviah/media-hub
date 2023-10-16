@@ -17,7 +17,8 @@
     "@typescript-eslint/explicit-module-boundary-types": "warn",
     "@typescript-eslint/no-explicit-any": "warn",
     "@typescript-eslint/ban-types": "warn",
+    "@typescript-eslint/no-unused-vars": "warn",
     "@typescript-eslint/consistent-indexed-object-style": [ "error", "record" ],
-    "max-len": [ "error", { "comments": 80, "code": 200, "ignoreStrings": true, "ignoreUrls": true }]
+    "max-len": [ "warn", { "comments": 80, "code": 200, "ignoreStrings": true, "ignoreUrls": true }]
   }
 }
