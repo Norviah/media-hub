@@ -7,7 +7,7 @@ export const DiscordIcon = (props: LucideProps): JSX.Element => {
       aria-hidden="true"
       focusable="false"
       data-prefix="fab"
-      data-icon="github"
+      data-icon="discord"
       role="img"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 127.14 96.36"
