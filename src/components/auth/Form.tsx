@@ -17,7 +17,7 @@ export function Form(props: { callbackUrl: string }): JSX.Element {
   const loading = isEmailLoading || isGoogleLoading || isDiscordLoading;
 
   return (
-    <div className={cn('grid gap-6')} {...props}>
+    <div className={cn('grid gap-6')}>
       <form>
         <div className="grid gap-2">
           <div className="grid gap-1">
