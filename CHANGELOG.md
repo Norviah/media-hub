@@ -1,40 +1,52 @@
 ## Unreleased
 
-### Build System
+### Features
 
-- **nextjs**: enable the experimental statically typed links feature <code>[cea61de](https://github.com/Norviah/media-hub/commit/cea61deee7f87032fb3eef9a449e17980e3e77ec)</code>
+- implement the layout for auth pages <code>[d37244c](https://github.com/Norviah/media-hub/commit/d37244c817c44052340d63253849070f8652b2bf)</code>
 
-### Init
+- implement the base layout for the application <code>[b103f0d](https://github.com/Norviah/media-hub/commit/b103f0daade4dc6b96fbf727aca747e42a406849)</code>
 
-- implement app router template <code>[cc633bf](https://github.com/Norviah/media-hub/commit/cc633bfd67c6d69eef4736c9e9e4236cff8bcc4d)</code>
+- **components**: add a component icon for the logo <code>[255f731](https://github.com/Norviah/media-hub/commit/255f7311a192d9e698148f9da40d8557bae1aba7)</code>
 
-## [v0.3.0](https://github.com/Norviah/media-hub/compare/v0.2.0...v0.3.0) (2023-04-11)
+- **types**: implement a type to represent the props a page gets <code>[02f8055](https://github.com/Norviah/media-hub/commit/02f805595ec88450523e3ece98453448f9636613)</code>
 
-### Reverted
+- **nextjs**: enable the experimental statically typed links feature <code>[71a7b42](https://github.com/Norviah/media-hub/commit/71a7b429e55bea5b1f8d2c52c0261fbd27ad33c2)</code>
 
-- re-implement support for authenticating via credentials <code>[dfe8877](https://github.com/Norviah/media-hub/commit/dfe88776d727bb3de3f32c744a23a1540c933077)</code>
+- **frontend**: implement an export referencing common paths <code>[731bc8b](https://github.com/Norviah/media-hub/commit/731bc8b7b9faa2a7a7f71e2948138bed8f4ddc49)</code>
+
+- **frontend/components/UserMenu**: implement states to prevent users from spamming buttons <code>[fbd4d54](https://github.com/Norviah/media-hub/commit/fbd4d54dd524218b1db84a403cccc7cc48e1e349)</code>
+
+- **frontend**: implement a profile page <code>[d23e489](https://github.com/Norviah/media-hub/commit/d23e48960cf227eee7fca9c598c7916c38ed0c43)</code>
+
+- **frontend**: implement an 'about' page for information regarding the website <code>[371bbf6](https://github.com/Norviah/media-hub/commit/371bbf67c074583391b43c32bbb3688a59fb0fc1)</code>
+
+- **frontend**: implement a sidebar <code>[98a304d](https://github.com/Norviah/media-hub/commit/98a304d96ba839a5065750966b4475d8469c372d)</code>
 
 ### Bug Fixes
 
-- **frontend/components/Drawer**: get the current session within the component <code>[d999ddd](https://github.com/Norviah/media-hub/commit/d999ddd49ea236bfae1316eed588290a3942d063)</code>
+- **components**: ensure the metadata for icons represent the correct label <code>[8d36d35](https://github.com/Norviah/media-hub/commit/8d36d35a054551e90e40396a59258c3a6fb5b6e0)</code>
 
-- **frontend/components/Drawer**: wrap the children of a Box component in a fragment <code>[c9b5ca9](https://github.com/Norviah/media-hub/commit/c9b5ca94b380d01b2f81017d1ec06558cbcc9949)</code>
+- **frontend/components/Drawer**: get the current session within the component <code>[533333b](https://github.com/Norviah/media-hub/commit/533333bc8a50ef16064c424c45325deefddec75d)</code>
 
-### Features
-
-- **frontend**: implement an export referencing common paths <code>[6f4cd3e](https://github.com/Norviah/media-hub/commit/6f4cd3eb07796f69bb1daefc94a1fe6d2016be4a)</code>
-
-- **frontend/components/UserMenu**: implement states to prevent users from spamming buttons <code>[ee5403a](https://github.com/Norviah/media-hub/commit/ee5403a7ae361338c73ba247eb5d8186f7a4fdab)</code>
-
-- **frontend**: implement a profile page <code>[b1ac0b5](https://github.com/Norviah/media-hub/commit/b1ac0b54e2c3f9fa892dff7bd9b6e4e7cfe1f4a2)</code>
-
-- **frontend**: implement an 'about' page for information regarding the website <code>[e01500e](https://github.com/Norviah/media-hub/commit/e01500e22c513473660c475ee2ef71caab1c8f75)</code>
-
-- **frontend**: implement a sidebar <code>[7c20a5e](https://github.com/Norviah/media-hub/commit/7c20a5e20ff4a7f84b0684776d1666590ed745d9)</code>
+- **frontend/components/Drawer**: wrap the children of a Box component in a fragment <code>[1e90154](https://github.com/Norviah/media-hub/commit/1e90154f3d94b8f726f20e3a5427b30f14e82ae9)</code>
 
 ### UI
 
-- **frontend/components/Drawer**: remove padding on list items <code>[34acaa6](https://github.com/Norviah/media-hub/commit/34acaa652ff870bff3d34819de88bc6697eff1bf)</code>
+- **components/Button**: ensure the loading spinner infers the correct color <code>[af18c14](https://github.com/Norviah/media-hub/commit/af18c140c24aaf20a40f7da6c346c62a5ca60f60)</code>
+
+- **components/ThemeSelector**: remove the outline when focused <code>[b819a1e](https://github.com/Norviah/media-hub/commit/b819a1eb9a0b3ff65e4cb3b89010e2e15ac02042)</code>
+
+- **components**: set the cursor to point when hovering over a command item <code>[5efcf4e](https://github.com/Norviah/media-hub/commit/5efcf4ec86107cdc112f3f442350120e0a8723ea)</code>
+
+- **frontend/components/Drawer**: remove padding on list items <code>[a249daf](https://github.com/Norviah/media-hub/commit/a249daf71e9563ec5969cd7304013eaa976f36c6)</code>
+
+### Init
+
+- implement app router template <code>[c2337a3](https://github.com/Norviah/media-hub/commit/c2337a37c8315990a0290770ddd205f0e22c4a62)</code>
+
+### Reverted
+
+- re-implement support for authenticating via credentials <code>[7b7f057](https://github.com/Norviah/media-hub/commit/7b7f0575eb75f8dca3dbdb29ac4803881c62a203)</code>
 
 ## [v0.2.0](https://github.com/Norviah/media-hub/compare/v0.1.0...v0.2.0) (2023-04-08)
 
