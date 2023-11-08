@@ -1,5 +1,15 @@
 ## Unreleased
 
+### Bug Fixes
+
+- **components/auth/Form**: do not pass given props to the base div element <code>[750d66b](https://github.com/Norviah/media-hub/commit/750d66b22e01ec10ca689de2076c39ea090d33ec)</code>
+
+- **components**: ensure the metadata for icons represent the correct label <code>[8d36d35](https://github.com/Norviah/media-hub/commit/8d36d35a054551e90e40396a59258c3a6fb5b6e0)</code>
+
+- **frontend/components/Drawer**: get the current session within the component <code>[533333b](https://github.com/Norviah/media-hub/commit/533333bc8a50ef16064c424c45325deefddec75d)</code>
+
+- **frontend/components/Drawer**: wrap the children of a Box component in a fragment <code>[1e90154](https://github.com/Norviah/media-hub/commit/1e90154f3d94b8f726f20e3a5427b30f14e82ae9)</code>
+
 ### Features
 
 - implement the layout for auth pages <code>[d37244c](https://github.com/Norviah/media-hub/commit/d37244c817c44052340d63253849070f8652b2bf)</code>
@@ -21,14 +31,6 @@
 - **frontend**: implement an 'about' page for information regarding the website <code>[371bbf6](https://github.com/Norviah/media-hub/commit/371bbf67c074583391b43c32bbb3688a59fb0fc1)</code>
 
 - **frontend**: implement a sidebar <code>[98a304d](https://github.com/Norviah/media-hub/commit/98a304d96ba839a5065750966b4475d8469c372d)</code>
-
-### Bug Fixes
-
-- **components**: ensure the metadata for icons represent the correct label <code>[8d36d35](https://github.com/Norviah/media-hub/commit/8d36d35a054551e90e40396a59258c3a6fb5b6e0)</code>
-
-- **frontend/components/Drawer**: get the current session within the component <code>[533333b](https://github.com/Norviah/media-hub/commit/533333bc8a50ef16064c424c45325deefddec75d)</code>
-
-- **frontend/components/Drawer**: wrap the children of a Box component in a fragment <code>[1e90154](https://github.com/Norviah/media-hub/commit/1e90154f3d94b8f726f20e3a5427b30f14e82ae9)</code>
 
 ### UI
 
