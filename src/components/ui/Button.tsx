@@ -53,7 +53,16 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {...props}
         disabled={loading || props.disabled}
       >
-        {loading ? <SpinnerIcon className="h-4 w-4 animate-spin text-foreground" /> : props.children}
+        {loading ? (
+          <SpinnerIcon
+            className={cn(
+              'h-4 w-4 animate-spin',
+              variant === 'ghost' || variant === 'outline' ? 'text-foreground' : 'text-background'
+            )}
+          />
+        ) : (
+          props.children
+        )}
       </Comp>
     );
   }
