@@ -25,7 +25,20 @@ const config: Config = {
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
         background: 'hsl(var(--background))',
-        foreground: 'hsl(var(--foreground))',
+        'nord-red': 'hsl(var(--nord-red))',
+        'nord-orange': 'hsl(var(--nord-orange))',
+        'nord-yellow': 'hsl(var(--nord-yellow))',
+        'nord-green': 'hsl(var(--nord-green))',
+        'nord-blue-green': 'hsl(var(--nord-blue-green))',
+        'nord-light-blue': 'hsl(var(--nord-light-blue))',
+        'nord-blue': 'hsl(var(--nord-blue))',
+        'nord-dark-blue': 'hsl(var(--nord-dark-blue))',
+        'nord-purple': 'hsl(var(--nord-purple))',
+        foreground: {
+          DEFAULT: 'hsl(var(--foreground))',
+          accent: 'hsl(var(--foreground-accent))',
+          selected: 'hsl(var(--foreground-selected))',
+        },
         primary: {
           DEFAULT: 'hsl(var(--primary))',
           foreground: 'hsl(var(--primary-foreground))',
@@ -57,6 +70,8 @@ const config: Config = {
         card: {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
+          accent: 'hsl(var(--card-accent))',
+          selected: 'hsl(var(--card-selected))',
         },
       },
       borderRadius: {
