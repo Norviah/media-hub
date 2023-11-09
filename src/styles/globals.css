@@ -56,8 +56,18 @@
     --nord-dark-blue:  213 32% 52%; /* #5d81ac */
     --nord-purple:     311 20% 63%; /* #b48ead */
 
-    --nord-selected: 210 31% 90%;
+    --primary: var(--nord-blue);
+    --secondary: var(--nord-dark-blue);
+    --destructive: var(--nord-red);
+    --success: var(--nord-green);
+    --warn: var(--nord-yellow);
 
+    --ring: var(--primary);
+    --radius: 0.35rem;    
+  }
+
+  .light {
+    --nord-selected: 210 31% 90%;
     --background: var(--nord-gray-50);
     --foreground: var(--nord-gray-650);
     --foreground-accent: var(--nord-gray-150);
@@ -74,30 +84,17 @@
     --card-accent: var(--nord-gray-100);
     --card-selected: var(--nord-gray-175);
 
-    --primary: var(--nord-blue);
-    --primary-foreground: var(--nord-gray-150);
-
-    --secondary: var(--nord-dark-blue);
+    --primary-foreground: var(--nord-gray-175);
     --secondary-foreground: var(--nord-gray-175);
+    --destructive-foreground: var(--nord-gray-175);
+    --success-foreground: var(--nord-gray-175);
+    --warn-foreground: var(--nord-gray-600);
 
     --selected: var(--nord-selected);
     --selected-foreground: var(--nord-gray-800);
 
     --accent: var(--nord-gray-150);
     --accent-foreground: var(--nord-gray-800);
-
-    --destructive: var(--nord-red);
-    --destructive-foreground: var(--nord-gray-175);
-
-    --success: var(--nord-green);
-    --success-foreground: var(--nord-gray-175);
-
-    --warn: var(--nord-yellow);
-    --warn-foreground: var(--nord-gray-600);
-
-    --ring: var(--primary);
-
-    --radius: 0.35rem;
   }
 
   .dark {
@@ -120,25 +117,14 @@
     --card-accent: var(--nord-gray-700);
     --card-selected: var(--nord-gray-675);
 
-    --primary: var(--nord-blue);
     --primary-foreground: var(--nord-gray-850);
+    --secondary-foreground: var(--nord-gray-850);
+    --destructive-foreground: var(--nord-gray-850);
+    --success-foreground: var(--nord-gray-850);
+    --warn-foreground: var(--nord-gray-850);
 
     --selected: var(--nord-gray-725);
     --selected-foreground: var(--nord-gray-200);
-
-    --secondary: var(--nord-dark-blue);
-    --secondary-foreground: var(--nord-gray-850);
-
-    --destructive: var(--nord-red);
-    --destructive-foreground: var(--nord-gray-850);
-
-    --success: var(--nord-green);
-    --success-foreground: var(--nord-gray-850);
-
-    --warn: var(--nord-yellow);
-    --warn-foreground: var(--nord-gray-850);
-
-    --ring: var(--primary);
   }
 
   ::selection {
