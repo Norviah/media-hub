@@ -20,7 +20,7 @@ export function ThemeSelector(): JSX.Element {
       <DropdownMenuTrigger asChild>
         <Button
           variant="ghost"
-          className={'hover:bg-foreground-accent h-9 text-sm text-muted-foreground focus-visible:ring-transparent'}
+          className={'h-9 text-sm text-muted-foreground hover:bg-foreground-accent focus-visible:ring-transparent'}
           size="sm"
         >
           <SunIcon className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
