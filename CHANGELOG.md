@@ -2,6 +2,8 @@
 
 ### UI
 
+- **components/Command**: set the accent color to the proper source <code>[e01d453](https://github.com/norviah/media-hub/commit/e01d453f254b2d9cdd8831dece33a34375543598)</code>
+
 - **components/NavBar**: only set other routes from the current to change color when hovered over <code>[88f07fc](https://github.com/norviah/media-hub/commit/88f07fcfb2b73948eef8189c99168580d33978fa)</code>
 
 - **tailwind**: implement a nord color scheme <code>[ee1ab23](https://github.com/norviah/media-hub/commit/ee1ab23a6fceea849df025fec3cfe199c2ee8c2c)</code>
