@@ -1,5 +1,17 @@
 ## Unreleased
 
+### UI
+
+- **components/NavBar**: only set other routes from the current to change color when hovered over <code>[88f07fc](https://github.com/norviah/media-hub/commit/88f07fcfb2b73948eef8189c99168580d33978fa)</code>
+
+- **tailwind**: implement a nord color scheme <code>[ee1ab23](https://github.com/norviah/media-hub/commit/ee1ab23a6fceea849df025fec3cfe199c2ee8c2c)</code>
+
+- **components/Button**: ensure the loading spinner infers the correct color <code>[af18c14](https://github.com/norviah/media-hub/commit/af18c140c24aaf20a40f7da6c346c62a5ca60f60)</code>
+
+- **components/ThemeSelector**: remove the outline when focused <code>[b819a1e](https://github.com/norviah/media-hub/commit/b819a1eb9a0b3ff65e4cb3b89010e2e15ac02042)</code>
+
+- **components**: set the cursor to point when hovering over a command item <code>[5efcf4e](https://github.com/norviah/media-hub/commit/5efcf4ec86107cdc112f3f442350120e0a8723ea)</code>
+
 ### Features
 
 - **auth**: implement a login system <code>[7725710](https://github.com/norviah/media-hub/commit/7725710b34d8870fdf87741e0c8237baf6a9dd79)</code>
@@ -33,16 +45,6 @@
 - **components/auth/Form**: do not pass given props to the base div element <code>[750d66b](https://github.com/norviah/media-hub/commit/750d66b22e01ec10ca689de2076c39ea090d33ec)</code>
 
 - **components**: ensure the metadata for icons represent the correct label <code>[8d36d35](https://github.com/norviah/media-hub/commit/8d36d35a054551e90e40396a59258c3a6fb5b6e0)</code>
-
-### UI
-
-- **tailwind**: implement a nord color scheme <code>[ee1ab23](https://github.com/norviah/media-hub/commit/ee1ab23a6fceea849df025fec3cfe199c2ee8c2c)</code>
-
-- **components/Button**: ensure the loading spinner infers the correct color <code>[af18c14](https://github.com/norviah/media-hub/commit/af18c140c24aaf20a40f7da6c346c62a5ca60f60)</code>
-
-- **components/ThemeSelector**: remove the outline when focused <code>[b819a1e](https://github.com/norviah/media-hub/commit/b819a1eb9a0b3ff65e4cb3b89010e2e15ac02042)</code>
-
-- **components**: set the cursor to point when hovering over a command item <code>[5efcf4e](https://github.com/norviah/media-hub/commit/5efcf4ec86107cdc112f3f442350120e0a8723ea)</code>
 
 ### Init
 
