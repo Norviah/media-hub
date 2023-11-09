@@ -132,6 +132,11 @@
     color: hsl(var(--primary-foreground));
   }
 }
+ 
+@layer base {
+  * {
+    @apply border-border;
+  }
 
 @layer base {
   * {
