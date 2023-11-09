@@ -31,8 +31,8 @@ export function NavBar(): JSX.Element {
               key={index}
               href={item.path}
               className={cn(
-                'flex items-center text-lg font-medium transition-colors hover:text-foreground/80 sm:text-sm',
-                item.path.startsWith(`/${segment}`) ? 'text-foreground' : 'text-foreground/60'
+                'flex items-center text-lg font-medium transition-colors sm:text-sm',
+                item.path.startsWith(`/${segment}`) ? 'text-foreground' : 'text-foreground/50 hover:text-foreground/80'
               )}
             >
               {item.title}
