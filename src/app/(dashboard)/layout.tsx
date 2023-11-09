@@ -36,7 +36,7 @@ export default function DashboardLayout(props: LayoutProps): JSX.Element {
         </div>
       </Header>
 
-      <div className="px-10 py-5">{props.children}</div>
+      <main className="container py-5">{props.children}</main>
     </div>
   );
 }
