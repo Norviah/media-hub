@@ -3,14 +3,21 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "build": "pnpm run build:prisma && next build",
+    "build:prisma": "pnpm run prisma:migrate && pnpm run prisma:generate",
     "prettier:check": "node ./node_modules/prettier/bin/prettier.cjs --config .prettierrc.json --list-different ./src",
-    "prettier:fix": "node ./node_modules/prettier/bin/prettier.cjs --config .prettierrc.json --write ./src"
+    "prettier:fix": "node ./node_modules/prettier/bin/prettier.cjs --config .prettierrc.json --write ./src",
+    "postinstall": "prisma generate",
+    "prisma:migrate": "pnpm prisma db push --schema ./prisma/schema.prisma",
+    "prisma:generate": "pnpx prisma generate --schema ./prisma/schema.prisma",
+    "prisma:studio": "pnpx prisma studio"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.2",
+    "@next-auth/prisma-adapter": "0.4.4-canary.81",
+    "@prisma/client": "^5.5.2",
     "@radix-ui/react-accordion": "^1.1.2",
     "@radix-ui/react-alert-dialog": "^1.0.5",
     "@radix-ui/react-aspect-ratio": "^1.0.3",
@@ -44,7 +51,9 @@
     "date-fns": "^2.30.0",
     "lucide-react": "^0.284.0",
     "next": "13.5.4",
+    "next-auth": "^4.24.4",
     "next-themes": "^0.2.1",
+    "nodemailer": "^6.9.7",
     "react": "^18.2.0",
     "react-day-picker": "^8.8.2",
     "react-dom": "^18.2.0",
@@ -68,6 +77,7 @@
     "postcss": "^8.4.31",
     "prettier": "^3.0.3",
     "prettier-plugin-tailwindcss": "^0.5.5",
+    "prisma": "^5.5.2",
     "type-fest": "^4.4.0",
     "typescript": "^5.2.2"
   }
