@@ -7,7 +7,7 @@ export default function ProfileLayout(props: LayoutProps): JSX.Element {
       <aside className="hidden w-[200px] flex-col md:flex">
         <ProfileSidebar />
       </aside>
-      <main className="flex w-full flex-1 flex-col overflow-hidden">{props.children}</main>
+      <main>{props.children}</main>
     </div>
   );
 }
