@@ -2,6 +2,14 @@
 
 ### UI
 
+- **components/Toast**: implement the new variant `success` <code>[17d2e26](https://github.com/norviah/media-hub/commit/17d2e266444e616767758f9cf299653c339d2fb0)</code>
+
+- **layout/Profile**: implement a sidebar for the profile route <code>[5c9807f](https://github.com/norviah/media-hub/commit/5c9807fe548ce91f3f4a11338b3c017b4e4fb3a1)</code>
+
+- **components/NavBar**: set the foreground of other routes to mute <code>[3eced3b](https://github.com/norviah/media-hub/commit/3eced3b50c20105a603bd693c911348f2e89404b)</code>
+
+- set the application within a container to reflect breakpoints <code>[f61c511](https://github.com/norviah/media-hub/commit/f61c51109088e4a5795c89742eeda95e8568cd4e)</code>
+
 - **components/Command**: set the accent color to the proper source <code>[e01d453](https://github.com/norviah/media-hub/commit/e01d453f254b2d9cdd8831dece33a34375543598)</code>
 
 - **components/NavBar**: only set other routes from the current to change color when hovered over <code>[88f07fc](https://github.com/norviah/media-hub/commit/88f07fcfb2b73948eef8189c99168580d33978fa)</code>
@@ -15,6 +23,16 @@
 - **components**: set the cursor to point when hovering over a command item <code>[5efcf4e](https://github.com/norviah/media-hub/commit/5efcf4ec86107cdc112f3f442350120e0a8723ea)</code>
 
 ### Features
+
+- implement a form to allow users to change their username <code>[0560072](https://github.com/norviah/media-hub/commit/056007239540dde57157d93e76ff3e462fbcbe16)</code>
+
+- **trpc**: implement an authenticated procedure <code>[b735490](https://github.com/norviah/media-hub/commit/b7354903f247eb4e6ec764987e96f90e104a9e17)</code>
+
+- **components**: add a component to represent aspects of a page <code>[8c77bc1](https://github.com/norviah/media-hub/commit/8c77bc159dd1259e8ec5dd0e80e6ef76a5f7c65a)</code>
+
+- **next-auth**: add the user's id within the payload <code>[d8ba2f2](https://github.com/norviah/media-hub/commit/d8ba2f29e7f1b47d977511b45e8de3527f4a6278)</code>
+
+- initialize trpc <code>[08f33a4](https://github.com/norviah/media-hub/commit/08f33a469ab0a6155687359914b0d2644be0be50)</code>
 
 - **auth**: implement a login system <code>[7725710](https://github.com/norviah/media-hub/commit/7725710b34d8870fdf87741e0c8237baf6a9dd79)</code>
 
