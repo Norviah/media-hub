@@ -1,6 +1,7 @@
 import { TailwindIndicator } from '@/components/TailwindIndicator';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { ToastProvider } from '@/components/ToastProvider';
+import { TRPCProvider } from '@/components/TRPCProvider';
 
 import { cn } from '@/utils/cn';
 
@@ -25,7 +26,7 @@ export default function RootLayout(props: LayoutProps): JSX.Element {
 
       <body className={cn('min-h-screen antialiased', config.font.className)}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          {props.children}
+          <TRPCProvider>{props.children}</TRPCProvider>
         </ThemeProvider>
         <TailwindIndicator />
         <ToastProvider />
