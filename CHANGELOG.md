@@ -1,28 +1,8 @@
-## Unreleased
-
-### UI
-
-- **components/Toast**: implement the new variant `success` <code>[17d2e26](https://github.com/norviah/media-hub/commit/17d2e266444e616767758f9cf299653c339d2fb0)</code>
-
-- **layout/Profile**: implement a sidebar for the profile route <code>[5c9807f](https://github.com/norviah/media-hub/commit/5c9807fe548ce91f3f4a11338b3c017b4e4fb3a1)</code>
-
-- **components/NavBar**: set the foreground of other routes to mute <code>[3eced3b](https://github.com/norviah/media-hub/commit/3eced3b50c20105a603bd693c911348f2e89404b)</code>
-
-- set the application within a container to reflect breakpoints <code>[f61c511](https://github.com/norviah/media-hub/commit/f61c51109088e4a5795c89742eeda95e8568cd4e)</code>
-
-- **components/Command**: set the accent color to the proper source <code>[e01d453](https://github.com/norviah/media-hub/commit/e01d453f254b2d9cdd8831dece33a34375543598)</code>
-
-- **components/NavBar**: only set other routes from the current to change color when hovered over <code>[88f07fc](https://github.com/norviah/media-hub/commit/88f07fcfb2b73948eef8189c99168580d33978fa)</code>
-
-- **tailwind**: implement a nord color scheme <code>[ee1ab23](https://github.com/norviah/media-hub/commit/ee1ab23a6fceea849df025fec3cfe199c2ee8c2c)</code>
-
-- **components/Button**: ensure the loading spinner infers the correct color <code>[af18c14](https://github.com/norviah/media-hub/commit/af18c140c24aaf20a40f7da6c346c62a5ca60f60)</code>
-
-- **components/ThemeSelector**: remove the outline when focused <code>[b819a1e](https://github.com/norviah/media-hub/commit/b819a1eb9a0b3ff65e4cb3b89010e2e15ac02042)</code>
-
-- **components**: set the cursor to point when hovering over a command item <code>[5efcf4e](https://github.com/norviah/media-hub/commit/5efcf4ec86107cdc112f3f442350120e0a8723ea)</code>
+## [v0.4.0](https://github.com/norviah/media-hub/compare/v0.3.0...v0.4.0) (2023-11-10)
 
 ### Features
+
+- **routes/Profile**: ensure the user is authenticated to access the `/profile` route <code>[bd0c285](https://github.com/norviah/media-hub/commit/bd0c28597997731b7c809b41ef2c01f9c33b1f00)</code>
 
 - implement a form to allow users to change their username <code>[0560072](https://github.com/norviah/media-hub/commit/056007239540dde57157d93e76ff3e462fbcbe16)</code>
 
@@ -53,6 +33,28 @@
 - **types**: implement a type to represent the props a page gets <code>[02f8055](https://github.com/norviah/media-hub/commit/02f805595ec88450523e3ece98453448f9636613)</code>
 
 - **nextjs**: enable the experimental statically typed links feature <code>[71a7b42](https://github.com/norviah/media-hub/commit/71a7b429e55bea5b1f8d2c52c0261fbd27ad33c2)</code>
+
+### UI
+
+- **components/Toast**: implement the new variant `success` <code>[17d2e26](https://github.com/norviah/media-hub/commit/17d2e266444e616767758f9cf299653c339d2fb0)</code>
+
+- **layout/Profile**: implement a sidebar for the profile route <code>[5c9807f](https://github.com/norviah/media-hub/commit/5c9807fe548ce91f3f4a11338b3c017b4e4fb3a1)</code>
+
+- **components/NavBar**: set the foreground of other routes to mute <code>[3eced3b](https://github.com/norviah/media-hub/commit/3eced3b50c20105a603bd693c911348f2e89404b)</code>
+
+- set the application within a container to reflect breakpoints <code>[f61c511](https://github.com/norviah/media-hub/commit/f61c51109088e4a5795c89742eeda95e8568cd4e)</code>
+
+- **components/Command**: set the accent color to the proper source <code>[e01d453](https://github.com/norviah/media-hub/commit/e01d453f254b2d9cdd8831dece33a34375543598)</code>
+
+- **components/NavBar**: only set other routes from the current to change color when hovered over <code>[88f07fc](https://github.com/norviah/media-hub/commit/88f07fcfb2b73948eef8189c99168580d33978fa)</code>
+
+- **tailwind**: implement a nord color scheme <code>[ee1ab23](https://github.com/norviah/media-hub/commit/ee1ab23a6fceea849df025fec3cfe199c2ee8c2c)</code>
+
+- **components/Button**: ensure the loading spinner infers the correct color <code>[af18c14](https://github.com/norviah/media-hub/commit/af18c140c24aaf20a40f7da6c346c62a5ca60f60)</code>
+
+- **components/ThemeSelector**: remove the outline when focused <code>[b819a1e](https://github.com/norviah/media-hub/commit/b819a1eb9a0b3ff65e4cb3b89010e2e15ac02042)</code>
+
+- **components**: set the cursor to point when hovering over a command item <code>[5efcf4e](https://github.com/norviah/media-hub/commit/5efcf4ec86107cdc112f3f442350120e0a8723ea)</code>
 
 ### Refactored
 
