@@ -1,5 +1,59 @@
 ## Unreleased
 
+### UI
+
+- **components/Toast**: implement the new variant `success` <code>[17d2e26](https://github.com/norviah/media-hub/commit/17d2e266444e616767758f9cf299653c339d2fb0)</code>
+
+- **layout/Profile**: implement a sidebar for the profile route <code>[5c9807f](https://github.com/norviah/media-hub/commit/5c9807fe548ce91f3f4a11338b3c017b4e4fb3a1)</code>
+
+- **components/NavBar**: set the foreground of other routes to mute <code>[3eced3b](https://github.com/norviah/media-hub/commit/3eced3b50c20105a603bd693c911348f2e89404b)</code>
+
+- set the application within a container to reflect breakpoints <code>[f61c511](https://github.com/norviah/media-hub/commit/f61c51109088e4a5795c89742eeda95e8568cd4e)</code>
+
+- **components/Command**: set the accent color to the proper source <code>[e01d453](https://github.com/norviah/media-hub/commit/e01d453f254b2d9cdd8831dece33a34375543598)</code>
+
+- **components/NavBar**: only set other routes from the current to change color when hovered over <code>[88f07fc](https://github.com/norviah/media-hub/commit/88f07fcfb2b73948eef8189c99168580d33978fa)</code>
+
+- **tailwind**: implement a nord color scheme <code>[ee1ab23](https://github.com/norviah/media-hub/commit/ee1ab23a6fceea849df025fec3cfe199c2ee8c2c)</code>
+
+- **components/Button**: ensure the loading spinner infers the correct color <code>[af18c14](https://github.com/norviah/media-hub/commit/af18c140c24aaf20a40f7da6c346c62a5ca60f60)</code>
+
+- **components/ThemeSelector**: remove the outline when focused <code>[b819a1e](https://github.com/norviah/media-hub/commit/b819a1eb9a0b3ff65e4cb3b89010e2e15ac02042)</code>
+
+- **components**: set the cursor to point when hovering over a command item <code>[5efcf4e](https://github.com/norviah/media-hub/commit/5efcf4ec86107cdc112f3f442350120e0a8723ea)</code>
+
+### Features
+
+- implement a form to allow users to change their username <code>[0560072](https://github.com/norviah/media-hub/commit/056007239540dde57157d93e76ff3e462fbcbe16)</code>
+
+- **trpc**: implement an authenticated procedure <code>[b735490](https://github.com/norviah/media-hub/commit/b7354903f247eb4e6ec764987e96f90e104a9e17)</code>
+
+- **components**: add a component to represent aspects of a page <code>[8c77bc1](https://github.com/norviah/media-hub/commit/8c77bc159dd1259e8ec5dd0e80e6ef76a5f7c65a)</code>
+
+- **next-auth**: add the user's id within the payload <code>[d8ba2f2](https://github.com/norviah/media-hub/commit/d8ba2f29e7f1b47d977511b45e8de3527f4a6278)</code>
+
+- initialize trpc <code>[08f33a4](https://github.com/norviah/media-hub/commit/08f33a469ab0a6155687359914b0d2644be0be50)</code>
+
+- **auth**: implement a login system <code>[7725710](https://github.com/norviah/media-hub/commit/7725710b34d8870fdf87741e0c8237baf6a9dd79)</code>
+
+- **components/Input**: implement a property to represent error/helper text <code>[824c713](https://github.com/norviah/media-hub/commit/824c7138f74e639f97b736895f8dde5e67c0284f)</code>
+
+- **prisma**: update schema for next-auth <code>[9a95a14](https://github.com/norviah/media-hub/commit/9a95a1497a4f486c7c72b1cc3f7fc6a5850c7cd4)</code>
+
+- implement a menu to represent the user <code>[82013b3](https://github.com/norviah/media-hub/commit/82013b31be511fe778a5d94b16f9966d9e2fc160)</code>
+
+- initialize prisma + next-auth <code>[0960dc8](https://github.com/norviah/media-hub/commit/0960dc8b9fbb5f7875fc810bdb37eb34921c2abd)</code>
+
+- implement the layout for auth pages <code>[d37244c](https://github.com/norviah/media-hub/commit/d37244c817c44052340d63253849070f8652b2bf)</code>
+
+- implement the base layout for the application <code>[b103f0d](https://github.com/norviah/media-hub/commit/b103f0daade4dc6b96fbf727aca747e42a406849)</code>
+
+- **components**: add a component icon for the logo <code>[255f731](https://github.com/norviah/media-hub/commit/255f7311a192d9e698148f9da40d8557bae1aba7)</code>
+
+- **types**: implement a type to represent the props a page gets <code>[02f8055](https://github.com/norviah/media-hub/commit/02f805595ec88450523e3ece98453448f9636613)</code>
+
+- **nextjs**: enable the experimental statically typed links feature <code>[71a7b42](https://github.com/norviah/media-hub/commit/71a7b429e55bea5b1f8d2c52c0261fbd27ad33c2)</code>
+
 ### Refactored
 
 - **css**: group light mode values under a class <code>[9d01668](https://github.com/norviah/media-hub/commit/9d016686d65025111a1b401e9ff282f7f2270644)</code>
@@ -12,28 +66,6 @@
 
 - **components**: ensure the metadata for icons represent the correct label <code>[8d36d35](https://github.com/norviah/media-hub/commit/8d36d35a054551e90e40396a59258c3a6fb5b6e0)</code>
 
-### UI
-
-- **tailwind**: implement a nord color scheme <code>[ee1ab23](https://github.com/norviah/media-hub/commit/ee1ab23a6fceea849df025fec3cfe199c2ee8c2c)</code>
-
-- **components/Button**: ensure the loading spinner infers the correct color <code>[af18c14](https://github.com/norviah/media-hub/commit/af18c140c24aaf20a40f7da6c346c62a5ca60f60)</code>
-
-- **components/ThemeSelector**: remove the outline when focused <code>[b819a1e](https://github.com/norviah/media-hub/commit/b819a1eb9a0b3ff65e4cb3b89010e2e15ac02042)</code>
-
-- **components**: set the cursor to point when hovering over a command item <code>[5efcf4e](https://github.com/norviah/media-hub/commit/5efcf4ec86107cdc112f3f442350120e0a8723ea)</code>
-
-### Features
-
-- implement the layout for auth pages <code>[d37244c](https://github.com/norviah/media-hub/commit/d37244c817c44052340d63253849070f8652b2bf)</code>
-
-- implement the base layout for the application <code>[b103f0d](https://github.com/norviah/media-hub/commit/b103f0daade4dc6b96fbf727aca747e42a406849)</code>
-
-- **components**: add a component icon for the logo <code>[255f731](https://github.com/norviah/media-hub/commit/255f7311a192d9e698148f9da40d8557bae1aba7)</code>
-
-- **types**: implement a type to represent the props a page gets <code>[02f8055](https://github.com/norviah/media-hub/commit/02f805595ec88450523e3ece98453448f9636613)</code>
-
-- **nextjs**: enable the experimental statically typed links feature <code>[71a7b42](https://github.com/norviah/media-hub/commit/71a7b429e55bea5b1f8d2c52c0261fbd27ad33c2)</code>
-
 ### Init
 
 - implement app router template <code>[c2337a3](https://github.com/norviah/media-hub/commit/c2337a37c8315990a0290770ddd205f0e22c4a62)</code>
@@ -44,27 +76,53 @@
 
 - re-implement support for authenticating via credentials <code>[7b7f057](https://github.com/norviah/media-hub/commit/7b7f0575eb75f8dca3dbdb29ac4803881c62a203)</code>
 
+- re-implement support for authenticating via credentials <code>[dfe8877](https://github.com/norviah/media-hub/commit/dfe88776d727bb3de3f32c744a23a1540c933077)</code>
+
 ### Bug Fixes
 
 - **frontend/components/Drawer**: get the current session within the component <code>[533333b](https://github.com/norviah/media-hub/commit/533333bc8a50ef16064c424c45325deefddec75d)</code>
 
+- **frontend/components/Drawer**: get the current session within the component <code>[d999ddd](https://github.com/norviah/media-hub/commit/d999ddd49ea236bfae1316eed588290a3942d063)</code>
+
 - **frontend/components/Drawer**: wrap the children of a Box component in a fragment <code>[1e90154](https://github.com/norviah/media-hub/commit/1e90154f3d94b8f726f20e3a5427b30f14e82ae9)</code>
+
+- **frontend/components/Drawer**: wrap the children of a Box component in a fragment <code>[c9b5ca9](https://github.com/norviah/media-hub/commit/c9b5ca94b380d01b2f81017d1ec06558cbcc9949)</code>
 
 ### Features
 
 - **frontend**: implement an export referencing common paths <code>[731bc8b](https://github.com/norviah/media-hub/commit/731bc8b7b9faa2a7a7f71e2948138bed8f4ddc49)</code>
 
+- **frontend**: implement an export referencing common paths <code>[6f4cd3e](https://github.com/norviah/media-hub/commit/6f4cd3eb07796f69bb1daefc94a1fe6d2016be4a)</code>
+
 - **frontend/components/UserMenu**: implement states to prevent users from spamming buttons <code>[fbd4d54](https://github.com/norviah/media-hub/commit/fbd4d54dd524218b1db84a403cccc7cc48e1e349)</code>
+
+- **frontend/components/UserMenu**: implement states to prevent users from spamming buttons <code>[ee5403a](https://github.com/norviah/media-hub/commit/ee5403a7ae361338c73ba247eb5d8186f7a4fdab)</code>
 
 - **frontend**: implement a profile page <code>[d23e489](https://github.com/norviah/media-hub/commit/d23e48960cf227eee7fca9c598c7916c38ed0c43)</code>
 
+- **frontend**: implement a profile page <code>[b1ac0b5](https://github.com/norviah/media-hub/commit/b1ac0b54e2c3f9fa892dff7bd9b6e4e7cfe1f4a2)</code>
+
 - **frontend**: implement an 'about' page for information regarding the website <code>[371bbf6](https://github.com/norviah/media-hub/commit/371bbf67c074583391b43c32bbb3688a59fb0fc1)</code>
 
+- **frontend**: implement an 'about' page for information regarding the website <code>[e01500e](https://github.com/norviah/media-hub/commit/e01500e22c513473660c475ee2ef71caab1c8f75)</code>
+
 - **frontend**: implement a sidebar <code>[98a304d](https://github.com/norviah/media-hub/commit/98a304d96ba839a5065750966b4475d8469c372d)</code>
+
+- **frontend**: implement a sidebar <code>[7c20a5e](https://github.com/norviah/media-hub/commit/7c20a5e20ff4a7f84b0684776d1666590ed745d9)</code>
 
 ### UI
 
 - **frontend/components/Drawer**: remove padding on list items <code>[a249daf](https://github.com/norviah/media-hub/commit/a249daf71e9563ec5969cd7304013eaa976f36c6)</code>
+
+- **frontend/components/Drawer**: remove padding on list items <code>[34acaa6](https://github.com/norviah/media-hub/commit/34acaa652ff870bff3d34819de88bc6697eff1bf)</code>
+
+### Build System
+
+- **nextjs**: enable the experimental statically typed links feature <code>[cea61de](https://github.com/norviah/media-hub/commit/cea61deee7f87032fb3eef9a449e17980e3e77ec)</code>
+
+### Init
+
+- implement app router template <code>[cc633bf](https://github.com/norviah/media-hub/commit/cc633bfd67c6d69eef4736c9e9e4236cff8bcc4d)</code>
 
 ## [v0.2.0](https://github.com/norviah/media-hub/compare/v0.1.0...v0.2.0) (2023-04-08)
 
