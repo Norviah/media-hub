@@ -21,9 +21,11 @@ export default function DashboardLayout(props: LayoutProps): JSX.Element {
     <div className="flex min-h-screen flex-col space-y-6">
       <Header div="justify-between">
         <NavBar />
-        <div className="flex gap-1">
-          <CommandMenu />
-          <ThemeSelector />
+        <div className="flex gap-3">
+          <div className="flex gap-1">
+            <CommandMenu />
+            <ThemeSelector />
+          </div>
           <Suspense
             fallback={
               <span className="inline-flex h-9 items-center justify-center rounded-md text-sm font-medium text-muted-foreground transition-colors">

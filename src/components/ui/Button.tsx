@@ -1,5 +1,5 @@
 import { Slot } from '@radix-ui/react-slot';
-import { SpinnerIcon } from '../icons/Spinner';
+import { SpinnerIcon } from '@/components/icons/Spinner';
 
 import { cn } from '@/utils/cn';
 import { cva } from 'class-variance-authority';
@@ -21,13 +21,14 @@ const buttonVariants = cva(
         success: 'bg-success text-success-foreground shadow hover:bg-success/90 active:bg-success/50 shadow-md',
         warn: 'bg-warn text-warn-foreground shadow hover:bg-warn/90 active:bg-warn/50 shadow-md',
         ghost: 'hover:bg-accent/70 active:bg-accent hover:text-accent-foreground',
+        icon: 'text-muted-foreground hover:text-foreground transition-colors focus-visible:ring-transparent hover:bg-accent/70',
         link: 'text-primary underline-offset-4 hover:underline',
       },
       size: {
         default: 'h-9 px-4 py-2',
         sm: 'h-8 rounded-md px-3 text-xs',
         lg: 'h-10 rounded-md px-8',
-        icon: 'h-9 w-9',
+        icon: 'h-8 w-8 rounded-lg text-sm',
       },
     },
     defaultVariants: {

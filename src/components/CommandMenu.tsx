@@ -44,13 +44,7 @@ export function CommandMenu({ ...props }: DialogProps): JSX.Element {
 
   return (
     <>
-      <Button
-        variant="ghost"
-        className={'h-9 text-sm text-muted-foreground'}
-        size="sm"
-        onClick={() => setOpen(true)}
-        {...props}
-      >
+      <Button variant="icon" size="icon" onClick={() => setOpen(true)} {...props}>
         <SearchIcon className="h-5 w-5" />
       </Button>
       <CommandDialog open={open} onOpenChange={setOpen}>
