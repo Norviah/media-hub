@@ -7,6 +7,7 @@
     "lint": "next lint",
     "build": "pnpm run build:prisma && next build",
     "build:prisma": "pnpm run prisma:migrate && pnpm run prisma:generate",
+    "build:changelog": "./node_modules/@norviah/bump/bin/run changelog generate --config .bumprc.json",
     "prettier:check": "node ./node_modules/prettier/bin/prettier.cjs --config .prettierrc.json --list-different ./src",
     "prettier:fix": "node ./node_modules/prettier/bin/prettier.cjs --config .prettierrc.json --write ./src",
     "postinstall": "prisma generate",
