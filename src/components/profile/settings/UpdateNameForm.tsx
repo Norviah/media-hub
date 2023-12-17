@@ -5,8 +5,8 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Input } from '@/components/ui/Input';
 import { Label } from '@/components/ui/Label';
 
+import { updateName } from '@/actions/user';
 import { toast } from '@/hooks/useToast';
-import { trpc } from '@/server/client';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
@@ -25,7 +25,6 @@ type FormData = z.infer<typeof NameObject>;
 
 export function UpdateNameForm({ user }: { user: Pick<User, 'id' | 'name'> }): JSX.Element {
   const router = useRouter();
-  const endpoint = trpc.user.updateName.useMutation();
   const [loading, setLoading] = React.useState<boolean>(false);
 
   const {
@@ -40,11 +39,11 @@ export function UpdateNameForm({ user }: { user: Pick<User, 'id' | 'name'> }): J
     },
   });
 
-  async function onSubmit(data: FormData) {
+  async function onSubmit(data: { username: string }) {
     setLoading(true);
 
     try {
-      await endpoint.mutateAsync({ userId: user.id, name: data.username });
+      await updateName({ name: data.username, userId: user.id });
 
       toast({
         title: 'Success',
