@@ -1,3 +1,31 @@
+## Unreleased
+
+### UI
+
+- **page/search**: remove x padding <code>[6216fc6](https://github.com/norviah/media-hub/commit/6216fc6b5bafa8d34682bbbe0b43f89f9256f970)</code>
+
+- **components/Card**: remove border for all cards <code>[3c8e31c](https://github.com/norviah/media-hub/commit/3c8e31c7052d4b3bf60a6c5cff0c697a03ac0ffd)</code>
+
+- **layout**: remove the command menu from the header <code>[1d89a0c](https://github.com/norviah/media-hub/commit/1d89a0c9c4a43f99eb12301fac8fca6d14e8b37b)</code>
+
+- **components/ThemeSelector**: factor component to be a toggle button <code>[7efa4d6](https://github.com/norviah/media-hub/commit/7efa4d66b109d712c08934e5839283134922a905)</code>
+
+- implement the 'brandon grotesque' font <code>[2d9f956](https://github.com/norviah/media-hub/commit/2d9f956c50450fe8ad201953cd1d0a6bfaefff65)</code>
+
+### Refactored
+
+- use `sonner` for toast notifications <code>[fdae805](https://github.com/norviah/media-hub/commit/fdae805ba9f4bcc7fc515758810e19b7c7b4d864)</code>
+
+- **types**: update page props to include undefined values <code>[a80d16c](https://github.com/norviah/media-hub/commit/a80d16c7319fd0da96fad356e0accb533e16a51d)</code>
+
+- use server actions for api calls <code>[4badc19](https://github.com/norviah/media-hub/commit/4badc19ce7adcfd6256f6d9b3ebd049c58399a81)</code>
+
+### Features
+
+- implement a search system with TMDB <code>[af124fa](https://github.com/norviah/media-hub/commit/af124fa9e37afe9638325b9f37c9ca14133c076f)</code>
+
+- **components/Button**: add a variant for icon buttons <code>[ab59cf2](https://github.com/norviah/media-hub/commit/ab59cf26bc97058396bd4603351dc1edaf4d39de)</code>
+
 ## [v0.4.0](https://github.com/norviah/media-hub/compare/v0.3.0...v0.4.0) (2023-11-10)
 
 ### Features
