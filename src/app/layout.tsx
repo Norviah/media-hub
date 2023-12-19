@@ -1,6 +1,7 @@
 import { TailwindIndicator } from '@/components/TailwindIndicator';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { ToastProvider } from '@/components/ToastProvider';
+import { Analytics } from '@vercel/analytics/react';
 
 import { cn } from '@/utils/cn';
 
@@ -28,6 +29,7 @@ export default function RootLayout(props: LayoutProps): JSX.Element {
           {props.children}
         </ThemeProvider>
         <TailwindIndicator />
+        <Analytics />
         <ToastProvider />
       </body>
     </html>
