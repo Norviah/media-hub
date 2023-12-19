@@ -1,6 +1,6 @@
 'use client';
 
-import { toast } from '@/hooks/useToast';
+import { toast } from 'sonner';
 import { cn } from '@/utils/cn';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { signIn } from 'next-auth/react';
@@ -45,15 +45,12 @@ export function Form(props: { callbackUrl: string }): JSX.Element {
     setEmailLoading(false);
 
     if (!signInResult?.ok || signInResult?.error === 'EmailSignin') {
-      return toast({
-        title: 'Something went wrong.',
+      return toast.error('Something went wrong.', {
         description: 'Your sign in request failed. Please try again.',
-        variant: 'destructive',
       });
     }
 
-    return toast({
-      title: 'Check your email',
+    return toast.message('Check your email', {
       description: 'A login link has been sent to your email, be sure to check your spam too.',
     });
   }

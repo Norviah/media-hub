@@ -1,6 +1,6 @@
 import { TailwindIndicator } from '@/components/TailwindIndicator';
 import { ThemeProvider } from '@/components/ThemeProvider';
-import { ToastProvider } from '@/components/ToastProvider';
+import { Toaster } from 'sonner';
 import { Analytics } from '@vercel/analytics/react';
 
 import { cn } from '@/utils/cn';
@@ -30,7 +30,7 @@ export default function RootLayout(props: LayoutProps): JSX.Element {
         </ThemeProvider>
         <TailwindIndicator />
         <Analytics />
-        <ToastProvider />
+        <Toaster position="bottom-left" />
       </body>
     </html>
   );

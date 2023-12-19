@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/Input';
 import { Label } from '@/components/ui/Label';
 
 import { updateName } from '@/actions/user';
-import { toast } from '@/hooks/useToast';
+import { toast } from 'sonner';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
@@ -45,17 +45,14 @@ export function UpdateNameForm({ user }: { user: Pick<User, 'id' | 'name'> }): J
     try {
       await updateName({ name: data.username, userId: user.id });
 
-      toast({
-        title: 'Success',
+      toast.success('Success', {
         description: 'Your name has been updated.',
       });
 
       router.refresh();
     } catch (e) {
-      toast({
-        title: 'Something went wrong.',
+      toast.error('Something went wrong.', {
         description: 'Your name was not updated. Please try again.',
-        variant: 'destructive',
       });
     } finally {
       setLoading(false);

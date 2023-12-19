@@ -9,13 +9,12 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { HoverCard } from '@/components/ui/HoverCard';
 import { Separator } from '@/components/ui/Separator';
 import { Switch } from '@/components/ui/Switch';
-import { ToastAction } from '@/components/ui/Toast';
 import { Blockquote } from '@/components/ui/typography/Blockquote';
 import { CodeBlock } from '@/components/ui/typography/CodeBlock';
 import { UnorderedList } from '@/components/ui/typography/UnorderedList';
 import { BellRingIcon, CheckIcon, ChevronDownIcon } from 'lucide-react';
 
-import { toast } from '@/hooks/useToast';
+import { toast } from 'sonner';
 import { cn } from '@/utils/cn';
 
 const notifications = [
@@ -115,18 +114,6 @@ export default function Home(): JSX.Element {
         <CardDemo2 />
         <br />
         <ThemeSelector />
-        <Button
-          variant="outline"
-          onClick={() => {
-            toast({
-              title: 'Scheduled: Catch up ',
-              description: 'Friday, February 10, 2023 at 5:57 PM',
-              action: <ToastAction altText="Goto schedule to undo">Undo</ToastAction>,
-            });
-          }}
-        >
-          Add to calendar
-        </Button>
         <div className="mb-5 mt-5">
           <Button variant="ghost">
             MENU
@@ -142,10 +129,44 @@ export default function Home(): JSX.Element {
           <li>3rd level of one-liners : 20 gold coins</li>
         </UnorderedList>
         <div className="grid grid-cols-5 gap-5">
-          <Button variant="default">Button</Button>
-          <Button variant="secondary">Button</Button>
-          <Button variant="destructive">Button</Button>
-          <Button variant="success">Button</Button>
+          <Button
+            variant="default"
+            onClick={() => {
+              toast.message('Title', {
+                description: 'Description',
+                action: {
+                  label: 'Action',
+                  onClick: () => console.log('Action!'),
+                },
+              });
+            }}
+          >
+            Button
+          </Button>
+          <Button
+            variant="secondary"
+            onClick={() => {
+              toast.info('Info', { description: 'Description' });
+            }}
+          >
+            Button
+          </Button>
+          <Button
+            variant="destructive"
+            onClick={() => {
+              toast.error('Error', { description: 'Description' });
+            }}
+          >
+            Button
+          </Button>
+          <Button
+            variant="success"
+            onClick={() => {
+              toast.success('Success', { description: 'Description' });
+            }}
+          >
+            Button
+          </Button>
           <Button variant="warn">Button</Button>
           <Button variant="ghost">Button</Button>
           <Button variant="link">Button</Button>
