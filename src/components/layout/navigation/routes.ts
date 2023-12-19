@@ -3,7 +3,7 @@ import type { Route } from '@/types/Route';
 
 export const nav: Route[] = [
   {
-    title: 'Discover',
+    title: 'Search',
     path: '/search',
     icon: SearchIcon,
   },
