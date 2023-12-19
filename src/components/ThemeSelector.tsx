@@ -38,7 +38,7 @@ export function ThemeSelector(): JSX.Element {
             <span className="sr-only">Toggle theme</span>
           </Button>
         </TooltipTrigger>
-        <TooltipContent>
+        <TooltipContent side="left">
           <p>{`Theme: ${theme.name} Mode`}</p>
         </TooltipContent>
       </Tooltip>
