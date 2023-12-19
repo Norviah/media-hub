@@ -1,4 +1,3 @@
-import { CommandMenu } from '@/components/CommandMenu';
 import { ThemeSelector } from '@/components/ThemeSelector';
 import { SpinnerIcon } from '@/components/icons/Spinner';
 import { Header } from '@/components/layout/Header';
@@ -22,10 +21,7 @@ export default function DashboardLayout(props: LayoutProps): JSX.Element {
       <Header div="justify-between">
         <NavBar />
         <div className="flex gap-3">
-          <div className="flex gap-1">
-            <CommandMenu />
-            <ThemeSelector />
-          </div>
+          <ThemeSelector />
           <Suspense
             fallback={
               <span className="inline-flex h-9 items-center justify-center rounded-md text-sm font-medium text-muted-foreground transition-colors">
