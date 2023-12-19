@@ -2,6 +2,7 @@ import { TailwindIndicator } from '@/components/TailwindIndicator';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { Toaster } from 'sonner';
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 import { cn } from '@/utils/cn';
 
@@ -30,6 +31,7 @@ export default function RootLayout(props: LayoutProps): JSX.Element {
         </ThemeProvider>
         <TailwindIndicator />
         <Analytics />
+        <SpeedInsights />
         <Toaster position="bottom-left" />
       </body>
     </html>
