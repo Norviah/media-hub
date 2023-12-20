@@ -25,7 +25,7 @@ export default async function SearchPage({ searchParams }: PageProps): Promise<J
   }
 
   const filter = filters.find((item) => item.slug === searchParams.filter) || defaultFilter;
-  const layout = layouts.find((item) => item.slug === searchParams.sort) || defaultLayout;
+  const layout = layouts.find((item) => item.slug === searchParams.layout) || defaultLayout;
   const results = await query({ prompt: searchValue, type: filter.key });
 
   if (results === null || searchValue?.length === 0) {

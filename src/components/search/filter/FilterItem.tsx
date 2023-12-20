@@ -10,14 +10,14 @@ import type { Route } from '@/types/Route';
 import type { ListItem } from './FilterList';
 
 export function FilterItem({ item }: { item: ListItem }): JSX.Element {
-  const type = item.type === 'FILTER' ? 'filter' : 'sort';
+  const type = item.type === 'FILTER' ? 'filter' : 'layout';
 
   const pathname = usePathname() as Route['path'];
   const searchParams = useSearchParams();
 
   const active = searchParams.get(type) === item.slug;
   const q = searchParams.get('q');
-  const sort = searchParams.get('sort');
+  const layout = searchParams.get('layout');
   const filter = searchParams.get('filter');
 
   const href = createUrl(
@@ -25,7 +25,7 @@ export function FilterItem({ item }: { item: ListItem }): JSX.Element {
     new URLSearchParams({
       ...(q && { q }),
       ...(filter && type !== 'filter' && { filter }),
-      ...(sort && type !== 'sort' && { sort }),
+      ...(layout && type !== 'layout' && { layout }),
       ...(item.slug && item.slug.length && { [type]: item.key }),
     })
   );

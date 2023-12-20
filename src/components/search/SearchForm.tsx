@@ -18,7 +18,7 @@ export function SearchForm({ placeholder }: { placeholder: string | undefined })
   const router = useRouter();
 
   const filter = searchParams.get('filter');
-  const sort = searchParams.get('sort');
+  const layout = searchParams.get('layout');
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -28,7 +28,7 @@ export function SearchForm({ placeholder }: { placeholder: string | undefined })
       new URLSearchParams({
         q: inputValue,
         ...(filter && { filter }),
-        ...(sort && { sort }),
+        ...(layout && { layout }),
       })
     );
 
