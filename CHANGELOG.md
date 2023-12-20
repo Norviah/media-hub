@@ -1,6 +1,26 @@
 ## Unreleased
 
+### UI
+
+- **components/UserMenu**: remove outline on profile picture when focused <code>[ec2641e](https://github.com/Norviah/media-hub.git/commit/ec2641e01faf8ad041c923ba12a11b2c88bb378d)</code>
+
+- **components/ThemeSelector**: render the tooltip to the left of the button <code>[a571be8](https://github.com/Norviah/media-hub.git/commit/a571be8669700c6535d38cc0b6555554e4ea6f2d)</code>
+
+- **theme**: darken/lighten dark/light mode <code>[ef1b27b](https://github.com/Norviah/media-hub.git/commit/ef1b27bff6b391585895fe4c47edeebbf35dac12)</code>
+
+- **page/search**: remove x padding <code>[6216fc6](https://github.com/Norviah/media-hub.git/commit/6216fc6b5bafa8d34682bbbe0b43f89f9256f970)</code>
+
+- **components/Card**: remove border for all cards <code>[3c8e31c](https://github.com/Norviah/media-hub.git/commit/3c8e31c7052d4b3bf60a6c5cff0c697a03ac0ffd)</code>
+
+- **layout**: remove the command menu from the header <code>[1d89a0c](https://github.com/Norviah/media-hub.git/commit/1d89a0c9c4a43f99eb12301fac8fca6d14e8b37b)</code>
+
+- **components/ThemeSelector**: factor component to be a toggle button <code>[7efa4d6](https://github.com/Norviah/media-hub.git/commit/7efa4d66b109d712c08934e5839283134922a905)</code>
+
+- implement the 'brandon grotesque' font <code>[2d9f956](https://github.com/Norviah/media-hub.git/commit/2d9f956c50450fe8ad201953cd1d0a6bfaefff65)</code>
+
 ### Features
+
+- **prisma**: use prisma accelerate <code>[8dd2ffa](https://github.com/Norviah/media-hub.git/commit/8dd2ffaff55111edcfef80e3b11c7f1ed4939571)</code>
 
 - **components/SearchForm**: keep filters and layout when searching for a query <code>[b539067](https://github.com/Norviah/media-hub.git/commit/b5390678f02bf580de57e80fd0212afc0f70d873)</code>
 
@@ -17,22 +37,6 @@
 - **types**: update page props to include undefined values <code>[a80d16c](https://github.com/Norviah/media-hub.git/commit/a80d16c7319fd0da96fad356e0accb533e16a51d)</code>
 
 - use server actions for api calls <code>[4badc19](https://github.com/Norviah/media-hub.git/commit/4badc19ce7adcfd6256f6d9b3ebd049c58399a81)</code>
-
-### UI
-
-- **components/ThemeSelector**: render the tooltip to the left of the button <code>[a571be8](https://github.com/Norviah/media-hub.git/commit/a571be8669700c6535d38cc0b6555554e4ea6f2d)</code>
-
-- **theme**: darken/lighten dark/light mode <code>[ef1b27b](https://github.com/Norviah/media-hub.git/commit/ef1b27bff6b391585895fe4c47edeebbf35dac12)</code>
-
-- **page/search**: remove x padding <code>[6216fc6](https://github.com/Norviah/media-hub.git/commit/6216fc6b5bafa8d34682bbbe0b43f89f9256f970)</code>
-
-- **components/Card**: remove border for all cards <code>[3c8e31c](https://github.com/Norviah/media-hub.git/commit/3c8e31c7052d4b3bf60a6c5cff0c697a03ac0ffd)</code>
-
-- **layout**: remove the command menu from the header <code>[1d89a0c](https://github.com/Norviah/media-hub.git/commit/1d89a0c9c4a43f99eb12301fac8fca6d14e8b37b)</code>
-
-- **components/ThemeSelector**: factor component to be a toggle button <code>[7efa4d6](https://github.com/Norviah/media-hub.git/commit/7efa4d66b109d712c08934e5839283134922a905)</code>
-
-- implement the 'brandon grotesque' font <code>[2d9f956](https://github.com/Norviah/media-hub.git/commit/2d9f956c50450fe8ad201953cd1d0a6bfaefff65)</code>
 
 ## [v0.4.0](https://github.com/Norviah/media-hub.git/compare/v0.3.0...v0.4.0) (2023-11-10)
 
