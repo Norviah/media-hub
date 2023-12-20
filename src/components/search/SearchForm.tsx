@@ -5,17 +5,34 @@ import { Input } from '@/components/ui/Input';
 import { Label } from '@/components/ui/Label';
 import { SearchIcon } from 'lucide-react';
 
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
+import { createUrl } from './createUrl';
+
+import type { Route } from '@/types/Route';
 
 export function SearchForm({ placeholder }: { placeholder: string | undefined }): JSX.Element {
   const [inputValue, setInputValue] = useState('');
+
+  const searchParams = useSearchParams();
   const router = useRouter();
+
+  const filter = searchParams.get('filter');
+  const sort = searchParams.get('sort');
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    router.push(`/search?q=${encodeURIComponent(inputValue)}`);
+    const href: Route['path'] = createUrl(
+      '/search',
+      new URLSearchParams({
+        q: inputValue,
+        ...(filter && { filter }),
+        ...(sort && { sort }),
+      })
+    );
+
+    router.push(href);
   };
 
   return (
