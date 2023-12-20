@@ -4,22 +4,15 @@ import Link from 'next/link';
 
 import { cn } from '@/utils/cn';
 import { usePathname, useSearchParams } from 'next/navigation';
+import { createUrl } from '../createUrl';
 
 import type { Route } from '@/types/Route';
-import type { ReadonlyURLSearchParams } from 'next/navigation';
 import type { ListItem } from './FilterList';
-
-function createUrl(pathname: string, params: URLSearchParams | ReadonlyURLSearchParams): string {
-  const paramsString = params.toString();
-  const queryString = `${paramsString.length ? '?' : ''}${paramsString}`;
-
-  return `${pathname}${queryString}`;
-}
 
 export function FilterItem({ item }: { item: ListItem }): JSX.Element {
   const type = item.type === 'FILTER' ? 'filter' : 'sort';
 
-  const pathname = usePathname();
+  const pathname = usePathname() as Route['path'];
   const searchParams = useSearchParams();
 
   const active = searchParams.get(type) === item.slug;
@@ -35,7 +28,7 @@ export function FilterItem({ item }: { item: ListItem }): JSX.Element {
       ...(sort && type !== 'sort' && { sort }),
       ...(item.slug && item.slug.length && { [type]: item.key }),
     })
-  ) as Route['path'];
+  );
 
   const DynamicTag = active ? 'p' : Link;
 
