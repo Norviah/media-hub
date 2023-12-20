@@ -1,5 +1,19 @@
 ## Unreleased
 
+### Refactored
+
+- **next-auth**: use the default prisma adapter <code>[8e9cb54](https://github.com/Norviah/media-hub.git/commit/8e9cb545c0fabb999aebbd87225e85b3a263ddd8)</code>
+
+- **page/search**: rename the `sort` parameter to `layout` <code>[d917b79](https://github.com/Norviah/media-hub.git/commit/d917b79143d1a90bf8e5eea6f2069246bf40fd67)</code>
+
+- **components/search**: extract `createUrl` into its own file <code>[4c62c80](https://github.com/Norviah/media-hub.git/commit/4c62c80953f045347962e178e0b390046e8eaf50)</code>
+
+- use `sonner` for toast notifications <code>[fdae805](https://github.com/Norviah/media-hub.git/commit/fdae805ba9f4bcc7fc515758810e19b7c7b4d864)</code>
+
+- **types**: update page props to include undefined values <code>[a80d16c](https://github.com/Norviah/media-hub.git/commit/a80d16c7319fd0da96fad356e0accb533e16a51d)</code>
+
+- use server actions for api calls <code>[4badc19](https://github.com/Norviah/media-hub.git/commit/4badc19ce7adcfd6256f6d9b3ebd049c58399a81)</code>
+
 ### UI
 
 - **components/UserMenu**: remove outline on profile picture when focused <code>[ec2641e](https://github.com/Norviah/media-hub.git/commit/ec2641e01faf8ad041c923ba12a11b2c88bb378d)</code>
@@ -27,16 +41,6 @@
 - implement a search system with TMDB <code>[af124fa](https://github.com/Norviah/media-hub.git/commit/af124fa9e37afe9638325b9f37c9ca14133c076f)</code>
 
 - **components/Button**: add a variant for icon buttons <code>[ab59cf2](https://github.com/Norviah/media-hub.git/commit/ab59cf26bc97058396bd4603351dc1edaf4d39de)</code>
-
-### Refactored
-
-- **components/search**: extract `createUrl` into its own file <code>[4c62c80](https://github.com/Norviah/media-hub.git/commit/4c62c80953f045347962e178e0b390046e8eaf50)</code>
-
-- use `sonner` for toast notifications <code>[fdae805](https://github.com/Norviah/media-hub.git/commit/fdae805ba9f4bcc7fc515758810e19b7c7b4d864)</code>
-
-- **types**: update page props to include undefined values <code>[a80d16c](https://github.com/Norviah/media-hub.git/commit/a80d16c7319fd0da96fad356e0accb533e16a51d)</code>
-
-- use server actions for api calls <code>[4badc19](https://github.com/Norviah/media-hub.git/commit/4badc19ce7adcfd6256f6d9b3ebd049c58399a81)</code>
 
 ## [v0.4.0](https://github.com/Norviah/media-hub.git/compare/v0.3.0...v0.4.0) (2023-11-10)
 
