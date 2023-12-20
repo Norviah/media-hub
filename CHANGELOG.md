@@ -1,6 +1,6 @@
 ## Unreleased
 
-### Refactored
+### Refactors
 
 - **next-auth**: use the default prisma adapter <code>[8e9cb54](https://github.com/Norviah/media-hub.git/commit/8e9cb545c0fabb999aebbd87225e85b3a263ddd8)</code>
 
@@ -100,7 +100,7 @@
 
 - **components**: set the cursor to point when hovering over a command item <code>[5efcf4e](https://github.com/Norviah/media-hub.git/commit/5efcf4ec86107cdc112f3f442350120e0a8723ea)</code>
 
-### Refactored
+### Refactors
 
 - **css**: group light mode values under a class <code>[9d01668](https://github.com/Norviah/media-hub.git/commit/9d016686d65025111a1b401e9ff282f7f2270644)</code>
 
@@ -172,7 +172,7 @@
 
 ## [v0.2.0](https://github.com/Norviah/media-hub.git/compare/v0.1.0...v0.2.0) (2023-04-08)
 
-### Refactored
+### Refactors
 
 - reorganize project into root directory <code>[64a76cb](https://github.com/Norviah/media-hub.git/commit/64a76cbde542b3f6909a14359e17e77b21de5160)</code>
 
