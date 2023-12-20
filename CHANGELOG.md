@@ -1,5 +1,9 @@
 ## Unreleased
 
+### Build System
+
+- **bump**: rename the title for the `refactor` type to `Refactor` <code>[bb229af](https://github.com/Norviah/media-hub.git/commit/bb229af1a3a611c19eafc85b00f9fecff98ac917)</code>
+
 ### Refactors
 
 - **next-auth**: use the default prisma adapter <code>[8e9cb54](https://github.com/Norviah/media-hub.git/commit/8e9cb545c0fabb999aebbd87225e85b3a263ddd8)</code>
