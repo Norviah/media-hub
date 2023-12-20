@@ -35,7 +35,7 @@ export function UserMenu({ user }: UserAccountNavProps): JSX.Element {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger>
+      <DropdownMenuTrigger className="focus:outline-none">
         <Avatar className="h-8 w-8">
           {user.image ? (
             <>
