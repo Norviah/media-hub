@@ -2,11 +2,11 @@
 
 ### UI
 
-- **page/search**: increase font size of filter/sort list titles <code>[00e5548](https://github.com/Norviah/media-hub/commit/00e5548a862ddc4fc7eab7130f74e9be22b0a759)</code>
+- **page/search**: increase font size of filter/sort list titles <code>[7d6771f](https://github.com/Norviah/media-hub/commit/7d6771f6ccbade0bed0a3892d0dee1d0171c644a)</code>
 
-- **theme**: darken the input border for light mode <code>[bda1ba3](https://github.com/Norviah/media-hub/commit/bda1ba3bdf263b997752dca5e33bc3455a69c9d5)</code>
+- **theme**: darken the input border for light mode <code>[911b589](https://github.com/Norviah/media-hub/commit/911b589649ee839ff8765dd489afe87f287f5a29)</code>
 
-- **component/DropMenu**: use the theme's border color for separators <code>[0d92aa6](https://github.com/Norviah/media-hub/commit/0d92aa649e61c41c76c30c957b03582dda775c71)</code>
+- **component/DropMenu**: use the theme's border color for separators <code>[917ce17](https://github.com/Norviah/media-hub/commit/917ce17eead4429e3f859806b2642e5dd5d934c4)</code>
 
 - **components/UserMenu**: remove outline on profile picture when focused <code>[ec2641e](https://github.com/Norviah/media-hub/commit/ec2641e01faf8ad041c923ba12a11b2c88bb378d)</code>
 
@@ -26,7 +26,7 @@
 
 ### Build System
 
-- **bump**: rename the title for the `refactor` type to `Refactor` <code>[bb229af](https://github.com/Norviah/media-hub/commit/bb229af1a3a611c19eafc85b00f9fecff98ac917)</code>
+- **bump**: rename the title for the `refactor` type to `Refactors` <code>[7f4d9d3](https://github.com/Norviah/media-hub/commit/7f4d9d324138fbc936716edc24bd9dd3b2dde5a8)</code>
 
 ### Refactors
 
