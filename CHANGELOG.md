@@ -1,6 +1,20 @@
 ## Unreleased
 
+### Features
+
+- **page/search**: implement a loading state <code>[46ac61f](https://github.com/Norviah/media-hub/commit/46ac61f33cbc8497433e46e14cbca6fa91c01dc3)</code>
+
+- **prisma**: use prisma accelerate <code>[8dd2ffa](https://github.com/Norviah/media-hub/commit/8dd2ffaff55111edcfef80e3b11c7f1ed4939571)</code>
+
+- **components/SearchForm**: keep filters and layout when searching for a query <code>[b539067](https://github.com/Norviah/media-hub/commit/b5390678f02bf580de57e80fd0212afc0f70d873)</code>
+
+- implement a search system with TMDB <code>[af124fa](https://github.com/Norviah/media-hub/commit/af124fa9e37afe9638325b9f37c9ca14133c076f)</code>
+
+- **components/Button**: add a variant for icon buttons <code>[ab59cf2](https://github.com/Norviah/media-hub/commit/ab59cf26bc97058396bd4603351dc1edaf4d39de)</code>
+
 ### UI
+
+- **components/Skeleton**: darken skeleton's background color <code>[f05a074](https://github.com/Norviah/media-hub/commit/f05a07465f3f7addd76a3c454007507b59dbdaf8)</code>
 
 - **page/search**: increase font size of filter/sort list titles <code>[7d6771f](https://github.com/Norviah/media-hub/commit/7d6771f6ccbade0bed0a3892d0dee1d0171c644a)</code>
 
@@ -24,11 +38,9 @@
 
 - implement the 'brandon grotesque' font <code>[2d9f956](https://github.com/Norviah/media-hub/commit/2d9f956c50450fe8ad201953cd1d0a6bfaefff65)</code>
 
-### Build System
-
-- **bump**: rename the title for the `refactor` type to `Refactors` <code>[7f4d9d3](https://github.com/Norviah/media-hub/commit/7f4d9d324138fbc936716edc24bd9dd3b2dde5a8)</code>
-
 ### Refactors
+
+- **page/search**: use the `img` component when rendering images <code>[67667da](https://github.com/Norviah/media-hub/commit/67667dafa8f84e51921dd24d5a9953442a2c36e3)</code>
 
 - **next-auth**: use the default prisma adapter <code>[8e9cb54](https://github.com/Norviah/media-hub/commit/8e9cb545c0fabb999aebbd87225e85b3a263ddd8)</code>
 
@@ -42,15 +54,9 @@
 
 - use server actions for api calls <code>[4badc19](https://github.com/Norviah/media-hub/commit/4badc19ce7adcfd6256f6d9b3ebd049c58399a81)</code>
 
-### Features
+### Build System
 
-- **prisma**: use prisma accelerate <code>[8dd2ffa](https://github.com/Norviah/media-hub/commit/8dd2ffaff55111edcfef80e3b11c7f1ed4939571)</code>
-
-- **components/SearchForm**: keep filters and layout when searching for a query <code>[b539067](https://github.com/Norviah/media-hub/commit/b5390678f02bf580de57e80fd0212afc0f70d873)</code>
-
-- implement a search system with TMDB <code>[af124fa](https://github.com/Norviah/media-hub/commit/af124fa9e37afe9638325b9f37c9ca14133c076f)</code>
-
-- **components/Button**: add a variant for icon buttons <code>[ab59cf2](https://github.com/Norviah/media-hub/commit/ab59cf26bc97058396bd4603351dc1edaf4d39de)</code>
+- **bump**: rename the title for the `refactor` type to `Refactors` <code>[7f4d9d3](https://github.com/Norviah/media-hub/commit/7f4d9d324138fbc936716edc24bd9dd3b2dde5a8)</code>
 
 ## [v0.4.0](https://github.com/Norviah/media-hub/compare/v0.3.0...v0.4.0) (2023-11-10)
 
