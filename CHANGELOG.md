@@ -1,18 +1,8 @@
 ## Unreleased
 
-### Features
-
-- **page/search**: implement a loading state <code>[46ac61f](https://github.com/Norviah/media-hub/commit/46ac61f33cbc8497433e46e14cbca6fa91c01dc3)</code>
-
-- **prisma**: use prisma accelerate <code>[8dd2ffa](https://github.com/Norviah/media-hub/commit/8dd2ffaff55111edcfef80e3b11c7f1ed4939571)</code>
-
-- **components/SearchForm**: keep filters and layout when searching for a query <code>[b539067](https://github.com/Norviah/media-hub/commit/b5390678f02bf580de57e80fd0212afc0f70d873)</code>
-
-- implement a search system with TMDB <code>[af124fa](https://github.com/Norviah/media-hub/commit/af124fa9e37afe9638325b9f37c9ca14133c076f)</code>
-
-- **components/Button**: add a variant for icon buttons <code>[ab59cf2](https://github.com/Norviah/media-hub/commit/ab59cf26bc97058396bd4603351dc1edaf4d39de)</code>
-
 ### UI
+
+- **sonnor**: set background color of toast notifications to reflect a cards background color <code>[8ee277a](https://github.com/Norviah/media-hub/commit/8ee277a05dab662570f0a513c735590fe1c77e9b)</code>
 
 - **components/Skeleton**: darken skeleton's background color <code>[f05a074](https://github.com/Norviah/media-hub/commit/f05a07465f3f7addd76a3c454007507b59dbdaf8)</code>
 
@@ -40,6 +30,8 @@
 
 ### Refactors
 
+- **page/search**: refactor search page's logic to reflect a three state behavior <code>[87faa7b](https://github.com/Norviah/media-hub/commit/87faa7b1ac7954e00533a062c75de2300b6cf80f)</code>
+
 - **page/search**: use the `img` component when rendering images <code>[67667da](https://github.com/Norviah/media-hub/commit/67667dafa8f84e51921dd24d5a9953442a2c36e3)</code>
 
 - **next-auth**: use the default prisma adapter <code>[8e9cb54](https://github.com/Norviah/media-hub/commit/8e9cb545c0fabb999aebbd87225e85b3a263ddd8)</code>
@@ -53,6 +45,20 @@
 - **types**: update page props to include undefined values <code>[a80d16c](https://github.com/Norviah/media-hub/commit/a80d16c7319fd0da96fad356e0accb533e16a51d)</code>
 
 - use server actions for api calls <code>[4badc19](https://github.com/Norviah/media-hub/commit/4badc19ce7adcfd6256f6d9b3ebd049c58399a81)</code>
+
+### Features
+
+- **page/search**: add error handling and retry functionality <code>[f69f07a](https://github.com/Norviah/media-hub/commit/f69f07ae37fb20b5d6f479cfe5bd8a897522a65e)</code>
+
+- **page/search**: implement a loading state <code>[46ac61f](https://github.com/Norviah/media-hub/commit/46ac61f33cbc8497433e46e14cbca6fa91c01dc3)</code>
+
+- **prisma**: use prisma accelerate <code>[8dd2ffa](https://github.com/Norviah/media-hub/commit/8dd2ffaff55111edcfef80e3b11c7f1ed4939571)</code>
+
+- **components/SearchForm**: keep filters and layout when searching for a query <code>[b539067](https://github.com/Norviah/media-hub/commit/b5390678f02bf580de57e80fd0212afc0f70d873)</code>
+
+- implement a search system with TMDB <code>[af124fa](https://github.com/Norviah/media-hub/commit/af124fa9e37afe9638325b9f37c9ca14133c076f)</code>
+
+- **components/Button**: add a variant for icon buttons <code>[ab59cf2](https://github.com/Norviah/media-hub/commit/ab59cf26bc97058396bd4603351dc1edaf4d39de)</code>
 
 ### Build System
 
