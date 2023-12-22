@@ -24,13 +24,12 @@ type Props = {
 export function Results(props: Props): JSX.Element {
   const [movies, setMovies] = useState<Media[]>(props.initialResults.data);
   const [page, setPage] = useState<number>(props.initialResults.page);
-  const [done, setDone] = useState<boolean>(props.initialResults.totlePages === props.initialResults.page);
-  const [error, setError] = useState<boolean>(false);
+  const [state, setState] = useState<'LOADING' | 'ERROR' | 'DONE'>('LOADING');
 
   const [ref, inView] = useInView();
 
   async function loadMore(): Promise<void> {
-    if (done) {
+    if (state === 'DONE') {
       return;
     }
 
@@ -41,7 +40,7 @@ export function Results(props: Props): JSX.Element {
 
       if (nextMovies?.data.length) {
         if (nextMovies.totlePages === nextMovies.page) {
-          setDone(true);
+          setState('DONE');
         } else {
           setPage(nextPage);
         }
@@ -52,12 +51,12 @@ export function Results(props: Props): JSX.Element {
       }
     } catch (e) {
       toast.error('Something went wrong, please try again in a bit.');
-      setError(true);
+      setState('ERROR');
     }
   }
 
   useEffect(() => {
-    if (inView && !error) {
+    if (inView && state === 'LOADING') {
       loadMore();
     }
   }, [inView]);
@@ -65,7 +64,7 @@ export function Results(props: Props): JSX.Element {
   useEffect(() => {
     setMovies(props.initialResults.data);
     setPage(props.initialResults.page);
-    setDone(props.initialResults.totlePages === props.initialResults.page);
+    setState(props.initialResults.totlePages === props.initialResults.page ? 'DONE' : 'LOADING');
   }, [props.initialResults]);
 
   return (
@@ -83,15 +82,15 @@ export function Results(props: Props): JSX.Element {
       }
     >
       <MediaItems results={movies} layout={props.layout} />
-      {!done && (
+      {!(state === 'DONE') && (
         <div ref={ref} className="mt-5 flex justify-center">
-          {!error ? (
+          {state === 'LOADING' ? (
             <SpinnerIcon className="h-6 w-6" />
           ) : (
             <Button
               onClick={() => {
+                setState('LOADING');
                 loadMore();
-                setError(false);
               }}
             >
               Try again
