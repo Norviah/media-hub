@@ -36,7 +36,7 @@ export default function RootLayout(props: LayoutProps): JSX.Element {
           position="bottom-left"
           toastOptions={{
             classNames: {
-              toast: 'bg-card border-border text-primary',
+              toast: 'bg-card border-border text-foreground',
             },
           }}
         />
