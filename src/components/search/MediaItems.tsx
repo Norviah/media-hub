@@ -28,7 +28,7 @@ function parse(media: Media): Information {
 function ListCard({ media }: { media: Information }): JSX.Element {
   return (
     <Card className="flex w-full flex-row">
-      <Image
+      <img
         alt={media.name}
         className="rounded-l-lg object-cover"
         src={media.picture ? `https://image.tmdb.org/t/p/original${media.picture}` : ''}
@@ -54,7 +54,7 @@ function ListCard({ media }: { media: Information }): JSX.Element {
 function ImageCard({ media }: { media: Information }): JSX.Element {
   return (
     <Card className="relative inline-block h-full w-full border-none">
-      <Image
+      <img
         alt={media.name}
         className={'relative h-full w-full rounded-lg object-contain'}
         src={media.picture ? `https://image.tmdb.org/t/p/original/${media.picture}` : ''}
