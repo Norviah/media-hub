@@ -1,10 +1,10 @@
 'use client';
 
 import { SpinnerIcon } from '@/components/icons/Spinner';
+import { SearchContainer } from './Container';
 import { MediaItems } from './MediaItems';
-import { SearchForm } from './SearchForm';
 
-import { query } from '@/actions/tmdb';
+import { search } from '@/actions/tmdb';
 import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 
@@ -31,7 +31,7 @@ export function Results(props: Props): JSX.Element {
     }
 
     const nextPage = page + 1;
-    const nextMovies = await query({ prompt: props.prompt, page: nextPage, type: props.filter });
+    const nextMovies = await search({ query: props.prompt, page: nextPage, type: props.filter });
 
     if (nextMovies?.data.length) {
       if (nextMovies.totlePages === nextMovies.page) {
@@ -59,24 +59,25 @@ export function Results(props: Props): JSX.Element {
   }, [props.initialResults]);
 
   return (
-    <>
-      <div className="mb-4 flex justify-between">
-        <SearchForm placeholder={props.prompt} />
-        {props.prompt ? (
+    <SearchContainer
+      placeholder={props.prompt}
+      header={
+        props.prompt ? (
           <p>
             {movies.length === 0
               ? 'There are no results that match '
               : `Showing ${movies.length} ${movies.length > 1 ? 'results' : 'result'} for `}
             <span className="font-bold">&quot;{props.prompt}&quot;</span>
           </p>
-        ) : null}
-      </div>
+        ) : null
+      }
+    >
       <MediaItems results={movies} layout={props.layout} />
       {!done && (
         <div ref={ref} className="mt-5 flex justify-center">
           <SpinnerIcon className="h-6 w-6" />
         </div>
       )}
-    </>
+    </SearchContainer>
   );
 }

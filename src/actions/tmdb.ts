@@ -6,7 +6,7 @@ import type { Media } from '@/types/Media';
 import type { Movie, Search, TV } from '@/types/tmdb';
 
 type Props = {
-  prompt: string;
+  query: string;
   page?: number;
   type: Media['type'];
 };
@@ -17,7 +17,7 @@ export type QueryResult = {
   totlePages: number;
 };
 
-export async function query({ prompt, page = 1, type }: Props): Promise<QueryResult | null> {
+export async function search({ query: prompt, page = 1, type }: Props): Promise<QueryResult | null> {
   const url = `https://api.themoviedb.org/3/search/${type}?query=${prompt}&include_adult=false&language=en-US&page=${page}`;
 
   const tmdbOptoins = {

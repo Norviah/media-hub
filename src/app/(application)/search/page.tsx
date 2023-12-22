@@ -1,10 +1,10 @@
-import { Results } from '@/components/search/Results';
-import { SearchForm } from '@/components/search/SearchForm';
+import { Search } from '@/components/search/Search';
+import { Suspense } from 'react';
 
-import { query } from '@/actions/tmdb';
 import { defaultFilter, defaultLayout, filters, layouts } from '@/components/search/constants';
 
 import type { PageProps } from '@/types/components/PageProps';
+import SearchSkeleton from '@/components/search/Skeleton';
 
 export const metadata = {
   title: 'Search',
@@ -12,32 +12,13 @@ export const metadata = {
 };
 
 export default async function SearchPage({ searchParams }: PageProps): Promise<JSX.Element> {
-  const searchValue = searchParams.q ? (Array.isArray(searchParams.q) ? searchParams.q[0] : searchParams.q) : undefined;
-
-  if (!searchValue) {
-    return (
-      <>
-        <div className="mb-4 flex justify-between">
-          <SearchForm placeholder={'Search for something!'} />
-        </div>
-      </>
-    );
-  }
-
   const filter = filters.find((item) => item.slug === searchParams.filter) || defaultFilter;
   const layout = layouts.find((item) => item.slug === searchParams.layout) || defaultLayout;
-  const results = await query({ prompt: searchValue, type: filter.key });
+  const query = searchParams.q ? (Array.isArray(searchParams.q) ? searchParams.q[0] : searchParams.q) : undefined;
 
-  if (results === null || searchValue?.length === 0) {
-    return (
-      <>
-        <div className="mb-4 flex justify-between">
-          <SearchForm placeholder={searchValue} />
-        </div>
-        That query didn&apos;t provide any results, please try a new one.
-      </>
-    );
-  }
-
-  return <Results prompt={searchValue} layout={layout.key} initialResults={results} filter={filter.key} />;
+  return (
+    <Suspense fallback={<SearchSkeleton query={query} layout={layout.key} />}>
+      <Search layout={layout} filter={filter} query={query} />
+    </Suspense>
+  );
 }
