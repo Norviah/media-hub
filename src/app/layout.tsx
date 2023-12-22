@@ -32,7 +32,14 @@ export default function RootLayout(props: LayoutProps): JSX.Element {
         <TailwindIndicator />
         <Analytics />
         <SpeedInsights />
-        <Toaster position="bottom-left" />
+        <Toaster
+          position="bottom-left"
+          toastOptions={{
+            classNames: {
+              toast: 'bg-card border-border text-primary',
+            },
+          }}
+        />
       </body>
     </html>
   );
