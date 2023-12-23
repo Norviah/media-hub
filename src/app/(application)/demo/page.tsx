@@ -16,6 +16,20 @@ import { BellRingIcon, CheckIcon, ChevronDownIcon } from 'lucide-react';
 
 import { toast } from 'sonner';
 import { cn } from '@/utils/cn';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuPortal,
+  DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuTrigger,
+} from '@/components/ui/DropdownMenu';
 
 const notifications = [
   {
@@ -46,7 +60,7 @@ function CardDemo({ className, ...props }: CardProps) {
           <BellRingIcon />
           <div className="flex-1 space-y-1">
             <p className="text-sm font-medium leading-none">Push Notifications</p>
-            <p className="text-sm text-muted-foreground">Send notifications to device.</p>
+            <p className="text-sm text-card-muted">Send notifications to device.</p>
           </div>
           <Switch />
         </div>
@@ -56,7 +70,7 @@ function CardDemo({ className, ...props }: CardProps) {
               <span className="flex h-2 w-2 translate-y-1 rounded-full bg-nord-green" />
               <div className="space-y-1">
                 <p className="text-sm font-medium leading-none">{notification.title}</p>
-                <p className="text-sm text-muted-foreground">{notification.description}</p>
+                <p className="text-sm text-card-muted">{notification.description}</p>
               </div>
             </div>
           ))}
@@ -85,7 +99,7 @@ function CardDemo2({ className, ...props }: CardProps) {
         <CardTitle>Arctic</CardTitle>
       </CardHeader>
       <CardContent className="grid">
-        <p className="text-sm text-muted-foreground">
+        <p className="text-sm text-card-muted">
           Lorem ipsum dolor sit amet, consectetur ipsum. Ut id convallis nisi. Aliquam feugiat maximus blandit. Duis viverra
           fringilla imperdiet. Proin efficitur euismod sapien, eu dictum orci rutrum eget.
         </p>
@@ -187,6 +201,65 @@ export default function Home(): JSX.Element {
           <Button variant="link">Button</Button>
           <Button variant="outline">Button</Button>
         </div>
+
+        <div className="m-10 flex w-full justify-center">
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild className="focus:outline-none">
+              <Button variant="outline">Open</Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="w-56">
+              <DropdownMenuLabel>My Account</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuGroup>
+                <DropdownMenuItem>
+                  Profile
+                  <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  Billing
+                  <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  Settings
+                  <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  Keyboard shortcuts
+                  <DropdownMenuShortcut>⌘K</DropdownMenuShortcut>
+                </DropdownMenuItem>
+              </DropdownMenuGroup>
+              <DropdownMenuSeparator />
+              <DropdownMenuGroup>
+                <DropdownMenuItem>Team</DropdownMenuItem>
+                <DropdownMenuSub>
+                  <DropdownMenuSubTrigger>Invite users</DropdownMenuSubTrigger>
+                  <DropdownMenuPortal>
+                    <DropdownMenuSubContent>
+                      <DropdownMenuItem>Email</DropdownMenuItem>
+                      <DropdownMenuItem>Message</DropdownMenuItem>
+                      <DropdownMenuSeparator />
+                      <DropdownMenuItem>More...</DropdownMenuItem>
+                    </DropdownMenuSubContent>
+                  </DropdownMenuPortal>
+                </DropdownMenuSub>
+                <DropdownMenuItem>
+                  New Team
+                  <DropdownMenuShortcut>⌘+T</DropdownMenuShortcut>
+                </DropdownMenuItem>
+              </DropdownMenuGroup>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>GitHub</DropdownMenuItem>
+              <DropdownMenuItem>Support</DropdownMenuItem>
+              <DropdownMenuItem disabled>API</DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>
+                Log out
+                <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
+
         <div className="mb-10">
           <Blockquote>
             {"After all, everyone enjoys a good joke, so it's only fair that they should pay for the privilege."}

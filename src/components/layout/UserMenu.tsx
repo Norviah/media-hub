@@ -57,7 +57,7 @@ export function UserMenu({ user }: UserAccountNavProps): JSX.Element {
         <div className="m-2 mt-3 flex items-center justify-start gap-2">
           <div className="flex flex-col space-y-1 leading-none">
             {user.name && <p className="font-medium">{user.name}</p>}
-            {user.email && <p className="min-w-[150px] max-w-[200px] truncate text-sm text-muted-card">{user.email}</p>}
+            {user.email && <p className="min-w-[150px] max-w-[200px] truncate text-sm text-card-muted">{user.email}</p>}
           </div>
         </div>
         <DropdownMenuSeparator />

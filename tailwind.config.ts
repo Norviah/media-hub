@@ -38,6 +38,7 @@ const config: Config = {
           DEFAULT: 'hsl(var(--foreground))',
           accent: 'hsl(var(--foreground-accent))',
           selected: 'hsl(var(--foreground-selected))',
+          muted: 'hsl(var(--foreground-muted))',
         },
         primary: {
           DEFAULT: 'hsl(var(--primary))',
@@ -74,9 +75,9 @@ const config: Config = {
         },
         card: {
           DEFAULT: 'hsl(var(--card))',
-          foreground: 'hsl(var(--card-foreground))',
           accent: 'hsl(var(--card-accent))',
           selected: 'hsl(var(--card-selected))',
+          muted: 'hsl(var(--card-muted))',
         },
       },
       borderRadius: {
