@@ -37,6 +37,10 @@ export default function RootLayout(props: LayoutProps): JSX.Element {
           toastOptions={{
             classNames: {
               toast: 'bg-card border-border text-foreground',
+              info: 'text-info',
+              success: 'text-success',
+              warning: 'text-warn',
+              error: 'text-red-400',
             },
           }}
         />
