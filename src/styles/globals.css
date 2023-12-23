@@ -39,6 +39,7 @@
     --newspaper-muted: 180 1% 30%;
   	--newspaper-gray: 0 0% 60%;
 
+    --info: var(--nord-blue);
     --destructive: var(--nord-red);
     --success: var(--nord-green);
     --warn: var(--nord-yellow);
@@ -70,6 +71,7 @@
 
     --primary-foreground: var(--background);
     --secondary-foreground: var(--background);
+    --info-foreground: var(--background);
     --destructive-foreground: var(--background);
     --success-foreground: var(--background);
     --warn-foreground: var(--background);
@@ -108,6 +110,7 @@
 
     --primary-foreground: var(--background);
     --secondary-foreground: var(--background);
+        --info-foreground: var(--background);
     --destructive-foreground: var(--background);
     --success-foreground: var(--background);
     --warn-foreground: var(--background);

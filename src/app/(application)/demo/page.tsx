@@ -152,6 +152,14 @@ export default function Home(): JSX.Element {
             Button
           </Button>
           <Button
+            variant="info"
+            onClick={() => {
+              toast.info('Info', { description: 'Description' });
+            }}
+          >
+            Button
+          </Button>
+          <Button
             variant="destructive"
             onClick={() => {
               toast.error('Error', { description: 'Description' });
@@ -167,7 +175,14 @@ export default function Home(): JSX.Element {
           >
             Button
           </Button>
-          <Button variant="warn">Button</Button>
+          <Button
+            variant="warn"
+            onClick={() => {
+              toast.warning('Warning', { description: 'Description' });
+            }}
+          >
+            Button
+          </Button>
           <Button variant="ghost">Button</Button>
           <Button variant="link">Button</Button>
           <Button variant="outline">Button</Button>
