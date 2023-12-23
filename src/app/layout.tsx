@@ -1,6 +1,6 @@
 import { TailwindIndicator } from '@/components/TailwindIndicator';
 import { ThemeProvider } from '@/components/ThemeProvider';
-import { Toaster } from 'sonner';
+import { ToastProvider } from '@/components/ToastProvider';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 
@@ -32,18 +32,7 @@ export default function RootLayout(props: LayoutProps): JSX.Element {
         <TailwindIndicator />
         <Analytics />
         <SpeedInsights />
-        <Toaster
-          position="bottom-left"
-          toastOptions={{
-            classNames: {
-              toast: 'bg-card border-border text-foreground',
-              info: 'text-info',
-              success: 'text-success',
-              warning: 'text-warn',
-              error: 'text-red-400',
-            },
-          }}
-        />
+        <ToastProvider />
       </body>
     </html>
   );
