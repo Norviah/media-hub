@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Link from 'next/link';
 
 import { Card } from '@/components/ui/Card';
@@ -45,7 +44,11 @@ function ListCard({ media }: { media: Information }): JSX.Element {
           <h2 className="text-lg font-semibold">{media.name}</h2>
           {media.year && <p className="mb-3 text-sm text-muted-foreground">{media.year}</p>}
         </span>
-        {media.overview && <p>{media.overview.length > 200 ? `${media.overview.substring(0, 200)}...` : media.overview}</p>}
+        {media.overview && (
+          <p className="text-foreground">
+            {media.overview.length > 200 ? `${media.overview.substring(0, 200)}...` : media.overview}
+          </p>
+        )}
       </div>
     </Card>
   );
