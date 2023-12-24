@@ -2,6 +2,16 @@
 
 ### UI
 
+- **tailwind**: infer theme colors from built-in tailwind colors <code>[4423b4e](https://github.com/Norviah/media-hub/commit/4423b4eebeb4e09a0b5af99dfe855dd5c1a0137e)</code>
+
+- **page/search**: set the color of list cards to the foreground color <code>[6d2b3fb](https://github.com/Norviah/media-hub/commit/6d2b3fbbdcc45f92af2f00446dbea900bc054746)</code>
+
+- **sonnor**: set the text color of notifications to reflect the type <code>[ef0fca5](https://github.com/Norviah/media-hub/commit/ef0fca5c5109cb26b3a3760abe4354aa19e64a72)</code>
+
+- **tailwind**: add a color for information <code>[e371c00](https://github.com/Norviah/media-hub/commit/e371c002754198b54f76cb46c1462248e01615b0)</code>
+
+- **sonnor**: change foreground color from `foreground` to `primary` <code>[d870afb](https://github.com/Norviah/media-hub/commit/d870afb07d9af15001c46310082e1d1a38c6676d)</code>
+
 - **sonnor**: set background color of toast notifications to reflect a cards background color <code>[8ee277a](https://github.com/Norviah/media-hub/commit/8ee277a05dab662570f0a513c735590fe1c77e9b)</code>
 
 - **components/Skeleton**: darken skeleton's background color <code>[f05a074](https://github.com/Norviah/media-hub/commit/f05a07465f3f7addd76a3c454007507b59dbdaf8)</code>
@@ -28,6 +38,26 @@
 
 - implement the 'brandon grotesque' font <code>[2d9f956](https://github.com/Norviah/media-hub/commit/2d9f956c50450fe8ad201953cd1d0a6bfaefff65)</code>
 
+### Features
+
+- **components**: add shadcn toaster components <code>[8eec58d](https://github.com/Norviah/media-hub/commit/8eec58da7b17d2a995532c34d2e8b6c77bd91ff7)</code>
+
+- **page/search**: add error handling and retry functionality <code>[f69f07a](https://github.com/Norviah/media-hub/commit/f69f07ae37fb20b5d6f479cfe5bd8a897522a65e)</code>
+
+- **page/search**: implement a loading state <code>[46ac61f](https://github.com/Norviah/media-hub/commit/46ac61f33cbc8497433e46e14cbca6fa91c01dc3)</code>
+
+- **prisma**: use prisma accelerate <code>[8dd2ffa](https://github.com/Norviah/media-hub/commit/8dd2ffaff55111edcfef80e3b11c7f1ed4939571)</code>
+
+- **components/SearchForm**: keep filters and layout when searching for a query <code>[b539067](https://github.com/Norviah/media-hub/commit/b5390678f02bf580de57e80fd0212afc0f70d873)</code>
+
+- implement a search system with TMDB <code>[af124fa](https://github.com/Norviah/media-hub/commit/af124fa9e37afe9638325b9f37c9ca14133c076f)</code>
+
+- **components/Button**: add a variant for icon buttons <code>[ab59cf2](https://github.com/Norviah/media-hub/commit/ab59cf26bc97058396bd4603351dc1edaf4d39de)</code>
+
+### Reverted
+
+- **tailwind**: do not mark tailwind utilities as important <code>[6862d38](https://github.com/Norviah/media-hub/commit/6862d38d11aeb1e5b42ef8701b4e2d1bab14ebb2)</code>
+
 ### Refactors
 
 - **page/search**: refactor search page's logic to reflect a three state behavior <code>[87faa7b](https://github.com/Norviah/media-hub/commit/87faa7b1ac7954e00533a062c75de2300b6cf80f)</code>
@@ -45,20 +75,6 @@
 - **types**: update page props to include undefined values <code>[a80d16c](https://github.com/Norviah/media-hub/commit/a80d16c7319fd0da96fad356e0accb533e16a51d)</code>
 
 - use server actions for api calls <code>[4badc19](https://github.com/Norviah/media-hub/commit/4badc19ce7adcfd6256f6d9b3ebd049c58399a81)</code>
-
-### Features
-
-- **page/search**: add error handling and retry functionality <code>[f69f07a](https://github.com/Norviah/media-hub/commit/f69f07ae37fb20b5d6f479cfe5bd8a897522a65e)</code>
-
-- **page/search**: implement a loading state <code>[46ac61f](https://github.com/Norviah/media-hub/commit/46ac61f33cbc8497433e46e14cbca6fa91c01dc3)</code>
-
-- **prisma**: use prisma accelerate <code>[8dd2ffa](https://github.com/Norviah/media-hub/commit/8dd2ffaff55111edcfef80e3b11c7f1ed4939571)</code>
-
-- **components/SearchForm**: keep filters and layout when searching for a query <code>[b539067](https://github.com/Norviah/media-hub/commit/b5390678f02bf580de57e80fd0212afc0f70d873)</code>
-
-- implement a search system with TMDB <code>[af124fa](https://github.com/Norviah/media-hub/commit/af124fa9e37afe9638325b9f37c9ca14133c076f)</code>
-
-- **components/Button**: add a variant for icon buttons <code>[ab59cf2](https://github.com/Norviah/media-hub/commit/ab59cf26bc97058396bd4603351dc1edaf4d39de)</code>
 
 ### Build System
 
