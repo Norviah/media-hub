@@ -7,6 +7,7 @@ import { imageUrl } from '@/utils/tmdb';
 import { notFound } from 'next/navigation';
 
 import type { MovieDetails, TvShowDetails } from '@/types/tmdb';
+import { StarIcon } from 'lucide-react';
 
 export async function DetailsPage({ slug, type }: { slug: string; type: 'movie' | 'tv' }): Promise<JSX.Element> {
   const id: number = Number(slug);
@@ -48,8 +49,15 @@ export async function DetailsPage({ slug, type }: { slug: string; type: 'movie' 
           </div>
         </div>
         <div className="absolute -bottom-4 left-40 flex space-y-2">
-          <div className="flex flex-col gap-3">
-            <p className="text-md text-dark font-bold dark:text-white md:text-2xl">{name}</p>
+          <div className="flex flex-col gap-5">
+            <div>
+              <p className="text-md text-dark mb-1 font-bold dark:text-white md:text-2xl">{name}</p>
+              <div className="flex flex-row gap-2">
+                <StarIcon className="fill-nord-yellow text-nord-yellow" />
+                <p>{Number(data.vote_average.toFixed(1))}</p>
+              </div>
+            </div>
+
             <div className="flex flex-wrap gap-2">
               {data.genres.map((genre, index) => (
                 <Badge key={index}>{genre.name}</Badge>
