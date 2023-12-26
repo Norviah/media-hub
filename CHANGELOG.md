@@ -1,6 +1,42 @@
 ## Unreleased
 
+### Build System
+
+- **prettier**: ignore non-ts(x) files <code>[7580c4f](https://github.com/Norviah/media-hub/commit/7580c4fbf815f913b344d21c5a375bb7abbc851a)</code>
+
+- **bump**: rename the title for the `refactor` type to `Refactors` <code>[7f4d9d3](https://github.com/Norviah/media-hub/commit/7f4d9d324138fbc936716edc24bd9dd3b2dde5a8)</code>
+
+### Features
+
+- **components/Details**: add a media's rating to the details page <code>[0e5f0e3](https://github.com/Norviah/media-hub/commit/0e5f0e304f666a2c921ecad442ac1857cc8d95e3)</code>
+
+- **page**: add a page to show information for a show/movie <code>[985cb98](https://github.com/Norviah/media-hub/commit/985cb98741051477a1abe05dd9d85da8681edb2e)</code>
+
+- **components**: add an image component that implements a fallback picture <code>[7646c53](https://github.com/Norviah/media-hub/commit/7646c53e8ab2cbd2ab5da860ba721d784f18ba5e)</code>
+
+- **components**: add shadcn toaster components <code>[8eec58d](https://github.com/Norviah/media-hub/commit/8eec58da7b17d2a995532c34d2e8b6c77bd91ff7)</code>
+
+- **page/search**: add error handling and retry functionality <code>[f69f07a](https://github.com/Norviah/media-hub/commit/f69f07ae37fb20b5d6f479cfe5bd8a897522a65e)</code>
+
+- **page/search**: implement a loading state <code>[46ac61f](https://github.com/Norviah/media-hub/commit/46ac61f33cbc8497433e46e14cbca6fa91c01dc3)</code>
+
+- **prisma**: use prisma accelerate <code>[8dd2ffa](https://github.com/Norviah/media-hub/commit/8dd2ffaff55111edcfef80e3b11c7f1ed4939571)</code>
+
+- **components/SearchForm**: keep filters and layout when searching for a query <code>[b539067](https://github.com/Norviah/media-hub/commit/b5390678f02bf580de57e80fd0212afc0f70d873)</code>
+
+- implement a search system with TMDB <code>[af124fa](https://github.com/Norviah/media-hub/commit/af124fa9e37afe9638325b9f37c9ca14133c076f)</code>
+
+- **components/Button**: add a variant for icon buttons <code>[ab59cf2](https://github.com/Norviah/media-hub/commit/ab59cf26bc97058396bd4603351dc1edaf4d39de)</code>
+
 ### UI
+
+- **components/Badge**: increase font size <code>[edea7cb](https://github.com/Norviah/media-hub/commit/edea7cbc010de53716c0b396de7f5d20fcd9fdd0)</code>
+
+- **header**: decrease header's height <code>[90e1b72](https://github.com/Norviah/media-hub/commit/90e1b72ad076d6da4242f4307fff428956a7aee1)</code>
+
+- **components/Badge**: set the default state's background color to muted <code>[06b663b](https://github.com/Norviah/media-hub/commit/06b663b9860277ebb3ec1c7aa450ce842c13b001)</code>
+
+- **components/Badge**: set badges to appear flatter <code>[ca51532](https://github.com/Norviah/media-hub/commit/ca51532556054e452c44366d24255a2e2f127fa1)</code>
 
 - **tailwind**: infer theme colors from built-in tailwind colors <code>[4423b4e](https://github.com/Norviah/media-hub/commit/4423b4eebeb4e09a0b5af99dfe855dd5c1a0137e)</code>
 
@@ -38,22 +74,6 @@
 
 - implement the 'brandon grotesque' font <code>[2d9f956](https://github.com/Norviah/media-hub/commit/2d9f956c50450fe8ad201953cd1d0a6bfaefff65)</code>
 
-### Features
-
-- **components**: add shadcn toaster components <code>[8eec58d](https://github.com/Norviah/media-hub/commit/8eec58da7b17d2a995532c34d2e8b6c77bd91ff7)</code>
-
-- **page/search**: add error handling and retry functionality <code>[f69f07a](https://github.com/Norviah/media-hub/commit/f69f07ae37fb20b5d6f479cfe5bd8a897522a65e)</code>
-
-- **page/search**: implement a loading state <code>[46ac61f](https://github.com/Norviah/media-hub/commit/46ac61f33cbc8497433e46e14cbca6fa91c01dc3)</code>
-
-- **prisma**: use prisma accelerate <code>[8dd2ffa](https://github.com/Norviah/media-hub/commit/8dd2ffaff55111edcfef80e3b11c7f1ed4939571)</code>
-
-- **components/SearchForm**: keep filters and layout when searching for a query <code>[b539067](https://github.com/Norviah/media-hub/commit/b5390678f02bf580de57e80fd0212afc0f70d873)</code>
-
-- implement a search system with TMDB <code>[af124fa](https://github.com/Norviah/media-hub/commit/af124fa9e37afe9638325b9f37c9ca14133c076f)</code>
-
-- **components/Button**: add a variant for icon buttons <code>[ab59cf2](https://github.com/Norviah/media-hub/commit/ab59cf26bc97058396bd4603351dc1edaf4d39de)</code>
-
 ### Reverted
 
 - **tailwind**: do not mark tailwind utilities as important <code>[6862d38](https://github.com/Norviah/media-hub/commit/6862d38d11aeb1e5b42ef8701b4e2d1bab14ebb2)</code>
@@ -75,10 +95,6 @@
 - **types**: update page props to include undefined values <code>[a80d16c](https://github.com/Norviah/media-hub/commit/a80d16c7319fd0da96fad356e0accb533e16a51d)</code>
 
 - use server actions for api calls <code>[4badc19](https://github.com/Norviah/media-hub/commit/4badc19ce7adcfd6256f6d9b3ebd049c58399a81)</code>
-
-### Build System
-
-- **bump**: rename the title for the `refactor` type to `Refactors` <code>[7f4d9d3](https://github.com/Norviah/media-hub/commit/7f4d9d324138fbc936716edc24bd9dd3b2dde5a8)</code>
 
 ## [v0.4.0](https://github.com/Norviah/media-hub/compare/v0.3.0...v0.4.0) (2023-11-10)
 
