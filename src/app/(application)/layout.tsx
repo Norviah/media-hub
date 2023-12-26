@@ -17,7 +17,7 @@ async function RenderUserMenu(): Promise<JSX.Element> {
 
 export default function DashboardLayout(props: LayoutProps): JSX.Element {
   return (
-    <div className="flex min-h-screen flex-col space-y-6">
+    <div className="relative flex min-h-screen flex-col">
       <Header div="justify-between">
         <NavBar />
         <div className="flex gap-3">

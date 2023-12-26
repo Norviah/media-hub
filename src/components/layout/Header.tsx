@@ -12,7 +12,7 @@ export function Header(props: {
         props.container
       )}
     >
-      <div className={cn('container flex h-20 items-center py-4', props.div)}>{props.children}</div>
+      <div className={cn('container flex h-16 items-center py-4', props.div)}>{props.children}</div>
     </header>
   );
 }
