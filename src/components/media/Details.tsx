@@ -1,13 +1,13 @@
 import { ErrorImage } from '@/components/ErrorImage';
 import { AspectRatio } from '@/components/ui/AspectRatio';
 import { Badge } from '@/components/ui/Badge';
+import { StarIcon } from 'lucide-react';
 
 import { details } from '@/actions/tmdb';
 import { imageUrl } from '@/utils/tmdb';
 import { notFound } from 'next/navigation';
 
 import type { MovieDetails, TvShowDetails } from '@/types/tmdb';
-import { StarIcon } from 'lucide-react';
 
 export async function DetailsPage({ slug, type }: { slug: string; type: 'movie' | 'tv' }): Promise<JSX.Element> {
   const id: number = Number(slug);
@@ -54,7 +54,7 @@ export async function DetailsPage({ slug, type }: { slug: string; type: 'movie' 
               <p className="text-md text-dark mb-1 font-bold dark:text-white md:text-2xl">{name}</p>
               <div className="flex flex-row gap-2">
                 <StarIcon className="fill-nord-yellow text-nord-yellow" />
-                <p>{Number(data.vote_average.toFixed(1))}</p>
+                <p className="font-bold">{Number(data.vote_average.toFixed(1))} / 10</p>
               </div>
             </div>
 
