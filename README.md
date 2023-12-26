@@ -10,3 +10,8 @@
 various collections of their favorite shows and movies. Through these 
 collections, users can conveniently track and share their favorite media or
 collaborate with others.
+
+### Credit / Thanks
+
+- [The Movie Database](https://www.themoviedb.org/?language=en-US)
+- [anihori](https://github.com/gneiru/anirohi)
