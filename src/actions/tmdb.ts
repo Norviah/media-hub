@@ -3,9 +3,18 @@
 import { env } from '@/utils/env';
 
 import type { Media } from '@/types/Media';
-import type { Movie, Search, TV } from '@/types/tmdb';
+import type { Movie, MovieDetails, Search, TV, TvShowDetails } from '@/types/tmdb';
 
-type Props = {
+const BASE_URL: string = 'https://api.themoviedb.org/3';
+const TMDB_OPTIONS = {
+  method: 'GET',
+  headers: {
+    accept: 'application/json',
+    Authorization: `Bearer ${env.TMDB_API_KEY}`,
+  },
+};
+
+type SearchProps = {
   query: string;
   page?: number;
   type: Media['type'];
@@ -17,23 +26,12 @@ export type QueryResult = {
   totlePages: number;
 };
 
-export async function search({ query: prompt, page = 1, type }: Props): Promise<QueryResult | null> {
-  const url = `https://api.themoviedb.org/3/search/${type}?query=${prompt}&include_adult=false&language=en-US&page=${page}`;
+export async function search({ query: prompt, page = 1, type }: SearchProps): Promise<QueryResult | null> {
+  const url = `${BASE_URL}/search/${type}?query=${prompt}&include_adult=false&language=en-US&page=${page}`;
 
-  const tmdbOptoins = {
-    method: 'GET',
-    headers: {
-      accept: 'application/json',
-      Authorization: `Bearer ${env.TMDB_API_KEY}`,
-    },
-  };
-
-  const r: Search<TV | Movie> | null = await fetch(url, tmdbOptoins)
+  const r: Search<TV | Movie> | null = await fetch(url, TMDB_OPTIONS)
     .then((res) => res.json())
-    .then((json) => {
-      return json;
-    })
-    .catch((err) => {
+    .catch(() => {
       return null;
     });
 
@@ -46,4 +44,28 @@ export async function search({ query: prompt, page = 1, type }: Props): Promise<
     page: r.page,
     totlePages: r.total_pages,
   };
+}
+
+type DetailsProps<T extends TvShowDetails | MovieDetails> = {
+  id: number;
+  type: T extends TvShowDetails ? 'tv' : 'movie';
+};
+
+export type Details<T extends TvShowDetails | MovieDetails> = T extends TvShowDetails
+  ? TvShowDetails & { type: 'tv' }
+  : MovieDetails & { type: 'movie' };
+
+export async function details<T extends TvShowDetails | MovieDetails>({
+  id,
+  type,
+}: DetailsProps<T>): Promise<Details<T> | null> {
+  const url: string = `${BASE_URL}/${type}/${id}?language=en-US`;
+
+  const result: TvShowDetails | MovieDetails | null = await fetch(url, TMDB_OPTIONS)
+    .then((res) => res.json())
+    .catch(() => {
+      return null;
+    });
+
+  return (result ? { ...result, type: type } : null) as Details<T>;
 }
