@@ -4,28 +4,11 @@ import { Card } from '@/components/ui/Card';
 import { ErrorImage } from '@/components/ErrorImage';
 
 import { cn } from '@/utils/cn';
-import { imageUrl } from '@/utils/tmdb';
+import { parse } from '../util/parse';
 
 import type { Media } from '@/types/Media';
-import type { LayoutItem } from './constants';
-
-type Information = {
-  name: string;
-  year: string | undefined;
-  picture: string;
-  overview: string | undefined;
-  type: Media['type'];
-  id: number;
-};
-
-function parse(media: Media): Information {
-  const name: string = media.type === 'movie' ? media.title : media.name;
-  const year: string | undefined = media.type === 'movie' ? media.release_date : media.first_air_date;
-  const picture: string = imageUrl({ path: media.poster_path, alt: name });
-  const overview: string = media.overview.length > 0 ? media.overview : '[No description available]';
-
-  return { name, year, picture, overview, id: media.id, type: media.type };
-}
+import type { LayoutItem } from '../util/constants';
+import type { Information } from '../util/parse';
 
 function ListCard({ media }: { media: Information }): JSX.Element {
   return (

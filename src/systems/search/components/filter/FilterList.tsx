@@ -1,7 +1,7 @@
 import { FilterItem } from './FilterItem';
 import { FilterItemDropdown } from './FilterItemDropdown';
 
-import type { FilterItem as FilterItemType, LayoutItem } from '@/components/search/constants';
+import type { FilterItem as FilterItemType, LayoutItem } from '@/systems/search/util/constants';
 
 export type ListItem = FilterItemType | LayoutItem;
 

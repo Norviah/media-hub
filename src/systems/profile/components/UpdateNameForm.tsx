@@ -6,26 +6,19 @@ import { Input } from '@/components/ui/Input';
 import { Label } from '@/components/ui/Label';
 
 import { updateName } from '@/actions/user';
-import { toast } from 'sonner';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { z } from 'zod';
-
-import * as schemas from '@/schemas';
-import * as React from 'react';
+import { toast } from 'sonner';
+import { NameObject } from '../util/schema';
 
 import type { User } from '@prisma/client';
-
-const NameObject = z.object({
-  username: schemas.user.username,
-});
-
-type FormData = z.infer<typeof NameObject>;
+import type { FormData } from '../util/schema';
 
 export function UpdateNameForm({ user }: { user: Pick<User, 'id' | 'name'> }): JSX.Element {
   const router = useRouter();
-  const [loading, setLoading] = React.useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const {
     handleSubmit,

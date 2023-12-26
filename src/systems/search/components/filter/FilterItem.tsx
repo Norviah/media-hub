@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 import { cn } from '@/utils/cn';
 import { usePathname, useSearchParams } from 'next/navigation';
-import { createUrl } from '../createUrl';
+import { createUrl } from '../../util/createUrl';
 
 import type { Route } from '@/types/Route';
 import type { ListItem } from './FilterList';

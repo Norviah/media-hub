@@ -1,6 +1,6 @@
 import { Body, Title } from '@/components/ui/Page';
 
-import { getCurrentUser } from '@/utils/auth/session';
+import { getCurrentUser } from '@/systems/auth/util/session';
 import { redirect } from 'next/navigation';
 
 export default async function Loading(): Promise<JSX.Element> {

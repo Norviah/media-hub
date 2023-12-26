@@ -1,4 +1,4 @@
-import { ProfileSidebar } from '@/components/profile/ProfileSidebar';
+import { ProfileSidebar } from '@/systems/profile/components/ProfileSidebar';
 import { LayoutProps } from '@/types/components/LayoutProps';
 
 export default function ProfileLayout(props: LayoutProps): JSX.Element {

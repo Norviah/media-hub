@@ -1,30 +1,28 @@
 'use client';
 
-import { toast } from 'sonner';
 import { cn } from '@/utils/cn';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { signIn } from 'next-auth/react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { z } from 'zod';
+import { toast } from 'sonner';
 
 import { DiscordIcon } from '@/components/icons/Discord';
 import { GoogleIcon } from '@/components/icons/Google';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
 import { Label } from '@/components/ui/Label';
+import { userAuthSchema } from '../util/schema';
 
-import * as schemas from '@/schemas';
+import type { FormData } from '../util/schema';
 
-type FormData = z.infer<typeof schemas.auth.userAuthSchema>;
-
-export function Form(props: { callbackUrl: string }): JSX.Element {
+export function AuthForm(props: { callbackUrl: string }): JSX.Element {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>({
-    resolver: zodResolver(schemas.auth.userAuthSchema),
+    resolver: zodResolver(userAuthSchema),
   });
 
   const [isEmailLoading, setEmailLoading] = useState<boolean>(false);

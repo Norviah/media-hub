@@ -1,5 +1,5 @@
-import { DetailsPage } from '@/components/media/Details';
-import { metadata } from '@/components/media/metadata';
+import { DetailsPage } from '@/systems/details/components/Details';
+import { metadata } from '@/systems/details/util/metadata';
 
 import type { MovieDetails } from '@/types/tmdb';
 import type { Metadata } from 'next';

@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 
-import { profileRoutes } from '@/components/profile/routes';
+import { profileRoutes } from '@/systems/profile/util/routes';
 import { cn } from '@/utils/cn';
 import { usePathname } from 'next/navigation';
 

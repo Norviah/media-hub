@@ -2,7 +2,7 @@ import { Card } from '@/components/ui/Card';
 import { Skeleton } from '@/components/ui/Skeleton';
 import { SearchContainer } from './Container';
 
-import type { LayoutItem } from './constants';
+import type { LayoutItem } from '../util/constants';
 
 type Props = {
   query: string | undefined;
@@ -61,6 +61,6 @@ function ListSkeleton(): JSX.Element {
   );
 }
 
-export default function SearchSkeleton({ query, layout }: Props): JSX.Element {
+export function SearchSkeleton({ query, layout }: Props): JSX.Element {
   return <SearchContainer placeholder={query}>{layout === 'grid' ? <GridSkeleton /> : <ListSkeleton />}</SearchContainer>;
 }

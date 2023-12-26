@@ -5,7 +5,7 @@ import { UserMenu } from '@/components/layout/UserMenu';
 import { NavBar } from '@/components/layout/navigation/NavBar';
 import { Suspense } from 'react';
 
-import { getCurrentUser } from '@/utils/auth/session';
+import { getCurrentUser } from '@/systems/auth/util/session';
 
 import type { LayoutProps } from '@/types/components/LayoutProps';
 

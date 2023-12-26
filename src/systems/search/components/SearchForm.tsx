@@ -7,7 +7,7 @@ import { SearchIcon } from 'lucide-react';
 
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
-import { createUrl } from './createUrl';
+import { createUrl } from '../util/createUrl';
 
 import type { Route } from '@/types/Route';
 

@@ -1,5 +1,5 @@
-import { filters, layouts } from '@/components/search/constants';
-import { FilterList } from '@/components/search/filter/FilterList';
+import { FilterList } from '@/systems/search/components/filter/FilterList';
+import { filters, layouts } from '@/systems/search/util/constants';
 
 export default function SearchLayout({ children }: { children: React.ReactNode }): JSX.Element {
   return (

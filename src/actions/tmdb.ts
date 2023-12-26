@@ -23,7 +23,7 @@ type SearchProps = {
 export type QueryResult = {
   data: Media[];
   page: number;
-  totlePages: number;
+  totalPages: number;
 };
 
 export async function search({ query: prompt, page = 1, type }: SearchProps): Promise<QueryResult | null> {
@@ -42,7 +42,7 @@ export async function search({ query: prompt, page = 1, type }: SearchProps): Pr
   return {
     data: r.results.map((media) => ({ ...media, type })) as Media[],
     page: r.page,
-    totlePages: r.total_pages,
+    totalPages: r.total_pages,
   };
 }
 

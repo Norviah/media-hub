@@ -1,7 +1,7 @@
-import { UpdateNameForm } from '@/components/profile/settings/UpdateNameForm';
 import { Body, Title } from '@/components/ui/Page';
+import { UpdateNameForm } from '@/systems/profile/components/UpdateNameForm';
 
-import { getCurrentUser } from '@/utils/auth/session';
+import { getCurrentUser } from '@/systems/auth/util/session';
 import { redirect } from 'next/navigation';
 
 import type { Metadata } from 'next';

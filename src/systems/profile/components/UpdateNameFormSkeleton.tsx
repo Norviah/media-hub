@@ -1,7 +1,7 @@
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/Card';
 import { Skeleton } from '@/components/ui/Skeleton';
 
-export function FormSkeleton(): JSX.Element {
+export function UpdateNameFormSkeleton(): JSX.Element {
   return (
     <Card>
       <CardHeader className="gap-2">

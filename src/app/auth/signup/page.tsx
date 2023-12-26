@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
-import { Form } from '@/components/auth/Form';
 import { Logo } from '@/components/icons/Logo';
+import { AuthForm } from '@/systems/auth/components/AuthForm';
 
 import type { PageProps } from '@/types/components/PageProps';
 import type { Metadata } from 'next';
@@ -22,7 +22,7 @@ export default function SignInPage(props: PageProps): JSX.Element {
         <h1 className="text-center text-2xl font-semibold tracking-tight">Create an account</h1>
         <p className="text-sm text-muted-foreground">Please use one of the following methods to create your account</p>
       </div>
-      <Form callbackUrl={from} />
+      <AuthForm callbackUrl={from} />
       <p className="text-right text-sm text-muted-foreground">
         <Link
           href={`/auth/signin?from=${from}`}

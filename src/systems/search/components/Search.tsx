@@ -1,9 +1,9 @@
-import { Results } from '@/components/search/Results';
 import { SearchContainer } from './Container';
+import { Results } from './Results';
 
 import { search } from '@/actions/tmdb';
 
-import type { FilterItem, LayoutItem } from '@/components/search/constants';
+import type { FilterItem, LayoutItem } from '../util/constants';
 
 type Props = {
   layout: LayoutItem;

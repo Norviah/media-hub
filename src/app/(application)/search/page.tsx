@@ -1,10 +1,10 @@
-import { Search } from '@/components/search/Search';
+import { Search } from '@/systems/search/components/Search';
+import { SearchSkeleton } from '@/systems/search/components/Skeleton';
 import { Suspense } from 'react';
 
-import { defaultFilter, defaultLayout, filters, layouts } from '@/components/search/constants';
+import { defaultFilter, defaultLayout, filters, layouts } from '@/systems/search/util/constants';
 
 import type { PageProps } from '@/types/components/PageProps';
-import SearchSkeleton from '@/components/search/Skeleton';
 
 export const metadata = {
   title: 'Search',

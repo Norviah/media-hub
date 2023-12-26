@@ -12,7 +12,7 @@ import { toast } from 'sonner';
 
 import type { QueryResult } from '@/actions/tmdb';
 import type { Media } from '@/types/Media';
-import type { LayoutItem } from './constants';
+import type { LayoutItem } from '../util/constants';
 
 type Props = {
   prompt: string;
@@ -39,7 +39,7 @@ export function Results(props: Props): JSX.Element {
       const nextMovies = await search({ query: props.prompt, page: nextPage, type: props.filter });
 
       if (nextMovies?.data.length) {
-        if (nextMovies.totlePages === nextMovies.page) {
+        if (nextMovies.totalPages === nextMovies.page) {
           setState('DONE');
         } else {
           setPage(nextPage);
@@ -64,7 +64,7 @@ export function Results(props: Props): JSX.Element {
   useEffect(() => {
     setMovies(props.initialResults.data);
     setPage(props.initialResults.page);
-    setState(props.initialResults.totlePages === props.initialResults.page ? 'DONE' : 'LOADING');
+    setState(props.initialResults.totalPages === props.initialResults.page ? 'DONE' : 'LOADING');
   }, [props.initialResults]);
 
   return (
