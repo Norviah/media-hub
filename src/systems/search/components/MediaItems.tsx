@@ -55,7 +55,7 @@ function ImageCard({ media }: { media: Information }): JSX.Element {
         }}
       />
 
-      <div className="absolute inset-0 bg-gradient-to-t from-black to-black/10" />
+      <div className="absolute inset-0 rounded-b-lg bg-gradient-to-t from-black to-black/10" />
       <div className="absolute bottom-4 left-4 text-white">
         <h2 className="text-xl font-bold">{media.name}</h2>
         {media.year && <p className="text-sm">{media.year}</p>}
