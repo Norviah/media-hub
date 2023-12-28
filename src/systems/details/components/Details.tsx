@@ -32,7 +32,7 @@ export async function DetailsPage({ slug, type }: { slug: string; type: 'movie' 
           className="object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-background to-background/10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background/100 to-background/0" />
         <div className="absolute bottom-0 left-0 -mb-[62.5px] ml-4 max-w-2xl">
           <div className="flex flex-row gap-4">
             <ErrorImage
