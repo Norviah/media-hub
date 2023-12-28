@@ -14,4 +14,4 @@ collaborate with others.
 ### Credit / Thanks
 
 - [The Movie Database](https://www.themoviedb.org/?language=en-US)
-- [anihori](https://github.com/gneiru/anirohi)
+- [anihori](https://github.com/gneiru/anirohi) and [AniList](https://anilist.co/) for UI inspiration
