@@ -6,10 +6,12 @@ import type { VariantProps } from 'class-variance-authority';
 export const headerVariants = cva('scroll-m-20', {
   variants: {
     type: {
-      h1: 'text-4xl font-extrabold tracking-tight lg:text-5xl',
-      h2: 'pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0',
-      h3: 'text-2xl font-semibold tracking-tight',
-      h4: 'text-xl font-semibold tracking-tight',
+      h1: 'text-4xl font-extrabold lg:text-5xl',
+      h2: 'text-3xl font-semibold first:mt-0',
+      h3: 'text-2xl font-semibold',
+      h4: 'text-xl font-semibold',
+      h5: 'text-lg font-semibold',
+      h6: 'text-base font-semibold',
     },
   },
 });
