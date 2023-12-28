@@ -12,7 +12,7 @@ import { constructUrl } from '../../../util/constructUrl';
 export function SearchInput({ query }: { query: string | undefined }): JSX.Element {
   const [searchTerm, setSearchTerm] = useState('');
 
-  const debouncedSearchTerm = useDebounce(searchTerm, 300);
+  const debouncedSearchTerm = useDebounce(searchTerm, 400);
   const router = useRouter();
   const params = useSearchParams();
 
