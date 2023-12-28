@@ -4,11 +4,11 @@ import { Card } from '@/components/ui/Card';
 import { ErrorImage } from '@/components/ErrorImage';
 
 import { cn } from '@/utils/cn';
-import { parse } from '../util/parse';
+import { parse } from '../../util/parse';
 
 import type { Media } from '@/types/Media';
-import type { LayoutItem } from '../util/constants';
-import type { Information } from '../util/parse';
+import type { LayoutItem } from '../../util/constants';
+import type { Information } from '../../util/parse';
 
 function ListCard({ media }: { media: Information }): JSX.Element {
   return (
@@ -68,7 +68,7 @@ export function MediaItems({ results, layout }: { results: Media[]; layout: Layo
   return (
     <div
       className={cn(
-        layout === 'grid' && 'grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4',
+        layout === 'grid' && 'grid grid-cols-1 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4',
         layout === 'list' && 'grid grid-cols-1 gap-4'
       )}
     >
@@ -76,11 +76,7 @@ export function MediaItems({ results, layout }: { results: Media[]; layout: Layo
         const media: Information = parse(result);
 
         return (
-          <Link
-            className="relative inline-block h-full w-full cursor-pointer"
-            href={`/${result.type}/${result.id}`}
-            key={result.id}
-          >
+          <Link className="relative inline-block cursor-pointer" href={`/${result.type}/${result.id}`} key={result.id}>
             {layout === 'grid' ? <ImageCard media={media} /> : <ListCard media={media} />}
           </Link>
         );

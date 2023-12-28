@@ -2,7 +2,6 @@
 
 import { SpinnerIcon } from '@/components/icons/Spinner';
 import { Button } from '@/components/ui/Button';
-import { SearchContainer } from './Container';
 import { MediaItems } from './MediaItems';
 
 import { search } from '@/actions/tmdb';
@@ -12,7 +11,7 @@ import { toast } from 'sonner';
 
 import type { QueryResult } from '@/actions/tmdb';
 import type { Media } from '@/types/Media';
-import type { LayoutItem } from '../util/constants';
+import type { LayoutItem } from '../../util/constants';
 
 type Props = {
   prompt: string;
@@ -68,19 +67,7 @@ export function Results(props: Props): JSX.Element {
   }, [props.initialResults]);
 
   return (
-    <SearchContainer
-      placeholder={props.prompt}
-      header={
-        props.prompt ? (
-          <p>
-            {movies.length === 0
-              ? 'There are no results that match '
-              : `Showing ${movies.length} ${movies.length > 1 ? 'results' : 'result'} for `}
-            <span className="font-bold">&quot;{props.prompt}&quot;</span>
-          </p>
-        ) : null
-      }
-    >
+    <>
       <MediaItems results={movies} layout={props.layout} />
       {!(state === 'DONE') && (
         <div ref={ref} className="mt-5 flex justify-center">
@@ -98,6 +85,6 @@ export function Results(props: Props): JSX.Element {
           )}
         </div>
       )}
-    </SearchContainer>
+    </>
   );
 }
