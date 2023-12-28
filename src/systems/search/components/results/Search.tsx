@@ -12,7 +12,6 @@ type Props = {
 };
 
 export async function Search({ query, filter, layout }: Props): Promise<JSX.Element> {
-  await new Promise((resolve) => setTimeout(resolve, 1000));
   let results: Search<TvSearchResult | MovieSearchResult> | null;
 
   if (filter === 'tv') {
