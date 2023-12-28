@@ -1,11 +1,11 @@
 import { Search } from '@/systems/search/components/results/Search';
-import { SearchSkeleton } from '@/systems/search/components/results/Skeleton';
 import { SearchForm } from '@/systems/search/components/filters/SearchForm';
-import { Suspense } from 'react';
 
 import { defaultFilter, defaultLayout, filters, layouts } from '@/systems/search/util/constants';
 
 import type { PageProps } from '@/types/components/PageProps';
+import { Suspense } from 'react';
+import { SearchSkeleton } from '@/systems/search/components/results/Skeleton';
 
 export default function SearchPage({ searchParams }: PageProps): JSX.Element {
   const filter = filters.find((item) => item.slug === searchParams.filter) || defaultFilter;

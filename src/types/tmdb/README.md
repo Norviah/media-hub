@@ -1,1 +1,0 @@
-The types in this directory is courtesy of [tmdb-ts](https://github.com/blakejoy/tmdb-ts/tree/master/src/types).

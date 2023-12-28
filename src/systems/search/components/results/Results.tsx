@@ -2,82 +2,95 @@
 
 import { SpinnerIcon } from '@/components/icons/Spinner';
 import { Button } from '@/components/ui/Button';
-import { MediaItems } from './MediaItems';
+import { Grid } from './Grid';
 
-import { search } from '@/actions/tmdb';
+import { searchMovies, searchTvShows } from '@/actions/tmdb';
 import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { toast } from 'sonner';
 
-import type { QueryResult } from '@/actions/tmdb';
-import type { Media } from '@/types/Media';
-import type { LayoutItem } from '../../util/constants';
+import type { MovieSearchResult, TvSearchResult } from '@/actions/tmdb';
+import type { Search } from 'tmdb-ts';
+import type { FilterItem, LayoutItem } from '../../util/constants';
 
 type Props = {
-  prompt: string;
+  initialResults: Search<TvSearchResult | MovieSearchResult>;
+  filter: FilterItem['key'];
   layout: LayoutItem['key'];
-  initialResults: QueryResult;
-  filter: Media['type'];
+  query: string;
 };
 
-export function Results(props: Props): JSX.Element {
-  const [movies, setMovies] = useState<Media[]>(props.initialResults.data);
-  const [page, setPage] = useState<number>(props.initialResults.page);
-  const [state, setState] = useState<'LOADING' | 'ERROR' | 'DONE'>('LOADING');
+enum States {
+  LOADING,
+  ERROR,
+  FINISHED,
+}
+
+export function Results({ initialResults, layout, filter, query }: Props): JSX.Element {
+  const [results, setResults] = useState<(TvSearchResult | MovieSearchResult)[]>(initialResults.results);
+  const [page, setPage] = useState<number>(initialResults.page);
+  const [state, setState] = useState<States>(
+    initialResults.page === initialResults.total_pages ? States.FINISHED : States.LOADING
+  );
 
   const [ref, inView] = useInView();
 
-  async function loadMore(): Promise<void> {
-    if (state === 'DONE') {
+  async function loadNextPage(): Promise<void> {
+    if (state === States.FINISHED) {
       return;
     }
 
+    setState(States.LOADING);
     const nextPage = page + 1;
 
     try {
-      const nextMovies = await search({ query: props.prompt, page: nextPage, type: props.filter });
+      let response: Search<TvSearchResult | MovieSearchResult> | null;
 
-      if (nextMovies?.data.length) {
-        if (nextMovies.totalPages === nextMovies.page) {
-          setState('DONE');
+      if (filter === 'tv') {
+        response = await searchTvShows({ query, page: nextPage });
+      } else {
+        response = await searchMovies({ query, page: nextPage });
+      }
+
+      if (response?.results && response.results.length > 0) {
+        if (response.total_pages === response.page) {
+          setState(States.FINISHED);
         } else {
           setPage(nextPage);
         }
 
-        const newMovies = nextMovies.data.filter((result) => !movies.some((movie) => movie.id === result.id));
-
-        setMovies([...movies, ...newMovies]);
+        const newData = response.results.filter((result) => !results.some((item) => item.id === result.id));
+        setResults([...results, ...newData]);
       }
-    } catch (e) {
-      toast.error('Something went wrong, please try again in a bit.');
-      setState('ERROR');
+    } catch {
+      toast.error('Something went wrong while fetching the next page.');
+      setState(States.ERROR);
     }
   }
 
   useEffect(() => {
-    if (inView && state === 'LOADING') {
-      loadMore();
+    if (inView) {
+      loadNextPage();
     }
   }, [inView]);
 
   useEffect(() => {
-    setMovies(props.initialResults.data);
-    setPage(props.initialResults.page);
-    setState(props.initialResults.totalPages === props.initialResults.page ? 'DONE' : 'LOADING');
-  }, [props.initialResults]);
+    setResults(initialResults.results);
+    setPage(initialResults.page);
+    setState(initialResults.total_pages === initialResults.page ? States.FINISHED : States.LOADING);
+  }, [initialResults]);
 
   return (
     <>
-      <MediaItems results={movies} layout={props.layout} />
-      {!(state === 'DONE') && (
+      <Grid results={results} layout={layout} />
+      {!(state === States.FINISHED) && (
         <div ref={ref} className="mt-5 flex justify-center">
-          {state === 'LOADING' ? (
+          {state === States.LOADING ? (
             <SpinnerIcon className="h-6 w-6" />
           ) : (
             <Button
               onClick={() => {
-                setState('LOADING');
-                loadMore();
+                loadNextPage();
               }}
             >
               Try again

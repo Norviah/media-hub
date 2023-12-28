@@ -1,10 +1,10 @@
-import { details } from '@/actions/tmdb';
+import { getMovie, getTvShow } from '@/actions/tmdb';
 import { absoluteUrl } from '@/utils/absoluteUrl';
 import { env } from '@/utils/env';
 import { imageUrl } from '@/utils/tmdb';
 
-import type { MovieDetails, TvShowDetails } from '@/types/tmdb';
 import type { Metadata } from 'next';
+import type { MovieDetails, TvShowDetails } from 'tmdb-ts';
 
 type Args<T extends TvShowDetails | MovieDetails> = { slug: string } & (T extends TvShowDetails
   ? { type: 'tv' }
@@ -17,7 +17,7 @@ export async function metadata<T extends MovieDetails | TvShowDetails>({ type, s
     return {};
   }
 
-  const data = await details<MovieDetails | TvShowDetails>({ type, id });
+  const data = type === 'movie' ? await getMovie(id) : await getTvShow(id);
 
   if (!data) {
     return {};

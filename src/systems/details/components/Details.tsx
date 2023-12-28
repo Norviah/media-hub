@@ -3,11 +3,9 @@ import { AspectRatio } from '@/components/ui/AspectRatio';
 import { Badge } from '@/components/ui/Badge';
 import { StarIcon } from 'lucide-react';
 
-import { details } from '@/actions/tmdb';
+import { getMovie, getTvShow } from '@/actions/tmdb';
 import { imageUrl } from '@/utils/tmdb';
 import { notFound } from 'next/navigation';
-
-import type { MovieDetails, TvShowDetails } from '@/types/tmdb';
 
 export async function DetailsPage({ slug, type }: { slug: string; type: 'movie' | 'tv' }): Promise<JSX.Element> {
   const id: number = Number(slug);
@@ -16,7 +14,7 @@ export async function DetailsPage({ slug, type }: { slug: string; type: 'movie' 
     return notFound();
   }
 
-  const data = await details<TvShowDetails | MovieDetails>({ type, id });
+  const data = type === 'movie' ? await getMovie(id) : await getTvShow(id);
 
   if (!data) {
     return notFound();

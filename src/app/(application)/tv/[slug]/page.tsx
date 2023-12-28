@@ -1,8 +1,8 @@
 import { DetailsPage } from '@/systems/details/components/Details';
 import { metadata } from '@/systems/details/util/metadata';
 
-import type { TvShowDetails } from '@/types/tmdb';
 import type { Metadata } from 'next';
+import type { TvShowDetails } from 'tmdb-ts';
 
 interface PageProps {
   params: {

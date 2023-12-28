@@ -1,71 +1,55 @@
 'use server';
 
 import { env } from '@/utils/env';
+import { TMDB } from 'tmdb-ts';
 
-import type { Media } from '@/types/Media';
-import type { Movie, MovieDetails, Search, TV, TvShowDetails } from '@/types/tmdb';
+import type { Movie, MovieDetails, Search, TV, TvShowDetails } from 'tmdb-ts';
+import type { MovieSearchOptions, TvSearchOptions } from 'tmdb-ts/dist/endpoints';
 
-const BASE_URL: string = 'https://api.themoviedb.org/3';
-const TMDB_OPTIONS = {
-  method: 'GET',
-  headers: {
-    accept: 'application/json',
-    Authorization: `Bearer ${env.TMDB_API_KEY}`,
-  },
-};
+const tmdb: TMDB = new TMDB(env.TMDB_API_KEY);
 
-type SearchProps = {
-  query: string;
-  page?: number;
-  type: Media['type'];
-};
+export type MovieSearchResult = Movie & { type: 'movie' };
 
-export type QueryResult = {
-  data: Media[];
-  page: number;
-  totalPages: number;
-};
+export async function searchMovies({ page = 1, ...options }: MovieSearchOptions): Promise<Search<MovieSearchResult> | null> {
+  try {
+    const response = await tmdb.search.movies({ page, ...options });
 
-export async function search({ query: prompt, page = 1, type }: SearchProps): Promise<QueryResult | null> {
-  const url = `${BASE_URL}/search/${type}?query=${prompt}&include_adult=false&language=en-US&page=${page}`;
-
-  const r: Search<TV | Movie> | null = await fetch(url, TMDB_OPTIONS)
-    .then((res) => res.json())
-    .catch(() => {
-      return null;
-    });
-
-  if (r === null) {
+    return {
+      ...response,
+      results: response.results.map((movie) => ({ ...movie, type: 'movie' })),
+    };
+  } catch {
     return null;
   }
-
-  return {
-    data: r.results.map((media) => ({ ...media, type })) as Media[],
-    page: r.page,
-    totalPages: r.total_pages,
-  };
 }
 
-type DetailsProps<T extends TvShowDetails | MovieDetails> = {
-  id: number;
-  type: T extends TvShowDetails ? 'tv' : 'movie';
-};
+export type TvSearchResult = TV & { type: 'tv' };
 
-export type Details<T extends TvShowDetails | MovieDetails> = T extends TvShowDetails
-  ? TvShowDetails & { type: 'tv' }
-  : MovieDetails & { type: 'movie' };
+export async function searchTvShows({ page = 1, ...options }: TvSearchOptions): Promise<Search<TvSearchResult> | null> {
+  try {
+    const response = await tmdb.search.tvShows({ page, ...options });
 
-export async function details<T extends TvShowDetails | MovieDetails>({
-  id,
-  type,
-}: DetailsProps<T>): Promise<Details<T> | null> {
-  const url: string = `${BASE_URL}/${type}/${id}?language=en-US`;
+    return {
+      ...response,
+      results: response.results.map((tvShow) => ({ ...tvShow, type: 'tv' })),
+    };
+  } catch {
+    return null;
+  }
+}
 
-  const result: TvShowDetails | MovieDetails | null = await fetch(url, TMDB_OPTIONS)
-    .then((res) => res.json())
-    .catch(() => {
-      return null;
-    });
+export async function getMovie(id: number): Promise<(MovieDetails & { type: 'movie' }) | null> {
+  try {
+    return { ...(await tmdb.movies.details(id)), type: 'movie' };
+  } catch {
+    return null;
+  }
+}
 
-  return (result ? { ...result, type: type } : null) as Details<T>;
+export async function getTvShow(id: number): Promise<(TvShowDetails & { type: 'tv' }) | null> {
+  try {
+    return { ...(await tmdb.tvShows.details(id)), type: 'tv' };
+  } catch {
+    return null;
+  }
 }
