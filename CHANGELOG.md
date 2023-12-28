@@ -1,12 +1,30 @@
 ## Unreleased
 
-### Build System
+### Refactors
 
-- **prettier**: ignore non-ts(x) files <code>[7580c4f](https://github.com/Norviah/media-hub/commit/7580c4fbf815f913b344d21c5a375bb7abbc851a)</code>
+- use the package `tmdb-ts` for calling tmdb's api <code>[2263ef1](https://github.com/Norviah/media-hub/commit/2263ef188c58af3e2246cf13e599e7c31e704b61)</code>
 
-- **bump**: rename the title for the `refactor` type to `Refactors` <code>[7f4d9d3](https://github.com/Norviah/media-hub/commit/7f4d9d324138fbc936716edc24bd9dd3b2dde5a8)</code>
+- **page/search**: refactor search page's logic to reflect a three state behavior <code>[87faa7b](https://github.com/Norviah/media-hub/commit/87faa7b1ac7954e00533a062c75de2300b6cf80f)</code>
+
+- **page/search**: use the `img` component when rendering images <code>[67667da](https://github.com/Norviah/media-hub/commit/67667dafa8f84e51921dd24d5a9953442a2c36e3)</code>
+
+- **next-auth**: use the default prisma adapter <code>[8e9cb54](https://github.com/Norviah/media-hub/commit/8e9cb545c0fabb999aebbd87225e85b3a263ddd8)</code>
+
+- **page/search**: rename the `sort` parameter to `layout` <code>[d917b79](https://github.com/Norviah/media-hub/commit/d917b79143d1a90bf8e5eea6f2069246bf40fd67)</code>
+
+- **components/search**: extract `createUrl` into its own file <code>[4c62c80](https://github.com/Norviah/media-hub/commit/4c62c80953f045347962e178e0b390046e8eaf50)</code>
+
+- use `sonner` for toast notifications <code>[fdae805](https://github.com/Norviah/media-hub/commit/fdae805ba9f4bcc7fc515758810e19b7c7b4d864)</code>
+
+- **types**: update page props to include undefined values <code>[a80d16c](https://github.com/Norviah/media-hub/commit/a80d16c7319fd0da96fad356e0accb533e16a51d)</code>
+
+- use server actions for api calls <code>[4badc19](https://github.com/Norviah/media-hub/commit/4badc19ce7adcfd6256f6d9b3ebd049c58399a81)</code>
 
 ### Features
+
+- **page/movie**: update `not-found` to redirect to the search page with the movie filter applied <code>[a574290](https://github.com/Norviah/media-hub/commit/a574290f249ca512728de9e035a5160a60e51c66)</code>
+
+- **components/Header**: add more header varaints <code>[5a0bc4d](https://github.com/Norviah/media-hub/commit/5a0bc4dc76bccadda47b119fb42a7901e841ad83)</code>
 
 - **components/Details**: add a media's rating to the details page <code>[0e5f0e3](https://github.com/Norviah/media-hub/commit/0e5f0e304f666a2c921ecad442ac1857cc8d95e3)</code>
 
@@ -29,6 +47,10 @@
 - **components/Button**: add a variant for icon buttons <code>[ab59cf2](https://github.com/Norviah/media-hub/commit/ab59cf26bc97058396bd4603351dc1edaf4d39de)</code>
 
 ### UI
+
+- **page/search**: improvie ui for search page inspired by anilist.co <code>[2e17552](https://github.com/Norviah/media-hub/commit/2e175525344db63c0cc7a1f5c8ff0e1c176e1ecf)</code>
+
+- **systems/search**: ensure the bottom of image cards are rounded <code>[c9bbd3a](https://github.com/Norviah/media-hub/commit/c9bbd3a60044afb3cd1b0ed47a8aaf3d8a32f41e)</code>
 
 - **components/Badge**: increase font size <code>[edea7cb](https://github.com/Norviah/media-hub/commit/edea7cbc010de53716c0b396de7f5d20fcd9fdd0)</code>
 
@@ -74,27 +96,15 @@
 
 - implement the 'brandon grotesque' font <code>[2d9f956](https://github.com/Norviah/media-hub/commit/2d9f956c50450fe8ad201953cd1d0a6bfaefff65)</code>
 
+### Build System
+
+- **prettier**: ignore non-ts(x) files <code>[7580c4f](https://github.com/Norviah/media-hub/commit/7580c4fbf815f913b344d21c5a375bb7abbc851a)</code>
+
+- **bump**: rename the title for the `refactor` type to `Refactors` <code>[7f4d9d3](https://github.com/Norviah/media-hub/commit/7f4d9d324138fbc936716edc24bd9dd3b2dde5a8)</code>
+
 ### Reverted
 
 - **tailwind**: do not mark tailwind utilities as important <code>[6862d38](https://github.com/Norviah/media-hub/commit/6862d38d11aeb1e5b42ef8701b4e2d1bab14ebb2)</code>
-
-### Refactors
-
-- **page/search**: refactor search page's logic to reflect a three state behavior <code>[87faa7b](https://github.com/Norviah/media-hub/commit/87faa7b1ac7954e00533a062c75de2300b6cf80f)</code>
-
-- **page/search**: use the `img` component when rendering images <code>[67667da](https://github.com/Norviah/media-hub/commit/67667dafa8f84e51921dd24d5a9953442a2c36e3)</code>
-
-- **next-auth**: use the default prisma adapter <code>[8e9cb54](https://github.com/Norviah/media-hub/commit/8e9cb545c0fabb999aebbd87225e85b3a263ddd8)</code>
-
-- **page/search**: rename the `sort` parameter to `layout` <code>[d917b79](https://github.com/Norviah/media-hub/commit/d917b79143d1a90bf8e5eea6f2069246bf40fd67)</code>
-
-- **components/search**: extract `createUrl` into its own file <code>[4c62c80](https://github.com/Norviah/media-hub/commit/4c62c80953f045347962e178e0b390046e8eaf50)</code>
-
-- use `sonner` for toast notifications <code>[fdae805](https://github.com/Norviah/media-hub/commit/fdae805ba9f4bcc7fc515758810e19b7c7b4d864)</code>
-
-- **types**: update page props to include undefined values <code>[a80d16c](https://github.com/Norviah/media-hub/commit/a80d16c7319fd0da96fad356e0accb533e16a51d)</code>
-
-- use server actions for api calls <code>[4badc19](https://github.com/Norviah/media-hub/commit/4badc19ce7adcfd6256f6d9b3ebd049c58399a81)</code>
 
 ## [v0.4.0](https://github.com/Norviah/media-hub/compare/v0.3.0...v0.4.0) (2023-11-10)
 
