@@ -23,7 +23,7 @@ export async function DetailsPage({ slug, type }: { slug: string; type: 'movie' 
   const name: string = data.type === 'movie' ? data.title : data.name;
 
   return (
-    <main className="space-y-2">
+    <main className="my-[-1.25rem] space-y-2">
       <AspectRatio ratio={2} className="relative min-h-[125px]">
         <ErrorImage
           src={imageUrl({ path: data.backdrop_path, alt: name })}
