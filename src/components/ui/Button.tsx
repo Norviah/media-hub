@@ -9,7 +9,7 @@ import type { VariantProps } from 'class-variance-authority';
 import * as React from 'react';
 
 const buttonVariants = cva(
-  'inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50',
+  'inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors disabled:pointer-events-none disabled:opacity-50',
   {
     variants: {
       variant: {
@@ -22,7 +22,7 @@ const buttonVariants = cva(
         success: 'bg-success text-success-foreground shadow hover:bg-success/90 active:bg-success/50 shadow-md',
         warn: 'bg-warn text-warn-foreground shadow hover:bg-warn/90 active:bg-warn/50 shadow-md',
         ghost: 'hover:bg-accent/70 active:bg-accent hover:text-accent-foreground',
-        icon: 'text-muted-foreground hover:text-foreground transition-colors focus-visible:ring-transparent hover:bg-accent/70',
+        icon: 'text-muted-foreground hover:text-foreground transition-colors hover:bg-accent/70',
         link: 'text-primary underline-offset-4 hover:underline',
       },
       size: {
