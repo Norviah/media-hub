@@ -1,52 +1,14 @@
 ## Unreleased
 
-### Refactors
-
-- use the package `tmdb-ts` for calling tmdb's api <code>[2263ef1](https://github.com/Norviah/media-hub/commit/2263ef188c58af3e2246cf13e599e7c31e704b61)</code>
-
-- **page/search**: refactor search page's logic to reflect a three state behavior <code>[87faa7b](https://github.com/Norviah/media-hub/commit/87faa7b1ac7954e00533a062c75de2300b6cf80f)</code>
-
-- **page/search**: use the `img` component when rendering images <code>[67667da](https://github.com/Norviah/media-hub/commit/67667dafa8f84e51921dd24d5a9953442a2c36e3)</code>
-
-- **next-auth**: use the default prisma adapter <code>[8e9cb54](https://github.com/Norviah/media-hub/commit/8e9cb545c0fabb999aebbd87225e85b3a263ddd8)</code>
-
-- **page/search**: rename the `sort` parameter to `layout` <code>[d917b79](https://github.com/Norviah/media-hub/commit/d917b79143d1a90bf8e5eea6f2069246bf40fd67)</code>
-
-- **components/search**: extract `createUrl` into its own file <code>[4c62c80](https://github.com/Norviah/media-hub/commit/4c62c80953f045347962e178e0b390046e8eaf50)</code>
-
-- use `sonner` for toast notifications <code>[fdae805](https://github.com/Norviah/media-hub/commit/fdae805ba9f4bcc7fc515758810e19b7c7b4d864)</code>
-
-- **types**: update page props to include undefined values <code>[a80d16c](https://github.com/Norviah/media-hub/commit/a80d16c7319fd0da96fad356e0accb533e16a51d)</code>
-
-- use server actions for api calls <code>[4badc19](https://github.com/Norviah/media-hub/commit/4badc19ce7adcfd6256f6d9b3ebd049c58399a81)</code>
-
-### Features
-
-- **page/movie**: update `not-found` to redirect to the search page with the movie filter applied <code>[a574290](https://github.com/Norviah/media-hub/commit/a574290f249ca512728de9e035a5160a60e51c66)</code>
-
-- **components/Header**: add more header varaints <code>[5a0bc4d](https://github.com/Norviah/media-hub/commit/5a0bc4dc76bccadda47b119fb42a7901e841ad83)</code>
-
-- **components/Details**: add a media's rating to the details page <code>[0e5f0e3](https://github.com/Norviah/media-hub/commit/0e5f0e304f666a2c921ecad442ac1857cc8d95e3)</code>
-
-- **page**: add a page to show information for a show/movie <code>[985cb98](https://github.com/Norviah/media-hub/commit/985cb98741051477a1abe05dd9d85da8681edb2e)</code>
-
-- **components**: add an image component that implements a fallback picture <code>[7646c53](https://github.com/Norviah/media-hub/commit/7646c53e8ab2cbd2ab5da860ba721d784f18ba5e)</code>
-
-- **components**: add shadcn toaster components <code>[8eec58d](https://github.com/Norviah/media-hub/commit/8eec58da7b17d2a995532c34d2e8b6c77bd91ff7)</code>
-
-- **page/search**: add error handling and retry functionality <code>[f69f07a](https://github.com/Norviah/media-hub/commit/f69f07ae37fb20b5d6f479cfe5bd8a897522a65e)</code>
-
-- **page/search**: implement a loading state <code>[46ac61f](https://github.com/Norviah/media-hub/commit/46ac61f33cbc8497433e46e14cbca6fa91c01dc3)</code>
-
-- **prisma**: use prisma accelerate <code>[8dd2ffa](https://github.com/Norviah/media-hub/commit/8dd2ffaff55111edcfef80e3b11c7f1ed4939571)</code>
-
-- **components/SearchForm**: keep filters and layout when searching for a query <code>[b539067](https://github.com/Norviah/media-hub/commit/b5390678f02bf580de57e80fd0212afc0f70d873)</code>
-
-- implement a search system with TMDB <code>[af124fa](https://github.com/Norviah/media-hub/commit/af124fa9e37afe9638325b9f37c9ca14133c076f)</code>
-
-- **components/Button**: add a variant for icon buttons <code>[ab59cf2](https://github.com/Norviah/media-hub/commit/ab59cf26bc97058396bd4603351dc1edaf4d39de)</code>
-
 ### UI
+
+- **systems/search**: ensure image cards have consistent x-spacing for text content <code>[1398355](https://github.com/Norviah/media-hub/commit/1398355c41c827e6bba31067fc6a75eb2a46affe)</code>
+
+- **components/Select**: remove minimum width <code>[dfc3bc5](https://github.com/Norviah/media-hub/commit/dfc3bc5fc41f5681009f7ab95b6e9d6d6fc0fbd7)</code>
+
+- **systems/Details**: remove the spacing between the header and the backdrop <code>[142db4e](https://github.com/Norviah/media-hub/commit/142db4e091a598b8be308cccd20ef1aaa887e185)</code>
+
+- **systems/Details**: slightly darken the backdrop image for shows/movies <code>[27bbac5](https://github.com/Norviah/media-hub/commit/27bbac5ba5184c36050ee072db7f00555728f51f)</code>
 
 - **page/search**: improvie ui for search page inspired by anilist.co <code>[2e17552](https://github.com/Norviah/media-hub/commit/2e175525344db63c0cc7a1f5c8ff0e1c176e1ecf)</code>
 
@@ -95,6 +57,58 @@
 - **components/ThemeSelector**: factor component to be a toggle button <code>[7efa4d6](https://github.com/Norviah/media-hub/commit/7efa4d66b109d712c08934e5839283134922a905)</code>
 
 - implement the 'brandon grotesque' font <code>[2d9f956](https://github.com/Norviah/media-hub/commit/2d9f956c50450fe8ad201953cd1d0a6bfaefff65)</code>
+
+### Refactors
+
+- **systems/Search**: simplify layout for search filters <code>[031a12c](https://github.com/Norviah/media-hub/commit/031a12c46881dbb34dbbf2b000e1a1581d82eb52)</code>
+
+- **systems/search**: refactor the filter prompt to a select menu <code>[fc5d410](https://github.com/Norviah/media-hub/commit/fc5d410bf0294a4106754f7c3bfd9d578740edbf)</code>
+
+- use the package `tmdb-ts` for calling tmdb's api <code>[2263ef1](https://github.com/Norviah/media-hub/commit/2263ef188c58af3e2246cf13e599e7c31e704b61)</code>
+
+- **page/search**: refactor search page's logic to reflect a three state behavior <code>[87faa7b](https://github.com/Norviah/media-hub/commit/87faa7b1ac7954e00533a062c75de2300b6cf80f)</code>
+
+- **page/search**: use the `img` component when rendering images <code>[67667da](https://github.com/Norviah/media-hub/commit/67667dafa8f84e51921dd24d5a9953442a2c36e3)</code>
+
+- **next-auth**: use the default prisma adapter <code>[8e9cb54](https://github.com/Norviah/media-hub/commit/8e9cb545c0fabb999aebbd87225e85b3a263ddd8)</code>
+
+- **page/search**: rename the `sort` parameter to `layout` <code>[d917b79](https://github.com/Norviah/media-hub/commit/d917b79143d1a90bf8e5eea6f2069246bf40fd67)</code>
+
+- **components/search**: extract `createUrl` into its own file <code>[4c62c80](https://github.com/Norviah/media-hub/commit/4c62c80953f045347962e178e0b390046e8eaf50)</code>
+
+- use `sonner` for toast notifications <code>[fdae805](https://github.com/Norviah/media-hub/commit/fdae805ba9f4bcc7fc515758810e19b7c7b4d864)</code>
+
+- **types**: update page props to include undefined values <code>[a80d16c](https://github.com/Norviah/media-hub/commit/a80d16c7319fd0da96fad356e0accb533e16a51d)</code>
+
+- use server actions for api calls <code>[4badc19](https://github.com/Norviah/media-hub/commit/4badc19ce7adcfd6256f6d9b3ebd049c58399a81)</code>
+
+### Features
+
+- **systems/Search**: add a year filter to the search functionality <code>[472065d](https://github.com/Norviah/media-hub/commit/472065d35049c9e67dcbd56f09d6064dd9e49618)</code>
+
+- **page/movie**: update `not-found` to redirect to the search page with the movie filter applied <code>[a574290](https://github.com/Norviah/media-hub/commit/a574290f249ca512728de9e035a5160a60e51c66)</code>
+
+- **components/Header**: add more header varaints <code>[5a0bc4d](https://github.com/Norviah/media-hub/commit/5a0bc4dc76bccadda47b119fb42a7901e841ad83)</code>
+
+- **components/Details**: add a media's rating to the details page <code>[0e5f0e3](https://github.com/Norviah/media-hub/commit/0e5f0e304f666a2c921ecad442ac1857cc8d95e3)</code>
+
+- **page**: add a page to show information for a show/movie <code>[985cb98](https://github.com/Norviah/media-hub/commit/985cb98741051477a1abe05dd9d85da8681edb2e)</code>
+
+- **components**: add an image component that implements a fallback picture <code>[7646c53](https://github.com/Norviah/media-hub/commit/7646c53e8ab2cbd2ab5da860ba721d784f18ba5e)</code>
+
+- **components**: add shadcn toaster components <code>[8eec58d](https://github.com/Norviah/media-hub/commit/8eec58da7b17d2a995532c34d2e8b6c77bd91ff7)</code>
+
+- **page/search**: add error handling and retry functionality <code>[f69f07a](https://github.com/Norviah/media-hub/commit/f69f07ae37fb20b5d6f479cfe5bd8a897522a65e)</code>
+
+- **page/search**: implement a loading state <code>[46ac61f](https://github.com/Norviah/media-hub/commit/46ac61f33cbc8497433e46e14cbca6fa91c01dc3)</code>
+
+- **prisma**: use prisma accelerate <code>[8dd2ffa](https://github.com/Norviah/media-hub/commit/8dd2ffaff55111edcfef80e3b11c7f1ed4939571)</code>
+
+- **components/SearchForm**: keep filters and layout when searching for a query <code>[b539067](https://github.com/Norviah/media-hub/commit/b5390678f02bf580de57e80fd0212afc0f70d873)</code>
+
+- implement a search system with TMDB <code>[af124fa](https://github.com/Norviah/media-hub/commit/af124fa9e37afe9638325b9f37c9ca14133c076f)</code>
+
+- **components/Button**: add a variant for icon buttons <code>[ab59cf2](https://github.com/Norviah/media-hub/commit/ab59cf26bc97058396bd4603351dc1edaf4d39de)</code>
 
 ### Build System
 
