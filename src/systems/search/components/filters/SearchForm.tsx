@@ -3,6 +3,7 @@ import { FilterContainer } from './filter/FilterContainer';
 import { Layout } from './layout/Layout';
 import { SearchContainer } from './search/SearchContainer';
 import { Tags } from './Tags';
+import { YearContainer } from './year/YearContainer';
 
 type Props = {
   query: string | undefined;
@@ -15,6 +16,7 @@ export function SearchForm(props: Props): JSX.Element {
         <div className="flex flex-row gap-5">
           <SearchContainer className="flex flex-col justify-end gap-2" query={props.query} />
           <FilterContainer className="flex flex-col justify-end gap-2" />
+          <YearContainer className="flex flex-col justify-end gap-2" />
         </div>
 
         <div className="flex flex-col items-end justify-end gap-2">

@@ -12,6 +12,7 @@ export function Tags(): JSX.Element {
   const params = useSearchParams();
 
   const query = params.get('q');
+  const year = params.get('year');
   const filterParam = params.get('filter');
   const filter = filters.find((filter) => filter.slug === filterParam) || defaultFilter;
 
@@ -40,6 +41,20 @@ export function Tags(): JSX.Element {
         <>
           <span className="text-muted-foreground">Filter:</span>
           &nbsp; {filter.title}
+        </>
+      ),
+    });
+  }
+
+  if (year) {
+    tags.push({
+      onClick: () => {
+        router.push(constructUrl(params, { year: undefined }));
+      },
+      text: (
+        <>
+          <span className="text-muted-foreground">Year:</span>
+          &nbsp; {year}
         </>
       ),
     });

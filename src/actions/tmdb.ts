@@ -8,31 +8,29 @@ import type { MovieSearchOptions, TvSearchOptions } from 'tmdb-ts/dist/endpoints
 
 const tmdb: TMDB = new TMDB(env.TMDB_API_KEY);
 
-export type MovieSearchResult = Movie & { type: 'movie' };
-
-export async function searchMovies({ page = 1, ...options }: MovieSearchOptions): Promise<Search<MovieSearchResult> | null> {
-  try {
-    const response = await tmdb.search.movies({ page, ...options });
-
-    return {
-      ...response,
-      results: response.results.map((movie) => ({ ...movie, type: 'movie' })),
-    };
-  } catch {
-    return null;
-  }
-}
+export type SearchTypes = 'tv' | 'movie';
+export type SearchOptions<T extends SearchTypes> = (T extends 'tv' ? TvSearchOptions : MovieSearchOptions) & { type: T };
 
 export type TvSearchResult = TV & { type: 'tv' };
+export type MovieSearchResult = Movie & { type: 'movie' };
+export type SearchResults<T extends SearchTypes = SearchTypes> = T extends 'tv'
+  ? Search<TvSearchResult>
+  : Search<MovieSearchResult>;
 
-export async function searchTvShows({ page = 1, ...options }: TvSearchOptions): Promise<Search<TvSearchResult> | null> {
+export async function search<T extends SearchTypes>(options: SearchOptions<T>): Promise<SearchResults<T> | null> {
   try {
-    const response = await tmdb.search.tvShows({ page, ...options });
+    let response: Search<TV | Movie>;
+
+    if (options.type === 'tv') {
+      response = await tmdb.search.tvShows(options);
+    } else {
+      response = await tmdb.search.movies(options);
+    }
 
     return {
       ...response,
-      results: response.results.map((tvShow) => ({ ...tvShow, type: 'tv' })),
-    };
+      results: response.results.map((result) => ({ ...result, type: options.type })),
+    } as SearchResults<T>;
   } catch {
     return null;
   }

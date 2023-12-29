@@ -5,11 +5,13 @@ export function constructUrl(params: ReadonlyURLSearchParams, overrides: Record<
   const q = params.get('q');
   const layout = params.get('layout');
   const filter = params.get('filter');
+  const year = params.get('year');
 
   const param: Record<string, string | undefined> = {
     ...(q && { q }),
     ...(filter && { filter }),
     ...(layout && { layout }),
+    ...(year && { year }),
     ...overrides,
   };
 

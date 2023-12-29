@@ -1,28 +1,29 @@
-import { searchMovies, searchTvShows } from '@/actions/tmdb';
+import { SearchOptions, search } from '@/actions/tmdb';
 import { Results } from './Results';
 
-import type { MovieSearchResult, TvSearchResult } from '@/actions/tmdb';
-import type { Search } from 'tmdb-ts';
 import type { FilterItem, LayoutItem } from '../../util/constants';
 
 type Props = {
   query: string;
   layout: LayoutItem['key'];
   filter: FilterItem['key'];
+  year: string | undefined;
 };
 
-export async function Search({ query, filter, layout }: Props): Promise<JSX.Element> {
-  let results: Search<TvSearchResult | MovieSearchResult> | null;
+export async function Search({ query, filter, layout, year }: Props): Promise<JSX.Element> {
+  let queryOptions: SearchOptions<'tv' | 'movie'>;
 
   if (filter === 'tv') {
-    results = await searchTvShows({ query });
+    queryOptions = { type: 'tv', query, first_air_date_year: Number(year) } as SearchOptions<'tv'>;
   } else {
-    results = await searchMovies({ query });
+    queryOptions = { type: 'movie', query, year: Number(year) } as SearchOptions<'movie'>;
   }
+
+  const results = await search(queryOptions);
 
   if (!results || results.results.length === 0) {
     return <>That query didn&apos;t provide any results, please try a new one.</>;
   }
 
-  return <Results initialResults={results} filter={filter} layout={layout} query={query} />;
+  return <Results initialResults={results} layout={layout} queryOptions={queryOptions} />;
 }

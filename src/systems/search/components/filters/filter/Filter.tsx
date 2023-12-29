@@ -1,6 +1,6 @@
 'use client';
 
-import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/Select';
+import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger } from '@/components/ui/Select';
 
 import { buttonVariants } from '@/components/ui/Button';
 import { cn } from '@/utils/cn';
@@ -28,7 +28,7 @@ export function Filter(): JSX.Element {
           'h-9 w-[110px] justify-between border-none bg-card shadow-lg hover:bg-transparent data-[placeholder]:text-muted-foreground'
         )}
       >
-        <SelectValue placeholder="Fruit" />
+        <p>{filter.title}</p>
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
