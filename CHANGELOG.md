@@ -1,5 +1,9 @@
 ## Unreleased
 
+### Bug Fixes
+
+- **page/search**: ensure ssr by wrapping all children in a suspense boundary <code>[f2d3c5a](https://github.com/Norviah/media-hub/commit/f2d3c5a8ba3723877d8b93f45ebc585dc18bcce6)</code>
+
 ### Refactors
 
 - **search**: implement each search type into its own unique route <code>[33605ac](https://github.com/Norviah/media-hub/commit/33605ac3fdc29774ff5fa1848b6cb8b9fb035aea)</code>
