@@ -51,3 +51,5 @@ export async function getTvShow(id: number): Promise<(TvShowDetails & { type: 't
     return null;
   }
 }
+
+export type Genre = { id: number; name: string }[];

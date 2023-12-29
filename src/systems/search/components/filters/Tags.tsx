@@ -13,6 +13,8 @@ export function Tags(): JSX.Element {
 
   const query = params.get('q');
   const year = params.get('year');
+  const genres = params.getAll('genres');
+
   const filterParam = params.get('filter');
   const filter = filters.find((filter) => filter.slug === filterParam) || defaultFilter;
 
@@ -58,6 +60,22 @@ export function Tags(): JSX.Element {
         </>
       ),
     });
+  }
+
+  if (genres.length > 0) {
+    for (const genre of genres) {
+      tags.push({
+        onClick: () => {
+          router.push(constructUrl(params, { genres: genres.filter((g) => g !== genre) }));
+        },
+        text: (
+          <>
+            <span className="text-muted-foreground">Genre:</span>
+            &nbsp; {genre}
+          </>
+        ),
+      });
+    }
   }
 
   return (

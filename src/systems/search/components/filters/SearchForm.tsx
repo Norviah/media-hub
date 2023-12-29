@@ -29,6 +29,13 @@ export function SearchForm(props: Props): JSX.Element {
             <Header type="h5">Year</Header>
             <Year />
           </div>
+
+          {/* <div className="flex flex-col justify-end gap-2">
+            <Header type="h5">Genres</Header>
+            <Suspense fallback={<GenresSkeleton />}>
+              <GenresContainer />
+            </Suspense>
+          </div> */}
         </div>
 
         <div className="flex flex-col items-end justify-end gap-2">
