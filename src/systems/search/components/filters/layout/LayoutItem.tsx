@@ -3,19 +3,23 @@
 import Link from 'next/link';
 
 import { cn } from '@/utils/cn';
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams, usePathname } from 'next/navigation';
 import { constructUrl } from '../../../util/constructUrl';
 
 import type { LayoutItem } from '../../../util/constants';
+import type { Path } from '@/types/Path';
 
 export function LayoutItem({ item }: { item: LayoutItem }): JSX.Element {
   const searchParams = useSearchParams();
+  const pathname = usePathname() as Path;
 
   const layout = searchParams.get('layout');
   const active = layout === item.slug;
 
-  const href = constructUrl(searchParams, {
-    layout: item.slug ?? undefined,
+  const href = constructUrl({
+    path: pathname,
+    params: searchParams,
+    overrides: { layout: item.slug ?? undefined },
   });
 
   const DynamicTag = active ? 'p' : Link;

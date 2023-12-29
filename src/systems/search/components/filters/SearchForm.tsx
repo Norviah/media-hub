@@ -6,18 +6,14 @@ import { Tags } from './Tags';
 import { Year } from './Year';
 import { Layout } from './layout/Layout';
 
-type Props = {
-  query: string | undefined;
-};
-
-export function SearchForm(props: Props): JSX.Element {
+export function SearchForm(): JSX.Element {
   return (
     <div className="mb-7 flex flex-col gap-7">
       <div className="flex justify-between gap-3">
         <div className="flex flex-row gap-5">
           <div className="flex flex-col justify-end gap-2">
             <Header type="h5">Search</Header>
-            <SearchInput query={props.query} />
+            <SearchInput />
           </div>
 
           <div className="flex flex-col justify-end gap-2">

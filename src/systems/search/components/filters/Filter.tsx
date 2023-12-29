@@ -4,22 +4,26 @@ import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger } from '@
 
 import { buttonVariants } from '@/components/ui/Button';
 import { cn } from '@/utils/cn';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { defaultFilter, filters } from '../../util/constants';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { paths } from '../../util/constants';
 import { constructUrl } from '../../util/constructUrl';
 
+import type { Path } from '@/types/Path';
+
 export function Filter(): JSX.Element {
-  const params = useSearchParams();
   const router = useRouter();
-  const filterParam = params.get('filter');
-  const filter = filters.find((item) => item.slug === filterParam) || defaultFilter;
+  const params = useSearchParams();
+  const pathname = usePathname();
+
+  const currentPath = paths.find((item) => item.path === pathname)!;
 
   return (
     <Select
-      value={filter.key}
-      onValueChange={(value) => {
-        const filter = filters.find((item) => item.key === value) || defaultFilter;
-        router.push(constructUrl(params, { filter: filter.slug || undefined }));
+      value={currentPath.path}
+      onValueChange={(value: Path) => {
+        if (value !== currentPath.path) {
+          router.push(constructUrl({ path: value, params }));
+        }
       }}
     >
       <SelectTrigger
@@ -28,12 +32,12 @@ export function Filter(): JSX.Element {
           'h-9 w-[7rem] justify-between border-none bg-card shadow-lg hover:bg-transparent data-[placeholder]:text-muted-foreground'
         )}
       >
-        <p>{filter.title}</p>
+        <p>{currentPath.title}</p>
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
-          {filters.map((filter, i) => (
-            <SelectItem key={i} value={filter.key}>
+          {paths.map((filter, i) => (
+            <SelectItem key={i} value={filter.path}>
               {filter.title}
             </SelectItem>
           ))}

@@ -4,9 +4,7 @@ import { ErrorImage } from '@/components/ErrorImage';
 import { Card } from '@/components/ui/Card';
 
 import { cn } from '@/utils/cn';
-import { parse } from '../../util/parse';
 
-import type { MovieSearchResult, TvSearchResult } from '@/actions/tmdb';
 import type { LayoutItem } from '../../util/constants';
 import type { BasicMediaData } from '../../util/parse';
 
@@ -65,7 +63,7 @@ function ImageCard({ data }: { data: BasicMediaData }): JSX.Element {
 }
 
 type Props = {
-  results: (TvSearchResult | MovieSearchResult)[];
+  results: BasicMediaData[];
   layout: LayoutItem['key'];
 };
 
@@ -79,11 +77,9 @@ export function Grid({ results, layout }: Props): JSX.Element {
         )
       )}
     >
-      {results.map((result) => {
-        const data = parse(result);
-
+      {results.map((data) => {
         return (
-          <Link className="relative inline-block cursor-pointer" href={`/${result.type}/${result.id}`} key={result.id}>
+          <Link className="relative inline-block cursor-pointer" href={data.path} key={data.id}>
             {layout === 'grid' ? <ImageCard data={data} /> : <ListCard data={data} />}
           </Link>
         );

@@ -9,29 +9,35 @@ import { cn } from '@/utils/cn';
 import { Check, ChevronsUpDown } from 'lucide-react';
 
 import { constructUrl } from '@/systems/search/util/constructUrl';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 
 import type { Genre } from '@/actions/tmdb';
+import type { Path } from '@/types/Path';
 
 export function Genres({ genres }: { genres: Genre }): JSX.Element {
   const [open, setOpen] = useState(false);
 
   const router = useRouter();
   const params = useSearchParams();
+  const pathname = usePathname() as Path;
   const genresParams = params.getAll('genres');
 
   const addGenre = (genre: string) => {
-    const href = constructUrl(params, {
-      genres: [...genresParams, genre],
+    const href = constructUrl({
+      path: pathname,
+      params,
+      overrides: { genres: [...genresParams, genre] },
     });
 
     router.push(href);
   };
 
   const removeGenre = (genre: string) => {
-    const href = constructUrl(params, {
-      genres: genresParams.filter((genreParam) => genreParam !== genre),
+    const href = constructUrl({
+      path: pathname,
+      params,
+      overrides: { genres: genresParams.filter((genreParam) => genreParam !== genre) },
     });
 
     router.push(href);
@@ -44,7 +50,6 @@ export function Genres({ genres }: { genres: Genre }): JSX.Element {
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          // className="h-9 w-[12rem] justify-between border-none bg-card px-2 shadow-lg hover:bg-card active:bg-none"
           className="h-9 w-[12rem] justify-between border-none bg-card px-2 shadow-lg hover:bg-card active:bg-none"
         >
           {genresParams.length > 0 ? (

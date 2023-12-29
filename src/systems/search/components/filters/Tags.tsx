@@ -3,27 +3,27 @@
 import { TagsIcon } from 'lucide-react';
 import { DynamicBadge } from './DynamicBadge';
 
-import { useRouter, useSearchParams } from 'next/navigation';
-import { defaultFilter, filters } from '../../util/constants';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { constructUrl } from '../../util/constructUrl';
+import { basePath, paths } from '../../util/constants';
+
+import type { Path } from '@/types/Path';
 
 export function Tags(): JSX.Element {
   const router = useRouter();
   const params = useSearchParams();
+  const pathname = usePathname() as Path;
 
   const query = params.get('q');
   const year = params.get('year');
   const genres = params.getAll('genres');
-
-  const filterParam = params.get('filter');
-  const filter = filters.find((filter) => filter.slug === filterParam) || defaultFilter;
 
   const tags: { onClick: () => void; text: JSX.Element }[] = [];
 
   if (query) {
     tags.push({
       onClick: () => {
-        router.push(constructUrl(params, { q: undefined }));
+        router.push(constructUrl({ path: pathname, params, overrides: { q: undefined } }));
       },
       text: (
         <>
@@ -34,15 +34,17 @@ export function Tags(): JSX.Element {
     });
   }
 
-  if (filterParam) {
+  if (pathname !== basePath.path) {
+    const path = paths.find((p) => p.path === pathname)!;
+
     tags.push({
       onClick: () => {
-        router.push(constructUrl(params, { filter: undefined }));
+        router.push(constructUrl({ path: basePath.path, params }));
       },
       text: (
         <>
-          <span className="text-muted-foreground">Filter:</span>
-          &nbsp; {filter.title}
+          <span className="text-muted-foreground">Category:</span>
+          &nbsp; {path.title}
         </>
       ),
     });
@@ -51,7 +53,7 @@ export function Tags(): JSX.Element {
   if (year) {
     tags.push({
       onClick: () => {
-        router.push(constructUrl(params, { year: undefined }));
+        router.push(constructUrl({ path: pathname, params, overrides: { year: undefined } }));
       },
       text: (
         <>
@@ -66,7 +68,7 @@ export function Tags(): JSX.Element {
     for (const genre of genres) {
       tags.push({
         onClick: () => {
-          router.push(constructUrl(params, { genres: genres.filter((g) => g !== genre) }));
+          router.push(constructUrl({ path: pathname, params, overrides: { genres: genres.filter((g) => g !== genre) } }));
         },
         text: (
           <>

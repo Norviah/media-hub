@@ -1,56 +1,6 @@
-// import type { Media } from '@/types/Media';
-
-// export interface FilterItem {
-//   title: string;
-//   slug: Media['type'] | null;
-//   type: 'FILTER';
-//   key: Media['type'];
-// }
-
-// export const defaultFilter: FilterItem = {
-//   title: 'TV Shows',
-//   slug: null,
-//   type: 'FILTER',
-//   key: 'tv',
-// };
-
-// export const filters: FilterItem[] = [
-//   defaultFilter,
-//   {
-//     title: 'Movies',
-//     slug: 'movie',
-//     type: 'FILTER',
-//     key: 'movie',
-//   },
-// ];
-
-// export interface LayoutItem {
-//   title: string;
-//   slug: 'grid' | 'list' | null;
-//   type: 'VIEWABLE';
-//   key: 'grid' | 'list';
-// }
-
-// export const defaultLayout: LayoutItem = {
-//   title: 'Grid',
-//   slug: null,
-//   type: 'VIEWABLE',
-//   key: 'grid',
-// };
-
-// export const layouts: LayoutItem[] = [
-//   defaultLayout,
-//   {
-//     title: 'List',
-//     slug: 'list',
-//     type: 'VIEWABLE',
-//     key: 'list',
-//   },
-// ];
-
 import { LayoutGridIcon, LayoutListIcon } from 'lucide-react';
 
-import type { Media } from '@/types/Media';
+import type { Path } from '@/types/Path';
 import type { LucideIcon } from 'lucide-react';
 
 export interface LayoutItem {
@@ -74,26 +24,24 @@ export const layouts: LayoutItem[] = [
   },
 ];
 
-export interface FilterItem {
+export interface PathItem {
   title: string;
-  slug: 'movie' | null;
-  type: 'FILTER';
-  key: Media['type'];
+  path: Path;
 }
 
-export const defaultFilter: FilterItem = {
-  title: 'TV Shows',
-  slug: null,
-  type: 'FILTER',
-  key: 'tv',
+export const basePath: PathItem = {
+  title: 'Discover',
+  path: '/search',
 };
 
-export const filters: FilterItem[] = [
-  defaultFilter,
+export const paths: { title: string; path: Path }[] = [
+  basePath,
   {
     title: 'Movies',
-    slug: 'movie',
-    type: 'FILTER',
-    key: 'movie',
+    path: '/search/movie',
+  },
+  {
+    title: 'TV Shows',
+    path: '/search/tv',
   },
 ];

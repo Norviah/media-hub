@@ -1,36 +1,43 @@
 'use server';
 
-import { env } from '@/utils/env';
 import { TMDB } from 'tmdb-ts';
 
+import { parse } from '@/systems/search/util/parse';
+import { env } from '@/utils/env';
+
+import type { BasicMediaData } from '@/systems/search/util/parse';
 import type { Movie, MovieDetails, Search, TV, TvShowDetails } from 'tmdb-ts';
 import type { MovieSearchOptions, TvSearchOptions } from 'tmdb-ts/dist/endpoints';
 
 const tmdb: TMDB = new TMDB(env.TMDB_API_KEY);
 
-export type SearchTypes = 'tv' | 'movie';
-export type SearchOptions<T extends SearchTypes> = (T extends 'tv' ? TvSearchOptions : MovieSearchOptions) & { type: T };
-
-export type TvSearchResult = TV & { type: 'tv' };
-export type MovieSearchResult = Movie & { type: 'movie' };
-export type SearchResults<T extends SearchTypes = SearchTypes> = T extends 'tv'
-  ? Search<TvSearchResult>
-  : Search<MovieSearchResult>;
-
-export async function search<T extends SearchTypes>(options: SearchOptions<T>): Promise<SearchResults<T> | null> {
+export async function searchTv(options: TvSearchOptions): Promise<Search<BasicMediaData> | null> {
   try {
-    let response: Search<TV | Movie>;
-
-    if (options.type === 'tv') {
-      response = await tmdb.search.tvShows(options);
-    } else {
-      response = await tmdb.search.movies(options);
-    }
+    const response: Search<TV> = await tmdb.search.tvShows(options);
+    const parsed = response.results.map((result) => {
+      return parse({ ...result, type: 'tv' });
+    });
 
     return {
       ...response,
-      results: response.results.map((result) => ({ ...result, type: options.type })),
-    } as SearchResults<T>;
+      results: parsed,
+    };
+  } catch {
+    return null;
+  }
+}
+
+export async function searchMovie(options: MovieSearchOptions): Promise<Search<BasicMediaData> | null> {
+  try {
+    const response: Search<Movie> = await tmdb.search.movies(options);
+    const parsed = response.results.map((result) => {
+      return parse({ ...result, type: 'movie' });
+    });
+
+    return {
+      ...response,
+      results: parsed,
+    };
   } catch {
     return null;
   }

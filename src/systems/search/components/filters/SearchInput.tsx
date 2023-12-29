@@ -4,27 +4,31 @@ import { Input } from '@/components/ui/Input';
 import { SearchIcon, XIcon } from 'lucide-react';
 
 import { useDebounce } from '@/hooks/useDebounce';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
-
 import { constructUrl } from '../../util/constructUrl';
 
-export function SearchInput({ query }: { query: string | undefined }): JSX.Element {
+import type { Path } from '@/types/Path';
+
+export function SearchInput(): JSX.Element {
   const [searchTerm, setSearchTerm] = useState('');
 
   const debouncedSearchTerm = useDebounce(searchTerm, 400);
   const router = useRouter();
   const params = useSearchParams();
+  const pathname = usePathname() as Path;
+
+  const query = params.get('q') ?? undefined;
 
   useEffect(() => {
     if (debouncedSearchTerm?.length > 0) {
-      router.push(constructUrl(params, { q: debouncedSearchTerm }));
+      router.push(constructUrl({ path: pathname, params, overrides: { q: debouncedSearchTerm } }));
     }
   }, [debouncedSearchTerm]);
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    router.push(constructUrl(params, { q: searchTerm }));
+    router.push(constructUrl({ path: pathname, params, overrides: { q: debouncedSearchTerm } }));
   };
 
   return (
@@ -45,7 +49,7 @@ export function SearchInput({ query }: { query: string | undefined }): JSX.Eleme
         <div
           className="absolute inset-y-0 right-0 flex cursor-pointer items-center pr-3 text-muted-foreground transition-colors hover:text-foreground"
           onClick={() => {
-            router.push(constructUrl(params, { q: undefined }));
+            router.push(constructUrl({ path: pathname, params, overrides: { q: undefined } }));
           }}
         >
           <XIcon className="h-4 w-4" />

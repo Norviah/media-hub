@@ -4,19 +4,18 @@ import { SpinnerIcon } from '@/components/icons/Spinner';
 import { Button } from '@/components/ui/Button';
 import { Grid } from './Grid';
 
-import { search } from '@/actions/tmdb';
 import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { toast } from 'sonner';
 
-import type { MovieSearchResult, SearchOptions, TvSearchResult } from '@/actions/tmdb';
+import type { BasicMediaData } from '../../util/parse';
 import type { Search } from 'tmdb-ts';
 import type { LayoutItem } from '../../util/constants';
 
 type Props = {
-  initialResults: Search<TvSearchResult | MovieSearchResult>;
+  initialResults: Search<BasicMediaData>;
   layout: LayoutItem['key'];
-  queryOptions: SearchOptions<'tv' | 'movie'>;
+  query: (page: number) => Promise<Search<BasicMediaData> | null>;
 };
 
 enum States {
@@ -25,8 +24,8 @@ enum States {
   FINISHED,
 }
 
-export function Results({ initialResults, layout, queryOptions }: Props): JSX.Element {
-  const [results, setResults] = useState<(TvSearchResult | MovieSearchResult)[]>(initialResults.results);
+export function Results({ initialResults, layout, query }: Props): JSX.Element {
+  const [results, setResults] = useState<BasicMediaData[]>(initialResults.results);
   const [page, setPage] = useState<number>(initialResults.page);
   const [state, setState] = useState<States>(
     initialResults.page === initialResults.total_pages ? States.FINISHED : States.LOADING
@@ -43,7 +42,7 @@ export function Results({ initialResults, layout, queryOptions }: Props): JSX.El
     const nextPage = page + 1;
 
     try {
-      const response = await search({ ...queryOptions, page: nextPage });
+      const response = await query(nextPage);
 
       if (response?.results && response.results.length > 0) {
         if (response.total_pages === response.page) {
