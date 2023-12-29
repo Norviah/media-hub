@@ -2,6 +2,8 @@
 
 ### UI
 
+- **components/Select**: set the cursor to `pointer` when hovering select items <code>[5126314](https://github.com/Norviah/media-hub/commit/51263141afee1a24d71aa12850b96b5f133f45d9)</code>
+
 - **systems/search**: ensure the `filter` and `year` filter have consistent width with the menu <code>[f754a3b](https://github.com/Norviah/media-hub/commit/f754a3be865a4152cc413365f0eb17f5e7848e8f)</code>
 
 - **systems/search**: ensure image cards have consistent x-spacing for text content <code>[1398355](https://github.com/Norviah/media-hub/commit/1398355c41c827e6bba31067fc6a75eb2a46affe)</code>
