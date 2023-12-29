@@ -2,6 +2,8 @@
 
 ### UI
 
+- **systems/search**: ensure the `filter` and `year` filter have consistent width with the menu <code>[f754a3b](https://github.com/Norviah/media-hub/commit/f754a3be865a4152cc413365f0eb17f5e7848e8f)</code>
+
 - **systems/search**: ensure image cards have consistent x-spacing for text content <code>[1398355](https://github.com/Norviah/media-hub/commit/1398355c41c827e6bba31067fc6a75eb2a46affe)</code>
 
 - **components/Select**: remove minimum width <code>[dfc3bc5](https://github.com/Norviah/media-hub/commit/dfc3bc5fc41f5681009f7ab95b6e9d6d6fc0fbd7)</code>
@@ -57,6 +59,12 @@
 - **components/ThemeSelector**: factor component to be a toggle button <code>[7efa4d6](https://github.com/Norviah/media-hub/commit/7efa4d66b109d712c08934e5839283134922a905)</code>
 
 - implement the 'brandon grotesque' font <code>[2d9f956](https://github.com/Norviah/media-hub/commit/2d9f956c50450fe8ad201953cd1d0a6bfaefff65)</code>
+
+### Reverted
+
+- **components/Select**: add back a minimum width for the content <code>[6f09043](https://github.com/Norviah/media-hub/commit/6f09043452df83c93f731d90e53a9bfea55085de)</code>
+
+- **tailwind**: do not mark tailwind utilities as important <code>[6862d38](https://github.com/Norviah/media-hub/commit/6862d38d11aeb1e5b42ef8701b4e2d1bab14ebb2)</code>
 
 ### Refactors
 
@@ -115,10 +123,6 @@
 - **prettier**: ignore non-ts(x) files <code>[7580c4f](https://github.com/Norviah/media-hub/commit/7580c4fbf815f913b344d21c5a375bb7abbc851a)</code>
 
 - **bump**: rename the title for the `refactor` type to `Refactors` <code>[7f4d9d3](https://github.com/Norviah/media-hub/commit/7f4d9d324138fbc936716edc24bd9dd3b2dde5a8)</code>
-
-### Reverted
-
-- **tailwind**: do not mark tailwind utilities as important <code>[6862d38](https://github.com/Norviah/media-hub/commit/6862d38d11aeb1e5b42ef8701b4e2d1bab14ebb2)</code>
 
 ## [v0.4.0](https://github.com/Norviah/media-hub/compare/v0.3.0...v0.4.0) (2023-11-10)
 
