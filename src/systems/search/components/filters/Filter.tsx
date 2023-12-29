@@ -25,7 +25,7 @@ export function Filter(): JSX.Element {
       <SelectTrigger
         className={cn(
           buttonVariants({ variant: 'outline' }),
-          'h-9 w-[110px] justify-between border-none bg-card shadow-lg hover:bg-transparent data-[placeholder]:text-muted-foreground'
+          'h-9 w-[7rem] justify-between border-none bg-card shadow-lg hover:bg-transparent data-[placeholder]:text-muted-foreground'
         )}
       >
         <p>{filter.title}</p>

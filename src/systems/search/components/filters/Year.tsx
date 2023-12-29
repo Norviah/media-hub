@@ -20,10 +20,10 @@ export function Year(): JSX.Element {
       }}
       value={selectedYear}
     >
-      <SelectTrigger className="h-9 w-[100px] justify-between border-none bg-card shadow-lg hover:bg-transparent focus:outline-none">
+      <SelectTrigger className="h-9 w-[7rem] justify-between border-none bg-card shadow-lg hover:bg-transparent focus:outline-none">
         {selectedYear ? selectedYear : <p className="text-muted-foreground">Any</p>}
       </SelectTrigger>
-      <SelectContent className="w-[100px]">
+      <SelectContent>
         <SelectGroup>
           <ScrollArea className="h-72">
             {validYears.map((year) => (
