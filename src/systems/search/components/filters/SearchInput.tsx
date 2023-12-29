@@ -7,7 +7,7 @@ import { useDebounce } from '@/hooks/useDebounce';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-import { constructUrl } from '../../../util/constructUrl';
+import { constructUrl } from '../../util/constructUrl';
 
 export function SearchInput({ query }: { query: string | undefined }): JSX.Element {
   const [searchTerm, setSearchTerm] = useState('');

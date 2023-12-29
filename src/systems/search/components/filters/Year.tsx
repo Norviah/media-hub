@@ -4,8 +4,8 @@ import { ScrollArea } from '@/components/ui/ScrollArea';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger } from '@/components/ui/Select';
 
 import { useRouter, useSearchParams } from 'next/navigation';
-import { constructUrl } from '../../../util/constructUrl';
-import { validYears } from '../../../util/years';
+import { constructUrl } from '../../util/constructUrl';
+import { validYears } from '../../util/years';
 
 export function Year(): JSX.Element {
   const router = useRouter();

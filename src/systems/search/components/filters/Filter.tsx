@@ -5,8 +5,8 @@ import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger } from '@
 import { buttonVariants } from '@/components/ui/Button';
 import { cn } from '@/utils/cn';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { defaultFilter, filters } from '../../../util/constants';
-import { constructUrl } from '../../../util/constructUrl';
+import { defaultFilter, filters } from '../../util/constants';
+import { constructUrl } from '../../util/constructUrl';
 
 export function Filter(): JSX.Element {
   const params = useSearchParams();
