@@ -56,7 +56,7 @@ function ImageCard({ data }: { data: BasicMediaData }): JSX.Element {
       />
 
       <div className="absolute inset-0 rounded-b-lg bg-gradient-to-t from-black to-black/10" />
-      <div className="absolute bottom-4 left-4 text-white">
+      <div className="absolute bottom-4 px-4 text-white">
         <h2 className="text-xl font-bold">{data.name}</h2>
         {data.year && <p className="text-sm">{data.year}</p>}
       </div>
