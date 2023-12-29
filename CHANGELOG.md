@@ -2,6 +2,8 @@
 
 ### UI
 
+- **components/Select**: remove outline when focusing the trigger <code>[4892451](https://github.com/Norviah/media-hub/commit/4892451f5c78d8328a41d4758a4090bc31a50994)</code>
+
 - **components/Select**: set the cursor to `pointer` when hovering select items <code>[5126314](https://github.com/Norviah/media-hub/commit/51263141afee1a24d71aa12850b96b5f133f45d9)</code>
 
 - **systems/search**: ensure the `filter` and `year` filter have consistent width with the menu <code>[f754a3b](https://github.com/Norviah/media-hub/commit/f754a3be865a4152cc413365f0eb17f5e7848e8f)</code>
