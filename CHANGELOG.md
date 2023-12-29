@@ -1,6 +1,34 @@
 ## Unreleased
 
+### Refactors
+
+- **search**: implement each search type into its own unique route <code>[33605ac](https://github.com/Norviah/media-hub/commit/33605ac3fdc29774ff5fa1848b6cb8b9fb035aea)</code>
+
+- **systems/Search**: simplify layout for search filters <code>[031a12c](https://github.com/Norviah/media-hub/commit/031a12c46881dbb34dbbf2b000e1a1581d82eb52)</code>
+
+- **systems/search**: refactor the filter prompt to a select menu <code>[fc5d410](https://github.com/Norviah/media-hub/commit/fc5d410bf0294a4106754f7c3bfd9d578740edbf)</code>
+
+- use the package `tmdb-ts` for calling tmdb's api <code>[2263ef1](https://github.com/Norviah/media-hub/commit/2263ef188c58af3e2246cf13e599e7c31e704b61)</code>
+
+- **page/search**: refactor search page's logic to reflect a three state behavior <code>[87faa7b](https://github.com/Norviah/media-hub/commit/87faa7b1ac7954e00533a062c75de2300b6cf80f)</code>
+
+- **page/search**: use the `img` component when rendering images <code>[67667da](https://github.com/Norviah/media-hub/commit/67667dafa8f84e51921dd24d5a9953442a2c36e3)</code>
+
+- **next-auth**: use the default prisma adapter <code>[8e9cb54](https://github.com/Norviah/media-hub/commit/8e9cb545c0fabb999aebbd87225e85b3a263ddd8)</code>
+
+- **page/search**: rename the `sort` parameter to `layout` <code>[d917b79](https://github.com/Norviah/media-hub/commit/d917b79143d1a90bf8e5eea6f2069246bf40fd67)</code>
+
+- **components/search**: extract `createUrl` into its own file <code>[4c62c80](https://github.com/Norviah/media-hub/commit/4c62c80953f045347962e178e0b390046e8eaf50)</code>
+
+- use `sonner` for toast notifications <code>[fdae805](https://github.com/Norviah/media-hub/commit/fdae805ba9f4bcc7fc515758810e19b7c7b4d864)</code>
+
+- **types**: update page props to include undefined values <code>[a80d16c](https://github.com/Norviah/media-hub/commit/a80d16c7319fd0da96fad356e0accb533e16a51d)</code>
+
+- use server actions for api calls <code>[4badc19](https://github.com/Norviah/media-hub/commit/4badc19ce7adcfd6256f6d9b3ebd049c58399a81)</code>
+
 ### UI
+
+- **components/Button**: remove outline when focused <code>[73f7aca](https://github.com/Norviah/media-hub/commit/73f7acae83f14c3b167eb19a0491400e2dbf36e6)</code>
 
 - **components/Select**: remove outline when focusing the trigger <code>[4892451](https://github.com/Norviah/media-hub/commit/4892451f5c78d8328a41d4758a4090bc31a50994)</code>
 
@@ -64,37 +92,9 @@
 
 - implement the 'brandon grotesque' font <code>[2d9f956](https://github.com/Norviah/media-hub/commit/2d9f956c50450fe8ad201953cd1d0a6bfaefff65)</code>
 
-### Reverted
-
-- **components/Select**: add back a minimum width for the content <code>[6f09043](https://github.com/Norviah/media-hub/commit/6f09043452df83c93f731d90e53a9bfea55085de)</code>
-
-- **tailwind**: do not mark tailwind utilities as important <code>[6862d38](https://github.com/Norviah/media-hub/commit/6862d38d11aeb1e5b42ef8701b4e2d1bab14ebb2)</code>
-
-### Refactors
-
-- **systems/Search**: simplify layout for search filters <code>[031a12c](https://github.com/Norviah/media-hub/commit/031a12c46881dbb34dbbf2b000e1a1581d82eb52)</code>
-
-- **systems/search**: refactor the filter prompt to a select menu <code>[fc5d410](https://github.com/Norviah/media-hub/commit/fc5d410bf0294a4106754f7c3bfd9d578740edbf)</code>
-
-- use the package `tmdb-ts` for calling tmdb's api <code>[2263ef1](https://github.com/Norviah/media-hub/commit/2263ef188c58af3e2246cf13e599e7c31e704b61)</code>
-
-- **page/search**: refactor search page's logic to reflect a three state behavior <code>[87faa7b](https://github.com/Norviah/media-hub/commit/87faa7b1ac7954e00533a062c75de2300b6cf80f)</code>
-
-- **page/search**: use the `img` component when rendering images <code>[67667da](https://github.com/Norviah/media-hub/commit/67667dafa8f84e51921dd24d5a9953442a2c36e3)</code>
-
-- **next-auth**: use the default prisma adapter <code>[8e9cb54](https://github.com/Norviah/media-hub/commit/8e9cb545c0fabb999aebbd87225e85b3a263ddd8)</code>
-
-- **page/search**: rename the `sort` parameter to `layout` <code>[d917b79](https://github.com/Norviah/media-hub/commit/d917b79143d1a90bf8e5eea6f2069246bf40fd67)</code>
-
-- **components/search**: extract `createUrl` into its own file <code>[4c62c80](https://github.com/Norviah/media-hub/commit/4c62c80953f045347962e178e0b390046e8eaf50)</code>
-
-- use `sonner` for toast notifications <code>[fdae805](https://github.com/Norviah/media-hub/commit/fdae805ba9f4bcc7fc515758810e19b7c7b4d864)</code>
-
-- **types**: update page props to include undefined values <code>[a80d16c](https://github.com/Norviah/media-hub/commit/a80d16c7319fd0da96fad356e0accb533e16a51d)</code>
-
-- use server actions for api calls <code>[4badc19](https://github.com/Norviah/media-hub/commit/4badc19ce7adcfd6256f6d9b3ebd049c58399a81)</code>
-
 ### Features
+
+- **types**: implement a type solely to represent valid paths <code>[527b657](https://github.com/Norviah/media-hub/commit/527b65726a5c9e7a5686be5313150ff277f64cad)</code>
 
 - **systems/Search**: add a year filter to the search functionality <code>[472065d](https://github.com/Norviah/media-hub/commit/472065d35049c9e67dcbd56f09d6064dd9e49618)</code>
 
@@ -121,6 +121,12 @@
 - implement a search system with TMDB <code>[af124fa](https://github.com/Norviah/media-hub/commit/af124fa9e37afe9638325b9f37c9ca14133c076f)</code>
 
 - **components/Button**: add a variant for icon buttons <code>[ab59cf2](https://github.com/Norviah/media-hub/commit/ab59cf26bc97058396bd4603351dc1edaf4d39de)</code>
+
+### Reverted
+
+- **components/Select**: add back a minimum width for the content <code>[6f09043](https://github.com/Norviah/media-hub/commit/6f09043452df83c93f731d90e53a9bfea55085de)</code>
+
+- **tailwind**: do not mark tailwind utilities as important <code>[6862d38](https://github.com/Norviah/media-hub/commit/6862d38d11aeb1e5b42ef8701b4e2d1bab14ebb2)</code>
 
 ### Build System
 
