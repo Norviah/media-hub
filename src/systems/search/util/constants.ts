@@ -1,6 +1,6 @@
 import { LayoutGridIcon, LayoutListIcon } from 'lucide-react';
 
-import type { Path } from '@/types/Path';
+import type { Route } from 'next';
 import type { LucideIcon } from 'lucide-react';
 
 export interface LayoutItem {
@@ -26,7 +26,7 @@ export const layouts: LayoutItem[] = [
 
 export interface PathItem {
   title: string;
-  path: Path;
+  path: Route;
 }
 
 export const basePath: PathItem = {
@@ -34,7 +34,7 @@ export const basePath: PathItem = {
   path: '/search',
 };
 
-export const paths: { title: string; path: Path }[] = [
+export const paths: { title: string; path: Route }[] = [
   basePath,
   {
     title: 'Movies',

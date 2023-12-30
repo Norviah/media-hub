@@ -1,13 +1,13 @@
-import type { Path } from '@/types/Path';
+import type { Route } from 'next';
 import type { ReadonlyURLSearchParams } from 'next/navigation';
 
 type Params = {
   overrides?: Record<string, string | undefined | string[]>;
-  path: Path;
+  path: Route;
   params: ReadonlyURLSearchParams;
 };
 
-export function constructUrl({ params, path, overrides }: Params): Path {
+export function constructUrl({ params, path, overrides }: Params): Route {
   const q = params.get('q');
   const layout = params.get('layout');
   const filter = params.get('filter');
@@ -44,5 +44,5 @@ export function constructUrl({ params, path, overrides }: Params): Path {
   const paramsString = newParams.toString();
   const queryString = `${paramsString.length ? '?' : ''}${paramsString}`;
 
-  return `${path}${queryString}` as Path;
+  return `${path}${queryString}` as Route;
 }

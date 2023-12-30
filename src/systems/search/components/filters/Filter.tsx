@@ -8,7 +8,7 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { paths } from '../../util/constants';
 import { constructUrl } from '../../util/constructUrl';
 
-import type { Path } from '@/types/Path';
+import type { Route } from 'next';
 
 export function Filter(): JSX.Element {
   const router = useRouter();
@@ -20,7 +20,7 @@ export function Filter(): JSX.Element {
   return (
     <Select
       value={currentPath.path}
-      onValueChange={(value: Path) => {
+      onValueChange={(value: Route) => {
         if (value !== currentPath.path) {
           router.push(constructUrl({ path: value, params }));
         }

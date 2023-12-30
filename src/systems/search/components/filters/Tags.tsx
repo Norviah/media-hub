@@ -7,12 +7,12 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { constructUrl } from '../../util/constructUrl';
 import { basePath, paths } from '../../util/constants';
 
-import type { Path } from '@/types/Path';
+import type { Route } from 'next';
 
 export function Tags(): JSX.Element {
   const router = useRouter();
   const params = useSearchParams();
-  const pathname = usePathname() as Path;
+  const pathname = usePathname() as Route;
 
   const query = params.get('q');
   const year = params.get('year');

@@ -1,8 +1,8 @@
 import type { LucideIcon } from 'lucide-react';
-import type { Path } from './Path';
+import type { Route } from 'next';
 
 export interface RouteItem {
   title: string;
   icon: LucideIcon;
-  path: Path;
+  path: Route;
 }
