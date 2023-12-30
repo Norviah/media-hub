@@ -3,6 +3,8 @@ import Link from 'next/link';
 import { Logo } from '@/components/icons/Logo';
 import { AuthForm } from '@/systems/auth/components/AuthForm';
 
+import { getFirstParam } from '@/utils/getFirstParam';
+
 import type { PageProps } from '@/types/components/PageProps';
 import type { Metadata } from 'next';
 
@@ -11,9 +13,8 @@ export const metadata: Metadata = {
   description: 'Create an account',
 };
 
-export default function SignInPage(props: PageProps): JSX.Element {
-  const fromParam: string | string[] | undefined = props.searchParams?.from;
-  const from: string = fromParam ? encodeURI(Array.isArray(fromParam) ? fromParam[0] : fromParam) : '/';
+export default function SignInPage({ searchParams }: PageProps): JSX.Element {
+  const from: string = getFirstParam(searchParams, 'from') || '/';
 
   return (
     <>
