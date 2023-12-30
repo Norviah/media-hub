@@ -6,7 +6,7 @@ export default function NotFound(): JSX.Element {
     <div>
       <Header type="h2">Oops!</Header>
       We couldn&apos;t find the page you were looking for, perhaps look for another show{' '}
-      <Link className="font-bold underline underline-offset-4" href="/search">
+      <Link className="font-bold underline underline-offset-4" href="/search/tv">
         here
       </Link>{' '}
       instead?
