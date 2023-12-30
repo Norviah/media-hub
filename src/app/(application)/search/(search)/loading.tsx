@@ -1,6 +1,7 @@
 'use client';
 
 import { SearchSkeleton } from '@/systems/search/components/results/Skeleton';
+
 import { defaultLayout, layouts } from '@/systems/search/util/constants';
 import { useSearchParams } from 'next/navigation';
 

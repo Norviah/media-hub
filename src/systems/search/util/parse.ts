@@ -1,7 +1,7 @@
 import { imageUrl } from '@/utils/tmdb';
 
-import type { Path } from '@/types/Path';
-import type { Movie, TV } from 'tmdb-ts';
+import type { Route } from 'next';
+import type { Movie, Search, TV } from 'tmdb-ts';
 
 export type BasicMediaData = {
   name: string;
@@ -9,15 +9,25 @@ export type BasicMediaData = {
   picture: string;
   overview: string | undefined;
   id: number;
-  path: Path;
+  path: Route<`/${'movie' | 'tv'}/${string}`>;
 };
 
-export function parse(media: (TV & { type: 'tv' }) | (Movie & { type: 'movie' })): BasicMediaData {
-  const name: string = media.type === 'movie' ? media.title : media.name;
-  const year: string | undefined = media.type === 'movie' ? media.release_date : media.first_air_date;
-  const picture: string = imageUrl({ path: media.poster_path, alt: name });
-  const overview: string = media.overview.length > 0 ? media.overview : '[No description available]';
-  const path: Path = `/${media.type}/${media.id}` as Path;
+function isMovie(item: TV | Movie): item is Movie {
+  return 'title' in item;
+}
 
-  return { name, year, picture, overview, id: media.id, path };
+export function parse({ results, ...rest }: Search<TV | Movie>): Search<BasicMediaData> {
+  const parsed = results.map((item: TV | Movie) => {
+    const itemIsMovie = isMovie(item);
+
+    const name: string = itemIsMovie ? item.title : item.name;
+    const year: string | undefined = itemIsMovie ? item.release_date : item.first_air_date;
+    const picture: string = imageUrl({ path: item.poster_path, alt: name });
+    const overview: string = item.overview.length > 0 ? item.overview : '[No description available]';
+    const path: Route<`/${'movie' | 'tv'}/${string}`> = `/${itemIsMovie ? 'movie' : 'tv'}/${item.id}`;
+
+    return { name, year, picture, overview, id: item.id, path };
+  });
+
+  return { ...rest, results: parsed };
 }
