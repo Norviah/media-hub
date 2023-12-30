@@ -2,6 +2,7 @@ import Link from 'next/link';
 
 import { Logo } from '@/components/icons/Logo';
 import { AuthForm } from '@/systems/auth/components/AuthForm';
+import { AuthParams } from '@/utils/params';
 
 import { getFirstParam } from '@/utils/getFirstParam';
 
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
 };
 
 export default function SignInPage({ searchParams }: PageProps): JSX.Element {
-  const from: string = getFirstParam(searchParams, 'from') || '/';
+  const from: string = getFirstParam(searchParams, AuthParams.FROM) || '/';
 
   return (
     <>

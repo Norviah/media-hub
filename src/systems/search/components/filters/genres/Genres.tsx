@@ -5,9 +5,10 @@ import { Button } from '@/components/ui/Button';
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem } from '@/components/ui/Command';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/Popover';
 import { ScrollArea } from '@/components/ui/ScrollArea';
-import { cn } from '@/utils/cn';
 import { Check, ChevronsUpDown } from 'lucide-react';
 
+import { SearchParams } from '@/utils/params';
+import { cn } from '@/utils/cn';
 import { constructUrl } from '@/systems/search/util/constructUrl';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
@@ -20,13 +21,15 @@ export function Genres({ genres }: { genres: Genre }): JSX.Element {
   const router = useRouter();
   const params = useSearchParams();
   const pathname = usePathname();
-  const genresParams = params.getAll('genres');
+  const genresParams = params.getAll(SearchParams.GENRES);
 
   const addGenre = (genre: string) => {
     const href = constructUrl({
       path: pathname,
       params,
-      overrides: { genres: [...genresParams, genre] },
+      overrides: {
+        [SearchParams.GENRES]: [...genresParams, genre],
+      },
     });
 
     router.push(href);
@@ -36,7 +39,9 @@ export function Genres({ genres }: { genres: Genre }): JSX.Element {
     const href = constructUrl({
       path: pathname,
       params,
-      overrides: { genres: genresParams.filter((genreParam) => genreParam !== genre) },
+      overrides: {
+        [SearchParams.GENRES]: genresParams.filter((genreParam) => genreParam !== genre),
+      },
     });
 
     router.push(href);

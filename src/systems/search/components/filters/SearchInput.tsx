@@ -3,6 +3,7 @@
 import { Input } from '@/components/ui/Input';
 import { SearchIcon, XIcon } from 'lucide-react';
 
+import { SearchParams } from '@/utils/params';
 import { useDebounce } from '@/hooks/useDebounce';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -17,7 +18,7 @@ export function SearchInput(): JSX.Element {
   const params = useSearchParams();
   const pathname = usePathname();
 
-  const query = params.get('q') ?? undefined;
+  const query = params.get(SearchParams.GENRES) ?? undefined;
 
   useEffect(() => {
     if (debouncedSearchTerm?.length > 0) {
@@ -25,7 +26,7 @@ export function SearchInput(): JSX.Element {
         constructUrl({
           path: basePath.path === pathname ? '/search/tv' : pathname,
           params,
-          overrides: { q: debouncedSearchTerm },
+          overrides: { [SearchParams.QUERY]: debouncedSearchTerm },
         })
       );
     }
@@ -33,7 +34,7 @@ export function SearchInput(): JSX.Element {
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    router.push(constructUrl({ path: pathname, params, overrides: { q: debouncedSearchTerm } }));
+    router.push(constructUrl({ path: pathname, params, overrides: { [SearchParams.QUERY]: debouncedSearchTerm } }));
   };
 
   return (
@@ -54,7 +55,7 @@ export function SearchInput(): JSX.Element {
         <div
           className="absolute inset-y-0 right-0 flex cursor-pointer items-center pr-3 text-muted-foreground transition-colors hover:text-foreground"
           onClick={() => {
-            router.push(constructUrl({ path: pathname, params, overrides: { q: undefined } }));
+            router.push(constructUrl({ path: pathname, params, overrides: { [SearchParams.QUERY]: undefined } }));
           }}
         >
           <XIcon className="h-4 w-4" />

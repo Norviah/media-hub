@@ -5,6 +5,7 @@ import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger } from '@
 
 import { buttonVariants } from '@/components/ui/Button';
 import { cn } from '@/utils/cn';
+import { SearchParams } from '@/utils/params';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { constructUrl } from '../../util/constructUrl';
 import { validYears } from '../../util/years';
@@ -14,12 +15,18 @@ export function Year(): JSX.Element {
   const params = useSearchParams();
   const pathname = usePathname();
 
-  const selectedYear = params.get('year') ?? undefined;
+  const selectedYear = params.get(SearchParams.YEAR) ?? undefined;
 
   return (
     <Select
       onValueChange={(value) => {
-        router.push(constructUrl({ path: pathname, params, overrides: { year: value } }));
+        const href = constructUrl({
+          path: pathname,
+          params,
+          overrides: { [SearchParams.YEAR]: value },
+        });
+
+        router.push(href);
       }}
       value={selectedYear}
     >

@@ -1,8 +1,10 @@
+import { SearchParams } from '@/utils/params';
+
 import type { Route } from 'next';
 import type { ReadonlyURLSearchParams } from 'next/navigation';
 
 type Params = {
-  overrides?: Record<string, string | undefined | string[]>;
+  overrides?: Partial<Record<SearchParams, string | undefined | string[]>>;
   path: Route;
   params?: ReadonlyURLSearchParams;
   reset?: boolean;
@@ -13,18 +15,16 @@ export function constructUrl({ params, path, overrides, reset }: Params): Route 
     return path;
   }
 
-  const q = params.get('q');
-  const layout = params.get('layout');
-  const filter = params.get('filter');
-  const year = params.get('year');
-  const genres = params.getAll('genres');
+  const q = params.get(SearchParams.QUERY);
+  const layout = params.get(SearchParams.LAYOUT);
+  const year = params.get(SearchParams.YEAR);
+  const genres = params.getAll(SearchParams.GENRES);
 
   const param: Record<string, string | undefined | string[]> = {
-    ...(q && { q }),
-    ...(filter && { filter }),
-    ...(layout && { layout }),
-    ...(year && { year }),
-    ...(genres.length && { genres }),
+    ...(q && { [SearchParams.QUERY]: q }),
+    ...(layout && { [SearchParams.LAYOUT]: layout }),
+    ...(year && { [SearchParams.YEAR]: year }),
+    ...(genres.length && { [SearchParams.GENRES]: genres }),
     ...overrides,
   };
 

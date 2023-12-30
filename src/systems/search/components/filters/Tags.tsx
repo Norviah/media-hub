@@ -3,18 +3,19 @@
 import { TagsIcon } from 'lucide-react';
 import { DynamicBadge } from './DynamicBadge';
 
+import { SearchParams } from '@/utils/params';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { constructUrl } from '../../util/constructUrl';
 import { basePath, paths } from '../../util/constants';
+import { constructUrl } from '../../util/constructUrl';
 
 export function Tags(): JSX.Element {
   const router = useRouter();
   const params = useSearchParams();
   const pathname = usePathname();
 
-  const query = params.get('q');
-  const year = params.get('year');
-  const genres = params.getAll('genres');
+  const query = params.get(SearchParams.QUERY);
+  const year = params.get(SearchParams.YEAR);
+  const genres = params.getAll(SearchParams.GENRES);
 
   const tags: { onClick: () => void; text: JSX.Element }[] = [];
 
@@ -32,7 +33,7 @@ export function Tags(): JSX.Element {
   if (query) {
     tags.push({
       onClick: () => {
-        router.push(constructUrl({ path: pathname, params, overrides: { q: undefined } }));
+        router.push(constructUrl({ path: pathname, params, overrides: { [SearchParams.QUERY]: undefined } }));
       },
       text: (
         <>
@@ -46,7 +47,7 @@ export function Tags(): JSX.Element {
   if (year) {
     tags.push({
       onClick: () => {
-        router.push(constructUrl({ path: pathname, params, overrides: { year: undefined } }));
+        router.push(constructUrl({ path: pathname, params, overrides: { [SearchParams.YEAR]: undefined } }));
       },
       text: (
         <>
@@ -61,7 +62,9 @@ export function Tags(): JSX.Element {
     for (const genre of genres) {
       tags.push({
         onClick: () => {
-          router.push(constructUrl({ path: pathname, params, overrides: { genres: genres.filter((g) => g !== genre) } }));
+          router.push(
+            constructUrl({ path: pathname, params, overrides: { [SearchParams.GENRES]: genres.filter((g) => g !== genre) } })
+          );
         },
         text: (
           <>
