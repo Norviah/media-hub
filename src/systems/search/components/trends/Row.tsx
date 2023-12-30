@@ -5,66 +5,63 @@ import { ScrollArea, ScrollBar } from '@/components/ui/ScrollArea';
 import { Skeleton } from '@/components/ui/Skeleton';
 import { BasicMediaData } from '../../util/parse';
 
-import type { RequireExactlyOne } from 'type-fest';
-
-type Props = {
-  rows?: BasicMediaData[][];
-  children?: React.ReactNode;
-};
-
-function RowContainer(props: RequireExactlyOne<Props>): JSX.Element {
+function RowContainer({ data }: { data: React.ReactNode[] }): JSX.Element {
   return (
     <ScrollArea>
-      {props.rows
-        ? props.rows.map((row: BasicMediaData[], i) => (
-            <div key={i} className="flex h-full w-max gap-8 pb-5">
-              {row.map((item, i) => {
-                return (
-                  <Link href={item.path} key={i}>
-                    <div key={i} className="flex flex-col gap-2">
-                      <ErrorImage
-                        src={item.picture}
-                        alt={item.name}
-                        width={200}
-                        height={250}
-                        priority
-                        className="relative h-[300px] rounded-lg object-contain"
-                        style={{
-                          objectFit: 'cover',
-                        }}
-                      />
-                      <div className="w-[150px] break-words">
-                        <p>{item.name}</p>
-                      </div>
-                    </div>
-                  </Link>
-                );
-              })}
-            </div>
-          ))
-        : props.children}
-      <ScrollBar orientation="horizontal" className="h-3" />
+      <div className="flex flex-col gap-3">
+        {data.map((row: React.ReactNode, i) => (
+          <div key={i} className="flex h-full w-max gap-8">
+            {row}
+          </div>
+        ))}
+        <ScrollBar orientation="horizontal" className="h-3" />
+      </div>
     </ScrollArea>
   );
 }
 
 export function RowSkeleton(): JSX.Element {
-  return (
-    <RowContainer>
-      {Array(20)
-        .fill(0)
-        .map((_, i) => (
-          <div key={i} className="flex flex-col gap-2">
-            <Skeleton className="h-[300px] w-[200px] rounded-lg object-cover" />
-            <div className="break-words font-bold">
-              <Skeleton className="h-4 w-full" />
-            </div>
-          </div>
-        ))}
-    </RowContainer>
-  );
+  const dummyData = Array(20)
+    .fill(0)
+    .map((_, i) => (
+      <div key={i} className="flex flex-col gap-2">
+        <Skeleton className="h-[300px] w-[200px] rounded-lg object-cover" />
+        <div className="break-words font-bold">
+          <Skeleton className="h-4 w-full" />
+        </div>
+      </div>
+    ));
+
+  return <RowContainer data={[dummyData, dummyData]} />;
+}
+
+function GenerateRow({ items }: { items: BasicMediaData[] }): JSX.Element[] {
+  return items.map((item, i) => (
+    <Link href={item.path} key={i}>
+      <div className="flex flex-col gap-2">
+        <ErrorImage
+          src={item.picture}
+          alt={item.name}
+          width={200}
+          height={250}
+          priority
+          className="relative h-[300px] rounded-lg object-contain"
+          style={{
+            objectFit: 'cover',
+          }}
+        />
+        <div className="w-[150px] break-words">
+          <p>{item.name}</p>
+        </div>
+      </div>
+    </Link>
+  ));
 }
 
 export function Row({ data }: { data: BasicMediaData[] }): JSX.Element {
-  return <RowContainer rows={[data.slice(0, 10), data.slice(10, 20)]} />;
+  return (
+    <RowContainer
+      data={[<GenerateRow key={0} items={data.slice(0, 10)} />, <GenerateRow key={1} items={data.slice(10, 20)} />]}
+    />
+  );
 }
