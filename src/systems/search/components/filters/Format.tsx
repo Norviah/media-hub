@@ -5,12 +5,12 @@ import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger } from '@
 import { buttonVariants } from '@/components/ui/Button';
 import { cn } from '@/utils/cn';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { paths } from '../../util/constants';
+import { basePath, paths } from '../../util/constants';
 import { constructUrl } from '../../util/constructUrl';
 
 import type { Route } from 'next';
 
-export function Filter(): JSX.Element {
+export function Format(): JSX.Element {
   const router = useRouter();
   const params = useSearchParams();
   const pathname = usePathname();
@@ -22,7 +22,7 @@ export function Filter(): JSX.Element {
       value={currentPath.path}
       onValueChange={(value: Route) => {
         if (value !== currentPath.path) {
-          router.push(constructUrl({ path: value, params }));
+          router.push(constructUrl({ path: value, params, reset: value === basePath.path }));
         }
       }}
     >
@@ -36,9 +36,9 @@ export function Filter(): JSX.Element {
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
-          {paths.map((filter, i) => (
-            <SelectItem key={i} value={filter.path}>
-              {filter.title}
+          {paths.map((path, i) => (
+            <SelectItem key={i} value={path.path}>
+              {path.title}
             </SelectItem>
           ))}
         </SelectGroup>

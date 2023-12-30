@@ -4,10 +4,15 @@ import type { ReadonlyURLSearchParams } from 'next/navigation';
 type Params = {
   overrides?: Record<string, string | undefined | string[]>;
   path: Route;
-  params: ReadonlyURLSearchParams;
+  params?: ReadonlyURLSearchParams;
+  reset?: boolean;
 };
 
-export function constructUrl({ params, path, overrides }: Params): Route {
+export function constructUrl({ params, path, overrides, reset }: Params): Route {
+  if (!params || reset) {
+    return path;
+  }
+
   const q = params.get('q');
   const layout = params.get('layout');
   const filter = params.get('filter');

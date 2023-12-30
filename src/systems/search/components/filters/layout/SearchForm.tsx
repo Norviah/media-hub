@@ -1,5 +1,5 @@
 import { Header } from '@/components/ui/typography/Header';
-import { Filter } from '../Filter';
+import { Format } from '../Format';
 import { SearchInput } from '../SearchInput';
 import { MetaInformation } from './MetaInformation';
 import { SearchOptions } from './SearchOptions';
@@ -15,8 +15,8 @@ export function SearchForm(): JSX.Element {
           </div>
 
           <div className="flex flex-col justify-end gap-2">
-            <Header type="h5">Filter</Header>
-            <Filter />
+            <Header type="h5">Format</Header>
+            <Format />
           </div>
 
           <SearchOptions />

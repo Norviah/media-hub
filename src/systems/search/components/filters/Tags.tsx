@@ -18,6 +18,17 @@ export function Tags(): JSX.Element {
 
   const tags: { onClick: () => void; text: JSX.Element }[] = [];
 
+  if (pathname !== basePath.path) {
+    const path = paths.find((p) => p.path === pathname)!;
+
+    tags.push({
+      onClick: () => {
+        router.push(constructUrl({ path: basePath.path, reset: true }));
+      },
+      text: <>&nbsp; {path.title}</>,
+    });
+  }
+
   if (query) {
     tags.push({
       onClick: () => {
@@ -27,22 +38,6 @@ export function Tags(): JSX.Element {
         <>
           <span className="text-muted-foreground">Query:</span>
           &nbsp; {query}
-        </>
-      ),
-    });
-  }
-
-  if (pathname !== basePath.path) {
-    const path = paths.find((p) => p.path === pathname)!;
-
-    tags.push({
-      onClick: () => {
-        router.push(constructUrl({ path: basePath.path, params }));
-      },
-      text: (
-        <>
-          <span className="text-muted-foreground">Category:</span>
-          &nbsp; {path.title}
         </>
       ),
     });
