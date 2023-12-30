@@ -7,11 +7,10 @@ import { useSearchParams, usePathname } from 'next/navigation';
 import { constructUrl } from '../../../util/constructUrl';
 
 import type { LayoutItem } from '../../../util/constants';
-import type { Route } from 'next';
 
 export function LayoutItem({ item }: { item: LayoutItem }): JSX.Element {
   const searchParams = useSearchParams();
-  const pathname = usePathname() as Route;
+  const pathname = usePathname();
 
   const layout = searchParams.get('layout');
   const active = layout === item.slug;

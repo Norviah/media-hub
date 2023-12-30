@@ -8,15 +8,13 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { constructUrl } from '../../util/constructUrl';
 
-import type { Route } from 'next';
-
 export function SearchInput(): JSX.Element {
   const [searchTerm, setSearchTerm] = useState('');
 
   const debouncedSearchTerm = useDebounce(searchTerm, 400);
   const router = useRouter();
   const params = useSearchParams();
-  const pathname = usePathname() as Route;
+  const pathname = usePathname();
 
   const query = params.get('q') ?? undefined;
 

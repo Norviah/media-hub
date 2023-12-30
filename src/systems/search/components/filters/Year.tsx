@@ -9,12 +9,10 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { constructUrl } from '../../util/constructUrl';
 import { validYears } from '../../util/years';
 
-import type { Route } from 'next';
-
 export function Year(): JSX.Element {
   const router = useRouter();
   const params = useSearchParams();
-  const pathname = usePathname() as Route;
+  const pathname = usePathname();
 
   const selectedYear = params.get('year') ?? undefined;
 

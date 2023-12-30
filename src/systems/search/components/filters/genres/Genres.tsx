@@ -13,14 +13,13 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 
 import type { Genre } from '@/actions/tmdb';
-import type { Route } from 'next';
 
 export function Genres({ genres }: { genres: Genre }): JSX.Element {
   const [open, setOpen] = useState(false);
 
   const router = useRouter();
   const params = useSearchParams();
-  const pathname = usePathname() as Route;
+  const pathname = usePathname();
   const genresParams = params.getAll('genres');
 
   const addGenre = (genre: string) => {
