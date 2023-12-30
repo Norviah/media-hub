@@ -7,6 +7,7 @@ import { useDebounce } from '@/hooks/useDebounce';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { constructUrl } from '../../util/constructUrl';
+import { basePath } from '../../util/constants';
 
 export function SearchInput(): JSX.Element {
   const [searchTerm, setSearchTerm] = useState('');
@@ -20,7 +21,13 @@ export function SearchInput(): JSX.Element {
 
   useEffect(() => {
     if (debouncedSearchTerm?.length > 0) {
-      router.push(constructUrl({ path: pathname, params, overrides: { q: debouncedSearchTerm } }));
+      router.push(
+        constructUrl({
+          path: basePath.path === pathname ? '/search/tv' : pathname,
+          params,
+          overrides: { q: debouncedSearchTerm },
+        })
+      );
     }
   }, [debouncedSearchTerm]);
 
