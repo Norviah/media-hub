@@ -1,7 +1,7 @@
 import { SearchIcon } from 'lucide-react';
-import type { Route } from '@/types/Route';
+import type { RouteItem } from '@/types/Route';
 
-export const nav: Route[] = [
+export const nav: RouteItem[] = [
   {
     title: 'Search',
     path: '/search',

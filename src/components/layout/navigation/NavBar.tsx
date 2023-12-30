@@ -11,7 +11,7 @@ import { nav } from '@/components/layout/navigation/routes';
 import { cn } from '@/utils/cn';
 import { useSelectedLayoutSegment } from 'next/navigation';
 
-import type { Route } from '@/types/Route';
+import type { RouteItem } from '@/types/Route';
 
 export function NavBar(): JSX.Element {
   const segment = useSelectedLayoutSegment();
@@ -26,7 +26,7 @@ export function NavBar(): JSX.Element {
 
       {nav?.length ? (
         <nav className="hidden gap-6 md:flex">
-          {nav?.map((item: Route, index: number) => (
+          {nav?.map((item: RouteItem, index: number) => (
             <Link
               key={index}
               href={item.path}

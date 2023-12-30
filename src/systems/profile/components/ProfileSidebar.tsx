@@ -6,14 +6,14 @@ import { profileRoutes } from '@/systems/profile/util/routes';
 import { cn } from '@/utils/cn';
 import { usePathname } from 'next/navigation';
 
-import type { Route } from '@/types/Route';
+import type { RouteItem } from '@/types/Route';
 
 export function ProfileSidebar(): JSX.Element {
   const path = usePathname();
 
   return (
     <nav className="grid items-start gap-2">
-      {profileRoutes.map((route: Route, index) => {
+      {profileRoutes.map((route: RouteItem, index) => {
         return (
           <Link key={index} href={route.path}>
             <span

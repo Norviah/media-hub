@@ -1,7 +1,7 @@
-import type { Route } from '@/types/Route';
+import type { RouteItem } from '@/types/Route';
 import { CogIcon, UserIcon } from 'lucide-react';
 
-export const profileRoutes: Route[] = [
+export const profileRoutes: RouteItem[] = [
   {
     title: 'Profile',
     path: '/profile',

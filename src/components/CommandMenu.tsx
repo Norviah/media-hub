@@ -17,7 +17,7 @@ import {
 } from '@/components/ui/Command';
 import { LaptopIcon, MoonIcon, SearchIcon, SunMediumIcon } from 'lucide-react';
 
-import type { Route } from '@/types/Route';
+import type { RouteItem } from '@/types/Route';
 import type { DialogProps } from '@radix-ui/react-alert-dialog';
 
 export function CommandMenu({ ...props }: DialogProps): JSX.Element {
@@ -52,7 +52,7 @@ export function CommandMenu({ ...props }: DialogProps): JSX.Element {
         <CommandList>
           <CommandEmpty>No results found.</CommandEmpty>
           <CommandGroup heading="Links">
-            {nav.map((route: Route, index: number) => (
+            {nav.map((route: RouteItem, index: number) => (
               <CommandItem
                 key={index}
                 value={route.title}

@@ -6,9 +6,9 @@ import { Logo } from '@/components/icons/Logo';
 import { useLockBody } from '@/hooks/useLockBody';
 import { cn } from '@/utils/cn';
 
-import type { Route } from '@/types/Route';
+import type { RouteItem } from '@/types/Route';
 
-export function MobileNavBar(props: { items: Route[] }): React.ReactNode {
+export function MobileNavBar(props: { items: RouteItem[] }): React.ReactNode {
   useLockBody();
 
   return (
@@ -23,7 +23,7 @@ export function MobileNavBar(props: { items: Route[] }): React.ReactNode {
           <span className="font-bold">name</span>
         </Link>
         <nav className="grid grid-flow-row auto-rows-max text-sm">
-          {props.items.map((item: Route, index: number) => (
+          {props.items.map((item: RouteItem, index: number) => (
             <Link
               key={index}
               href={item.path}
