@@ -1,10 +1,9 @@
 import { Header } from '@/components/ui/typography/Header';
-import { Filter } from './Filter';
-import { SearchInput } from './SearchInput';
-import { Settings } from './Settings';
-import { Tags } from './Tags';
-import { Year } from './Year';
-import { Layout } from './layout/Layout';
+import { Filter } from '../Filter';
+import { SearchInput } from '../SearchInput';
+import { Settings } from '../Settings';
+import { Year } from '../Year';
+import { MetaInformation } from './MetaInformation';
 
 export function SearchForm(): JSX.Element {
   return (
@@ -38,12 +37,7 @@ export function SearchForm(): JSX.Element {
           <Settings />
         </div>
       </div>
-      <div className="flex flex-row justify-between">
-        <Tags />
-        <div className="flex flex-row gap-2">
-          <Layout />
-        </div>
-      </div>
+      <MetaInformation />
     </div>
   );
 }

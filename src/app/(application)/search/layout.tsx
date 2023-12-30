@@ -1,4 +1,4 @@
-import { SearchForm } from '@/systems/search/components/filters/SearchForm';
+import { SearchForm } from '@/systems/search/components/filters/layout/SearchForm';
 import { Suspense } from 'react';
 
 import type { LayoutProps } from '@/types/components/LayoutProps';
