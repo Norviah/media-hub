@@ -1,9 +1,8 @@
 import { Header } from '@/components/ui/typography/Header';
 import { Filter } from '../Filter';
 import { SearchInput } from '../SearchInput';
-import { Settings } from '../Settings';
-import { Year } from '../Year';
 import { MetaInformation } from './MetaInformation';
+import { SearchOptions } from './SearchOptions';
 
 export function SearchForm(): JSX.Element {
   return (
@@ -20,21 +19,7 @@ export function SearchForm(): JSX.Element {
             <Filter />
           </div>
 
-          <div className="flex flex-col justify-end gap-2">
-            <Header type="h5">Year</Header>
-            <Year />
-          </div>
-
-          {/* <div className="flex flex-col justify-end gap-2">
-            <Header type="h5">Genres</Header>
-            <Suspense fallback={<GenresSkeleton />}>
-              <GenresContainer />
-            </Suspense>
-          </div> */}
-        </div>
-
-        <div className="flex flex-col items-end justify-end gap-2">
-          <Settings />
+          <SearchOptions />
         </div>
       </div>
       <MetaInformation />
