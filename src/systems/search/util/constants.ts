@@ -30,7 +30,7 @@ export interface PathItem {
 }
 
 export const basePath: PathItem = {
-  title: 'Discover',
+  title: 'Trending',
   path: '/search',
 };
 
