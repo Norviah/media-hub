@@ -2,9 +2,67 @@
 
 ### Bug Fixes
 
+- **actions/tmdb**: fix props for `discoverMovie` <code>[fd9e76c](https://github.com/Norviah/media-hub/commit/fd9e76c551774defbeaf00bec1d6502833df307a)</code>
+
+- **page**: correctly point the user to the respective search page when a movie/show wasn't found <code>[f8c5d3d](https://github.com/Norviah/media-hub/commit/f8c5d3d170c01897f4feeabf77d70d323f559fe5)</code>
+
+- **systems/search**: fix skeleton layout for base search rote <code>[134cafb](https://github.com/Norviah/media-hub/commit/134cafbba81e8fdea18569b1e9c6c20cc495c5a9)</code>
+
 - **page/search**: ensure ssr by wrapping all children in a suspense boundary <code>[f2d3c5a](https://github.com/Norviah/media-hub/commit/f2d3c5a8ba3723877d8b93f45ebc585dc18bcce6)</code>
 
+### Features
+
+- **search/systems**: implement a function to parse search parameters to their desired value <code>[42d41ab](https://github.com/Norviah/media-hub/commit/42d41ab35fb60fa2cce4eeed8158c6055d8dfb67)</code>
+
+- **systems/search**: implement a discover system when no query is presented for movies/tv shows <code>[7597fff](https://github.com/Norviah/media-hub/commit/7597fff28309b3526ebc148208eed51198d3f315)</code>
+
+- **utils**: implement a function to get all instances of a search parameter <code>[e7bc1d9](https://github.com/Norviah/media-hub/commit/e7bc1d9ef74a6e7413641cc8063ade578ac2d36b)</code>
+
+- implement enums to represent search parameters <code>[194abe4](https://github.com/Norviah/media-hub/commit/194abe4de4779d9637fb2d502e37409343361227)</code>
+
+- **utils**: add a helper function to get the first value of a search parameter <code>[04062d4](https://github.com/Norviah/media-hub/commit/04062d471cbb685e41bb05f8a5efb34be5afe066)</code>
+
+- **systems/search**: make the search input redirect to `/search/tv` if used on the base search route <code>[3146b61](https://github.com/Norviah/media-hub/commit/3146b616eaaf6c14fb30c937b8c9e347dec73987)</code>
+
+- **page/search**: add trending movies/shows on base search route <code>[fdb7055](https://github.com/Norviah/media-hub/commit/fdb7055938f9294047d88737b0914c5ad18d8157)</code>
+
+- **types**: extend `next/navigation` to specify the return type of `usePathname` as `Route` <code>[91b90f9](https://github.com/Norviah/media-hub/commit/91b90f93cb076a6bd2c0f4c07c6a19adc9c82f38)</code>
+
+- **types**: implement a type solely to represent valid paths <code>[527b657](https://github.com/Norviah/media-hub/commit/527b65726a5c9e7a5686be5313150ff277f64cad)</code>
+
+- **systems/Search**: add a year filter to the search functionality <code>[472065d](https://github.com/Norviah/media-hub/commit/472065d35049c9e67dcbd56f09d6064dd9e49618)</code>
+
+- **page/movie**: update `not-found` to redirect to the search page with the movie filter applied <code>[a574290](https://github.com/Norviah/media-hub/commit/a574290f249ca512728de9e035a5160a60e51c66)</code>
+
+- **components/Header**: add more header varaints <code>[5a0bc4d](https://github.com/Norviah/media-hub/commit/5a0bc4dc76bccadda47b119fb42a7901e841ad83)</code>
+
+- **components/Details**: add a media's rating to the details page <code>[0e5f0e3](https://github.com/Norviah/media-hub/commit/0e5f0e304f666a2c921ecad442ac1857cc8d95e3)</code>
+
+- **page**: add a page to show information for a show/movie <code>[985cb98](https://github.com/Norviah/media-hub/commit/985cb98741051477a1abe05dd9d85da8681edb2e)</code>
+
+- **components**: add an image component that implements a fallback picture <code>[7646c53](https://github.com/Norviah/media-hub/commit/7646c53e8ab2cbd2ab5da860ba721d784f18ba5e)</code>
+
+- **components**: add shadcn toaster components <code>[8eec58d](https://github.com/Norviah/media-hub/commit/8eec58da7b17d2a995532c34d2e8b6c77bd91ff7)</code>
+
+- **page/search**: add error handling and retry functionality <code>[f69f07a](https://github.com/Norviah/media-hub/commit/f69f07ae37fb20b5d6f479cfe5bd8a897522a65e)</code>
+
+- **page/search**: implement a loading state <code>[46ac61f](https://github.com/Norviah/media-hub/commit/46ac61f33cbc8497433e46e14cbca6fa91c01dc3)</code>
+
+- **prisma**: use prisma accelerate <code>[8dd2ffa](https://github.com/Norviah/media-hub/commit/8dd2ffaff55111edcfef80e3b11c7f1ed4939571)</code>
+
+- **components/SearchForm**: keep filters and layout when searching for a query <code>[b539067](https://github.com/Norviah/media-hub/commit/b5390678f02bf580de57e80fd0212afc0f70d873)</code>
+
+- implement a search system with TMDB <code>[af124fa](https://github.com/Norviah/media-hub/commit/af124fa9e37afe9638325b9f37c9ca14133c076f)</code>
+
+- **components/Button**: add a variant for icon buttons <code>[ab59cf2](https://github.com/Norviah/media-hub/commit/ab59cf26bc97058396bd4603351dc1edaf4d39de)</code>
+
 ### Refactors
+
+- **systems/search**: rename the `Filter` option to `Format` <code>[00486b1](https://github.com/Norviah/media-hub/commit/00486b1a5d27fc9a7a8a7a8168c61a4d89b12853)</code>
+
+- **types**: use the built-in type `Route` when referencing a route <code>[bb6fb17](https://github.com/Norviah/media-hub/commit/bb6fb17b971214dd6cd797083116dae53549d8d7)</code>
+
+- **types**: rename `Route` to `RouteItem` <code>[df6461e](https://github.com/Norviah/media-hub/commit/df6461eafa015f89cc04ef8cf1297d80c13d412c)</code>
 
 - **search**: implement each search type into its own unique route <code>[33605ac](https://github.com/Norviah/media-hub/commit/33605ac3fdc29774ff5fa1848b6cb8b9fb035aea)</code>
 
@@ -31,6 +89,14 @@
 - use server actions for api calls <code>[4badc19](https://github.com/Norviah/media-hub/commit/4badc19ce7adcfd6256f6d9b3ebd049c58399a81)</code>
 
 ### UI
+
+- **systems/search**: hide search options when on the base search route <code>[ca6a478](https://github.com/Norviah/media-hub/commit/ca6a478af76fc90b3891deb46ccd5bd5fd4f9c7e)</code>
+
+- **page/search**: change heading and spacing for trending page <code>[4cdde79](https://github.com/Norviah/media-hub/commit/4cdde79c3619472124714f9256bc6e9016dc6128)</code>
+
+- **systems/search**: present movies/shows with two colums in trending page <code>[a2897f6](https://github.com/Norviah/media-hub/commit/a2897f69edb7b85d4b8cde1191c7c561d69e4f99)</code>
+
+- **page/search**: hide tags and layout icons when on base search route <code>[317b577](https://github.com/Norviah/media-hub/commit/317b577e27382bc55b3f7cc628d867165c0791fb)</code>
 
 - **components/Button**: remove outline when focused <code>[73f7aca](https://github.com/Norviah/media-hub/commit/73f7acae83f14c3b167eb19a0491400e2dbf36e6)</code>
 
@@ -95,36 +161,6 @@
 - **components/ThemeSelector**: factor component to be a toggle button <code>[7efa4d6](https://github.com/Norviah/media-hub/commit/7efa4d66b109d712c08934e5839283134922a905)</code>
 
 - implement the 'brandon grotesque' font <code>[2d9f956](https://github.com/Norviah/media-hub/commit/2d9f956c50450fe8ad201953cd1d0a6bfaefff65)</code>
-
-### Features
-
-- **types**: implement a type solely to represent valid paths <code>[527b657](https://github.com/Norviah/media-hub/commit/527b65726a5c9e7a5686be5313150ff277f64cad)</code>
-
-- **systems/Search**: add a year filter to the search functionality <code>[472065d](https://github.com/Norviah/media-hub/commit/472065d35049c9e67dcbd56f09d6064dd9e49618)</code>
-
-- **page/movie**: update `not-found` to redirect to the search page with the movie filter applied <code>[a574290](https://github.com/Norviah/media-hub/commit/a574290f249ca512728de9e035a5160a60e51c66)</code>
-
-- **components/Header**: add more header varaints <code>[5a0bc4d](https://github.com/Norviah/media-hub/commit/5a0bc4dc76bccadda47b119fb42a7901e841ad83)</code>
-
-- **components/Details**: add a media's rating to the details page <code>[0e5f0e3](https://github.com/Norviah/media-hub/commit/0e5f0e304f666a2c921ecad442ac1857cc8d95e3)</code>
-
-- **page**: add a page to show information for a show/movie <code>[985cb98](https://github.com/Norviah/media-hub/commit/985cb98741051477a1abe05dd9d85da8681edb2e)</code>
-
-- **components**: add an image component that implements a fallback picture <code>[7646c53](https://github.com/Norviah/media-hub/commit/7646c53e8ab2cbd2ab5da860ba721d784f18ba5e)</code>
-
-- **components**: add shadcn toaster components <code>[8eec58d](https://github.com/Norviah/media-hub/commit/8eec58da7b17d2a995532c34d2e8b6c77bd91ff7)</code>
-
-- **page/search**: add error handling and retry functionality <code>[f69f07a](https://github.com/Norviah/media-hub/commit/f69f07ae37fb20b5d6f479cfe5bd8a897522a65e)</code>
-
-- **page/search**: implement a loading state <code>[46ac61f](https://github.com/Norviah/media-hub/commit/46ac61f33cbc8497433e46e14cbca6fa91c01dc3)</code>
-
-- **prisma**: use prisma accelerate <code>[8dd2ffa](https://github.com/Norviah/media-hub/commit/8dd2ffaff55111edcfef80e3b11c7f1ed4939571)</code>
-
-- **components/SearchForm**: keep filters and layout when searching for a query <code>[b539067](https://github.com/Norviah/media-hub/commit/b5390678f02bf580de57e80fd0212afc0f70d873)</code>
-
-- implement a search system with TMDB <code>[af124fa](https://github.com/Norviah/media-hub/commit/af124fa9e37afe9638325b9f37c9ca14133c076f)</code>
-
-- **components/Button**: add a variant for icon buttons <code>[ab59cf2](https://github.com/Norviah/media-hub/commit/ab59cf26bc97058396bd4603351dc1edaf4d39de)</code>
 
 ### Reverted
 
