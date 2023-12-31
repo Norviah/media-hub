@@ -5,6 +5,7 @@ import { TMDB } from 'tmdb-ts';
 import { parse } from '@/systems/search/util/parse';
 import { env } from '@/utils/env';
 
+import type { TvShowQueryOptions } from '@/systems/search/types/QueryOptions';
 import type { BasicMediaData } from '@/systems/search/util/parse';
 import type { MovieDetails, Search, TimeWindow, TvShowDetails } from 'tmdb-ts';
 import type { MovieSearchOptions, TvSearchOptions } from 'tmdb-ts/dist/endpoints';
@@ -22,6 +23,22 @@ export async function searchTv(options: TvSearchOptions): Promise<Search<BasicMe
 export async function searchMovie(options: MovieSearchOptions): Promise<Search<BasicMediaData> | null> {
   try {
     return parse(await tmdb.search.movies(options));
+  } catch {
+    return null;
+  }
+}
+
+export async function discoverTv(options: TvShowQueryOptions): Promise<Search<BasicMediaData> | null> {
+  try {
+    return parse(await tmdb.discover.tvShow(options));
+  } catch {
+    return null;
+  }
+}
+
+export async function discoverMovie(options: TvShowQueryOptions): Promise<Search<BasicMediaData> | null> {
+  try {
+    return parse(await tmdb.discover.movie(options));
   } catch {
     return null;
   }
@@ -54,4 +71,4 @@ export async function getTrending<T extends 'tv' | 'movie'>(
   }
 }
 
-export type Genre = { id: number; name: string }[];
+export type Genre = { id: number; name: string };

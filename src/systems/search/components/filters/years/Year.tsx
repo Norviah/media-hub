@@ -7,8 +7,8 @@ import { buttonVariants } from '@/components/ui/Button';
 import { cn } from '@/utils/cn';
 import { SearchParams } from '@/utils/params';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { constructUrl } from '../../util/constructUrl';
-import { validYears } from '../../util/years';
+import { constructUrl } from '../../../util/constructUrl';
+import { validYears } from '../../../util/years';
 
 export function Year(): JSX.Element {
   const router = useRouter();

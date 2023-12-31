@@ -1,5 +1,7 @@
 'use client';
 
+import { Separator } from '@/components/ui/Separator';
+import { Sort } from '../Sort';
 import { Tags } from '../Tags';
 import { Layout } from './Layout';
 
@@ -9,11 +11,19 @@ import { usePathname } from 'next/navigation';
 export function MetaInformation(): JSX.Element | null {
   const pathname = usePathname();
 
-  return pathname === basePath.path ? null : (
+  if (pathname === basePath.path) {
+    return null;
+  }
+
+  return (
     <div className="flex flex-row justify-between">
       <Tags />
-      <div className="flex flex-row gap-2">
-        <Layout />
+      <div className="flex flex-row gap-3">
+        <Sort />
+        <Separator className="bg-muted-foreground" orientation="vertical" />
+        <div className="flex flex-row gap-1">
+          <Layout />
+        </div>
       </div>
     </div>
   );

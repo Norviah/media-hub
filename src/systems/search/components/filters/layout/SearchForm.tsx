@@ -2,7 +2,8 @@ import { Header } from '@/components/ui/typography/Header';
 import { Format } from '../Format';
 import { SearchInput } from '../SearchInput';
 import { MetaInformation } from './MetaInformation';
-import { SearchOptions } from './SearchOptions';
+import { YearContainer } from '../years/YearContainer';
+import { GenresContainer } from '../genres/GenresContainer';
 
 export function SearchForm(): JSX.Element {
   return (
@@ -19,7 +20,8 @@ export function SearchForm(): JSX.Element {
             <Format />
           </div>
 
-          <SearchOptions />
+          <YearContainer className="flex flex-col justify-end gap-2" />
+          <GenresContainer className="flex flex-col justify-end gap-2" />
         </div>
       </div>
       <MetaInformation />

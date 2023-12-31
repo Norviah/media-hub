@@ -18,7 +18,7 @@ export function SearchInput(): JSX.Element {
   const params = useSearchParams();
   const pathname = usePathname();
 
-  const query = params.get(SearchParams.GENRES) ?? undefined;
+  const query = params.get(SearchParams.QUERY) ?? undefined;
 
   useEffect(() => {
     if (debouncedSearchTerm?.length > 0) {
@@ -26,7 +26,11 @@ export function SearchInput(): JSX.Element {
         constructUrl({
           path: basePath.path === pathname ? '/search/tv' : pathname,
           params,
-          overrides: { [SearchParams.QUERY]: debouncedSearchTerm },
+          overrides: {
+            [SearchParams.QUERY]: debouncedSearchTerm,
+            [SearchParams.GENRES]: undefined,
+            [SearchParams.SORT]: undefined,
+          },
         })
       );
     }
@@ -55,7 +59,16 @@ export function SearchInput(): JSX.Element {
         <div
           className="absolute inset-y-0 right-0 flex cursor-pointer items-center pr-3 text-muted-foreground transition-colors hover:text-foreground"
           onClick={() => {
-            router.push(constructUrl({ path: pathname, params, overrides: { [SearchParams.QUERY]: undefined } }));
+            router.push(
+              constructUrl({
+                path: pathname,
+                params,
+                overrides: {
+                  [SearchParams.QUERY]: undefined,
+                  [SearchParams.GENRES]: undefined,
+                },
+              })
+            );
           }}
         >
           <XIcon className="h-4 w-4" />

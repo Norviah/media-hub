@@ -7,6 +7,7 @@ export enum SearchParams {
   YEAR = 'year',
   GENRES = 'genres',
   LAYOUT = 'layout',
+  SORT = 'sort',
 }
 
 export type Params = AuthParams | SearchParams;

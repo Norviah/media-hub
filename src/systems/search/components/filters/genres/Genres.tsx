@@ -15,7 +15,7 @@ import { useState } from 'react';
 
 import type { Genre } from '@/actions/tmdb';
 
-export function Genres({ genres }: { genres: Genre }): JSX.Element {
+export function Genres({ genres }: { genres: Genre[] }): JSX.Element {
   const [open, setOpen] = useState(false);
 
   const router = useRouter();

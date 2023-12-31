@@ -19,12 +19,14 @@ export function constructUrl({ params, path, overrides, reset }: Params): Route 
   const layout = params.get(SearchParams.LAYOUT);
   const year = params.get(SearchParams.YEAR);
   const genres = params.getAll(SearchParams.GENRES);
+  const sort = params.get(SearchParams.SORT);
 
   const param: Record<string, string | undefined | string[]> = {
     ...(q && { [SearchParams.QUERY]: q }),
     ...(layout && { [SearchParams.LAYOUT]: layout }),
     ...(year && { [SearchParams.YEAR]: year }),
     ...(genres.length && { [SearchParams.GENRES]: genres }),
+    ...(sort && { [SearchParams.SORT]: sort }),
     ...overrides,
   };
 

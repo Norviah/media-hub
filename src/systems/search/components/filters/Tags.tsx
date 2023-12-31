@@ -7,6 +7,8 @@ import { SearchParams } from '@/utils/params';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { basePath, paths } from '../../util/constants';
 import { constructUrl } from '../../util/constructUrl';
+import { defaultSortOption, sortOptions } from '../../util/sort';
+import { movieGenres, tvGenres } from '../../util/genres';
 
 export function Tags(): JSX.Element {
   const router = useRouter();
@@ -15,7 +17,9 @@ export function Tags(): JSX.Element {
 
   const query = params.get(SearchParams.QUERY);
   const year = params.get(SearchParams.YEAR);
-  const genres = params.getAll(SearchParams.GENRES);
+  const genresParams = params.getAll(SearchParams.GENRES);
+  const sortParam = params.get(SearchParams.SORT);
+  const sort = sortOptions.find((item) => item.value === sortParam) || defaultSortOption;
 
   const tags: { onClick: () => void; text: JSX.Element }[] = [];
 
@@ -58,22 +62,45 @@ export function Tags(): JSX.Element {
     });
   }
 
-  if (genres.length > 0) {
+  if (genresParams.length > 0) {
+    const genresList = pathname.includes('tv') ? tvGenres : movieGenres;
+    const genres = genresList.filter((genre) => genresParams.includes(genre.name.toLowerCase()));
+
     for (const genre of genres) {
       tags.push({
         onClick: () => {
           router.push(
-            constructUrl({ path: pathname, params, overrides: { [SearchParams.GENRES]: genres.filter((g) => g !== genre) } })
+            constructUrl({
+              path: pathname,
+              params,
+              overrides: {
+                [SearchParams.GENRES]: genresParams.filter((item) => item.toLowerCase() !== genre.name.toLowerCase()),
+              },
+            })
           );
         },
         text: (
           <>
             <span className="text-muted-foreground">Genre:</span>
-            &nbsp; {genre}
+            &nbsp; {genre.name}
           </>
         ),
       });
     }
+  }
+
+  if (sort && sort.value !== defaultSortOption.value) {
+    tags.push({
+      onClick: () => {
+        router.push(constructUrl({ path: pathname, params, overrides: { [SearchParams.SORT]: undefined } }));
+      },
+      text: (
+        <>
+          <span className="text-muted-foreground">Sort:</span>
+          &nbsp; {sort.fullTitle}
+        </>
+      ),
+    });
   }
 
   return (
