@@ -7,19 +7,15 @@ import { SearchParams } from '@/utils/params';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { basePath, paths } from '../../util/constants';
 import { constructUrl } from '../../util/constructUrl';
-import { defaultSortOption, sortOptions } from '../../util/sort';
-import { movieGenres, tvGenres } from '../../util/genres';
+import { parseParams } from '../../util/parseParams';
+import { defaultSortOption } from '../../util/sort';
 
 export function Tags(): JSX.Element {
   const router = useRouter();
   const params = useSearchParams();
   const pathname = usePathname();
 
-  const query = params.get(SearchParams.QUERY);
-  const year = params.get(SearchParams.YEAR);
-  const genresParams = params.getAll(SearchParams.GENRES);
-  const sortParam = params.get(SearchParams.SORT);
-  const sort = sortOptions.find((item) => item.value === sortParam) || defaultSortOption;
+  const { query, year, genres, sort } = parseParams(pathname, params);
 
   const tags: { onClick: () => void; text: JSX.Element }[] = [];
 
@@ -62,10 +58,7 @@ export function Tags(): JSX.Element {
     });
   }
 
-  if (genresParams.length > 0) {
-    const genresList = pathname.includes('tv') ? tvGenres : movieGenres;
-    const genres = genresList.filter((genre) => genresParams.includes(genre.name.toLowerCase()));
-
+  if (genres.length > 0) {
     for (const genre of genres) {
       tags.push({
         onClick: () => {
@@ -74,7 +67,7 @@ export function Tags(): JSX.Element {
               path: pathname,
               params,
               overrides: {
-                [SearchParams.GENRES]: genresParams.filter((item) => item.toLowerCase() !== genre.name.toLowerCase()),
+                [SearchParams.GENRES]: genres.filter((item) => item.id !== genre.id).map((item) => item.name.toLowerCase()),
               },
             })
           );

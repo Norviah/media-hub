@@ -3,12 +3,13 @@
 import { Input } from '@/components/ui/Input';
 import { SearchIcon, XIcon } from 'lucide-react';
 
-import { SearchParams } from '@/utils/params';
 import { useDebounce } from '@/hooks/useDebounce';
+import { SearchParams } from '@/utils/params';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { constructUrl } from '../../util/constructUrl';
 import { basePath } from '../../util/constants';
+import { constructUrl } from '../../util/constructUrl';
+import { parseParams } from '../../util/parseParams';
 
 export function SearchInput(): JSX.Element {
   const [searchTerm, setSearchTerm] = useState('');
@@ -18,7 +19,7 @@ export function SearchInput(): JSX.Element {
   const params = useSearchParams();
   const pathname = usePathname();
 
-  const query = params.get(SearchParams.QUERY) ?? undefined;
+  const { query } = parseParams(pathname, params);
 
   useEffect(() => {
     if (debouncedSearchTerm?.length > 0) {

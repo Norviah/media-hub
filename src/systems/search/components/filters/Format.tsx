@@ -4,6 +4,7 @@ import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger } from '@
 
 import { buttonVariants } from '@/components/ui/Button';
 import { cn } from '@/utils/cn';
+import { SearchParams } from '@/utils/params';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { basePath, paths } from '../../util/constants';
 import { constructUrl } from '../../util/constructUrl';
@@ -22,7 +23,14 @@ export function Format(): JSX.Element {
       value={currentPath.path}
       onValueChange={(value: Route) => {
         if (value !== currentPath.path) {
-          router.push(constructUrl({ path: value, params, reset: value === basePath.path }));
+          router.push(
+            constructUrl({
+              path: value,
+              params,
+              reset: value === basePath.path,
+              overrides: { [SearchParams.GENRES]: undefined },
+            })
+          );
         }
       }}
     >

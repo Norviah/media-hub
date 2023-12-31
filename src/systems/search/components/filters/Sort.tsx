@@ -11,22 +11,21 @@ import {
   SelectTrigger,
 } from '@/components/ui/Select';
 import { constructUrl } from '@/systems/search/util/constructUrl';
-import { defaultSortOption, sortOptions, sortOptionsGroup } from '@/systems/search/util/sort';
+import { sortOptionsGroup } from '@/systems/search/util/sort';
 import { SearchParams } from '@/utils/params';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { parseParams } from '../../util/parseParams';
 
 export function Sort(): JSX.Element {
   const pathname = usePathname();
-
   const params = useSearchParams();
   const router = useRouter();
 
-  const sortParam = params.get(SearchParams.SORT)?.toLowerCase();
-  const sort = sortParam ? sortOptions.find((item) => item.value === sortParam) || defaultSortOption : defaultSortOption;
+  const { sort } = parseParams(pathname, params);
 
   return (
     <Select
-      value={sortParam}
+      value={sort.value}
       onValueChange={(newValue) => {
         const href = constructUrl({
           params,

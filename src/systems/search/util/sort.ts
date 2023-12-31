@@ -1,5 +1,3 @@
-'use client';
-
 import type { SortOption } from 'tmdb-ts';
 
 export type SortOptionItem = {

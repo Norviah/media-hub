@@ -5,23 +5,23 @@ import { Genres } from './Genres';
 
 import { basePath } from '@/systems/search/util/constants';
 import { movieGenres, tvGenres } from '@/systems/search/util/genres';
-import { SearchParams } from '@/utils/params';
+import { parseParams } from '@/systems/search/util/parseParams';
 import { usePathname, useSearchParams } from 'next/navigation';
 
 export function GenresContainer(props: React.HTMLAttributes<HTMLDivElement>): JSX.Element | null {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  const query = searchParams.get(SearchParams.QUERY);
+  const { query } = parseParams(pathname, searchParams);
 
-  if (pathname === basePath.path || !(query === null)) {
+  if (pathname === basePath.path || !(query === undefined)) {
     return null;
   }
 
   return (
     <div {...props}>
       <Header type="h5">Genres</Header>
-      <Genres genres={pathname === '/search/tv' ? tvGenres : movieGenres} />
+      <Genres genresList={pathname === '/search/tv' ? tvGenres : movieGenres} />
     </div>
   );
 }

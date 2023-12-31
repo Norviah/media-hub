@@ -6,6 +6,7 @@ import { cn } from '@/utils/cn';
 import { SearchParams } from '@/utils/params';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { constructUrl } from '../../../util/constructUrl';
+import { parseParams } from '../../../util/parseParams';
 
 import type { LayoutItem } from '../../../util/constants';
 
@@ -13,8 +14,8 @@ export function LayoutItem({ item }: { item: LayoutItem }): JSX.Element {
   const searchParams = useSearchParams();
   const pathname = usePathname();
 
-  const layout = searchParams.get(SearchParams.LAYOUT);
-  const active = layout === item.slug;
+  const { layout } = parseParams(pathname, searchParams);
+  const active = layout.slug === item.slug;
 
   const href = constructUrl({
     path: pathname,
@@ -24,10 +25,8 @@ export function LayoutItem({ item }: { item: LayoutItem }): JSX.Element {
     },
   });
 
-  const DynamicTag = active ? 'p' : Link;
-
   return (
-    <DynamicTag href={href}>
+    <Link href={href} className={active ? 'pointer-events-none' : undefined}>
       <item.icon
         className={cn(
           'h-5 w-5 cursor-pointer transition-colors',
@@ -36,6 +35,6 @@ export function LayoutItem({ item }: { item: LayoutItem }): JSX.Element {
             : 'fill-muted-foreground text-muted-foreground hover:fill-foreground hover:text-foreground'
         )}
       />
-    </DynamicTag>
+    </Link>
   );
 }
