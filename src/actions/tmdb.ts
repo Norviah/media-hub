@@ -5,7 +5,7 @@ import { TMDB } from 'tmdb-ts';
 import { parse } from '@/systems/search/util/parse';
 import { env } from '@/utils/env';
 
-import type { TvShowQueryOptions } from '@/systems/search/types/QueryOptions';
+import type { MovieQueryOptions, TvShowQueryOptions } from '@/systems/search/types/QueryOptions';
 import type { BasicMediaData } from '@/systems/search/util/parse';
 import type { MovieDetails, Search, TimeWindow, TvShowDetails } from 'tmdb-ts';
 import type { MovieSearchOptions, TvSearchOptions } from 'tmdb-ts/dist/endpoints';
@@ -36,7 +36,7 @@ export async function discoverTv(options: TvShowQueryOptions): Promise<Search<Ba
   }
 }
 
-export async function discoverMovie(options: TvShowQueryOptions): Promise<Search<BasicMediaData> | null> {
+export async function discoverMovie(options: MovieQueryOptions): Promise<Search<BasicMediaData> | null> {
   try {
     return parse(await tmdb.discover.movie(options));
   } catch {
