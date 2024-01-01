@@ -9,6 +9,7 @@ import { basePath, paths } from '../../util/constants';
 import { constructUrl } from '../../util/constructUrl';
 import { parseParams } from '../../util/parseParams';
 import { defaultSortOption } from '../../util/sort';
+import { ClearAllTags } from './ClearAllTags';
 
 export function Tags(): JSX.Element {
   const router = useRouter();
@@ -99,11 +100,14 @@ export function Tags(): JSX.Element {
   return (
     <div className="flex flex-row gap-3">
       <TagsIcon className="h-6 w-6 text-muted-foreground" />
-      {tags.map((tag, index) => (
-        <DynamicBadge key={index} variant="default" onClick={tag.onClick}>
-          {tag.text}
-        </DynamicBadge>
-      ))}
+      <div className="flex flex-row flex-wrap gap-2">
+        {tags.map((tag, index) => (
+          <DynamicBadge key={index} variant="default" onClick={tag.onClick}>
+            {tag.text}
+          </DynamicBadge>
+        ))}
+        <ClearAllTags render={tags.length > 1} />
+      </div>
     </div>
   );
 }
