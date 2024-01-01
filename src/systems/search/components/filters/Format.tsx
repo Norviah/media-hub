@@ -11,8 +11,8 @@ import { constructUrl } from '../../util/constructUrl';
 import { movieGenres, tvGenres } from '../../util/genres';
 import { parseParams } from '../../util/parseParams';
 
-import type { Genre } from '@/actions/tmdb';
 import type { Route } from 'next';
+import type { Genre } from 'tmdb-ts';
 
 export function Format(): JSX.Element {
   const router = useRouter();

@@ -1,4 +1,4 @@
-import type { Genre } from '@/actions/tmdb';
+import type { Genre } from 'tmdb-ts';
 
 export const movieGenres: Genre[] = [
   { id: 28, name: 'Action' },

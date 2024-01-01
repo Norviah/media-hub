@@ -7,14 +7,14 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/Popover
 import { ScrollArea } from '@/components/ui/ScrollArea';
 import { Check, ChevronsUpDown } from 'lucide-react';
 
-import { SearchParams } from '@/utils/params';
-import { cn } from '@/utils/cn';
 import { constructUrl } from '@/systems/search/util/constructUrl';
+import { parseParams } from '@/systems/search/util/parseParams';
+import { cn } from '@/utils/cn';
+import { SearchParams } from '@/utils/params';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 
-import type { Genre } from '@/actions/tmdb';
-import { parseParams } from '@/systems/search/util/parseParams';
+import type { Genre } from 'tmdb-ts';
 
 export function Genres({ genresList }: { genresList: Genre[] }): JSX.Element {
   const [open, setOpen] = useState(false);

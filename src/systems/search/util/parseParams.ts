@@ -6,8 +6,8 @@ import { defaultLayout, layouts } from './constants';
 import { movieGenres, tvGenres } from './genres';
 import { defaultSortOption, sortOptions } from './sort';
 
-import type { Genre } from '@/actions/tmdb';
 import type { Route } from 'next';
+import type { Genre } from 'tmdb-ts';
 import type { LayoutItem } from './constants';
 import type { SortOptionItem } from './sort';
 

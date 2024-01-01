@@ -70,5 +70,3 @@ export async function getTrending<T extends 'tv' | 'movie'>(
     return null;
   }
 }
-
-export type Genre = { id: number; name: string };
