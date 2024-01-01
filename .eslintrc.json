@@ -18,6 +18,7 @@
     "@typescript-eslint/no-explicit-any": "warn",
     "@typescript-eslint/ban-types": "warn",
     "@typescript-eslint/no-unused-vars": "warn",
+    "@typescript-eslint/no-non-null-assertion": "error",
     "@typescript-eslint/consistent-indexed-object-style": [ "error", "record" ],
     "max-len": [ "warn", { "comments": 80, "code": 200, "ignoreStrings": true, "ignoreUrls": true }]
   }
