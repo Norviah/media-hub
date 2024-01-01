@@ -42,7 +42,7 @@ export function Format(): JSX.Element {
               path: value,
               params,
               reset: value === basePath.path,
-              overrides: { [SearchParams.GENRES]: genres?.map((genre) => genre.name.toLowerCase()) },
+              overrides: { [SearchParams.GENRES]: genres?.map((genre) => genre.name) },
             })
           );
         }

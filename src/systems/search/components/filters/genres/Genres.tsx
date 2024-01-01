@@ -22,26 +22,30 @@ export function Genres({ genresList }: { genresList: Genre[] }): JSX.Element {
   const router = useRouter();
   const params = useSearchParams();
   const pathname = usePathname();
-  const genres = parseParams(pathname, params).genres.map((genre) => genre.name.toLowerCase());
 
-  const addGenre = (genre: string) => {
+  const { genres } = parseParams(pathname, params);
+
+  const addGenre = (genre: number) => {
+    const names = genres.map((genreParam) => genreParam.name);
+    const obj = genresList.find((genreObj) => genreObj.id === genre)!;
+
     const href = constructUrl({
       path: pathname,
       params,
       overrides: {
-        [SearchParams.GENRES]: [...genres, genre],
+        [SearchParams.GENRES]: [...names, obj.name],
       },
     });
 
     router.push(href);
   };
 
-  const removeGenre = (genre: string) => {
+  const removeGenre = (genre: number) => {
     const href = constructUrl({
       path: pathname,
       params,
       overrides: {
-        [SearchParams.GENRES]: genres.filter((genreParam) => genreParam !== genre),
+        [SearchParams.GENRES]: genres.filter((genreParam) => genreParam.id !== genre).map((genreParam) => genreParam.name),
       },
     });
 
@@ -59,7 +63,7 @@ export function Genres({ genresList }: { genresList: Genre[] }): JSX.Element {
         >
           {genres.length > 0 ? (
             <div className="flex flex-row gap-1">
-              <Badge className="text-sm">{genres[0]}</Badge>
+              <Badge className="text-sm">{genres[0].name}</Badge>
               {genres.length > 1 && <Badge className="text-sm">+{genres.length - 1}</Badge>}
             </div>
           ) : (
@@ -77,19 +81,24 @@ export function Genres({ genresList }: { genresList: Genre[] }): JSX.Element {
               {genresList.map((genre) => (
                 <CommandItem
                   key={genre.id}
-                  value={genre.name}
+                  value={String(genre.id)}
                   onSelect={(currentValue) => {
-                    if (genres.includes(currentValue.toLowerCase())) {
-                      removeGenre(currentValue.toLowerCase());
+                    const id: number = Number(currentValue);
+
+                    if (genres.some((genre) => genre.id === id)) {
+                      removeGenre(id);
                     } else {
-                      addGenre(currentValue);
+                      addGenre(id);
                     }
                   }}
                 >
                   <div className="flex w-full flex-row justify-between">
                     {genre.name}
                     <Check
-                      className={cn('h-4 w-4', genres.includes(genre.name.toLowerCase()) ? 'opacity-100' : 'opacity-0')}
+                      className={cn(
+                        'h-4 w-4',
+                        genres.some((item) => item.id === Number(genre.id)) ? 'opacity-100' : 'opacity-0'
+                      )}
                     />
                   </div>
                 </CommandItem>

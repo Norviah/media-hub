@@ -27,7 +27,8 @@ function parseParamsFromParams(route: Route, params: ReadonlyURLSearchParams): P
     ? layouts.find((item) => item.slug === layoutParam) || defaultLayout
     : defaultLayout;
 
-  const genresParams: string[] | undefined = params.getAll(SearchParams.GENRES) || undefined;
+  const genresParams: string[] | undefined =
+    params.getAll(SearchParams.GENRES).map((genre) => genre.toLowerCase()) || undefined;
   const genresList: Genre[] = route.includes('/tv') ? tvGenres : movieGenres;
   const genres = genresList.filter((genre) => genresParams.includes(genre.name.toLowerCase()));
 
@@ -52,7 +53,7 @@ function parseParamsFromObject(route: Route, params: Record<string, string | str
     ? layouts.find((item) => item.slug === layoutParam) || defaultLayout
     : defaultLayout;
 
-  const genresParams: string[] | undefined = getAllParams(params, SearchParams.GENRES);
+  const genresParams: string[] | undefined = getAllParams(params, SearchParams.GENRES).map((genre) => genre.toLowerCase());
   const genresList: Genre[] = route.includes('/tv') ? tvGenres : movieGenres;
   const genres = genresList.filter((genre) => genresParams.includes(genre.name.toLowerCase()));
 
