@@ -20,6 +20,12 @@
     "@typescript-eslint/no-unused-vars": "warn",
     "@typescript-eslint/no-non-null-assertion": "error",
     "@typescript-eslint/consistent-indexed-object-style": [ "error", "record" ],
+    "no-restricted-imports": [
+      "error",
+      {
+        "patterns": ["@/systems/search/*/*"]
+      }
+    ],
     "max-len": [ "warn", { "comments": 80, "code": 200, "ignoreStrings": true, "ignoreUrls": true }]
   }
 }

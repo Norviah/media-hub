@@ -1,54 +1,46 @@
-import { getMovie, getTvShow } from '@/actions/tmdb';
+import { parseMedia } from '@/systems/search/common';
 import { absoluteUrl } from '@/utils/absoluteUrl';
 import { env } from '@/utils/env';
-import { imageUrl } from '@/utils/tmdb';
 
 import type { Metadata } from 'next';
 import type { MovieDetails, TvShowDetails } from 'tmdb-ts';
 
-type Args<T extends TvShowDetails | MovieDetails> = { slug: string } & (T extends TvShowDetails
-  ? { type: 'tv' }
-  : { type: 'movie' });
+type Args<T extends TvShowDetails | MovieDetails> = {
+  slug: string;
+  action: (id: number) => Promise<T | null>;
+};
 
-export async function metadata<T extends MovieDetails | TvShowDetails>({ type, slug }: Args<T>): Promise<Metadata> {
+export async function metadata<T extends MovieDetails | TvShowDetails>({ action, slug }: Args<T>): Promise<Metadata> {
   const id: number = Number(slug);
 
   if (Number.isNaN(id)) {
     return {};
   }
 
-  const data = type === 'movie' ? await getMovie(id) : await getTvShow(id);
+  const data = await action(id);
 
   if (!data) {
     return {};
   }
 
-  const title: string = data.type === 'movie' ? data.title : data.name;
-  const ogImage: string = imageUrl({ path: data.backdrop_path, alt: title });
-  const description: string = data.overview.length > 0 ? data.overview : '[No description available]';
+  const parsed = parseMedia(data);
 
-  const metadata: Metadata = {
+  return {
     metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
-    title,
-    description,
+    title: parsed.name,
+    description: parsed.overview,
     openGraph: {
-      title,
-      description,
+      title: parsed.name,
+      description: parsed.overview,
       type: 'website',
-      url: absoluteUrl(`/${type}/${slug}`),
-      images: [
-        {
-          url: ogImage,
-        },
-      ],
+      url: absoluteUrl(parsed.path),
+      images: [{ url: parsed.backdrop }],
     },
     twitter: {
       card: 'summary_large_image',
-      title: title,
-      description,
-      images: [ogImage],
+      title: parsed.name,
+      description: parsed.overview,
+      images: [parsed.backdrop],
     },
   };
-
-  return metadata;
 }

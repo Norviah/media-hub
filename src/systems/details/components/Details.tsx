@@ -3,24 +3,30 @@ import { AspectRatio } from '@/components/ui/AspectRatio';
 import { Badge } from '@/components/ui/Badge';
 import { StarIcon } from 'lucide-react';
 
-import { getMovie, getTvShow } from '@/actions/tmdb';
 import { imageUrl } from '@/utils/tmdb';
 import { notFound } from 'next/navigation';
 
-export async function DetailsPage({ slug, type }: { slug: string; type: 'movie' | 'tv' }): Promise<JSX.Element> {
+import type { MovieDetails, TvShowDetails } from 'tmdb-ts';
+
+type DetailsProps = {
+  slug: string;
+  action: (id: number) => Promise<MovieDetails | TvShowDetails | null>;
+};
+
+export async function Details({ slug, action }: DetailsProps): Promise<JSX.Element> {
   const id: number = Number(slug);
 
   if (Number.isNaN(id)) {
     return notFound();
   }
 
-  const data = type === 'movie' ? await getMovie(id) : await getTvShow(id);
+  const data = await action(id);
 
   if (!data) {
     return notFound();
   }
 
-  const name: string = data.type === 'movie' ? data.title : data.name;
+  const name: string = 'title' in data ? data.title : data.name;
 
   return (
     <main className="my-[-1.25rem] space-y-2">

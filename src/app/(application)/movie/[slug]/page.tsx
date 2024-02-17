@@ -1,5 +1,7 @@
-import { DetailsPage } from '@/systems/details/components/Details';
+import { Details } from '@/systems/details/components/Details';
+
 import { metadata } from '@/systems/details/util/metadata';
+import { getMovie } from '@/systems/search/common';
 
 import type { Metadata } from 'next';
 import type { MovieDetails } from 'tmdb-ts';
@@ -11,9 +13,9 @@ interface PageProps {
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  return await metadata<MovieDetails>({ slug: params.slug, type: 'movie' });
+  return await metadata<MovieDetails>({ slug: params.slug, action: getMovie });
 }
 
-export default async function SlugPage({ params }: PageProps): Promise<JSX.Element> {
-  return <DetailsPage slug={params.slug} type="movie" />;
+export default async function MoviePage({ params }: PageProps): Promise<JSX.Element> {
+  return <Details slug={params.slug} action={getMovie} />;
 }
