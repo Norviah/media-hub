@@ -21,7 +21,7 @@ export function ProfileSidebar(): JSX.Element {
                 'group flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors',
                 path === route.path
                   ? 'bg-foreground-selected text-foreground'
-                  : 'text-muted-foreground hover:bg-foreground-accent hover:text-foreground/80'
+                  : 'text-muted-foreground hover:bg-foreground-selected hover:text-foreground'
               )}
             >
               <route.icon className="mr-2 h-4 w-4" />
