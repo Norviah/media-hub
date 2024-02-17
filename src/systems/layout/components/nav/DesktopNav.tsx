@@ -4,6 +4,7 @@ import { ThemeSelector } from '@/components/ThemeSelector';
 import { Logo } from '@/components/icons/Logo';
 import { SpinnerIcon } from '@/components/icons/Spinner';
 import { Suspense } from 'react';
+import { SearchCommand } from '../Search';
 import { RenderUserMenu } from '../menu/RenderUserMenu';
 import { NavItems } from './NavItems';
 
@@ -23,7 +24,9 @@ export function DesktopNav({ className }: { className?: string }): JSX.Element {
         <NavItems />
       </div>
 
-      <div className="flex gap-3 lg:flex-1 lg:justify-end">
+      <div className="flex items-center gap-3 lg:flex-1 lg:justify-end">
+        <SearchCommand />
+
         <ThemeSelector />
 
         <Suspense
