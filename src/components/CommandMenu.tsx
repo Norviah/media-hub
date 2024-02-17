@@ -4,7 +4,7 @@ import { useTheme } from 'next-themes';
 import { useRouter } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
 
-import { nav } from '@/components/layout/navigation/routes';
+import { routes } from '@/systems/layout';
 import { Button } from '@/components/ui/Button';
 import {
   CommandDialog,
@@ -52,7 +52,7 @@ export function CommandMenu({ ...props }: DialogProps): JSX.Element {
         <CommandList>
           <CommandEmpty>No results found.</CommandEmpty>
           <CommandGroup heading="Links">
-            {nav.map((route: RouteItem, index: number) => (
+            {routes.map((route: RouteItem, index: number) => (
               <CommandItem
                 key={index}
                 value={route.title}

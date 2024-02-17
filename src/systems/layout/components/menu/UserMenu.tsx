@@ -28,7 +28,9 @@ export function UserMenu({ user }: UserAccountNavProps): JSX.Element {
   if (!user) {
     return (
       <Link href={`/auth/signin?from=${pathname}`}>
-        <Button variant="ghost">Sign In</Button>
+        <Button variant="ghost" className="h-8">
+          Sign In
+        </Button>
       </Link>
     );
   }
