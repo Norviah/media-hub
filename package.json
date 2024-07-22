@@ -3,6 +3,7 @@
   "private": true,
   "scripts": {
     "build": "next build",
+    "build:docs": "typedoc --options typedoc.json",
     "build:changelog": "bump changelog generate --config .bumprc.json",
     "biome": "biome check ./src",
     "biome:write": "biome check ./src --write",
@@ -50,6 +51,7 @@
     "cmdk": "^1.0.0",
     "date-fns": "^3.6.0",
     "embla-carousel-react": "^8.1.6",
+    "http-status-codes": "^2.3.0",
     "input-otp": "^1.2.4",
     "lucide-react": "^0.408.0",
     "next": "14.2.5",
@@ -76,6 +78,9 @@
     "autoprefixer": "^10.4.19",
     "postcss": "^8.4.39",
     "type-fest": "^4.21.0",
+    "typedoc": "^0.26.5",
+    "typedoc-plugin-markdown": "^4.2.2",
+    "typedoc-plugin-zod": "^1.2.0",
     "typescript": "^5.5.3"
   }
 }

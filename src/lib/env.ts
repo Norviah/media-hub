@@ -8,7 +8,9 @@ export const env = createEnv({
    * These variables are only available on the server and will throw an error
    * if accessed on the client.
    */
-  server: {},
+  server: {
+    TMDB_API_KEY: z.string().min(1),
+  },
 
   /**
    * Client side environment variables.
@@ -27,6 +29,7 @@ export const env = createEnv({
    * All environment variables from `server` and `client` must be included here.
    */
   runtimeEnv: {
+    TMDB_API_KEY: process.env.TMDB_API_KEY,
     NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
   },
 });

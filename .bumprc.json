@@ -12,6 +12,10 @@
       {
         "name": "building project",
         "command": "pnpm run build"
+      },
+      {
+        "name": "building documentation",
+        "command": "pnpm run build:docs"
       }
     ]
   },

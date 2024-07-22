@@ -1,0 +1,15 @@
+{
+  "githubPages": false,
+  "name": "TMDB",
+  "out": "./src/systems/tmdb/docs",
+  "readme": "none",
+  "cleanOutputDir": true,
+  "plugin": [
+    "typedoc-plugin-markdown",
+    "typedoc-plugin-zod"
+  ],
+  "entryPoints": [
+    "./src/systems/tmdb/endpoints/**/*.ts",
+    "./src/systems/tmdb/structs/**/*.ts"
+  ]
+}
