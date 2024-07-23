@@ -10,8 +10,7 @@ import type { RouteItem } from '@/types/RouteItem';
 
 function NavItem({ route }: { route: RouteItem }): JSX.Element {
   const pathname = usePathname();
-
-  const isActive = pathname === route.path;
+  const isActive = route.path === '/' ? pathname === '/' : pathname.startsWith(route.path);
 
   return (
     <Link
