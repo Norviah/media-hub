@@ -4,29 +4,30 @@ import { cn } from '@/lib/utils';
 import { cva } from 'class-variance-authority';
 
 import type { VariantProps } from 'class-variance-authority';
-import { type LucideIcon, SearchIcon } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 import type { RequireExactlyOne } from 'type-fest';
 
 import * as React from 'react';
 
 const buttonVariants = cva(
-  'inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50',
+  'relative justify-center inline-flex items-center border text-center font-regular ease-out duration-200 rounded-md outline-none transition-all outline-0 focus-visible:outline-4 focus-visible:outline-offset-1 border border-strong hover:border-stronger focus-visible:outline-success data-[state=open]:bg-selection data-[state=open]:outline-success data-[state=open]:border-button-hover text-xs shadow-sm',
   {
     variants: {
       variant: {
-        default: 'bg-primary text-primary-foreground shadow hover:bg-primary/90',
-        destructive: 'bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90',
-        info: 'bg-info text-info-foreground shadow-sm hover:bg-info/90',
-        success: 'bg-success text-success-foreground shadow-sm hover:bg-success/90',
-        warn: 'bg-warn text-warn-foreground shadow-sm hover:bg-warn/90',
-        outline:
-          'border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground',
+        default:
+          'hover:bg-foreground/[.08] bg-background dark:bg-muted dark:hover:bg-muted/90 text-foreground dark:hover:bg-muted/90',
+        primary: 'hover:bg-primary/85 bg-primary text-primary-foreground',
+        destructive: 'hover:bg-destructive/85 bg-destructive text-destructive-foreground',
+        info: 'bg-info text-info-foreground hover:bg-info/85',
+        success: 'bg-success text-success-foreground hover:bg-success/85',
+        warn: 'bg-warn text-warn-foreground hover:bg-warn/70',
         secondary: 'bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80',
         ghost: 'hover:bg-accent hover:text-accent-foreground',
-        link: 'text-primary underline-offset-4 hover:underline',
+        outline:
+          'hover:bg-foreground/[.08] bg-background dark:hover:bg-muted/90 text-foreground dark:hover:bg-muted/90',
       },
       size: {
-        default: 'h-9 px-4 py-2',
+        default: 'h-9 px-2.5 py-1',
         sm: 'h-8 rounded-md px-3 text-xs',
         lg: 'h-10 rounded-md px-8',
         icon: 'h-9 w-9 p-0',
@@ -56,25 +57,25 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 );
 Button.displayName = 'Button';
 
-export type IconButtonProps = ButtonProps &
+export type IconButtonProps = Omit<ButtonProps, 'size'> &
   RequireExactlyOne<
     {
       children: React.ReactNode | React.ReactNode[];
       icon: LucideIcon;
-      size?: 'icon' | 'smallIcon';
+      size?: 'icon' | 'small';
     },
     'icon' | 'children'
   >;
 
 const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
-  ({ className, icon: Icon, children, size = 'icon', ...props }, ref) => {
+  ({ icon: Icon, children, size = 'icon', ...props }, ref) => {
     return (
-      <Button variant='outline' size={size} ref={ref} {...props}>
-        {Icon ? <Icon className='size-4 xl:mr-2' /> : children}
+      <Button variant='outline' size={size === 'small' ? 'smallIcon' : size} ref={ref} {...props}>
+        {Icon ? <Icon className='size-4' /> : children}
       </Button>
     );
   },
 );
 IconButton.displayName = 'IconButton';
 
-export { IconButton, Button, buttonVariants };
+export { Button, buttonVariants, IconButton };
