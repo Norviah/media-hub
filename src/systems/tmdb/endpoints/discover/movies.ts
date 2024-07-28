@@ -5,60 +5,64 @@ import { BASE_DISCOVER_PATH } from '../../lib/paths';
 import { andOrToString } from './utils/helpers';
 
 import type { ZodError } from 'zod';
-import type { RateLimitError } from '../../structs';
-import type { AndOr } from './types/AndOr';
-import type { MonetizationType } from './types/MonetizationType';
+import type { MovieSearchResults, RateLimitError } from '../../structs';
 import type { Language } from '../../types';
+import type { AndOr } from './types';
+import type { MonetizationType } from './utils/constants';
 
-export type { MonetizationType };
+export const MovieReleaseTypes = {
+  Premiere: 1,
+  TheatricalLimited: 2,
+  Theatrical: 3,
+  Digital: 4,
+  Physical: 5,
+  TV: 6,
+} as const;
 
-export enum MovieReleaseType {
-  Premiere = 1,
-  TheatricalLimited = 2,
-  Theatrical = 3,
-  Digital = 4,
-  Physical = 5,
-  TV = 6,
-}
+export type MovieReleaseType = (typeof MovieReleaseTypes)[keyof typeof MovieReleaseTypes];
 
-export enum MovieGenres {
-  Action = 28,
-  Adventure = 12,
-  Animation = 16,
-  Comedy = 35,
-  Crime = 80,
-  Documentary = 99,
-  Drama = 18,
-  Family = 10751,
-  Fantasy = 14,
-  History = 36,
-  Horror = 27,
-  Music = 10402,
-  Mystery = 9648,
-  Romance = 10749,
-  Science = 878,
-  TV = 10770,
-  Thriller = 53,
-  War = 10752,
-  Western = 37,
-}
+export const MovieGenres = {
+  Action: 28,
+  Adventure: 12,
+  Animation: 16,
+  Comedy: 35,
+  Crime: 80,
+  Documentary: 99,
+  Drama: 18,
+  Family: 10751,
+  Fantasy: 14,
+  History: 36,
+  Horror: 27,
+  Music: 10402,
+  Mystery: 9648,
+  Romance: 10749,
+  Science: 878,
+  TV: 10770,
+  Thriller: 53,
+  War: 10752,
+  Western: 37,
+} as const;
 
-export enum MovieSortOptions {
-  OriginalTitleAsc = 'original_title.asc',
-  OriginalTitleDesc = 'original_title.desc',
-  PopularityAsc = 'popularity.asc',
-  PopularityDesc = 'popularity.desc',
-  RevenueAsc = 'revenue.asc',
-  RevenueDesc = 'revenue.desc',
-  PrimaryReleaseDateAsc = 'primary_release_date.asc',
-  PrimaryReleaseDateDesc = 'primary_release_date.desc',
-  TitleAsc = 'title.asc',
-  TitleDesc = 'title.desc',
-  VoteAverageAsc = 'vote_average.asc',
-  VoteAverageDesc = 'vote_average.desc',
-  VoteCountAsc = 'vote_count.asc',
-  VoteCountDesc = 'vote_count.desc',
-}
+export type MovieGenre = (typeof MovieGenres)[keyof typeof MovieGenres];
+
+export const MovieSortOptions = {
+  OriginalTitleAsc: 'original_title.asc',
+  OriginalTitleDesc: 'original_title.desc',
+  PopularityAsc: 'popularity.asc',
+  PopularityDesc: 'popularity.desc',
+  RevenueAsc: 'revenue.asc',
+  RevenueDesc: 'revenue.desc',
+  PrimaryReleaseDateAsc: 'primary_release_date.asc',
+  PrimaryReleaseDateDesc: 'primary_release_date.desc',
+  TitleAsc: 'title.asc',
+  TitleDesc: 'title.desc',
+  VoteAverageAsc: 'vote_average.asc',
+  VoteAverageDesc: 'vote_average.desc',
+  VoteCountAsc: 'vote_count.asc',
+  VoteCountDesc: 'vote_count.desc',
+} as const;
+
+export type MovieSortOption = (typeof MovieSortOptions)[keyof typeof MovieSortOptions];
 
 export type DiscoverMovieQueryOptions = {
   certification?: string;
@@ -75,7 +79,7 @@ export type DiscoverMovieQueryOptions = {
   region?: string;
   'release_date.gte'?: string;
   'release_date.lte'?: string;
-  sort_by?: `${MovieSortOptions}`;
+  sort_by?: MovieSortOption;
   'vote_average.gte'?: number;
   'vote_average.lte'?: number;
   'vote_count.gte'?: number;
@@ -84,7 +88,7 @@ export type DiscoverMovieQueryOptions = {
   with_cast?: AndOr<string>;
   with_companies?: AndOr<string>;
   with_crew?: AndOr<string>;
-  with_genres?: AndOr<MovieGenres>;
+  with_genres?: AndOr<MovieGenre>;
   with_keywords?: AndOr<string>;
   with_origin_country?: string;
   with_original_language?: string;
@@ -95,7 +99,7 @@ export type DiscoverMovieQueryOptions = {
   with_watch_monetization_types?: AndOr<MonetizationType>;
   with_watch_providers?: AndOr<string>;
   without_companies?: string;
-  without_genres?: MovieGenres[];
+  without_genres?: MovieGenre[];
   without_keywords?: string;
   without_watch_providers?: string;
   year?: number;

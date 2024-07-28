@@ -7,63 +7,69 @@ import { andOrToString } from './utils/helpers';
 import type { ZodError } from 'zod';
 import type { RateLimitError } from '../../structs';
 import type { Language } from '../../types';
-import type { AndOr } from './types/AndOr';
-import type { MonetizationType } from './types/MonetizationType';
+import type { AndOr } from './types';
+import type { MonetizationType } from './utils/constants';
 
-export type { MonetizationType };
+export const TVShowGenres = {
+  ActionAndAdventure: 10759,
+  Animation: 16,
+  Comedy: 35,
+  Crime: 80,
+  Documentary: 99,
+  Drama: 18,
+  Family: 10751,
+  Kids: 10762,
+  Mystery: 9648,
+  News: 10763,
+  Reality: 10764,
+  SciFiAndFantasy: 10765,
+  Soap: 10766,
+  Talk: 10767,
+  WarAndPolitics: 10768,
+  Western: 37,
+} as const;
 
-export enum TVShowGenres {
-  ActionAndAdventure = 10759,
-  Animation = 16,
-  Comedy = 35,
-  Crime = 80,
-  Documentary = 99,
-  Drama = 18,
-  Family = 10751,
-  Kids = 10762,
-  Mystery = 9648,
-  News = 10763,
-  Reality = 10764,
-  SciFiAndFantasy = 10765,
-  Soap = 10766,
-  Talk = 10767,
-  WarAndPolitics = 10768,
-  Western = 37,
-}
+export type TVShowGenre = (typeof TVShowGenres)[keyof typeof TVShowGenres];
 
-export enum TVShowSortOptions {
-  FirstAirDateAsc = 'first_air_date.asc',
-  FirstAirDateDesc = 'first_air_date.desc',
-  NameAsc = 'name.asc',
-  NameDesc = 'name.desc',
-  OriginalNameAsc = 'original_name.asc',
-  OriginalNameDesc = 'original_name.desc',
-  PopularityAsc = 'popularity.asc',
-  PopularityDesc = 'popularity.desc',
-  VoteAverageAsc = 'vote_average.asc',
-  VoteAverageDesc = 'vote_average.desc',
-  VoteCountAsc = 'vote_count.asc',
-  VoteCountDesc = 'vote_count.desc',
-}
+export const TVShowSortOptions = {
+  FirstAirDateAsc: 'first_air_date.asc',
+  FirstAirDateDesc: 'first_air_date.desc',
+  NameAsc: 'name.asc',
+  NameDesc: 'name.desc',
+  OriginalNameAsc: 'original_name.asc',
+  OriginalNameDesc: 'original_name.desc',
+  PopularityAsc: 'popularity.asc',
+  PopularityDesc: 'popularity.desc',
+  VoteAverageAsc: 'vote_average.asc',
+  VoteAverageDesc: 'vote_average.desc',
+  VoteCountAsc: 'vote_count.asc',
+  VoteCountDesc: 'vote_count.desc',
+} as const;
 
-export enum TVShowType {
-  Documentary = 0,
-  News = 1,
-  Miniseries = 2,
-  Reality = 3,
-  Scripted = 4,
-  TalkShow = 5,
-  Video = 6,
-}
+export type TVShowSortOption = (typeof TVShowSortOptions)[keyof typeof TVShowSortOptions];
 
-export enum TVShowStatus {
-  ReturningSeries = 0,
-  Planned = 1,
-  InProduction = 2,
-  Ended = 3,
-  Canceled = 4,
-  Pilot = 5,
-}
+export const TVShowTypes = {
+  Documentary: 0,
+  News: 1,
+  Miniseries: 2,
+  Reality: 3,
+  Scripted: 4,
+  TalkShow: 5,
+  Video: 6,
+} as const;
+
+export type TVShowType = (typeof TVShowTypes)[keyof typeof TVShowTypes];
+
+export const TVShowStatuses = {
+  ReturningSeries: 0,
+  Planned: 1,
+  InProduction: 2,
+  Ended: 3,
+  Canceled: 4,
+  Pilot: 5,
+} as const;
+
+export type TVShowStatus = (typeof TVShowStatuses)[keyof typeof TVShowStatuses];
 
 export type DiscoverTVShowQueries = {
   'air_date.gte'?: string;
@@ -76,7 +82,7 @@ export type DiscoverTVShowQueries = {
   language?: Language;
   page?: number;
   screened_theatrically?: boolean;
-  sort_by?: `${TVShowSortOptions}`;
+  sort_by?: TVShowSortOption;
   timezone?: string;
   'vote_average.gte'?: number;
   'vote_average.lte'?: number;
@@ -84,7 +90,7 @@ export type DiscoverTVShowQueries = {
   'vote_count.lte'?: number;
   watch_region?: string;
   with_companies?: AndOr<string>;
-  with_genres?: AndOr<TVShowGenres>;
+  with_genres?: AndOr<TVShowGenre>;
   with_keywords?: AndOr<string>;
   with_networks?: number;
   with_origin_country?: string;
@@ -95,7 +101,7 @@ export type DiscoverTVShowQueries = {
   with_watch_monetization_types?: AndOr<MonetizationType>;
   with_watch_providers?: AndOr<string>;
   without_companies?: string;
-  without_genres?: TVShowGenres[];
+  without_genres?: TVShowGenre[];
   without_keywords?: string;
   without_watch_providers?: string;
   with_type?: AndOr<TVShowType>;

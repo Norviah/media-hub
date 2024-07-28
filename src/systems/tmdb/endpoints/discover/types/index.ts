@@ -1,1 +1,7 @@
-export * from './MonetizationType';
+export type AndOr<Type> =
+  | {
+      and?: Type[];
+    }
+  | {
+      or?: Type[];
+    };
