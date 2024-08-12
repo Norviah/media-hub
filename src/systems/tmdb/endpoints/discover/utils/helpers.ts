@@ -1,4 +1,4 @@
-import type { AndOr } from '../types/AndOr';
+import type { AndOr } from '../types';
 
 export const andOrToString = <T>(value: AndOr<T> | undefined): string | undefined => {
   if (!value) {
