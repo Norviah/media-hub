@@ -38,4 +38,4 @@ https://developer.themoviedb.org/reference/discover-movie
 
 ## Defined in
 
-src/systems/tmdb/endpoints/discover/movies.ts:115
+[src/systems/tmdb/endpoints/discover/movies.ts:119](https://github.com/Norviah/media-hub/blob/e3dc67aa1738d9ad44e6a4419ef7e26de86e1452/src/systems/tmdb/endpoints/discover/movies.ts#L119)

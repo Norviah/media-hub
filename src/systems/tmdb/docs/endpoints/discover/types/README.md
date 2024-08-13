@@ -6,8 +6,8 @@
 
 # endpoints/discover/types
 
-## References
+## Index
 
-### MonetizationType
+### Type Aliases
 
-Re-exports [MonetizationType](MonetizationType/type-aliases/MonetizationType.md)
+- [AndOr](type-aliases/AndOr.md)

@@ -116,6 +116,12 @@ Re-exports [Images](Schemas/variables/Images.md)
 
 ***
 
+### Keyword
+
+Re-exports [Keyword](Schemas/variables/Keyword.md)
+
+***
+
 ### LastEpisodeToAir
 
 Re-exports [LastEpisodeToAir](Schemas/variables/LastEpisodeToAir.md)
@@ -167,6 +173,12 @@ Re-exports [MovieExternalIds](Schemas/variables/MovieExternalIds.md)
 ### MovieImages
 
 Re-exports [MovieImages](Schemas/variables/MovieImages.md)
+
+***
+
+### MovieKeywords
+
+Re-exports [MovieKeywords](Schemas/variables/MovieKeywords.md)
 
 ***
 
@@ -359,6 +371,12 @@ Re-exports [TVShowExternalIds](Schemas/variables/TVShowExternalIds.md)
 ### TVShowImages
 
 Re-exports [TVShowImages](Schemas/variables/TVShowImages.md)
+
+***
+
+### TVShowKeywords
+
+Re-exports [TVShowKeywords](Schemas/variables/TVShowKeywords.md)
 
 ***
 

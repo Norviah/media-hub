@@ -52,7 +52,7 @@
 
 ### sort\_by?
 
-> `optional` **sort\_by**: \`$\{TVShowSortOptions\}\`
+> `optional` **sort\_by**: [`TVShowSortOption`](TVShowSortOption.md)
 
 ### timezone?
 
@@ -80,15 +80,15 @@
 
 ### with\_companies?
 
-> `optional` **with\_companies**: [`AndOr`](../../types/AndOr/type-aliases/AndOr.md)\<`string`\>
+> `optional` **with\_companies**: [`AndOr`](../../types/type-aliases/AndOr.md)\<`string`\>
 
 ### with\_genres?
 
-> `optional` **with\_genres**: [`AndOr`](../../types/AndOr/type-aliases/AndOr.md)\<[`TVShowGenres`](../enumerations/TVShowGenres.md)\>
+> `optional` **with\_genres**: [`AndOr`](../../types/type-aliases/AndOr.md)\<[`TVShowGenre`](TVShowGenre.md)\>
 
 ### with\_keywords?
 
-> `optional` **with\_keywords**: [`AndOr`](../../types/AndOr/type-aliases/AndOr.md)\<`string`\>
+> `optional` **with\_keywords**: [`AndOr`](../../types/type-aliases/AndOr.md)\<`string`\>
 
 ### with\_networks?
 
@@ -112,19 +112,19 @@
 
 ### with\_status?
 
-> `optional` **with\_status**: [`AndOr`](../../types/AndOr/type-aliases/AndOr.md)\<[`TVShowStatus`](../enumerations/TVShowStatus.md)\>
+> `optional` **with\_status**: [`AndOr`](../../types/type-aliases/AndOr.md)\<[`TVShowStatus`](TVShowStatus.md)\>
 
 ### with\_type?
 
-> `optional` **with\_type**: [`AndOr`](../../types/AndOr/type-aliases/AndOr.md)\<[`TVShowType`](../enumerations/TVShowType.md)\>
+> `optional` **with\_type**: [`AndOr`](../../types/type-aliases/AndOr.md)\<[`TVShowType`](TVShowType.md)\>
 
 ### with\_watch\_monetization\_types?
 
-> `optional` **with\_watch\_monetization\_types**: [`AndOr`](../../types/AndOr/type-aliases/AndOr.md)\<[`MonetizationType`](../../types/MonetizationType/type-aliases/MonetizationType.md)\>
+> `optional` **with\_watch\_monetization\_types**: [`AndOr`](../../types/type-aliases/AndOr.md)\<[`MonetizationType`](../../utils/constants/type-aliases/MonetizationType.md)\>
 
 ### with\_watch\_providers?
 
-> `optional` **with\_watch\_providers**: [`AndOr`](../../types/AndOr/type-aliases/AndOr.md)\<`string`\>
+> `optional` **with\_watch\_providers**: [`AndOr`](../../types/type-aliases/AndOr.md)\<`string`\>
 
 ### without\_companies?
 
@@ -132,7 +132,7 @@
 
 ### without\_genres?
 
-> `optional` **without\_genres**: [`TVShowGenres`](../enumerations/TVShowGenres.md)[]
+> `optional` **without\_genres**: [`TVShowGenre`](TVShowGenre.md)[]
 
 ### without\_keywords?
 
@@ -144,4 +144,4 @@
 
 ## Defined in
 
-src/systems/tmdb/endpoints/discover/tv.ts:68
+[src/systems/tmdb/endpoints/discover/tv.ts:74](https://github.com/Norviah/media-hub/blob/e3dc67aa1738d9ad44e6a4419ef7e26de86e1452/src/systems/tmdb/endpoints/discover/tv.ts#L74)

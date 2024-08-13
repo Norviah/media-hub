@@ -8,23 +8,21 @@
 
 ## Index
 
-### Enumerations
-
-- [TVShowGenres](enumerations/TVShowGenres.md)
-- [TVShowSortOptions](enumerations/TVShowSortOptions.md)
-- [TVShowStatus](enumerations/TVShowStatus.md)
-- [TVShowType](enumerations/TVShowType.md)
-
 ### Type Aliases
 
 - [DiscoverTVShowQueries](type-aliases/DiscoverTVShowQueries.md)
+- [TVShowGenre](type-aliases/TVShowGenre.md)
+- [TVShowSortOption](type-aliases/TVShowSortOption.md)
+- [TVShowStatus](type-aliases/TVShowStatus.md)
+- [TVShowType](type-aliases/TVShowType.md)
+
+### Variables
+
+- [TVShowGenres](variables/TVShowGenres.md)
+- [TVShowSortOptions](variables/TVShowSortOptions.md)
+- [TVShowStatuses](variables/TVShowStatuses.md)
+- [TVShowTypes](variables/TVShowTypes.md)
 
 ### Functions
 
 - [tv](functions/tv.md)
-
-## References
-
-### MonetizationType
-
-Re-exports [MonetizationType](../types/MonetizationType/type-aliases/MonetizationType.md)

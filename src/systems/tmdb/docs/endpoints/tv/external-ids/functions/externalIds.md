@@ -42,4 +42,4 @@ https://developer.themoviedb.org/reference/tv-series-external-ids
 
 ## Defined in
 
-src/systems/tmdb/endpoints/tv/external-ids.ts:33
+[src/systems/tmdb/endpoints/tv/external-ids.ts:33](https://github.com/Norviah/media-hub/blob/e3dc67aa1738d9ad44e6a4419ef7e26de86e1452/src/systems/tmdb/endpoints/tv/external-ids.ts#L33)

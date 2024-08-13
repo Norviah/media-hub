@@ -32,6 +32,12 @@ Re-exports [MovieImagesOptions](images/type-aliases/MovieImagesOptions.md)
 
 ***
 
+### MovieKeywordsOptions
+
+Re-exports [MovieKeywordsOptions](keywords/type-aliases/MovieKeywordsOptions.md)
+
+***
+
 ### MovieRecommendationsOptions
 
 Re-exports [MovieRecommendationsOptions](recommendations/type-aliases/MovieRecommendationsOptions.md)
@@ -65,6 +71,12 @@ Re-exports [externalIds](external-ids/functions/externalIds.md)
 ### images
 
 Re-exports [images](images/functions/images.md)
+
+***
+
+### keywords
+
+Re-exports [keywords](keywords/functions/keywords.md)
 
 ***
 

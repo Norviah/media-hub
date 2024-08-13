@@ -6,13 +6,13 @@
 
 # Function: details()
 
-> **details**\<`AdditionalEndpoints`\>(`options`): `Promise`\<`AdditionalEndpoints` *extends* (`"external_ids"` \| `"images"` \| `"recommendations"` \| `"videos"` \| `"aggregate_credits"`)[] ? `object` & \{ \[Key in "external\_ids" \| "images" \| "recommendations" \| "videos" \| "aggregate\_credits"\]: Omit\<TypeOf\<Object\[Key\]\>, "id"\> \} : `object`\>
+> **details**\<`AdditionalEndpoints`\>(`options`): `Promise`\<`AdditionalEndpoints` *extends* (`"keywords"` \| `"external_ids"` \| `"images"` \| `"recommendations"` \| `"videos"` \| `"aggregate_credits"`)[] ? `object` & \{ \[Key in "keywords" \| "external\_ids" \| "images" \| "recommendations" \| "videos" \| "aggregate\_credits"\]: Omit\<TypeOf\<Object\[Key\]\>, "id"\> \} : `object`\>
 
 Get the top level details of a TV show.
 
 ## Type Parameters
 
-• **AdditionalEndpoints** *extends* `undefined` \| (`"external_ids"` \| `"images"` \| `"recommendations"` \| `"videos"` \| `"aggregate_credits"`)[]
+• **AdditionalEndpoints** *extends* `undefined` \| (`"keywords"` \| `"external_ids"` \| `"images"` \| `"recommendations"` \| `"videos"` \| `"aggregate_credits"`)[]
 
 ## Parameters
 
@@ -22,7 +22,7 @@ Options for the request.
 
 ## Returns
 
-`Promise`\<`AdditionalEndpoints` *extends* (`"external_ids"` \| `"images"` \| `"recommendations"` \| `"videos"` \| `"aggregate_credits"`)[] ? `object` & \{ \[Key in "external\_ids" \| "images" \| "recommendations" \| "videos" \| "aggregate\_credits"\]: Omit\<TypeOf\<Object\[Key\]\>, "id"\> \} : `object`\>
+`Promise`\<`AdditionalEndpoints` *extends* (`"keywords"` \| `"external_ids"` \| `"images"` \| `"recommendations"` \| `"videos"` \| `"aggregate_credits"`)[] ? `object` & \{ \[Key in "keywords" \| "external\_ids" \| "images" \| "recommendations" \| "videos" \| "aggregate\_credits"\]: Omit\<TypeOf\<Object\[Key\]\>, "id"\> \} : `object`\>
 
 The response.
 
@@ -48,4 +48,4 @@ https://developer.themoviedb.org/reference/tv-series-details
 
 ## Defined in
 
-src/systems/tmdb/endpoints/tv/details.ts:64
+[src/systems/tmdb/endpoints/tv/details.ts:66](https://github.com/Norviah/media-hub/blob/e3dc67aa1738d9ad44e6a4419ef7e26de86e1452/src/systems/tmdb/endpoints/tv/details.ts#L66)

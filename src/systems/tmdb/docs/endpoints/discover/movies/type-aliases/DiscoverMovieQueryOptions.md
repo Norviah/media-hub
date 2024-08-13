@@ -68,7 +68,7 @@
 
 ### sort\_by?
 
-> `optional` **sort\_by**: \`$\{MovieSortOptions\}\`
+> `optional` **sort\_by**: [`MovieSortOption`](MovieSortOption.md)
 
 ### vote\_average.gte?
 
@@ -92,23 +92,23 @@
 
 ### with\_cast?
 
-> `optional` **with\_cast**: [`AndOr`](../../types/AndOr/type-aliases/AndOr.md)\<`string`\>
+> `optional` **with\_cast**: [`AndOr`](../../types/type-aliases/AndOr.md)\<`string`\>
 
 ### with\_companies?
 
-> `optional` **with\_companies**: [`AndOr`](../../types/AndOr/type-aliases/AndOr.md)\<`string`\>
+> `optional` **with\_companies**: [`AndOr`](../../types/type-aliases/AndOr.md)\<`string`\>
 
 ### with\_crew?
 
-> `optional` **with\_crew**: [`AndOr`](../../types/AndOr/type-aliases/AndOr.md)\<`string`\>
+> `optional` **with\_crew**: [`AndOr`](../../types/type-aliases/AndOr.md)\<`string`\>
 
 ### with\_genres?
 
-> `optional` **with\_genres**: [`AndOr`](../../types/AndOr/type-aliases/AndOr.md)\<[`MovieGenres`](../enumerations/MovieGenres.md)\>
+> `optional` **with\_genres**: [`AndOr`](../../types/type-aliases/AndOr.md)\<[`MovieGenre`](MovieGenre.md)\>
 
 ### with\_keywords?
 
-> `optional` **with\_keywords**: [`AndOr`](../../types/AndOr/type-aliases/AndOr.md)\<`string`\>
+> `optional` **with\_keywords**: [`AndOr`](../../types/type-aliases/AndOr.md)\<`string`\>
 
 ### with\_origin\_country?
 
@@ -120,11 +120,11 @@
 
 ### with\_people?
 
-> `optional` **with\_people**: [`AndOr`](../../types/AndOr/type-aliases/AndOr.md)\<`string`\>
+> `optional` **with\_people**: [`AndOr`](../../types/type-aliases/AndOr.md)\<`string`\>
 
 ### with\_release\_type?
 
-> `optional` **with\_release\_type**: [`AndOr`](../../types/AndOr/type-aliases/AndOr.md)\<[`MovieReleaseType`](../enumerations/MovieReleaseType.md)\>
+> `optional` **with\_release\_type**: [`AndOr`](../../types/type-aliases/AndOr.md)\<[`MovieReleaseType`](MovieReleaseType.md)\>
 
 ### with\_runtime.gte?
 
@@ -136,11 +136,11 @@
 
 ### with\_watch\_monetization\_types?
 
-> `optional` **with\_watch\_monetization\_types**: [`AndOr`](../../types/AndOr/type-aliases/AndOr.md)\<[`MonetizationType`](../../types/MonetizationType/type-aliases/MonetizationType.md)\>
+> `optional` **with\_watch\_monetization\_types**: [`AndOr`](../../types/type-aliases/AndOr.md)\<[`MonetizationType`](../../utils/constants/type-aliases/MonetizationType.md)\>
 
 ### with\_watch\_providers?
 
-> `optional` **with\_watch\_providers**: [`AndOr`](../../types/AndOr/type-aliases/AndOr.md)\<`string`\>
+> `optional` **with\_watch\_providers**: [`AndOr`](../../types/type-aliases/AndOr.md)\<`string`\>
 
 ### without\_companies?
 
@@ -148,7 +148,7 @@
 
 ### without\_genres?
 
-> `optional` **without\_genres**: [`MovieGenres`](../enumerations/MovieGenres.md)[]
+> `optional` **without\_genres**: [`MovieGenre`](MovieGenre.md)[]
 
 ### without\_keywords?
 
@@ -164,4 +164,4 @@
 
 ## Defined in
 
-src/systems/tmdb/endpoints/discover/movies.ts:63
+[src/systems/tmdb/endpoints/discover/movies.ts:67](https://github.com/Norviah/media-hub/blob/e3dc67aa1738d9ad44e6a4419ef7e26de86e1452/src/systems/tmdb/endpoints/discover/movies.ts#L67)

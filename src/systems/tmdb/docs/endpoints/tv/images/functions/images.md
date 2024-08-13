@@ -44,4 +44,4 @@ https://developer.themoviedb.org/reference/tv-series-images
 
 ## Defined in
 
-src/systems/tmdb/endpoints/tv/images.ts:44
+[src/systems/tmdb/endpoints/tv/images.ts:44](https://github.com/Norviah/media-hub/blob/e3dc67aa1738d9ad44e6a4419ef7e26de86e1452/src/systems/tmdb/endpoints/tv/images.ts#L44)

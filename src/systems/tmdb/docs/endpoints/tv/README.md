@@ -38,6 +38,12 @@ Re-exports [TVShowImagesOptions](images/type-aliases/TVShowImagesOptions.md)
 
 ***
 
+### TVShowKeywordsOptions
+
+Re-exports [TVShowKeywordsOptions](keywords/type-aliases/TVShowKeywordsOptions.md)
+
+***
+
 ### TVShowRecommendationsOptions
 
 Re-exports [TVShowRecommendationsOptions](recommendations/type-aliases/TVShowRecommendationsOptions.md)
@@ -77,6 +83,12 @@ Re-exports [externalIds](external-ids/functions/externalIds.md)
 ### images
 
 Re-exports [images](images/functions/images.md)
+
+***
+
+### keywords
+
+Re-exports [keywords](keywords/functions/keywords.md)
 
 ***
 

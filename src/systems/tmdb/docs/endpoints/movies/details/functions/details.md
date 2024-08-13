@@ -6,13 +6,13 @@
 
 # Function: details()
 
-> **details**\<`AdditionalEndpoints`\>(`options`): `Promise`\<`AdditionalEndpoints` *extends* (`"credits"` \| `"external_ids"` \| `"images"` \| `"recommendations"` \| `"videos"`)[] ? `object` & \{ \[Key in "credits" \| "external\_ids" \| "images" \| "recommendations" \| "videos"\]: Omit\<TypeOf\<Object\[Key\]\>, "id"\> \} : `object`\>
+> **details**\<`AdditionalEndpoints`\>(`options`): `Promise`\<`AdditionalEndpoints` *extends* (`"keywords"` \| `"credits"` \| `"external_ids"` \| `"images"` \| `"recommendations"` \| `"videos"`)[] ? `object` & \{ \[Key in "keywords" \| "credits" \| "external\_ids" \| "images" \| "recommendations" \| "videos"\]: Omit\<TypeOf\<Object\[Key\]\>, "id"\> \} : `object`\>
 
 Get the top level details of a movie by ID.
 
 ## Type Parameters
 
-• **AdditionalEndpoints** *extends* `undefined` \| (`"credits"` \| `"external_ids"` \| `"images"` \| `"recommendations"` \| `"videos"`)[]
+• **AdditionalEndpoints** *extends* `undefined` \| (`"keywords"` \| `"credits"` \| `"external_ids"` \| `"images"` \| `"recommendations"` \| `"videos"`)[]
 
 ## Parameters
 
@@ -22,7 +22,7 @@ Options for the request.
 
 ## Returns
 
-`Promise`\<`AdditionalEndpoints` *extends* (`"credits"` \| `"external_ids"` \| `"images"` \| `"recommendations"` \| `"videos"`)[] ? `object` & \{ \[Key in "credits" \| "external\_ids" \| "images" \| "recommendations" \| "videos"\]: Omit\<TypeOf\<Object\[Key\]\>, "id"\> \} : `object`\>
+`Promise`\<`AdditionalEndpoints` *extends* (`"keywords"` \| `"credits"` \| `"external_ids"` \| `"images"` \| `"recommendations"` \| `"videos"`)[] ? `object` & \{ \[Key in "keywords" \| "credits" \| "external\_ids" \| "images" \| "recommendations" \| "videos"\]: Omit\<TypeOf\<Object\[Key\]\>, "id"\> \} : `object`\>
 
 The response.
 
@@ -48,4 +48,4 @@ https://developer.themoviedb.org/reference/movie-details
 
 ## Defined in
 
-src/systems/tmdb/endpoints/movies/details.ts:65
+[src/systems/tmdb/endpoints/movies/details.ts:67](https://github.com/Norviah/media-hub/blob/e3dc67aa1738d9ad44e6a4419ef7e26de86e1452/src/systems/tmdb/endpoints/movies/details.ts#L67)

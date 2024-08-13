@@ -8,22 +8,19 @@
 
 ## Index
 
-### Enumerations
-
-- [MovieGenres](enumerations/MovieGenres.md)
-- [MovieReleaseType](enumerations/MovieReleaseType.md)
-- [MovieSortOptions](enumerations/MovieSortOptions.md)
-
 ### Type Aliases
 
 - [DiscoverMovieQueryOptions](type-aliases/DiscoverMovieQueryOptions.md)
+- [MovieGenre](type-aliases/MovieGenre.md)
+- [MovieReleaseType](type-aliases/MovieReleaseType.md)
+- [MovieSortOption](type-aliases/MovieSortOption.md)
+
+### Variables
+
+- [MovieGenres](variables/MovieGenres.md)
+- [MovieReleaseTypes](variables/MovieReleaseTypes.md)
+- [MovieSortOptions](variables/MovieSortOptions.md)
 
 ### Functions
 
 - [movies](functions/movies.md)
-
-## References
-
-### MonetizationType
-
-Re-exports [MonetizationType](../types/MonetizationType/type-aliases/MonetizationType.md)

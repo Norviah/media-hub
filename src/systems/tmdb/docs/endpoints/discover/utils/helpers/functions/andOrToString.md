@@ -14,7 +14,7 @@
 
 ## Parameters
 
-• **value**: `undefined` \| [`AndOr`](../../../types/AndOr/type-aliases/AndOr.md)\<`T`\>
+• **value**: `undefined` \| [`AndOr`](../../../types/type-aliases/AndOr.md)\<`T`\>
 
 ## Returns
 
@@ -22,4 +22,4 @@
 
 ## Defined in
 
-src/systems/tmdb/endpoints/discover/utils/helpers.ts:3
+[src/systems/tmdb/endpoints/discover/utils/helpers.ts:3](https://github.com/Norviah/media-hub/blob/e3dc67aa1738d9ad44e6a4419ef7e26de86e1452/src/systems/tmdb/endpoints/discover/utils/helpers.ts#L3)

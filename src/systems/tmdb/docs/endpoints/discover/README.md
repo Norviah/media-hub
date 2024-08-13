@@ -8,6 +8,12 @@
 
 ## References
 
+### AndOr
+
+Re-exports [AndOr](types/type-aliases/AndOr.md)
+
+***
+
 ### DiscoverMovieQueryOptions
 
 Re-exports [DiscoverMovieQueryOptions](movies/type-aliases/DiscoverMovieQueryOptions.md)
@@ -22,49 +28,97 @@ Re-exports [DiscoverTVShowQueries](tv/type-aliases/DiscoverTVShowQueries.md)
 
 ### MonetizationType
 
-Re-exports [MonetizationType](types/MonetizationType/type-aliases/MonetizationType.md)
+Re-exports [MonetizationType](utils/constants/type-aliases/MonetizationType.md)
+
+***
+
+### MonetizationTypes
+
+Re-exports [MonetizationTypes](utils/constants/variables/MonetizationTypes.md)
+
+***
+
+### MovieGenre
+
+Re-exports [MovieGenre](movies/type-aliases/MovieGenre.md)
 
 ***
 
 ### MovieGenres
 
-Re-exports [MovieGenres](movies/enumerations/MovieGenres.md)
+Re-exports [MovieGenres](movies/variables/MovieGenres.md)
 
 ***
 
 ### MovieReleaseType
 
-Re-exports [MovieReleaseType](movies/enumerations/MovieReleaseType.md)
+Re-exports [MovieReleaseType](movies/type-aliases/MovieReleaseType.md)
+
+***
+
+### MovieReleaseTypes
+
+Re-exports [MovieReleaseTypes](movies/variables/MovieReleaseTypes.md)
+
+***
+
+### MovieSortOption
+
+Re-exports [MovieSortOption](movies/type-aliases/MovieSortOption.md)
 
 ***
 
 ### MovieSortOptions
 
-Re-exports [MovieSortOptions](movies/enumerations/MovieSortOptions.md)
+Re-exports [MovieSortOptions](movies/variables/MovieSortOptions.md)
+
+***
+
+### TVShowGenre
+
+Re-exports [TVShowGenre](tv/type-aliases/TVShowGenre.md)
 
 ***
 
 ### TVShowGenres
 
-Re-exports [TVShowGenres](tv/enumerations/TVShowGenres.md)
+Re-exports [TVShowGenres](tv/variables/TVShowGenres.md)
+
+***
+
+### TVShowSortOption
+
+Re-exports [TVShowSortOption](tv/type-aliases/TVShowSortOption.md)
 
 ***
 
 ### TVShowSortOptions
 
-Re-exports [TVShowSortOptions](tv/enumerations/TVShowSortOptions.md)
+Re-exports [TVShowSortOptions](tv/variables/TVShowSortOptions.md)
 
 ***
 
 ### TVShowStatus
 
-Re-exports [TVShowStatus](tv/enumerations/TVShowStatus.md)
+Re-exports [TVShowStatus](tv/type-aliases/TVShowStatus.md)
+
+***
+
+### TVShowStatuses
+
+Re-exports [TVShowStatuses](tv/variables/TVShowStatuses.md)
 
 ***
 
 ### TVShowType
 
-Re-exports [TVShowType](tv/enumerations/TVShowType.md)
+Re-exports [TVShowType](tv/type-aliases/TVShowType.md)
+
+***
+
+### TVShowTypes
+
+Re-exports [TVShowTypes](tv/variables/TVShowTypes.md)
 
 ***
 
