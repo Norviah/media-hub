@@ -124,6 +124,13 @@ export const SpokenLanguage = z.object({
 
 export type SpokenLanguage = z.infer<typeof SpokenLanguage>;
 
+export const Keyword = z.object({
+  id: z.number(),
+  name: z.string(),
+});
+
+export type Keyword = z.infer<typeof Keyword>;
+
 // ---
 // BASE
 // ---
@@ -483,6 +490,15 @@ export const TVShowImages = Images;
 
 export type TVShowImages = z.infer<typeof TVShowImages>;
 
+// Keywords Endpoint
+
+export const TVShowKeywords = z.object({
+  id: z.number(),
+  results: z.array(Keyword),
+});
+
+export type TVShowKeywords = z.infer<typeof TVShowKeywords>;
+
 // Recommendations Endpoint
 
 const TVShowRecommendation = TVShow;
@@ -645,6 +661,14 @@ export type MovieExternalIds = z.infer<typeof MovieExternalIds>;
 export const MovieImages = Images;
 
 export type MovieImages = z.infer<typeof MovieImages>;
+
+// Keywords Endpoint
+
+export const MovieKeywords = z.object({
+  keywords: z.array(Keyword),
+});
+
+export type MovieKeywords = z.infer<typeof MovieKeywords>;
 
 // Recommendations Endpoint
 

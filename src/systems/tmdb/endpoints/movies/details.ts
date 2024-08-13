@@ -3,6 +3,7 @@ import {
   MovieDetails,
   MovieExternalIds,
   MovieImages,
+  MovieKeywords,
   MovieVideos,
 } from '../../structs/Schemas';
 
@@ -19,6 +20,7 @@ const ADDITIONAL_SCHEMAS = {
   credits: MovieCredits,
   external_ids: MovieExternalIds,
   images: MovieImages,
+  keywords: MovieKeywords,
   recommendations: MovieDetails,
   videos: MovieVideos,
 };

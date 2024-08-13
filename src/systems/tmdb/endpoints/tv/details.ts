@@ -3,6 +3,7 @@ import {
   TVShowDetails,
   TVShowExternalIds,
   TVShowImages,
+  TVShowKeywords,
   TVShowRecommendations,
   TVShowVideos,
 } from '../../structs/Schemas';
@@ -18,6 +19,7 @@ const ADDITIONAL_SCHEMAS = {
   aggregate_credits: AggregateCredits,
   external_ids: TVShowExternalIds,
   images: TVShowImages,
+  keywords: TVShowKeywords,
   recommendations: TVShowRecommendations,
   videos: TVShowVideos,
 } as const;
