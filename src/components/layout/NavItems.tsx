@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils';
 import { usePathname } from 'next/navigation';
 import { routes } from './routes';
 
-import type { RouteItem } from '@/types/RouteItem';
+import type { RouteItem } from '@/types';
 
 function NavItem({ route }: { route: RouteItem }): JSX.Element {
   const pathname = usePathname();

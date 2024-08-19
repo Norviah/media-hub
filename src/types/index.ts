@@ -1,2 +1,2 @@
-export * from './RouteItem';
 export * from './components';
+export * from './utils';

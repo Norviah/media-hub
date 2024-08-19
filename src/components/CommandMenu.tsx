@@ -18,7 +18,7 @@ import { useRouter } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
 
 import type { IconButtonProps } from '@/components/ui/Button';
-import type { RouteItem } from '@/types/RouteItem';
+import type { RouteItem } from '@/types';
 
 export function CommandMenu(props: Omit<IconButtonProps, 'icon' | 'children'>): JSX.Element {
   const router = useRouter();
