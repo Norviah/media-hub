@@ -1,5 +1,4 @@
-export { getImagePath, type GetImagePathArgs } from './lib/utils';
-
+export * from './lib';
 export * from './structs';
 export * from './types';
 
