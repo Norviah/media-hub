@@ -108,6 +108,11 @@ export type QuerySelectorProps<
    * with custom CSS classes.
    */
   popoverContentClassName?: string;
+
+  /**
+   * Additional classes for customizing the scroll area appearance.
+   */
+  scrollAreaClassName?: string;
 };
 
 /**
@@ -213,7 +218,7 @@ export function QuerySelector<
         <Command>
           <CommandInput placeholder={props.searchPlaceholderText} />
           <CommandList>
-            <ScrollArea className='h-72'>
+            <ScrollArea className={cn('h-72', props.scrollAreaClassName)}>
               <CommandEmpty>{props.searchEmptyText}</CommandEmpty>
               <CommandGroup>
                 {props.options.map((option) => {
