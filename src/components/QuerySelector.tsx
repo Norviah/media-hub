@@ -67,7 +67,7 @@ export type QuerySelectorProps<
    * the dropdown, it should be used to give context to the user on what they
    * are searching for.
    */
-  searchPlaceholderText: string;
+  searchPlaceholderText?: string;
 
   /**
    * The text to display when no search results are found.
