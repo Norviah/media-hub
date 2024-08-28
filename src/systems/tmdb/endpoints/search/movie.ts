@@ -31,7 +31,7 @@ export type SearchMovieOptions = {
   /**
    * The specific year of the release to get.
    */
-  primary_release_year?: string;
+  primary_release_year?: number;
 
   /**
    * The specific page of the results to get.
@@ -46,7 +46,7 @@ export type SearchMovieOptions = {
   /**
    * The first air date and all episode air dates.
    */
-  year?: string;
+  year?: number;
 };
 
 /**
