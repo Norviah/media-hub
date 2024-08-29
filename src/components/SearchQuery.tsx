@@ -117,7 +117,9 @@ export function SearchQuery<Schema extends ConstrainedRecord<Schema>, Key extend
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: Only depend on the term.
   useEffect(() => {
-    router.push(construct(debouncedSearchTerm || null));
+    if (debouncedSearchTerm.length > 0) {
+      router.push(construct(debouncedSearchTerm || null));
+    }
   }, [debouncedSearchTerm]);
 
   return (
