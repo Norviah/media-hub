@@ -238,6 +238,10 @@ export function QuerySelector<
                       )}
                       onSelect={(value) => {
                         push(value, !active);
+
+                        if (!props.multi) {
+                          setOpen(false);
+                        }
                       }}
                     >
                       {option}
