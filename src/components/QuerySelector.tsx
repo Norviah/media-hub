@@ -206,7 +206,7 @@ export function QuerySelector<
           variant='outline'
           role='combobox'
           aria-expanded={open}
-          className={cn('justify-between bg-foreground/[.026]', props.buttonClassName)}
+          className={cn('justify-between bg-foreground/[.026] capitalize', props.buttonClassName)}
         >
           <QuerySelectorInfo picked={props.picked} multi={props.multi} />
 
@@ -231,7 +231,7 @@ export function QuerySelector<
                       key={option}
                       value={option}
                       className={cn(
-                        'justify-between transition-colors',
+                        'justify-between capitalize transition-colors',
                         active
                           ? 'text-foreground'
                           : 'text-foreground-lighter hover:text-foreground',
