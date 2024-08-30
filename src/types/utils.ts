@@ -52,3 +52,39 @@ export type Primitive = string | number | boolean | null;
 export type ConstrainedRecord<T extends Record<string, unknown>, V = Primitive | Primitive[]> = {
   [K in keyof T]: T[K] extends V ? T[K] : never;
 };
+
+/**
+ * Make all properties in `T` explicitly need a value.
+ *
+ * `Explicit` constructs a new type where all properties within the original
+ * interface are explicitly required. This differs from `Required` in that it
+ * does not make any optional properties required, all properties must simply
+ * need to be explicitly provided.
+ *
+ * @template T The provided interface.
+ * @example
+ *
+ * ```ts
+ * interface Person {
+ *   name: string;
+ *   job?: string;
+ * }
+ *
+ * // => Error: As `job` is required.
+ *
+ * const person: Required<Person> = {
+ *   name: "John Appleseed",
+ *   job: undefined,
+ * }
+ *
+ * // => No error, as `job` is still optional, but must be explicitly provided.
+ *
+ * const person: Explicit<Person> = {
+ *   name: "John Appleseed",
+ *   job: undefined,
+ * };
+ * ```
+ */
+export type Explicit<T> = {
+  [K in keyof Required<T>]: T[K];
+};
