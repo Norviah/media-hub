@@ -8,6 +8,11 @@ export const routes: RouteItem[] = [
     icon: SearchIcon,
   },
   {
+    title: 'Discover',
+    path: '/discover',
+    icon: BookIcon,
+  },
+  {
     title: 'Demo',
     path: '/demo',
     icon: BookIcon,
