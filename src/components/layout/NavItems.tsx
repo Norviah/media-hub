@@ -27,7 +27,7 @@ function NavItem({ route }: { route: RouteItem }): JSX.Element {
 
 export function NavItems(): JSX.Element {
   return (
-    <div className='flex gap-x-12'>
+    <div className='flex gap-x-5'>
       {routes.map((item) => (
         <NavItem route={item} key={item.path} />
       ))}
