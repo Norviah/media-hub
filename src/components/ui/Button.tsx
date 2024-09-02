@@ -10,7 +10,7 @@ import type { RequireExactlyOne } from 'type-fest';
 import * as React from 'react';
 
 const buttonVariants = cva(
-  'relative justify-center inline-flex items-center text-center font-regular ease-out duration-200 rounded-md outline-none transition-all outline-0 focus-visible:outline-4 focus-visible:outline-offset-1 focus-visible:outline-success data-[state=open]:bg-selection data-[state=open]:outline-success data-[state=open]:border-button-hover text-xs',
+  'disabled:opacity-60 disabled:pointer-events-none relative justify-center inline-flex items-center text-center font-regular ease-out duration-200 rounded-md outline-none transition-all outline-0 focus-visible:outline-4 focus-visible:outline-offset-1 focus-visible:outline-success data-[state=open]:bg-selection data-[state=open]:outline-success data-[state=open]:border-button-hover text-xs',
   {
     variants: {
       variant: {
