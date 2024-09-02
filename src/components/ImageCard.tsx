@@ -1,9 +1,13 @@
 import Image from 'next/image';
-import { cn } from '@/lib/utils';
+import Link from 'next/link';
 
+import { cn } from '@/lib/utils';
+import { Fragment } from 'react';
+
+import type { Route } from 'next';
 import type { ImageProps } from 'next/image';
 
-export type ImageCardProps = {
+export type ImageCardProps<Path extends string = string> = {
   /**
    * CSS classes for different parts of the `ImageCard` component.
    */
@@ -16,6 +20,11 @@ export type ImageCardProps = {
    * other metadata.
    */
   children: JSX.Element | JSX.Element[];
+
+  /**
+   * The route to navigate to when the image is clicked.
+   */
+  href?: Route<Path>;
 } & Omit<ImageProps, 'height' | 'width' | 'className'>;
 
 /**
@@ -52,16 +61,26 @@ export type ImageCardProps = {
  * </ImageCard>
  * ```
  **/
-export function ImageCard({ classes, children, ...imageProps }: ImageCardProps): JSX.Element {
+export function ImageCard<Path extends string = string>({
+  classes,
+  children,
+  href,
+  ...imageProps
+}: ImageCardProps<Path>): JSX.Element {
+  const ParentComponent = href ? Link : Fragment;
+
   return (
     <div className={cn('flex w-1/2 flex-row rounded bg-card', classes?.container)}>
       <div className={cn('w-fit', classes?.imageContainer)}>
-        <Image
-          width='0'
-          height='0'
-          className={cn('h-full w-full rounded', classes?.image)}
-          {...imageProps}
-        />
+        {/* @ts-ignore: `href` will have a value if the `Link` component is used */}
+        <ParentComponent href={href}>
+          <Image
+            width='0'
+            height='0'
+            className={cn('h-full w-full rounded', classes?.image)}
+            {...imageProps}
+          />
+        </ParentComponent>
       </div>
 
       <div className={cn('flex flex-1 flex-col text-xs', classes?.content)}>{children}</div>
