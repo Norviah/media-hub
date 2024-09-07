@@ -180,5 +180,5 @@ export function constructUrl<T extends ConstrainedRecord<T>, Path extends string
     }
   }
 
-  return query.size > 0 ? `${route}?${query.toString()}` : route;
+  return query.size > 0 ? (`${route}?${query.toString()}` as Route) : route;
 }
