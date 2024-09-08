@@ -58,7 +58,7 @@ export async function GET<Schema extends ZodSchema>({
     headers: {
       ...options?.headers,
       Authorization: `Bearer ${env.TMDB_API_KEY}`,
-      'Content-Type': 'application/json;charset=utf-8',
+      accept: 'application/json',
     },
   });
 
