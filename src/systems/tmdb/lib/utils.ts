@@ -72,12 +72,37 @@ export type GetImagePathArgs = {
  * @param params The parameters for the image.
  * @returns The full URL for the image.
  */
-export function getImagePath({ path, alt, altDimensions = '400x600' }: GetImagePathArgs): string {
+export function getImagePath({ path, alt, altDimensions }: GetImagePathArgs): string {
   if (path) {
     return `${BASE_IMAGE_URL}${path}`;
   }
 
-  return `https://placehold.co/${altDimensions}/EEE/31343C?font=montserrat&text=${encodeURI(alt)}`;
+  return generatePlaceholderImage({ alt, dimensions: altDimensions });
+}
+
+export type PlaceholderImageArgs = {
+  /**
+   * The alt text for the placeholder image.
+   */
+  alt: string;
+
+  /**
+   * The dimensions for the placeholder image.
+   */
+  dimensions?: `${number}x${number}`;
+};
+
+/**
+ * Generates a placeholder image with the given text.
+ *
+ * @see https://placehold.co/
+ * @returns The URL for the placeholder image.
+ */
+export function generatePlaceholderImage({
+  alt,
+  dimensions = '400x600',
+}: PlaceholderImageArgs): string {
+  return `https://placehold.co/${dimensions}/EEE/31343C?font=lato&text=${encodeURI(alt)}`;
 }
 
 /**

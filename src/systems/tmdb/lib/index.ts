@@ -1,3 +1,3 @@
-export { getImagePath, type GetImagePathArgs } from './utils';
+export * from './utils';
 
 export * as genres from './genres';
