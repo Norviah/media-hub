@@ -1,6 +1,2 @@
-export * from './ParseError';
-export * from './RateLimitError';
-export * from './UknownResourceError';
-export * from './UnkownError';
-
+export * from './errors';
 export type * from './Schemas';
