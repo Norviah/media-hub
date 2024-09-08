@@ -1,17 +1,34 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { cn } from '@/lib/utils';
 import { Fragment } from 'react';
+import { Skeleton } from './ui/Skeleton';
 
+import { cn } from '@/lib/utils';
+
+import type { SkeletalProps } from '@/types';
 import type { Route } from 'next';
 import type { ImageProps } from 'next/image';
 
-export type ImageCardProps<Path extends string = string> = {
+const baseClasses = {
+  container: 'flex w-1/2 flex-row rounded bg-card',
+  imageContainer: 'w-fit',
+  image: 'h-full w-full rounded',
+  content: 'flex flex-1 flex-col text-xs',
+};
+
+type ImageCardPropsBase<Path extends string = string> = {
+  /**
+   * The route to navigate to when the image is clicked.
+   */
+  href?: Route<Path>;
+} & Omit<ImageProps, 'height' | 'width' | 'className' | 'children'>;
+
+type ImageCardBaseProps = {
   /**
    * CSS classes for different parts of the `ImageCard` component.
    */
-  classes?: { container?: string; content?: string; imageContainer?: string; image?: string };
+  classes?: Partial<typeof baseClasses>;
 
   /**
    * The child elements to be rendered alongside the image.
@@ -19,13 +36,13 @@ export type ImageCardProps<Path extends string = string> = {
    * Typically information about the image, such as the title, description, or
    * other metadata.
    */
-  children: JSX.Element | JSX.Element[];
+  children: React.ReactNode;
+};
 
-  /**
-   * The route to navigate to when the image is clicked.
-   */
-  href?: Route<Path>;
-} & Omit<ImageProps, 'height' | 'width' | 'className'>;
+export type ImageCardProps<Path extends string = string> = SkeletalProps<
+  ImageCardPropsBase<Path>,
+  ImageCardBaseProps
+>;
 
 /**
  * A flexible image card component.
@@ -61,29 +78,38 @@ export type ImageCardProps<Path extends string = string> = {
  * </ImageCard>
  * ```
  **/
-export function ImageCard<Path extends string = string>({
-  classes,
-  children,
-  href,
-  ...imageProps
-}: ImageCardProps<Path>): JSX.Element {
+export function ImageCard<Path extends string = string>(props: ImageCardProps<Path>): JSX.Element {
+  if (props.skeleton) {
+    return (
+      <div className={cn(baseClasses.container, props.classes?.container)}>
+        <div className={cn(baseClasses.imageContainer, props.classes?.imageContainer)}>
+          <Skeleton className={cn(baseClasses.image, props.classes?.image)} />
+        </div>
+
+        <div className={cn(baseClasses.content, props.classes?.content)}>{props.children}</div>
+      </div>
+    );
+  }
+
+  const { classes, children, href, ...imageProps } = props;
+
   const ParentComponent = href ? Link : Fragment;
 
   return (
-    <div className={cn('flex w-1/2 flex-row rounded bg-card', classes?.container)}>
-      <div className={cn('w-fit', classes?.imageContainer)}>
-        {/* @ts-ignore: `href` will have a value if the `Link` component is used */}
-        <ParentComponent href={href}>
+    <div className={cn(baseClasses.container, classes?.container)}>
+      <div className={cn(baseClasses.imageContainer, classes?.imageContainer)}>
+        {/* @ts-ignore */}
+        <ParentComponent {...(href ? { href } : {})}>
           <Image
             width='0'
             height='0'
-            className={cn('h-full w-full rounded', classes?.image)}
+            className={cn(baseClasses.image, classes?.image)}
             {...imageProps}
           />
         </ParentComponent>
       </div>
 
-      <div className={cn('flex flex-1 flex-col text-xs', classes?.content)}>{children}</div>
+      <div className={cn(baseClasses.content, classes?.content)}>{children}</div>
     </div>
   );
 }
