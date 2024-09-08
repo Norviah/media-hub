@@ -125,3 +125,46 @@ export type Explicit<T> = {
 export type With<T, K extends keyof T> = T & {
   [P in keyof Explicit<T>]: P extends K ? NonNullable<T[P]> : T[P];
 };
+
+/**
+ * Generates the appropriate properties for a component with support for a
+ * skeleton state.
+ *
+ * This type generates the necessary structure for components that has both a
+ * skeleton (loading) state and a fully rendered state. It ensures that the
+ * correct properties are included based on whether if the component is
+ * displaying a skeleton or its actual content.
+ *
+ * @template RequiredProps The properties that the component needs to render its
+ * content.
+ * @template BaseProps The base properties shared across both skeleton and
+ * non-skeleton state.
+ *
+ * @example
+ *
+ * ```tsx
+ *  export type ImageCardProps = SkeletalProps<{ url: string; alt: string }>;
+ *
+ *  export function ImageCard(props: ImageCardProps): JSX.Element {
+ *    if (props.skeleton) {
+ *      return <Skeleton /* ... *\/ />;
+ *    }
+ *
+ *    return <img src={props.url} alt={props.alt} />;
+ *  }
+ * ```
+ *
+ * When we want to render a skeleton, we can do so as `<ImageCard skeleton />`,
+ * which does not require the `url` and `alt` properties.
+ */
+export type SkeletalProps<
+  RequiredProps extends Record<string, unknown>,
+  BaseProps extends Record<string, unknown> = Record<string, never>,
+> =
+  | (BaseProps extends Record<string, never>
+      ? { skeleton?: false } & RequiredProps
+      : {
+          skeleton?: false;
+        } & RequiredProps &
+          BaseProps)
+  | (BaseProps extends Record<string, never> ? { skeleton: true } : { skeleton: true } & BaseProps);
