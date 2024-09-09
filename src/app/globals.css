@@ -206,8 +206,8 @@
 
   .light {
     --background: 0 0% 97%;
-    --foreground-light: 0 0% 32.2%;
-    --foreground-lighter: 0 0% 50%;
+    --foreground-light: 0 0% 40%;
+    --foreground-lighter: 0 0% 60%;
     --foreground: 0 0% 7%;
     
     --foreground: var(--neutral-600);
@@ -282,12 +282,18 @@
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
   }
+
+  ::selection {
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+  }
 }
 
 @layer base {
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }
