@@ -47,7 +47,7 @@ export default function RootLayout(props: LayoutProps): JSX.Element {
         <TailwindIndicator />
         <Analytics />
         <SpeedInsights />
-        <ToastProvider />
+        <ToastProvider className={overpass.className} />
       </body>
     </html>
   );
