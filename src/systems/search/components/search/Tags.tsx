@@ -37,6 +37,10 @@ export function Tags({ params }: TagsProps): JSX.Element {
     }
   }
 
+  if (params.layout) {
+    tags.push({ title: 'Layout', value: params.layout, paramKey: 'layout' });
+  }
+
   function remove(tag: QueryBadgeProps<SearchParamsSchema>) {
     const paramValue = params[tag.paramKey];
     let overridenValue: typeof paramValue = null;
@@ -58,16 +62,15 @@ export function Tags({ params }: TagsProps): JSX.Element {
     <div className='flex h-7 flex-row flex-wrap items-center gap-2'>
       <TagsIcon className='h-5 w-5 text-foreground-lighter' />
 
-      {tags.length > 0 &&
-        tags.map((tag) => (
-          <QueryBadge
-            key={`${tag.paramKey}-${tag.value}`}
-            onClick={() => {
-              remove(tag);
-            }}
-            {...tag}
-          />
-        ))}
+      {tags.map((tag) => (
+        <QueryBadge
+          key={`${tag.paramKey}-${tag.value}`}
+          onClick={() => {
+            remove(tag);
+          }}
+          {...tag}
+        />
+      ))}
 
       {tags.length > 1 && (
         <QueryBadgeContainer
