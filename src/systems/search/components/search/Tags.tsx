@@ -59,7 +59,7 @@ export function Tags({ params }: TagsProps): JSX.Element {
   }
 
   return (
-    <div className='flex h-7 flex-row flex-wrap items-center gap-2'>
+    <div className='flex flex-row flex-wrap items-center gap-2'>
       <TagsIcon className='h-5 w-5 text-foreground-lighter' />
 
       {tags.map((tag) => (
