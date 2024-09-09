@@ -206,7 +206,7 @@
 
   .light {
     --background: 0 0% 97%;
-    --foreground-light: 0 0% 25%;
+    --foreground-light: 0 0% 32.2%;
     --foreground-lighter: 0 0% 50%;
     --foreground: 0 0% 7%;
     
@@ -226,7 +226,7 @@
     --secondary-foreground: 240 5.9% 10%;
     --accent: 240 4.8% 95.9%;
     --accent-foreground: 240 5.9% 10%;
-    --muted: 0 0% 87%;
+    --muted: 0 0% 90%;
     --muted-foreground: var(--foreground-lighter);
     --card: 0 0% 100%;
     --card-foreground: var(--foreground-light);
