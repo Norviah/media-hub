@@ -1,48 +1,10 @@
 ## Unreleased
 
-### Refactors
-
-- **utils**: refactor `constructUrl` to explicitly typecast the result as `Route` <code>[d2ef975](https://github.com/Norviah/media-hub/commit/d2ef975077ca0b3d135ce5722b8e2ec665bef3e8)</code>
-
-- **search**: create a `search` group for all routes related to searching <code>[dd1b35b](https://github.com/Norviah/media-hub/commit/dd1b35bbde2a95261956e60638274054dbf89ac1)</code>
-
-- **systems/tmdb**: rename `genres.movies` to `genres.movie` <code>[3e899f7](https://github.com/Norviah/media-hub/commit/3e899f7dc9f86618548bb1f234a06683e079262c)</code>
-
-- **systems/tmdb**: change the year properties for `SearchMovieOptions` to numbers <code>[2440bc2](https://github.com/Norviah/media-hub/commit/2440bc25bb9c7e6b1b0d95ee10e9bb73b4d9dcba)</code>
-
-- **components/QuerySelector**: allow the `searchPlaceholderText` property to be undefined <code>[61673b2](https://github.com/Norviah/media-hub/commit/61673b24555a12065649585c949eace0b705857e)</code>
-
-- **types**: refactor the structure for types <code>[e8a3ab0](https://github.com/Norviah/media-hub/commit/e8a3ab02ee5563c36c9e4c08138f0db051d9e230)</code>
-
-- **systems/tmdb**: refactor enums to objects <code>[2c69f46](https://github.com/Norviah/media-hub/commit/2c69f462615909197d9f43eacc4da13280f38f7c)</code>
-
-- **components/layout**: improve route detection logic to include sub-routes <code>[7c644f8](https://github.com/Norviah/media-hub/commit/7c644f87f38483079eb245ee7f55b66b90dcb63b)</code>
-
-### UI
-
-- **components/Button**: provide proper visual feedback when disabled <code>[96261ae](https://github.com/Norviah/media-hub/commit/96261aea6df8afadb0e4bf93adf3829807d1bab1)</code>
-
-- **layout**: decrease the space between nav headers <code>[423caff](https://github.com/Norviah/media-hub/commit/423caffe69c4eb6615e9948d69742611a8bbe891)</code>
-
-- **components/QuerySelector**: capitalize all rendered text <code>[3921da4](https://github.com/Norviah/media-hub/commit/3921da4632caa6fcddb7584bdf321a07190c7e18)</code>
-
-- **theme**: update background and foreground colors <code>[809c540](https://github.com/Norviah/media-hub/commit/809c540c60676d63df46184d9804fc98e1f5f09b)</code>
-
-- **components/Badge**: add `muted` as a new variant <code>[107647b](https://github.com/Norviah/media-hub/commit/107647b59d88d3b5f089ad4b13b6dbd02fa7d356)</code>
-
-- **components/Button**: move specific class names to variants, rather than being default for all variants <code>[d85abe3](https://github.com/Norviah/media-hub/commit/d85abe33adc10a32cd5a4d14d185a14d18bf2b87)</code>
-
-- **components/Command**: fix the tailwind classes for disabled state <code>[666e508](https://github.com/Norviah/media-hub/commit/666e50897a53196608542b5d4c87baf803aaeee7)</code>
-
-- **components/Select**: mute the colors for unselected items in the dropdown <code>[7ed9bc7](https://github.com/Norviah/media-hub/commit/7ed9bc7e5b364b62a5cf60e85ebe24b730d82849)</code>
-
-- **components/Select**: set the placeholder text to muted <code>[7c958e4](https://github.com/Norviah/media-hub/commit/7c958e4c40e783fa86df061b1e68d3c43fa4d7b3)</code>
-
-- use the `border` color instead of `input` for input components <code>[cf36f9e](https://github.com/Norviah/media-hub/commit/cf36f9e8fd0b1c4492399d8f6f559be3a451a527)</code>
-
-- **theme**: update theme colors to be inspired/taken from supabase <code>[fc16111](https://github.com/Norviah/media-hub/commit/fc16111acd015899ede62078162b6b1846768e5f)</code>
-
 ### Features
+
+- **search**: add a search page <code>[6adda48](https://github.com/Norviah/media-hub/commit/6adda487e740261a26db9dd89fcd559f483d23fb)</code>
+
+- **hooks**: add a hook to manage infinite loading <code>[feea77e](https://github.com/Norviah/media-hub/commit/feea77e34052ddbc7c731a8f7d33eee5ee529448)</code>
 
 - **components/ImageCard**: add support for route navigating <code>[ea19191](https://github.com/Norviah/media-hub/commit/ea19191872df8565888ac9b9fa25e023b34b3b2c)</code>
 
@@ -69,6 +31,64 @@
 - **systems/tmdb**: add `/keywords` endpoints for tv shows and movies <code>[e3dc67a](https://github.com/Norviah/media-hub/commit/e3dc67aa1738d9ad44e6a4419ef7e26de86e1452)</code>
 
 - **systems**: add an api wrapper for TMDB's api <code>[15ca06b](https://github.com/Norviah/media-hub/commit/15ca06bf548895d7fcacfe7fbeddceca1f71c0cd)</code>
+
+### UI
+
+- **theme**: lighten `foreground-light` and `muted` for light them <code>[9522acd](https://github.com/Norviah/media-hub/commit/9522acdba763c7c0a15c88d13a4b6cda16f2593b)</code>
+
+- **components/Button**: provide proper visual feedback when disabled <code>[96261ae](https://github.com/Norviah/media-hub/commit/96261aea6df8afadb0e4bf93adf3829807d1bab1)</code>
+
+- **layout**: decrease the space between nav headers <code>[423caff](https://github.com/Norviah/media-hub/commit/423caffe69c4eb6615e9948d69742611a8bbe891)</code>
+
+- **components/QuerySelector**: capitalize all rendered text <code>[3921da4](https://github.com/Norviah/media-hub/commit/3921da4632caa6fcddb7584bdf321a07190c7e18)</code>
+
+- **theme**: update background and foreground colors <code>[809c540](https://github.com/Norviah/media-hub/commit/809c540c60676d63df46184d9804fc98e1f5f09b)</code>
+
+- **components/Badge**: add `muted` as a new variant <code>[107647b](https://github.com/Norviah/media-hub/commit/107647b59d88d3b5f089ad4b13b6dbd02fa7d356)</code>
+
+- **components/Button**: move specific class names to variants, rather than being default for all variants <code>[d85abe3](https://github.com/Norviah/media-hub/commit/d85abe33adc10a32cd5a4d14d185a14d18bf2b87)</code>
+
+- **components/Command**: fix the tailwind classes for disabled state <code>[666e508](https://github.com/Norviah/media-hub/commit/666e50897a53196608542b5d4c87baf803aaeee7)</code>
+
+- **components/Select**: mute the colors for unselected items in the dropdown <code>[7ed9bc7](https://github.com/Norviah/media-hub/commit/7ed9bc7e5b364b62a5cf60e85ebe24b730d82849)</code>
+
+- **components/Select**: set the placeholder text to muted <code>[7c958e4](https://github.com/Norviah/media-hub/commit/7c958e4c40e783fa86df061b1e68d3c43fa4d7b3)</code>
+
+- use the `border` color instead of `input` for input components <code>[cf36f9e](https://github.com/Norviah/media-hub/commit/cf36f9e8fd0b1c4492399d8f6f559be3a451a527)</code>
+
+- **theme**: update theme colors to be inspired/taken from supabase <code>[fc16111](https://github.com/Norviah/media-hub/commit/fc16111acd015899ede62078162b6b1846768e5f)</code>
+
+### Refactors
+
+- **components/ui**: add `TooltipArrow` for the `Tooltip` component <code>[701b3b7](https://github.com/Norviah/media-hub/commit/701b3b7c4d75229592b364a004c26bf4bb7afb57)</code>
+
+- **components/ImageCard**: add skeleton state support <code>[a08c87c](https://github.com/Norviah/media-hub/commit/a08c87c21b4ec70aa6d4861f7ba03f8e2ee1b829)</code>
+
+- **systems/tmdb**: move error structures into a single file <code>[2afcf82](https://github.com/Norviah/media-hub/commit/2afcf82d5577ba53b51b8f27973c1b0c04f3e3ad)</code>
+
+- **systems/tmdb**: extract the logic for generating a placeholder image into a function <code>[9a83ac5](https://github.com/Norviah/media-hub/commit/9a83ac5a55ea7cb4ee64309d095e6397d2aa8864)</code>
+
+- **systems/tmdb**: use the `accept` field when calling the api <code>[8464813](https://github.com/Norviah/media-hub/commit/8464813c5b5a3fa7656c9ee2200e20a3cffbbb88)</code>
+
+- **utils**: refactor `constructUrl` to explicitly typecast the result as `Route` <code>[d2ef975](https://github.com/Norviah/media-hub/commit/d2ef975077ca0b3d135ce5722b8e2ec665bef3e8)</code>
+
+- **search**: create a `search` group for all routes related to searching <code>[dd1b35b](https://github.com/Norviah/media-hub/commit/dd1b35bbde2a95261956e60638274054dbf89ac1)</code>
+
+- **systems/tmdb**: rename `genres.movies` to `genres.movie` <code>[3e899f7](https://github.com/Norviah/media-hub/commit/3e899f7dc9f86618548bb1f234a06683e079262c)</code>
+
+- **systems/tmdb**: change the year properties for `SearchMovieOptions` to numbers <code>[2440bc2](https://github.com/Norviah/media-hub/commit/2440bc25bb9c7e6b1b0d95ee10e9bb73b4d9dcba)</code>
+
+- **components/QuerySelector**: allow the `searchPlaceholderText` property to be undefined <code>[61673b2](https://github.com/Norviah/media-hub/commit/61673b24555a12065649585c949eace0b705857e)</code>
+
+- **types**: refactor the structure for types <code>[e8a3ab0](https://github.com/Norviah/media-hub/commit/e8a3ab02ee5563c36c9e4c08138f0db051d9e230)</code>
+
+- **systems/tmdb**: refactor enums to objects <code>[2c69f46](https://github.com/Norviah/media-hub/commit/2c69f462615909197d9f43eacc4da13280f38f7c)</code>
+
+- **components/layout**: improve route detection logic to include sub-routes <code>[7c644f8](https://github.com/Norviah/media-hub/commit/7c644f87f38483079eb245ee7f55b66b90dcb63b)</code>
+
+### types
+
+- add `SkeletalProps` to generate types for components with a skeleton state <code>[6102f49](https://github.com/Norviah/media-hub/commit/6102f490fc4bcc613a49f8aef78883da86d13808)</code>
 
 ### Bug Fixes
 
