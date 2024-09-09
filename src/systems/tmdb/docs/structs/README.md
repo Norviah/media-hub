@@ -220,7 +220,7 @@ Re-exports [Network](Schemas/variables/Network.md)
 
 ### ParseError
 
-Re-exports [ParseError](ParseError/classes/ParseError.md)
+Re-exports [ParseError](errors/classes/ParseError.md)
 
 ***
 
@@ -316,7 +316,7 @@ Re-exports [ProductionCountry](Schemas/variables/ProductionCountry.md)
 
 ### RateLimitError
 
-Re-exports [RateLimitError](RateLimitError/classes/RateLimitError.md)
+Re-exports [RateLimitError](errors/classes/RateLimitError.md)
 
 ***
 
@@ -424,13 +424,13 @@ Re-exports [TrendingTVShows](Schemas/variables/TrendingTVShows.md)
 
 ### UnknownResourceError
 
-Re-exports [UnknownResourceError](UknownResourceError/classes/UnknownResourceError.md)
+Re-exports [UnknownResourceError](errors/classes/UnknownResourceError.md)
 
 ***
 
 ### UnkownError
 
-Re-exports [UnkownError](UnkownError/classes/UnkownError.md)
+Re-exports [UnkownError](errors/classes/UnkownError.md)
 
 ***
 

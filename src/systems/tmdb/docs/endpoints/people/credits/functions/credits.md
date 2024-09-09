@@ -42,4 +42,4 @@ https://developer.themoviedb.org/reference/person-combined-credits
 
 ## Defined in
 
-[src/systems/tmdb/endpoints/people/credits.ts:39](https://github.com/Norviah/media-hub/blob/e3dc67aa1738d9ad44e6a4419ef7e26de86e1452/src/systems/tmdb/endpoints/people/credits.ts#L39)
+[src/systems/tmdb/endpoints/people/credits.ts:39](https://github.com/Norviah/media-hub/blob/65ee01fce9c30692d28d2f4e608ea7f18b4d7381/src/systems/tmdb/endpoints/people/credits.ts#L39)

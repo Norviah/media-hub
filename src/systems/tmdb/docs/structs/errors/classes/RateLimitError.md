@@ -2,9 +2,15 @@
 
 ***
 
-[TMDB](../../../README.md) / [structs/ParseError](../README.md) / ParseError
+[TMDB](../../../README.md) / [structs/errors](../README.md) / RateLimitError
 
-# Class: ParseError
+# Class: RateLimitError
+
+Error thrown when the application is rate limited by the API.
+
+## See
+
+https://developer.themoviedb.org/docs/rate-limiting
 
 ## Extends
 
@@ -12,17 +18,15 @@
 
 ## Constructors
 
-### new ParseError()
+### new RateLimitError()
 
-> **new ParseError**(`path`): [`ParseError`](ParseError.md)
+> **new RateLimitError**(): [`RateLimitError`](RateLimitError.md)
 
-#### Parameters
-
-• **path**: `string`
+Initializes a new `RateLimitError` instance.
 
 #### Returns
 
-[`ParseError`](ParseError.md)
+[`RateLimitError`](RateLimitError.md)
 
 #### Overrides
 
@@ -30,7 +34,7 @@
 
 #### Defined in
 
-[src/systems/tmdb/structs/ParseError.ts:2](https://github.com/Norviah/media-hub/blob/e3dc67aa1738d9ad44e6a4419ef7e26de86e1452/src/systems/tmdb/structs/ParseError.ts#L2)
+[src/systems/tmdb/structs/errors.ts:37](https://github.com/Norviah/media-hub/blob/65ee01fce9c30692d28d2f4e608ea7f18b4d7381/src/systems/tmdb/structs/errors.ts#L37)
 
 ## Properties
 

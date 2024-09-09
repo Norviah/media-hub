@@ -2,9 +2,12 @@
 
 ***
 
-[TMDB](../../../README.md) / [structs/UknownResourceError](../README.md) / UnknownResourceError
+[TMDB](../../../README.md) / [structs/errors](../README.md) / UnkownError
 
-# Class: UnknownResourceError
+# Class: UnkownError
+
+Error thrown when the API encounters an error that is not handled by the
+library.
 
 ## Extends
 
@@ -12,13 +15,21 @@
 
 ## Constructors
 
-### new UnknownResourceError()
+### new UnkownError()
 
-> **new UnknownResourceError**(): [`UnknownResourceError`](UnknownResourceError.md)
+> **new UnkownError**(`error`): [`UnkownError`](UnkownError.md)
+
+Initializes a new `UnkownError` instance.
+
+#### Parameters
+
+• **error**: `string`
+
+The error message returned by the API.
 
 #### Returns
 
-[`UnknownResourceError`](UnknownResourceError.md)
+[`UnkownError`](UnkownError.md)
 
 #### Overrides
 
@@ -26,7 +37,7 @@
 
 #### Defined in
 
-[src/systems/tmdb/structs/UknownResourceError.ts:2](https://github.com/Norviah/media-hub/blob/e3dc67aa1738d9ad44e6a4419ef7e26de86e1452/src/systems/tmdb/structs/UknownResourceError.ts#L2)
+[src/systems/tmdb/structs/errors.ts:11](https://github.com/Norviah/media-hub/blob/65ee01fce9c30692d28d2f4e608ea7f18b4d7381/src/systems/tmdb/structs/errors.ts#L11)
 
 ## Properties
 

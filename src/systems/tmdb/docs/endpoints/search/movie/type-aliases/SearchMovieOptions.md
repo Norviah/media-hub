@@ -36,7 +36,7 @@ The specific page of the results to get.
 
 ### primary\_release\_year?
 
-> `optional` **primary\_release\_year**: `string`
+> `optional` **primary\_release\_year**: `number`
 
 The specific year of the release to get.
 
@@ -54,10 +54,10 @@ The specific region to get results from.
 
 ### year?
 
-> `optional` **year**: `string`
+> `optional` **year**: `number`
 
 The first air date and all episode air dates.
 
 ## Defined in
 
-[src/systems/tmdb/endpoints/search/movie.ts:10](https://github.com/Norviah/media-hub/blob/e3dc67aa1738d9ad44e6a4419ef7e26de86e1452/src/systems/tmdb/endpoints/search/movie.ts#L10)
+[src/systems/tmdb/endpoints/search/movie.ts:10](https://github.com/Norviah/media-hub/blob/65ee01fce9c30692d28d2f4e608ea7f18b4d7381/src/systems/tmdb/endpoints/search/movie.ts#L10)

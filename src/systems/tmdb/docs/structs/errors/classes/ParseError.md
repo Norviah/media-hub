@@ -2,9 +2,11 @@
 
 ***
 
-[TMDB](../../../README.md) / [structs/UnkownError](../README.md) / UnkownError
+[TMDB](../../../README.md) / [structs/errors](../README.md) / ParseError
 
-# Class: UnkownError
+# Class: ParseError
+
+Error thrown when a Zod schema fails to validate a response from the API.
 
 ## Extends
 
@@ -12,17 +14,21 @@
 
 ## Constructors
 
-### new UnkownError()
+### new ParseError()
 
-> **new UnkownError**(`error`): [`UnkownError`](UnkownError.md)
+> **new ParseError**(`path`): [`ParseError`](ParseError.md)
+
+Initializes a new `ParserError` instance.
 
 #### Parameters
 
-• **error**: `string`
+• **path**: `string`
+
+The path of the request that failed to parse.
 
 #### Returns
 
-[`UnkownError`](UnkownError.md)
+[`ParseError`](ParseError.md)
 
 #### Overrides
 
@@ -30,7 +36,7 @@
 
 #### Defined in
 
-[src/systems/tmdb/structs/UnkownError.ts:2](https://github.com/Norviah/media-hub/blob/e3dc67aa1738d9ad44e6a4419ef7e26de86e1452/src/systems/tmdb/structs/UnkownError.ts#L2)
+[src/systems/tmdb/structs/errors.ts:51](https://github.com/Norviah/media-hub/blob/65ee01fce9c30692d28d2f4e608ea7f18b4d7381/src/systems/tmdb/structs/errors.ts#L51)
 
 ## Properties
 
@@ -73,6 +79,18 @@ node\_modules/.pnpm/typescript@5.5.3/node\_modules/typescript/lib/lib.es5.d.ts:1
 #### Defined in
 
 node\_modules/.pnpm/typescript@5.5.3/node\_modules/typescript/lib/lib.es5.d.ts:1076
+
+***
+
+### path
+
+> **path**: `string`
+
+The path of the request that failed to parse.
+
+#### Defined in
+
+[src/systems/tmdb/structs/errors.ts:51](https://github.com/Norviah/media-hub/blob/65ee01fce9c30692d28d2f4e608ea7f18b4d7381/src/systems/tmdb/structs/errors.ts#L51)
 
 ***
 

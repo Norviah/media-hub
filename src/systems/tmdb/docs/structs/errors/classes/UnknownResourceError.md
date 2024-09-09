@@ -2,9 +2,11 @@
 
 ***
 
-[TMDB](../../../README.md) / [structs/RateLimitError](../README.md) / RateLimitError
+[TMDB](../../../README.md) / [structs/errors](../README.md) / UnknownResourceError
 
-# Class: RateLimitError
+# Class: UnknownResourceError
+
+Error thrown when the API returns a 401 status code.
 
 ## Extends
 
@@ -12,13 +14,15 @@
 
 ## Constructors
 
-### new RateLimitError()
+### new UnknownResourceError()
 
-> **new RateLimitError**(): [`RateLimitError`](RateLimitError.md)
+> **new UnknownResourceError**(): [`UnknownResourceError`](UnknownResourceError.md)
+
+Initializes a new `UnknownResourceError` instance.
 
 #### Returns
 
-[`RateLimitError`](RateLimitError.md)
+[`UnknownResourceError`](UnknownResourceError.md)
 
 #### Overrides
 
@@ -26,7 +30,7 @@
 
 #### Defined in
 
-[src/systems/tmdb/structs/RateLimitError.ts:2](https://github.com/Norviah/media-hub/blob/e3dc67aa1738d9ad44e6a4419ef7e26de86e1452/src/systems/tmdb/structs/RateLimitError.ts#L2)
+[src/systems/tmdb/structs/errors.ts:23](https://github.com/Norviah/media-hub/blob/65ee01fce9c30692d28d2f4e608ea7f18b4d7381/src/systems/tmdb/structs/errors.ts#L23)
 
 ## Properties
 

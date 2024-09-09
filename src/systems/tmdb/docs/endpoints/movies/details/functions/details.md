@@ -48,4 +48,4 @@ https://developer.themoviedb.org/reference/movie-details
 
 ## Defined in
 
-[src/systems/tmdb/endpoints/movies/details.ts:67](https://github.com/Norviah/media-hub/blob/e3dc67aa1738d9ad44e6a4419ef7e26de86e1452/src/systems/tmdb/endpoints/movies/details.ts#L67)
+[src/systems/tmdb/endpoints/movies/details.ts:67](https://github.com/Norviah/media-hub/blob/65ee01fce9c30692d28d2f4e608ea7f18b4d7381/src/systems/tmdb/endpoints/movies/details.ts#L67)
