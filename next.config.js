@@ -6,6 +6,21 @@ const nextConfig = {
   experimental: {
     typedRoutes: true,
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'image.tmdb.org',
+        pathname: '/t/p/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'placehold.co',
+        pathname: '/**/*',
+      },
+    ],
+    unoptimized: true,
+  },
 };
 
 module.exports = nextConfig;
