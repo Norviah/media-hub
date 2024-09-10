@@ -19,22 +19,27 @@ export const headerVariants = cva('scroll-m-20', {
 type Headers = NonNullable<VariantProps<typeof headerVariants>['type']>;
 type BaseHeaderProps = JSX.IntrinsicElements[Headers];
 
-export interface HeaderProps extends BaseHeaderProps, VariantProps<typeof headerVariants> {
+export interface HeaderProps
+  extends Omit<BaseHeaderProps, 'children'>,
+    VariantProps<typeof headerVariants> {
   type: Headers;
+  children: string;
 }
 
-export function Header(props: HeaderProps): JSX.Element {
+export function Header({
+  className,
+  id,
+  children,
+  type: Component,
+  ...props
+}: HeaderProps): JSX.Element {
   return (
-    <props.type
+    <Component
+      className={cn(headerVariants({ type: Component }), className)}
+      id={id || children}
       {...props}
-      className={cn(
-        headerVariants({
-          type: props.type,
-        }),
-        props.className,
-      )}
     >
-      {props.children}
-    </props.type>
+      {children}
+    </Component>
   );
 }
