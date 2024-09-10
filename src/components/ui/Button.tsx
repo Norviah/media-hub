@@ -26,7 +26,7 @@ const buttonVariants = cva(
         warn: 'bg-warn text-warn-foreground hover:bg-warn/70 border border-strong shadow-sm',
         secondary:
           'bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80 border border-strong shadow-sm',
-        ghost: 'hover:bg-accent hover:text-accent-foreground ',
+        ghost: 'hover:bg-accent hover:text-accent-foreground',
         outline:
           'hover:bg-foreground/[.08] bg-background dark:hover:bg-muted/90 text-foreground dark:hover:bg-muted/90 border border-strong',
       },
