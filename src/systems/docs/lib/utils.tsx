@@ -1,13 +1,13 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
+import { DynamicLink } from '@/components/DynamicLink';
 import { Blockquote } from '@/components/ui/Blockquote';
 import { Card } from '@/components/ui/Card';
 import { CodeBlock } from '@/components/ui/CodeBlock';
 import { Header } from '@/components/ui/Header';
 import { Separator } from '@/components/ui/Separator';
 import { UnorderedList } from '@/components/ui/UnorderedList';
-import { DynamicLink } from '../components';
 
 import { cn } from '@/lib/utils';
 
