@@ -52,9 +52,11 @@ export function MediaList(props: MediaListProps) {
   return (
     <ImageCard href={parsed.path} classes={mediaListClasses} src={parsed.poster} alt={parsed.name}>
       <div className='space-y-1'>
-        <Link href={parsed.path} className='transition-colors hover:text-foreground-lighter'>
-          <p className='text-base'>{parsed.name}</p>
-        </Link>
+        <div className='w-fit transition-colors hover:text-foreground'>
+          <Link href={parsed.path}>
+            <p className='text-base'>{parsed.name}</p>
+          </Link>
+        </div>
 
         <p className='text-foreground-lighter'>{parsed.year ?? 'N/A'}</p>
 
