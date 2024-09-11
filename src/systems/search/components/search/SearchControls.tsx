@@ -11,7 +11,7 @@ export type SearchControlsProps = {
 
 export function SearchControls({ params }: SearchControlsProps): JSX.Element {
   return (
-    <div className='flex w-full justify-between'>
+    <div className='flex min-h-7 w-full justify-between'>
       <Tags params={params} />
 
       <div className='flex flex-row items-center gap-2 text-foreground-lighter'>
