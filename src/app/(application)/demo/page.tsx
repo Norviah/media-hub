@@ -117,6 +117,12 @@ function CardDemo2({ className, ...props }: CardProps) {
       </CardHeader>
       <CardContent className='grid'>
         {/* <p className='text-muted-foreground text-sm'> */}
+        <p className='text-foreground text-sm'>
+          Lorem ipsum dolor sit amet, consectetur ipsum. Ut id convallis nisi. Aliquam feugiat
+          maximus blandit. Duis viverra fringilla imperdiet. Proin efficitur euismod sapien, eu
+          dictum orci rutrum eget.
+        </p>
+
         <p className='text-foreground-light text-sm'>
           Lorem ipsum dolor sit amet, consectetur ipsum. Ut id convallis nisi. Aliquam feugiat
           maximus blandit. Duis viverra fringilla imperdiet. Proin efficitur euismod sapien, eu

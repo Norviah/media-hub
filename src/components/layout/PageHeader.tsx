@@ -42,7 +42,7 @@ export function PageHeader({
 
       <div className='hidden md:flex md:flex-row md:items-center md:gap-10'>
         <div className='flex flex-1'>
-          <Link href='/' className='flex flex-row items-center gap-2 font-bold'>
+          <Link href='/' className='flex flex-row items-center gap-2 font-bold text-foreground'>
             <Logo />
             <p>{siteConfig.name}</p>
           </Link>
