@@ -1,0 +1,50 @@
+---
+title: Parsing Issues
+summary: A guide on what to do when you encounter a parsing issue with the app.
+---
+
+#### Next Steps
+
+If you're reading this, you most likely have encountered an issue somewhere
+within the app and have been sent here to help me solve the issue. If so, please
+create a new issue on the app's [GitHub
+repository](https://github.com/norviah/media-hub/issues) with the given error
+message. 
+
+Doing so will help get my attention of the issue and fix it as soon as possible.
+
+#### Description
+
+If you're curious about what the various error codes mean, here's a brief
+description of each.
+
+**ParseError**
+
+When the app searches for anything related to a movie, tv show, or a person, it
+does so through [The Movie Database](https://themoviedb.org). The app has
+various schemas that it uses to validate the data it receives from their API,
+which ensures that the app understands the structure of the data. These schemas
+are created using [Zod](https://zod.dev), and it's here where the error occurs.
+
+If the data received from the API does not match the schema, it
+will throw an error asit cannot parse the data. Due to the nature of this, if
+you encounter this error, you will continuously see it until it's fixed.
+
+**RateLimitError**
+
+If you encounter this error, it means that the app has reached the rate limit
+for The Movie Database's API. This error is usually temporary and will go away
+after a few minutes.
+
+If you encounter this error continuously, please create an issue on the app's
+GitHub repository.
+
+**UnknownResourceError**
+
+This error occurs when the app tries to fetch data from TMDB's API, but the
+requested data does not exist. You shouldn't really encounter this error, but if
+you do, please create an issue.
+
+**UnknownError**
+
+An unknown error occurred, and the app doesn't know what to do.

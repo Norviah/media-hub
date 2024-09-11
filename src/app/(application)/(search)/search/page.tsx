@@ -1,15 +1,16 @@
 import {
+  ErrorHandler,
   MediaGrid,
   SearchControls,
   SearchMenu,
   SearchParamsSchema,
   SearchWrapper,
-  defaultLayout,
-  layouts,
 } from '@/systems/search';
+import { ErrorBoundary } from 'next/dist/client/components/error-boundary';
 import { Suspense } from 'react';
 
-import { endpoints } from '@/systems/tmdb';
+import { defaultLayout, layouts } from '@/systems/search';
+import { endpoints } from '@/tmdb';
 
 import type {
   MultiSearchOptions,
@@ -46,13 +47,15 @@ export default async function SearchPage(props: PageProps): Promise<JSX.Element>
       <SearchMenu {...props} params={params} />
       <SearchControls params={params} />
 
-      <Suspense fallback={<MediaGrid layout={layout} skeleton />} key={JSON.stringify(params)}>
-        {params.q ? (
-          <SearchWrapper layout={layout} queryPage={queryPage} />
-        ) : (
-          <p>Search for something!</p>
-        )}
-      </Suspense>
+      <ErrorBoundary errorComponent={ErrorHandler}>
+        <Suspense fallback={<MediaGrid layout={layout} skeleton />} key={JSON.stringify(params)}>
+          {params.q ? (
+            <SearchWrapper layout={layout} queryPage={queryPage} />
+          ) : (
+            <p>Search for something!</p>
+          )}
+        </Suspense>
+      </ErrorBoundary>
     </div>
   );
 }

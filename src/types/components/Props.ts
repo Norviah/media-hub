@@ -4,7 +4,7 @@ export type LayoutProps = {
   children: React.ReactNode;
 };
 
-export type ErrorPageProps = {
+export type ErrorProps = {
   error: Error & { digest?: string };
   reset: () => void;
 };
