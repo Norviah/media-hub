@@ -9,7 +9,7 @@ export class UnkownError extends Error {
    * @param error The error message returned by the API.
    */
   public constructor(error: string) {
-    super(`An unknown error occurred: ${error}`);
+    super(`[Code: UnknownError] An unknown error occurred: ${error}`);
   }
 }
 
@@ -21,7 +21,7 @@ export class UnknownResourceError extends Error {
    * Initializes a new `UnknownResourceError` instance.
    */
   public constructor() {
-    super('Resource not found');
+    super('[Code: UnknownResourceError] The requested resource does not exist.');
   }
 }
 
@@ -35,7 +35,7 @@ export class RateLimitError extends Error {
    * Initializes a new `RateLimitError` instance.
    */
   public constructor() {
-    super('Rate limited');
+    super('[Code: RateLimitError] The application has been rate limited.');
   }
 }
 
@@ -49,6 +49,6 @@ export class ParseError extends Error {
    * @param path The path of the request that failed to parse.
    */
   public constructor(public path: string) {
-    super(`Failed to parse response for path: ${path}`);
+    super(`[Code: ParseError] Failed to parse response for path: ${path}`);
   }
 }
