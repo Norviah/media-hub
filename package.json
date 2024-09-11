@@ -72,6 +72,9 @@
   },
   "devDependencies": {
     "@biomejs/biome": "1.8.3",
+    "@content-collections/core": "^0.7.0",
+    "@content-collections/mdx": "^0.1.4",
+    "@content-collections/next": "^0.2.1",
     "@norviah/bump": "^1.4.1",
     "@types/node": "^20.14.11",
     "@types/react": "^18.3.3",
