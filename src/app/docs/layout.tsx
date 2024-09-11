@@ -8,10 +8,10 @@ import type { LayoutProps } from '@/types';
 
 export default function DocsLayout({ children }: LayoutProps) {
   return (
-    <div className='flex flex-row'>
-      <DocumentationSidebar className='top-0 hidden shrink-0 p-10 md:block' />
+    <div className='container flex flex-row gap-14'>
+      <DocumentationSidebar className='top-0 hidden shrink-0 pt-10 md:block' />
 
-      <div className='container space-y-10 py-10'>
+      <div className='space-y-10 py-10'>
         <div className='flex flex-row justify-between md:justify-end'>
           <div className='block md:hidden'>
             <SidebarMenu />
