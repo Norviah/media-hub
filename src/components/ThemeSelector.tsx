@@ -4,10 +4,11 @@ import { IconButton } from '@/components/ui/Button';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/Tooltip';
 import { MoonIcon, SunIcon } from 'lucide-react';
 
+import { cn } from '@/lib/utils';
 import { useTheme } from 'next-themes';
 import { useState } from 'react';
 
-export function ThemeSelector(): JSX.Element {
+export function ThemeSelector({ className }: { className?: string }): JSX.Element {
   const { setTheme, theme: currentTheme } = useTheme();
   const [openToolTip, setOpenToolTip] = useState(false);
 
@@ -40,7 +41,7 @@ export function ThemeSelector(): JSX.Element {
           <IconButton
             onClick={theme.onclick}
             size='small'
-            className='text-foreground-light hover:text-foreground'
+            className={cn('text-foreground-light hover:text-foreground', className)}
           >
             <SunIcon className='dark:-rotate-90 size-4 rotate-0 scale-100 transition-all dark:scale-0' />
             <MoonIcon className='absolute size-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100' />
