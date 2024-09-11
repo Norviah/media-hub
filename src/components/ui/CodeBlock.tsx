@@ -27,7 +27,7 @@ export function CodeBlock({
   return (
     <div
       className={cn(
-        'rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono font-semibold text-sm',
+        'rounded bg-muted p-5 font-mono font-semibold text-sm',
         copy && 'relative',
         className,
       )}
