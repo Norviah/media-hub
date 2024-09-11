@@ -182,7 +182,7 @@ export const Person = z.object({
   adult: z.boolean(),
   gender: z.number().nullable(),
   id: z.number(),
-  known_for_department: z.string(),
+  known_for_department: z.string().nullish(),
   name: z.string(),
   popularity: z.number(),
   profile_path: z.string().nullable(),
