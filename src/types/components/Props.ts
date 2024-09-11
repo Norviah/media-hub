@@ -29,3 +29,19 @@ export type SlugLayoutProps<Keys extends string = 'slug'> = {
 
   children: React.ReactNode;
 };
+
+export type SlugsPageProps<Keys extends string = 'slugs'> = {
+  params: {
+    [key in Keys]: string[] | undefined;
+  };
+
+  searchParams: ParamsObject;
+};
+
+export type SlugsLayoutProps<Keys extends string = 'slugs'> = {
+  params: {
+    [key in Keys]: string[] | undefined;
+  };
+
+  children: React.ReactNode;
+};
