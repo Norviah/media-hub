@@ -2,6 +2,16 @@
 
 ### Features
 
+- **docs**: add documentation using mdx <code>[1244090](https://github.com/Norviah/media-hub/commit/1244090512b3fd78549d8a2c727d562740856f94)</code>
+
+- **type**: add a type to represent properties for optional catch all routes <code>[192040c](https://github.com/Norviah/media-hub/commit/192040c96bc9dc57eb8c50d3697d5398858084d7)</code>
+
+- **components/CodeBlock**: add an option to add a copy button <code>[beca74d](https://github.com/Norviah/media-hub/commit/beca74d41088fafc33e43d6424b5f467d8a6f8c8)</code>
+
+- **components**: add a copy content component <code>[f6c54f4](https://github.com/Norviah/media-hub/commit/f6c54f40bc95c51b55db553df7ae1a1b5ae84ab8)</code>
+
+- **systems/search**: render a tag for the layout query parameter <code>[65ee01f](https://github.com/Norviah/media-hub/commit/65ee01fce9c30692d28d2f4e608ea7f18b4d7381)</code>
+
 - **search**: add a search page <code>[6adda48](https://github.com/Norviah/media-hub/commit/6adda487e740261a26db9dd89fcd559f483d23fb)</code>
 
 - **hooks**: add a hook to manage infinite loading <code>[feea77e](https://github.com/Norviah/media-hub/commit/feea77e34052ddbc7c731a8f7d33eee5ee529448)</code>
@@ -34,6 +44,16 @@
 
 ### UI
 
+- **theme**: update foreground colors for both themes <code>[6a279d1](https://github.com/Norviah/media-hub/commit/6a279d1f0cc437c804463c8d331bf031ebdd9af3)</code>
+
+- **components/Card**: set the default foreground color to the correct value <code>[e9c8f93](https://github.com/Norviah/media-hub/commit/e9c8f936586ff8b11915afdb820abca9f34c5b1e)</code>
+
+- **theme**: set the background color of highlighted text to the primary color <code>[ba19c4f](https://github.com/Norviah/media-hub/commit/ba19c4f03c8616d7927e1a1e409e978b93449727)</code>
+
+- update colors for toast notifications to give a clear distinction from title and description <code>[c3fba96](https://github.com/Norviah/media-hub/commit/c3fba96b8f7ecdc5376e1021f547755ce7fd278c)</code>
+
+- **systems/search**: don't set the max height for the tag container <code>[9ef75db](https://github.com/Norviah/media-hub/commit/9ef75dbec4af3bbc324b8517e2502eb2f0c333d1)</code>
+
 - **theme**: lighten `foreground-light` and `muted` for light them <code>[9522acd](https://github.com/Norviah/media-hub/commit/9522acdba763c7c0a15c88d13a4b6cda16f2593b)</code>
 
 - **components/Button**: provide proper visual feedback when disabled <code>[96261ae](https://github.com/Norviah/media-hub/commit/96261aea6df8afadb0e4bf93adf3829807d1bab1)</code>
@@ -58,7 +78,21 @@
 
 - **theme**: update theme colors to be inspired/taken from supabase <code>[fc16111](https://github.com/Norviah/media-hub/commit/fc16111acd015899ede62078162b6b1846768e5f)</code>
 
+### Bug Fixes
+
+- **components/Header**: don't constrict the type of children to strings <code>[bfe2772](https://github.com/Norviah/media-hub/commit/bfe2772050a18fb9c07d163edf86aa9e3902d58c)</code>
+
+- **components/SearchQuery**: ensure that a search term is given before pushing the route <code>[848b639](https://github.com/Norviah/media-hub/commit/848b63924737b29ca70c07df906c0496fb61c751)</code>
+
+- **systems/tmdb**: fix relative path <code>[a6a39f4](https://github.com/Norviah/media-hub/commit/a6a39f45118c91c8167124a4f27569b9bafcfa4a)</code>
+
 ### Refactors
+
+- **components/ThemeSelector**: allow additional class names through a property <code>[f5e600a](https://github.com/Norviah/media-hub/commit/f5e600a26d883ab8935f2577e44082f1592bcc38)</code>
+
+- **components/UnorderedList**: merge the base class names with, if any, specified ones <code>[d66f0bf](https://github.com/Norviah/media-hub/commit/d66f0bf9883f55aa3f1a135f8cd5ac8211af7507)</code>
+
+- **components/Header**: automatically set the ids of headers to the given text <code>[32c6a63](https://github.com/Norviah/media-hub/commit/32c6a637276424359f48b3b1baf324c1ce622066)</code>
 
 - **components/ui**: add `TooltipArrow` for the `Tooltip` component <code>[701b3b7](https://github.com/Norviah/media-hub/commit/701b3b7c4d75229592b364a004c26bf4bb7afb57)</code>
 
@@ -89,12 +123,6 @@
 ### types
 
 - add `SkeletalProps` to generate types for components with a skeleton state <code>[6102f49](https://github.com/Norviah/media-hub/commit/6102f490fc4bcc613a49f8aef78883da86d13808)</code>
-
-### Bug Fixes
-
-- **components/SearchQuery**: ensure that a search term is given before pushing the route <code>[848b639](https://github.com/Norviah/media-hub/commit/848b63924737b29ca70c07df906c0496fb61c751)</code>
-
-- **systems/tmdb**: fix relative path <code>[a6a39f4](https://github.com/Norviah/media-hub/commit/a6a39f45118c91c8167124a4f27569b9bafcfa4a)</code>
 
 ### Init
 
