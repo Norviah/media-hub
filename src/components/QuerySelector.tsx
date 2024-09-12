@@ -85,6 +85,14 @@ export type QuerySelectorProps<
   params: Schema;
 
   /**
+   * Any query parameters to force reset when a new value is selected.
+   *
+   * This optional property allows you to specify additional query parameters
+   * to reset when a new value is selected from this component.
+   */
+  forceReset?: (keyof Schema)[];
+
+  /**
    * Indicates if multiple values can be selected.
    *
    * This boolean determines whether if the query parameter supports multiple
@@ -190,12 +198,20 @@ export function QuerySelector<
         ? existingValue
         : null;
 
+    const overrides = {
+      [props.name]: value,
+    } as Partial<{ [K in keyof Schema]: Schema[K] }>;
+
+    if (props.forceReset) {
+      for (const key of props.forceReset) {
+        overrides[key] = undefined;
+      }
+    }
+
     const href = constructUrl<Schema>({
       route: pathname,
       params: props.params,
-      overrides: {
-        [props.name]: value,
-      } as Partial<{ [K in keyof Schema]: Schema[K] }>,
+      overrides,
     });
 
     router.push(href);
