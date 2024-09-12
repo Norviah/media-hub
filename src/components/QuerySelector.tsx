@@ -49,7 +49,7 @@ export type QuerySelectorProps<
    * The component will render these options as a dropdown list, and selecting one
    * will update the query parameter with the chosen value.
    */
-  options: string[];
+  options: `${NonNullable<Schema[Key]>}`[];
 
   /**
    * The current value of the query parameter.
@@ -58,7 +58,9 @@ export type QuerySelectorProps<
    * the `multi` property, this will be an array of strings or a single nullish
    * string.
    */
-  picked: Multi extends true ? string[] : string | null | undefined;
+  picked: Multi extends true
+    ? `${NonNullable<Schema[Key]>}`[]
+    : `${NonNullable<Schema[Key]>}` | null | undefined;
 
   /**
    * The placeholder text for the search input.
