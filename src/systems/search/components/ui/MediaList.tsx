@@ -9,7 +9,6 @@ import { parseMedia } from '../../lib/utils';
 
 import type { Movie, PersonSearchResult, TVShow } from '@/tmdb';
 import type { SkeletalProps } from '@/types';
-import { cn } from '@/lib/utils';
 
 export const mediaListClasses = {
   layout: 'space-y-4',
