@@ -1,9 +1,36 @@
+import { LayoutGridIcon, LayoutListIcon } from 'lucide-react';
+import { Layout, MediaType, SearchState } from './enums';
+
 import { getImagePath } from '@/systems/tmdb';
 
-import type { Movie, TVShow, PersonSearchResult } from '@/systems/tmdb';
+import type { Movie, PersonSearchResult, TVShow } from '@/systems/tmdb';
+import type { LucideIcon } from 'lucide-react';
 import type { Route } from 'next';
+import type { SearchParamsSchema } from './schemas';
+
+export type LayoutItem = {
+  slug: Layout | null;
+  key: Layout;
+};
+
+export const defaultLayout: LayoutItem = {
+  slug: null,
+  key: Layout.GRID,
+};
+
+export const layouts: LayoutItem[] = [defaultLayout, { slug: Layout.LIST, key: Layout.LIST }];
+
+export const icons: Record<Layout, LucideIcon> = {
+  grid: LayoutGridIcon,
+  list: LayoutListIcon,
+};
 
 export type Media = {
+  /**
+   * The type of media.
+   */
+  type: MediaType;
+
   /**
    * The name of the media.
    */
@@ -17,39 +44,29 @@ export type Media = {
   /**
    * The path to the media's respective page in the application.
    */
-  path: Extract<
-    Route<`/${'movie' | 'tv' | 'person'}/${string}`>,
-    `/${'movie' | 'tv' | 'person'}/${string}`
-  >;
+  path: Extract<Route<`/${MediaType}/${string}`>, `/${MediaType}/${string}`>;
 
   /**
-   * The constructed URL for the media's poster image.
+   * The constructed link for the media's poster image.
    *
-   * If the media does not have a poster image, this will instead rperesent a
-   * placeholder image with the media's name.
+   * If a poster image does not exist, this will instead represent a placeholder
+   * image with the media's name.
    */
   poster: string;
 
   /**
-   * The type of media.
-   */
-  type: 'movie' | 'tv' | 'person';
-
-  /**
    * The year the media was released.
-   *
-   * If the media is a person, this will be `null`.
    */
-  year: string | null;
+  year: string | null | undefined;
 };
 
 export function parseMedia(item: Movie | TVShow | PersonSearchResult): Media {
-  const name = item.media_type === 'movie' ? item.title : item.name;
-  const imagePath = item.media_type === 'person' ? item.profile_path : item.poster_path;
+  const name = item.media_type === MediaType.MOVIE ? item.title : item.name;
+  const imagePath = item.media_type === MediaType.PERSON ? item.profile_path : item.poster_path;
   const year =
-    item.media_type === 'person'
-      ? null
-      : item.media_type === 'movie'
+    item.media_type === MediaType.PERSON
+      ? undefined
+      : item.media_type === MediaType.MOVIE
         ? item.release_date
         : item.first_air_date;
 
@@ -61,4 +78,26 @@ export function parseMedia(item: Movie | TVShow | PersonSearchResult): Media {
     type: item.media_type,
     year,
   };
+}
+
+/**
+ * Gets the current search state based on the present query parameters.
+ *
+ * @param params The active search query parameters.
+ * @returns The current search state.
+ */
+export function getSearchState(params: SearchParamsSchema): SearchState {
+  if (params.q) {
+    return SearchState.SEARCH;
+  }
+
+  if (params.type === MediaType.PERSON && !params.q) {
+    return SearchState.PERSON_SEARCHING_NO_QUERY;
+  }
+
+  if (params.type && params.type !== MediaType.PERSON) {
+    return SearchState.DISCOVER;
+  }
+
+  return SearchState.TRENDING;
 }

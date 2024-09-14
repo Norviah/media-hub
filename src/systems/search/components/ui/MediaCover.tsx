@@ -35,12 +35,7 @@ export function MediaCover(props: MediaCoverProps) {
 
   return (
     <Link href={parsed.path}>
-      <div
-        className={cn(
-          mediaCoverClasses.container,
-          'text-foreground-lighter transition-colors hover:text-foreground',
-        )}
-      >
+      <div className={cn(mediaCoverClasses.container, 'transition-colors hover:text-foreground')}>
         <Image
           src={parsed.poster}
           width='300'

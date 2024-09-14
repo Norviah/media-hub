@@ -1,56 +1,13 @@
+import { StringArraySchema, StringSchema } from '@/lib/schemas';
+import { Layout, MediaType } from './enums';
+
 import { z } from 'zod';
 
-/**
- * Matches a string or an array of strings.
- *
- * When working with query parameters, Next.js will automatically parse
- * query parameters as arrays if the same key is used multiple times,
- * because of this, we need to account for both cases.
- *
- * @example
- *
- * ```ts
- * StringOrStringArraySchema.parse("q");   // => "q"
- * StringOrStringArraySchema.parse(["q"]); // => ["q"]
- * ```
- */
-const StringOrStringArraySchema = z.union([z.string(), z.array(z.string())]);
+const today = new Date();
+const minYear = 1900;
+const maxYear = today.getFullYear() + 10;
 
-/**
- * Resolves a string or an array of strings into a single string.
- *
- * Some schemas may require a single string value, since Next.js automatically
- * parses query parameters as arrays if the same key is used multiple times,
- * this schema will resolve an array of strings into a single string.
- *
- * @example
- *
- * ```ts
- * StringSchema.parse("hello");            // => "hello"
- * StringSchema.parse(["hello", "world"]); // => "hello"
- * ```
- */
-const StringSchema = StringOrStringArraySchema.transform((x) => {
-  return Array.isArray(x) ? x[0] : x;
-});
-
-/**
- * Resolves a string or an array of strings into an array of strings.
- *
- * Some schemas may require an array of strings, this schema extends
- * `StringOrStringArraySchema` and resolves a single string into an array
- * containing that string.
- *
- * @example
- *
- * ```ts
- * StringArraySchema.parse("hello");            // => ["hello"]
- * StringArraySchema.parse(["hello", "world"]); // => ["hello", "world"]
- * ```
- */
-const StringArraySchema = StringOrStringArraySchema.transform((x) => {
-  return Array.isArray(x) ? x : [x];
-});
+export const years = Array.from({ length: maxYear - minYear + 1 }, (_, index) => maxYear - index);
 
 /**
  * The schema for search query parameters.
@@ -60,15 +17,23 @@ const StringArraySchema = StringOrStringArraySchema.transform((x) => {
  */
 export const SearchParamsSchema = z.object({
   q: StringSchema.nullish().default(null),
-  year: StringSchema.refine((value) => !Number.isNaN(Number(value)))
-    .transform((value) => Number(value))
-    .nullish()
-    .catch(null)
-    .default(null),
+  year: z.coerce.number().min(minYear).max(maxYear).nullish().catch(null).default(null),
   genres: StringArraySchema.default([]),
   sort: StringSchema.nullish().default(null),
-  layout: z.enum(['grid', 'list']).nullish().default(null).catch(null),
-  type: z.enum(['movie', 'tv', 'person']).nullish().default(null).catch(null),
+  layout: StringSchema.refine<Layout>((value): value is Layout => {
+    // @ts-expect-error
+    return Object.values(Layout).includes(value);
+  })
+    .nullish()
+    .default(null)
+    .catch(null),
+  type: StringSchema.refine<MediaType>((value): value is MediaType => {
+    // @ts-expect-error
+    return Object.values(MediaType).includes(value);
+  })
+    .nullish()
+    .default(null)
+    .catch(null),
 });
 
 export type SearchParamsSchema = z.infer<typeof SearchParamsSchema>;

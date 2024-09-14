@@ -2,16 +2,16 @@ import { QuerySelector } from '@/components/QuerySelector';
 import { SearchQuery } from '@/components/SearchQuery';
 import { Header } from '@/components/ui/Header';
 
-import type { SearchParamsSchema } from '@/systems/search';
-
-const currentYear = new Date().getFullYear() + 2;
-const years = Array.from({ length: currentYear - 1900 + 1 }, (_, index) => currentYear - index);
+import { years, type SearchParamsSchema } from '@/systems/search';
+import type { Genre } from '@/tmdb';
 
 export type SearchMenuProps = {
   params: SearchParamsSchema;
+  pickedGenres: Genre[];
+  genresList: Genre[];
 };
 
-export function SearchMenu({ params }: SearchMenuProps): JSX.Element {
+export function SearchMenu({ params, genresList, pickedGenres }: SearchMenuProps): JSX.Element {
   return (
     <div className='flex flex-row gap-5'>
       <div className='space-y-2'>
@@ -21,7 +21,7 @@ export function SearchMenu({ params }: SearchMenuProps): JSX.Element {
       </div>
 
       <div className='space-y-2'>
-        <Header type='h6'>Format</Header>
+        <Header type='h6'>Form</Header>
 
         <QuerySelector
           name='type'
@@ -33,6 +33,7 @@ export function SearchMenu({ params }: SearchMenuProps): JSX.Element {
           buttonClassName='w-[130px]'
           popoverContentClassName='w-[130px]'
           scrollAreaClassName='h-fit'
+          forceReset={['genres']}
         />
       </div>
 
@@ -43,8 +44,8 @@ export function SearchMenu({ params }: SearchMenuProps): JSX.Element {
 
             <QuerySelector
               name='year'
-              options={years.map((year) => year.toString())}
-              picked={params.year?.toString()}
+              options={years.map((year) => `${year}` as const)}
+              picked={params.year ? `${params.year}` : undefined}
               searchEmptyText='No years found.'
               params={params}
               multi={false}
@@ -53,20 +54,24 @@ export function SearchMenu({ params }: SearchMenuProps): JSX.Element {
             />
           </div>
 
-          {/* <div className='space-y-2'>
-            <Header type='h6'>Genres</Header>
+          {!params.q && (
+            <>
+              <div className='space-y-2'>
+                <Header type='h6'>Genres</Header>
 
-            <QuerySelector
-              name='genres'
-              options={genresList.map((genre) => genre.name)}
-              picked={parsedParams.genres.map((genre) => genre.name)}
-              searchEmptyText='No genres found.'
-              params={params}
-              multi
-              buttonClassName='min-w-[170px]'
-              popoverContentClassName='w-[170px]'
-            />
-          </div> */}
+                <QuerySelector
+                  name='genres'
+                  options={genresList.map((genre) => genre.name)}
+                  picked={pickedGenres.map((genre) => genre.name)}
+                  searchEmptyText='No genres found.'
+                  params={params}
+                  multi
+                  buttonClassName='min-w-[170px]'
+                  popoverContentClassName='w-[170px]'
+                />
+              </div>
+            </>
+          )}
         </>
       )}
     </div>

@@ -6,7 +6,7 @@ import { useInfiniteLoading } from '@/hooks/useInfiniteLoading';
 
 import type { InfiniteLoadingArgs } from '@/hooks/useInfiniteLoading';
 import type { Movie, PersonSearchResult, TVShow } from '@/tmdb';
-import type { LayoutItem } from '../../types';
+import type { LayoutItem } from '../../lib';
 
 export type SearchInfiniteLoadingProps<T extends TVShow | Movie | PersonSearchResult> =
   InfiniteLoadingArgs<T> & {

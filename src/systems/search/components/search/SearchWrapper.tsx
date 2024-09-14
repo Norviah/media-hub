@@ -1,7 +1,7 @@
 import { SearchInfiniteLoading } from './SearchInfiniteLoading';
 
-import type { Movie, PersonSearchResult, SearchResult, TVShow } from '@/systems/tmdb';
-import type { LayoutItem } from '../../types';
+import type { Movie, PersonSearchResult, SearchResult, TVShow } from '@/tmdb';
+import type { LayoutItem } from '../../lib';
 
 export type SearchWrapperProps<T extends TVShow | Movie | PersonSearchResult> = {
   queryPage: (page: number) => Promise<SearchResult<T>>;

@@ -6,18 +6,17 @@ import { cn, constructUrl } from '@/lib/utils';
 import { usePathname } from 'next/navigation';
 import { icons } from '../../lib';
 
-import type { SearchParamsSchema } from '../../lib';
-import type { LayoutItemKeys, LayoutItem as LayoutItemType } from '../../types';
+import type { LayoutItem, SearchParamsSchema } from '../../lib';
 
 export type LayoutItemProps = {
-  item: LayoutItemType;
+  item: LayoutItem;
   params: SearchParamsSchema;
 };
 
 export function LayoutLink({ item, params }: LayoutItemProps): JSX.Element {
   const pathname = usePathname();
 
-  const Icon = icons[item.key as LayoutItemKeys];
+  const Icon = icons[item.key];
 
   return (
     <Link href={constructUrl({ route: pathname, params, overrides: { layout: item.slug } })}>

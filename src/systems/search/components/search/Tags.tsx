@@ -8,12 +8,14 @@ import { usePathname, useRouter } from 'next/navigation';
 
 import type { SearchParamsSchema } from '../../lib';
 import type { QueryBadgeProps } from '../ui/QueryBadge';
+import type { Genre } from '@/systems/tmdb';
 
 export type TagsProps = {
   params: SearchParamsSchema;
+  genres: Genre[];
 };
 
-export function Tags({ params }: TagsProps): JSX.Element {
+export function Tags({ params, genres }: TagsProps): JSX.Element {
   const router = useRouter();
   const pathname = usePathname();
 
@@ -31,9 +33,9 @@ export function Tags({ params }: TagsProps): JSX.Element {
     tags.push({ title: 'Year', value: params.year, paramKey: 'year' });
   }
 
-  if (params.genres.length > 0) {
-    for (const genre of params.genres) {
-      tags.push({ title: 'Genre', value: genre, paramKey: 'genres' });
+  if (genres && genres.length > 0) {
+    for (const genre of genres) {
+      tags.push({ title: 'Genre', value: genre.name, paramKey: 'genres' });
     }
   }
 
