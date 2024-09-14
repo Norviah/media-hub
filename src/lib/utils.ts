@@ -75,7 +75,7 @@ export type ConstructUrlOptions<T extends ConstrainedRecord<T>, Path extends str
    * If any key is given `null` or `undefined`, it will be removed from the URL.
    */
   overrides?: {
-    [K in keyof T]?: T[K];
+    [K in keyof T]?: T[K] | null | undefined;
   };
 };
 
