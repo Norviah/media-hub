@@ -8,7 +8,7 @@
     "biome": "biome check ./src",
     "biome:write": "biome check ./src --write",
     "biome:unsafe": "biome check ./src --write --unsafe",
-    "dev": "next dev",
+    "dev": "next dev --turbo",
     "format": "biome format ./src",
     "format:write": "biome format ./src --write",
     "lint": "biome lint ./src",
