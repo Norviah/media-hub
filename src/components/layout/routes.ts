@@ -10,11 +10,6 @@ export const routes: RouteItem[] = [
     icon: SearchIcon,
   },
   {
-    title: 'Discover',
-    path: '/discover',
-    icon: BookIcon,
-  },
-  {
     title: 'Documentation',
     path: '/docs' as Route,
     icon: BookIcon,
