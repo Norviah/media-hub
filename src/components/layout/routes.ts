@@ -1,9 +1,7 @@
 import { BookIcon, SearchIcon } from 'lucide-react';
-
 import type { RouteItem } from '@/types';
-import type { Route } from 'next';
 
-export const routes: RouteItem[] = [
+export const routes: RouteItem<`/docs/${string}`>[] = [
   {
     title: 'Search',
     path: '/search',
@@ -11,7 +9,7 @@ export const routes: RouteItem[] = [
   },
   {
     title: 'Documentation',
-    path: '/docs' as Route,
+    path: '/docs/',
     icon: BookIcon,
   },
   {
