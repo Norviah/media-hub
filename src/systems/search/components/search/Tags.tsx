@@ -77,7 +77,7 @@ export function Tags({ params, genres }: TagsProps): JSX.Element {
       {tags.length > 1 && (
         <QueryBadgeContainer
           onClick={() => {
-            router.push(constructUrl({ route: pathname }));
+            router.push(constructUrl({ route: pathname, params, keep: ['type'] }));
           }}
         >
           Clear All
