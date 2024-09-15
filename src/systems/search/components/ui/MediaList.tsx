@@ -25,15 +25,15 @@ export function MediaList(props: MediaListProps) {
   if (props.skeleton) {
     return (
       <ImageCard classes={mediaListClasses} skeleton>
-        <div className='space-y-2'>
+        <div className='space-y-0.5'>
           <Skeleton className='h-4 w-1/3' />
 
           <Skeleton className='h-3 w-20' />
+        </div>
 
-          <div className='space-y-1'>
-            <Skeleton className='h-3 w-1/2' />
-            <Skeleton className='h-3 w-1/2' />
-          </div>
+        <div className='space-y-1'>
+          <Skeleton className='h-3 w-1/2' />
+          <Skeleton className='h-3 w-1/2' />
         </div>
 
         <div className='flex flex-row flex-wrap gap-2'>
@@ -50,7 +50,7 @@ export function MediaList(props: MediaListProps) {
 
   return (
     <ImageCard href={parsed.path} classes={mediaListClasses} src={parsed.poster} alt={parsed.name}>
-      <div className='space-y-1'>
+      <div className='space-y-0.5'>
         <div className='w-fit transition-colors hover:text-foreground'>
           <Link href={parsed.path}>
             <p className='text-base'>{parsed.name}</p>
@@ -58,15 +58,15 @@ export function MediaList(props: MediaListProps) {
         </div>
 
         <p className='text-foreground-lighter'>{parsed.year ?? 'N/A'}</p>
-
-        <p className='text-ellipsis text-foreground-light'>
-          {item.media_type === 'person'
-            ? ''
-            : item.overview
-              ? `${item.overview.slice(0, 300)}${item.overview.length >= 300 ? '...' : ''}`
-              : 'N/A'}
-        </p>
       </div>
+
+      <p className='text-ellipsis text-foreground-light'>
+        {item.media_type === 'person'
+          ? ''
+          : item.overview
+            ? `${item.overview.slice(0, 300)}${item.overview.length >= 300 ? '...' : ''}`
+            : 'N/A'}
+      </p>
 
       {item.media_type !== 'person' && (
         <div className='flex flex-row flex-wrap gap-2'>
