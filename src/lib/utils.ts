@@ -38,9 +38,14 @@ export function capitalize(string: string): string {
 
 /**
  * @template T The structure of query parameters.
+ * @template Keys The specific keys to modify in the query parameters.
  * @template Path The path for which to construct the URL.
  */
-export type ConstructUrlOptions<T extends ConstrainedRecord<T>, Path extends string> = {
+export type ConstructUrlOptions<
+  T extends ConstrainedRecord<T>,
+  Keys extends keyof T,
+  Path extends string,
+> = {
   /**
    * The route to construct a URL for.
    *
@@ -75,8 +80,19 @@ export type ConstructUrlOptions<T extends ConstrainedRecord<T>, Path extends str
    * If any key is given `null` or `undefined`, it will be removed from the URL.
    */
   overrides?: {
-    [K in keyof T]?: T[K] | null | undefined;
+    [K in Keys]?: T[K] | null | undefined;
   };
+
+  /**
+   * The specific keys to keep in the query parameters.
+   *
+   * When constructing a new URL, if `params` is provided, all keys will be
+   * included within the new URL, with `overrides` taking precedence.
+   *
+   * This property allows you to specify a subset of keys to keep from the
+   * existing parameters, all other keys will be removed from the URL.
+   */
+  keep?: Keys[];
 };
 
 /**
@@ -86,6 +102,7 @@ export type ConstructUrlOptions<T extends ConstrainedRecord<T>, Path extends str
  * query parameters and any specified overrides to those parameters.
  *
  * @template T The structure of query parameters.
+ * @template Keys The specific keys to modify in the query parameters.
  * @template Path The path for which to construct the URL.
  * @returns The constructed URL string.
  *
@@ -155,11 +172,11 @@ export type ConstructUrlOptions<T extends ConstrainedRecord<T>, Path extends str
  * // => /search?q=mario
  * ```
  */
-export function constructUrl<T extends ConstrainedRecord<T>, Path extends string = string>({
-  route,
-  params,
-  overrides,
-}: ConstructUrlOptions<T, Path>): Route<Path> {
+export function constructUrl<
+  T extends ConstrainedRecord<T>,
+  Keys extends keyof T = keyof T,
+  Path extends string = string,
+>({ route, params, overrides, keep }: ConstructUrlOptions<T, Keys, Path>): Route<Path> {
   if (!params) {
     return route;
   }
@@ -167,7 +184,11 @@ export function constructUrl<T extends ConstrainedRecord<T>, Path extends string
   const query = new URLSearchParams();
 
   for (const key in params) {
-    const value = overrides && key in overrides ? overrides[key] : params[key];
+    if (keep && !keep.includes(key as keyof T as Keys)) {
+      continue;
+    }
+
+    const value = overrides && key in overrides ? overrides[key as keyof T as Keys] : params[key];
 
     if (!Array.isArray(value) && value) {
       query.append(key, String(value));
