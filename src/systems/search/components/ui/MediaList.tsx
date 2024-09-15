@@ -9,6 +9,7 @@ import { parseMedia } from '../../lib/utils';
 
 import type { Movie, PersonSearchResult, TVShow } from '@/tmdb';
 import type { SkeletalProps } from '@/types';
+import { MediaType } from '../../lib';
 
 export const mediaListClasses = {
   layout: 'space-y-4',
@@ -60,13 +61,9 @@ export function MediaList(props: MediaListProps) {
         <p className='text-foreground-lighter'>{parsed.year ?? 'N/A'}</p>
       </div>
 
-      <p className='text-ellipsis text-foreground-light'>
-        {item.media_type === 'person'
-          ? ''
-          : item.overview
-            ? `${item.overview.slice(0, 300)}${item.overview.length >= 300 ? '...' : ''}`
-            : 'N/A'}
-      </p>
+      {item.media_type !== MediaType.PERSON && (
+        <p className='line-clamp-2 text-foreground-light'>{item.overview ?? 'N/A'}</p>
+      )}
 
       {item.media_type !== 'person' && (
         <div className='flex flex-row flex-wrap gap-2'>
