@@ -224,7 +224,10 @@ export function QuerySelector<
           variant='outline'
           role='combobox'
           aria-expanded={open}
-          className={cn('justify-between bg-foreground/[.026] capitalize', props.buttonClassName)}
+          className={cn(
+            'justify-between bg-foreground/[.026] capitalize hover:bg-muted',
+            props.buttonClassName,
+          )}
         >
           <QuerySelectorInfo picked={props.picked} multi={props.multi} />
 
