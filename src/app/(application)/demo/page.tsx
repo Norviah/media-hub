@@ -186,6 +186,20 @@ export default function Home(): JSX.Element {
             Button
           </Button>
           <Button
+            variant='primary'
+            onClick={() => {
+              toast.message('Title', {
+                description: 'Description',
+                action: {
+                  label: 'Action',
+                  onClick: () => console.log('Action!'),
+                },
+              });
+            }}
+          >
+            Button
+          </Button>
+          <Button
             variant='secondary'
             onClick={() => {
               toast.info('Info', { description: 'Description' });

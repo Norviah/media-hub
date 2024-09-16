@@ -10,24 +10,25 @@ import type { RequireExactlyOne } from 'type-fest';
 import * as React from 'react';
 
 const buttonVariants = cva(
-  'disabled:opacity-60 disabled:pointer-events-none relative justify-center inline-flex items-center text-center font-regular ease-out duration-200 rounded-md outline-none transition-all outline-0 focus-visible:outline-4 focus-visible:outline-offset-1 focus-visible:outline-success data-[state=open]:bg-selection data-[state=open]:outline-success data-[state=open]:border-button-hover text-xs',
+  'disabled:opacity-60 disabled:pointer-events-none relative justify-center inline-flex items-center text-center font-regular ease-out duration-200 rounded-md outline-none transition-all outline-0 focus-visible:outline-4 focus-visible:outline-offset-1 focus-visible:outline-success data-[state=open]:bg-selection data-[state=open]:outline-success data-[state=open]:border-button-hover text-xs text-foreground',
   {
     variants: {
       variant: {
         default:
-          'hover:bg-foreground/[.08] bg-background dark:bg-muted dark:hover:bg-muted/90 text-foreground dark:hover:bg-muted/90 border border-strong shadow-sm',
+          'hover:bg-foreground/[.08] active:bg-foreground/[.1] bg-background dark:bg-muted dark:hover:bg-muted/90 text-foreground dark:active:bg-muted/80 border border-strong shadow-sm',
         primary:
-          'hover:bg-primary/85 bg-primary text-primary-foreground border border-strong shadow-sm',
+          'hover:bg-primary/85 active:bg-primary/75 bg-primary text-primary-foreground border border-strong shadow-sm',
         destructive:
-          'hover:bg-destructive/85 bg-destructive text-destructive-foreground border border-strong shadow-sm',
-        info: 'bg-info text-info-foreground hover:bg-info/85 border border-strong shadow-sm',
+          'hover:bg-destructive/85 active:bg-destructive/75 bg-destructive text-destructive-foreground border border-strong shadow-sm',
+        info: 'bg-info text-info-foreground hover:bg-info/85 active:bg-info/75 border border-strong shadow-sm',
         success:
-          'bg-success text-success-foreground hover:bg-success/85 border border-strong shadow-sm',
-        warn: 'bg-warn text-warn-foreground hover:bg-warn/70 border border-strong shadow-sm',
+          'bg-success text-success-foreground hover:bg-success/85 active:bg-success/75 border border-strong shadow-sm',
+        warn: 'bg-warn text-warn-foreground hover:bg-warn/70 active:bg-warn/60 border border-strong shadow-sm',
         secondary:
-          'bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80 border border-strong shadow-sm',
-        ghost: 'hover:bg-accent hover:text-accent-foreground',
-        outline: 'hover:bg-foreground/[.08] bg-background text-foreground border border-strong',
+          'bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/75 active:bg-secondary/60 border border-strong shadow-sm',
+        ghost: 'hover:bg-muted/70 active:bg-muted',
+        outline:
+          'hover:bg-foreground/[.08] active:bg-foreground/[.1] bg-background text-foreground border border-strong',
       },
       size: {
         default: 'h-9 px-2.5 py-1',
