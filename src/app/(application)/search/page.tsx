@@ -2,10 +2,10 @@ import {
   ErrorHandler,
   MediaGrid,
   SearchControls,
+  SearchInfiniteLoading,
   SearchMenu,
   SearchParamsSchema,
   SearchState,
-  SearchWrapper,
 } from '@/systems/search';
 import { ErrorBoundary } from 'next/dist/client/components/error-boundary';
 import { Suspense } from 'react';
@@ -91,16 +91,15 @@ export default async function SearchPage({ searchParams }: PageProps): Promise<J
     );
   }
 
+  const endpoint = state === SearchState.DISCOVER ? queryDiscoverEndpoint : querySearchEndpoint;
+
   return (
     <SearchContainer params={params} genresList={genresList} pickedGenres={pickedGenres}>
       <Suspense fallback={<MediaGrid layout={layout} skeleton />} key={JSON.stringify(params)}>
         {state === SearchState.PERSON_SEARCHING_NO_QUERY ? (
           <div>Search for someone.</div>
         ) : (
-          <SearchWrapper
-            layout={layout}
-            queryPage={state === SearchState.DISCOVER ? queryDiscoverEndpoint : querySearchEndpoint}
-          />
+          <SearchInfiniteLoading layout={layout} queryPage={endpoint} initialQuery={endpoint(1)} />
         )}
       </Suspense>
     </SearchContainer>
