@@ -1,10 +1,10 @@
-import { LayoutLink } from '../ui/LayoutLink';
 import { Tags } from './Tags';
+import { LayoutLink } from './ui';
 
-import { layouts } from '../../lib';
+import { layouts } from '../lib';
 
 import type { Genre } from '@/systems/tmdb';
-import type { SearchParamsSchema } from '../../lib';
+import type { SearchParamsSchema } from '../lib';
 
 export type SearchControlsProps = {
   params: SearchParamsSchema;

@@ -1,14 +1,14 @@
 'use client';
 
 import { TagsIcon } from 'lucide-react';
-import { QueryBadge, QueryBadgeContainer } from '../ui/QueryBadge';
+import { QueryBadge, QueryBadgeContainer } from './ui';
 
 import { constructUrl } from '@/lib/utils';
 import { usePathname, useRouter } from 'next/navigation';
 
-import type { SearchParamsSchema } from '../../lib';
-import type { QueryBadgeProps } from '../ui/QueryBadge';
 import type { Genre } from '@/systems/tmdb';
+import type { SearchParamsSchema } from '../lib';
+import type { QueryBadgeProps } from './ui';
 
 export type TagsProps = {
   params: SearchParamsSchema;
