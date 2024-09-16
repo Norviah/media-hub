@@ -1,3 +1,4 @@
+export * from './Layout';
 export * from './Menu';
-export * from './SearchInfiniteLoading';
 export * from './SearchControls';
+export * from './SearchInfiniteLoading';
