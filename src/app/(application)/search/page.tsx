@@ -6,10 +6,16 @@ import {
 } from '@/systems/search';
 import { Suspense } from 'react';
 
-import { defaultLayout, getSearchState, layouts } from '@/systems/search';
-import { endpoints, genres } from '@/tmdb';
+import {
+  defaultLayout,
+  getSearchState,
+  layouts,
+  queryDiscoverEndpoint,
+  querySearchEndpoint,
+} from '@/systems/search';
+import { genres } from '@/tmdb';
 
-import type { discover, search } from '@/tmdb/endpoints';
+import type { discover } from '@/tmdb/endpoints';
 import type { PageProps } from '@/types';
 
 export default async function SearchPage({ searchParams }: PageProps): Promise<JSX.Element> {
@@ -29,57 +35,22 @@ export default async function SearchPage({ searchParams }: PageProps): Promise<J
     return <p>TRENDING</p>;
   }
 
-  async function querySearchEndpoint(page: number) {
+  async function action(page: number) {
     'use server';
 
-    const options = { query: params.q as string, page };
-
-    if (params.year && params.type === 'movie') {
-      (options as search.SearchMovieOptions).primary_release_year = params.year;
+    if (state === SearchState.DISCOVER) {
+      return await queryDiscoverEndpoint(params, pickedGenresIds, page);
     }
 
-    if (params.year && params.type === 'tv') {
-      (options as search.SearchTVShowOptions).year = params.year;
-    }
-
-    return await endpoints.search[params.type ?? 'multi'](options);
+    return await querySearchEndpoint(params, page);
   }
-
-  async function queryDiscoverEndpoint(page: number) {
-    'use server';
-
-    const options: discover.DiscoverMovieQueryOptions | discover.DiscoverTVShowQueries = {
-      page,
-    };
-
-    if (params.year && params.type === 'movie') {
-      (options as discover.DiscoverMovieQueryOptions).primary_release_year = params.year;
-    }
-
-    if (params.year && params.type === 'tv') {
-      (options as discover.DiscoverTVShowQueries).first_air_date_year = params.year;
-    }
-
-    if (pickedGenres.length) {
-      // @ts-expect-error The correct ids are being passed.
-      options.with_genres = { and: pickedGenresIds };
-    }
-
-    if (params.type === 'movie') {
-      return await endpoints.discover.movies(options as discover.DiscoverMovieQueryOptions);
-    }
-
-    return await endpoints.discover.tv(options as discover.DiscoverTVShowQueries);
-  }
-
-  const endpoint = state === SearchState.DISCOVER ? queryDiscoverEndpoint : querySearchEndpoint;
 
   return (
     <Suspense fallback={<MediaGrid layout={layout} skeleton />} key={JSON.stringify(params)}>
       {state === SearchState.PERSON_SEARCHING_NO_QUERY ? (
         <div>Search for someone.</div>
       ) : (
-        <SearchInfiniteLoading layout={layout} queryPage={endpoint} initialQuery={endpoint(1)} />
+        <SearchInfiniteLoading layout={layout} queryPage={action} initialQuery={action(1)} />
       )}
     </Suspense>
   );
