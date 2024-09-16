@@ -2,6 +2,8 @@
 
 ### Refactors
 
+- **search**: persist the layout parameter when clearing all tags <code>[219f08b](https://github.com/Norviah/media-hub/commit/219f08b3c535fb3b1b951847ce0e184daac7b153)</code>
+
 - **search**: move server actions into a file <code>[646f8d1](https://github.com/Norviah/media-hub/commit/646f8d1975b243c96a83dd4b89d212cd207f00a1)</code>
 
 - **search**: create a layout for the `/search` route <code>[3cdf34a](https://github.com/Norviah/media-hub/commit/3cdf34af1933ecac3bacc1ff41f70d8189908493)</code>
@@ -55,6 +57,18 @@
 - **systems/tmdb**: refactor enums to objects <code>[2c69f46](https://github.com/Norviah/media-hub/commit/2c69f462615909197d9f43eacc4da13280f38f7c)</code>
 
 - **components/layout**: improve route detection logic to include sub-routes <code>[7c644f8](https://github.com/Norviah/media-hub/commit/7c644f87f38483079eb245ee7f55b66b90dcb63b)</code>
+
+### Bug Fixes
+
+- **search**: wrap the layout in a suspense component <code>[2a0bc62](https://github.com/Norviah/media-hub/commit/2a0bc6201f19eaeb23ade84a81ca2eef0c9f13f4)</code>
+
+- **systems/tmdb**: set `Person.known_for_department` as nullish <code>[b0accce](https://github.com/Norviah/media-hub/commit/b0accce5c447ccf1a18696f3cb0baef1f5bd16be)</code>
+
+- **components/Header**: don't constrict the type of children to strings <code>[bfe2772](https://github.com/Norviah/media-hub/commit/bfe2772050a18fb9c07d163edf86aa9e3902d58c)</code>
+
+- **components/SearchQuery**: ensure that a search term is given before pushing the route <code>[848b639](https://github.com/Norviah/media-hub/commit/848b63924737b29ca70c07df906c0496fb61c751)</code>
+
+- **systems/tmdb**: fix relative path <code>[a6a39f4](https://github.com/Norviah/media-hub/commit/a6a39f45118c91c8167124a4f27569b9bafcfa4a)</code>
 
 ### UI
 
@@ -165,16 +179,6 @@
 ### styles
 
 - **component/QuerySelector**: set background color to muted on hover <code>[094b067](https://github.com/Norviah/media-hub/commit/094b067e7cdfa9989e66f811af6d09be02d61dc5)</code>
-
-### Bug Fixes
-
-- **systems/tmdb**: set `Person.known_for_department` as nullish <code>[b0accce](https://github.com/Norviah/media-hub/commit/b0accce5c447ccf1a18696f3cb0baef1f5bd16be)</code>
-
-- **components/Header**: don't constrict the type of children to strings <code>[bfe2772](https://github.com/Norviah/media-hub/commit/bfe2772050a18fb9c07d163edf86aa9e3902d58c)</code>
-
-- **components/SearchQuery**: ensure that a search term is given before pushing the route <code>[848b639](https://github.com/Norviah/media-hub/commit/848b63924737b29ca70c07df906c0496fb61c751)</code>
-
-- **systems/tmdb**: fix relative path <code>[a6a39f4](https://github.com/Norviah/media-hub/commit/a6a39f45118c91c8167124a4f27569b9bafcfa4a)</code>
 
 ### types
 
