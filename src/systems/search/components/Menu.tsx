@@ -1,17 +1,16 @@
+'use client';
+
 import { QuerySelector } from '@/components/QuerySelector';
 import { SearchQuery } from '@/components/SearchQuery';
 import { Header } from '@/components/ui/Header';
+import { SearchContext } from '../lib/context';
 
-import { years, type SearchParamsSchema } from '@/systems/search';
-import type { Genre } from '@/tmdb';
+import { years } from '@/systems/search';
+import { useContext } from 'react';
 
-export type SearchMenuProps = {
-  params: SearchParamsSchema;
-  pickedGenres: Genre[];
-  genresList: Genre[];
-};
+export function SearchMenu(): JSX.Element {
+  const { params, pickedGenres, genresList } = useContext(SearchContext);
 
-export function SearchMenu({ params, genresList, pickedGenres }: SearchMenuProps): JSX.Element {
   return (
     <div className='flex flex-row gap-5'>
       <div className='space-y-2'>

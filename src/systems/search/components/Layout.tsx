@@ -1,9 +1,9 @@
 'use client';
 
-import { ErrorHandler, SearchControls, SearchMenu, SearchParamsSchema } from '@/systems/search';
+import { ErrorHandler, SearchControls, SearchMenu, getContext } from '@/systems/search';
 import { ErrorBoundary } from 'next/dist/client/components/error-boundary';
+import { SearchContext } from '../lib/context';
 
-import { genres } from '@/systems/tmdb';
 import { useSearchParams } from 'next/navigation';
 
 import type { LayoutProps } from '@/types';
@@ -22,17 +22,16 @@ export function SearchLayout({ children }: LayoutProps): JSX.Element {
     }
   }
 
-  const params = SearchParamsSchema.parse(record);
-
-  const genresList = params.type && params.type !== 'person' ? genres[params.type] : [];
-  const pickedGenres = genresList.filter((genre) => params.genres.includes(genre.name));
+  const context = getContext(record);
 
   return (
-    <div className='space-y-7'>
-      <SearchMenu params={params} genresList={genresList} pickedGenres={pickedGenres} />
-      <SearchControls params={params} genres={pickedGenres} />
+    <SearchContext.Provider value={context}>
+      <div className='space-y-7'>
+        <SearchMenu />
+        <SearchControls />
 
-      <ErrorBoundary errorComponent={ErrorHandler}>{children}</ErrorBoundary>
-    </div>
+        <ErrorBoundary errorComponent={ErrorHandler}>{children}</ErrorBoundary>
+      </div>
+    </SearchContext.Provider>
   );
 }

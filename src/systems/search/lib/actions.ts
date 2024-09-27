@@ -5,7 +5,13 @@ import { endpoints } from '@/tmdb';
 import type { discover, search } from '@/tmdb/endpoints';
 import type { SearchParamsSchema } from './schemas';
 
-export async function querySearchEndpoint(params: SearchParamsSchema, page: number) {
+type QueryArgs = {
+  params: SearchParamsSchema;
+  page: number;
+  pickedGenresIds: number[];
+};
+
+export async function querySearchEndpoint({ params, page }: QueryArgs) {
   const options = { query: params.q as string, page };
 
   if (params.year && params.type === 'movie') {
@@ -19,11 +25,7 @@ export async function querySearchEndpoint(params: SearchParamsSchema, page: numb
   return await endpoints.search[params.type ?? 'multi'](options);
 }
 
-export async function queryDiscoverEndpoint(
-  params: SearchParamsSchema,
-  pickedGenresIds: number[],
-  page: number,
-) {
+export async function queryDiscoverEndpoint({ params, pickedGenresIds, page }: QueryArgs) {
   const options: discover.DiscoverMovieQueryOptions | discover.DiscoverTVShowQueries = {
     page,
   };

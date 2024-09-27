@@ -1,9 +1,9 @@
-import { SearchLayout } from '@/systems/search';
+import { SearchLayout } from '@/systems/search/components/Layout';
 import { Suspense } from 'react';
 
 import type { LayoutProps } from '@/types';
 
-export default function Layout({ children }: LayoutProps): JSX.Element {
+export default function SearchLayou({ children }: LayoutProps): JSX.Element {
   return (
     <Suspense>
       <SearchLayout>{children}</SearchLayout>

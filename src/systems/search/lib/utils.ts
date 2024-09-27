@@ -1,12 +1,13 @@
 import { LayoutGridIcon, LayoutListIcon } from 'lucide-react';
 import { Layout, MediaType, SearchState } from './enums';
+import { SearchParamsSchema } from './schemas';
 
-import { getImagePath } from '@/systems/tmdb';
+import { genres, getImagePath } from '@/systems/tmdb';
 
 import type { Movie, PersonSearchResult, TVShow } from '@/systems/tmdb';
+import type { MovieGenre, TVShowGenre } from '@/systems/tmdb/endpoints/discover';
 import type { LucideIcon } from 'lucide-react';
 import type { Route } from 'next';
-import type { SearchParamsSchema } from './schemas';
 
 export type LayoutItem = {
   slug: Layout | null;
@@ -100,4 +101,17 @@ export function getSearchState(params: SearchParamsSchema): SearchState {
   }
 
   return SearchState.TRENDING;
+}
+
+export function getContext(searchParams: Record<string, unknown>) {
+  const params = SearchParamsSchema.parse(searchParams);
+  const layout = layouts.find((layout) => layout.slug === params.layout) ?? defaultLayout;
+
+  const genresList = params.type && params.type !== MediaType.PERSON ? genres[params.type] : [];
+  const pickedGenres = genresList.filter((genre) => params.genres.includes(genre.name));
+  const pickedGenresIds = pickedGenres.map((genre) => genre.id) as (TVShowGenre | MovieGenre)[];
+
+  const state = getSearchState(params);
+
+  return { params, layout, genresList, pickedGenres, pickedGenresIds, state };
 }

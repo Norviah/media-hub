@@ -1,21 +1,19 @@
 'use client';
 
 import { TagsIcon } from 'lucide-react';
+import { SearchContext } from '../lib/context';
 import { QueryBadge, QueryBadgeContainer } from './ui';
 
 import { constructUrl } from '@/lib/utils';
 import { usePathname, useRouter } from 'next/navigation';
+import { useContext } from 'react';
 
-import type { Genre } from '@/systems/tmdb';
 import type { SearchParamsSchema } from '../lib';
 import type { QueryBadgeProps } from './ui';
 
-export type TagsProps = {
-  params: SearchParamsSchema;
-  genres: Genre[];
-};
+export function Tags(): JSX.Element {
+  const { params, pickedGenres } = useContext(SearchContext);
 
-export function Tags({ params, genres }: TagsProps): JSX.Element {
   const router = useRouter();
   const pathname = usePathname();
 
@@ -33,8 +31,8 @@ export function Tags({ params, genres }: TagsProps): JSX.Element {
     tags.push({ title: 'Year', value: params.year, paramKey: 'year' });
   }
 
-  if (genres && genres.length > 0) {
-    for (const genre of genres) {
+  if (pickedGenres && pickedGenres.length > 0) {
+    for (const genre of pickedGenres) {
       tags.push({ title: 'Genre', value: genre.name, paramKey: 'genres' });
     }
   }

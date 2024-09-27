@@ -1,20 +1,18 @@
+'use client';
+
+import { SearchContext } from '../lib/context';
 import { Tags } from './Tags';
 import { LayoutLink } from './ui';
 
+import { useContext } from 'react';
 import { layouts } from '../lib';
 
-import type { Genre } from '@/systems/tmdb';
-import type { SearchParamsSchema } from '../lib';
+export function SearchControls(): JSX.Element {
+  const { params } = useContext(SearchContext);
 
-export type SearchControlsProps = {
-  params: SearchParamsSchema;
-  genres: Genre[];
-};
-
-export function SearchControls({ params, genres }: SearchControlsProps): JSX.Element {
   return (
     <div className='flex min-h-7 w-full justify-between'>
-      <Tags params={params} genres={genres} />
+      <Tags />
 
       <div className='flex flex-row items-center gap-2 text-foreground-lighter'>
         {layouts.map((layout) => (
