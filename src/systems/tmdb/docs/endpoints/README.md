@@ -38,6 +38,12 @@ Renames and re-exports [endpoints/search](search/README.md)
 
 ***
 
+### trending
+
+Renames and re-exports [endpoints/trending](trending/README.md)
+
+***
+
 ### tv
 
 Renames and re-exports [endpoints/tv](tv/README.md)
