@@ -1,7 +1,7 @@
-import { MediaGrid, SearchInfiniteLoading, SearchState, getContext } from '@/systems/search';
+import { MediaGrid, SearchInfiniteLoading, SearchState, TrendingPage } from '@/systems/search';
 import { Suspense } from 'react';
 
-import { queryDiscoverEndpoint, querySearchEndpoint } from '@/systems/search';
+import { getContext, queryDiscoverEndpoint, querySearchEndpoint } from '@/systems/search';
 
 import type { PageProps } from '@/types';
 
@@ -9,7 +9,7 @@ export default async function SearchPage({ searchParams }: PageProps): Promise<J
   const { params, pickedGenresIds, ...context } = getContext(searchParams);
 
   if (context.state === SearchState.TRENDING) {
-    return <p>TRENDING</p>;
+    return <TrendingPage />;
   }
 
   async function action(page: number) {
