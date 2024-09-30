@@ -17,31 +17,27 @@ const baseClasses = {
   content: 'flex flex-1 flex-col text-xs',
 };
 
-type ImageCardPropsBase<Path extends string = string> = {
-  /**
-   * The route to navigate to when the image is clicked.
-   */
-  href?: Route<Path>;
-} & Omit<ImageProps, 'height' | 'width' | 'className' | 'children'>;
+type ImageCardProps<Path extends string = string> = SkeletalProps<
+  {
+    /**
+     * The route to navigate to when the image is clicked.
+     */
+    href?: Route<Path>;
 
-type ImageCardBaseProps = {
-  /**
-   * CSS classes for different parts of the `ImageCard` component.
-   */
-  classes?: Partial<typeof baseClasses>;
+    /**
+     * CSS classes for different parts of the `ImageCard` component.
+     */
+    classes?: Partial<typeof baseClasses>;
 
-  /**
-   * The child elements to be rendered alongside the image.
-   *
-   * Typically information about the image, such as the title, description, or
-   * other metadata.
-   */
-  children: React.ReactNode;
-};
-
-export type ImageCardProps<Path extends string = string> = SkeletalProps<
-  ImageCardPropsBase<Path>,
-  ImageCardBaseProps
+    /**
+     * The child elements to be rendered alongside the image.
+     *
+     * Typically information about the image, such as the title, description, or
+     * other metadata.
+     */
+    children: React.ReactNode;
+  } & Omit<ImageProps, 'height' | 'width' | 'className' | 'children'>,
+  'children' | 'classes'
 >;
 
 /**

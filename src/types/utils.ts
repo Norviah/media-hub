@@ -127,44 +127,57 @@ export type With<T, K extends keyof T> = T & {
 };
 
 /**
- * Generates the appropriate properties for a component with support for a
- * skeleton state.
+ * Generates the properties for a component with support for a skeleton state.
  *
  * This type generates the necessary structure for components that has both a
- * skeleton (loading) state and a fully rendered state. It ensures that the
- * correct properties are included based on whether if the component is
- * displaying a skeleton or its actual content.
+ * skeleton/loading state and a fully rendered state. It ensures that the
+ * correct properties are provided based on whether if the component is
+ * rendering a skeleton or its actual content.
  *
- * @template RequiredProps The properties that the component needs to render its
- * content.
- * @template BaseProps The base properties shared across both skeleton and
- * non-skeleton state.
+ * When defined, `SkeletalProps` takes in a base record and extends it by
+ * creating a new record with a `skeleton` boolean property. If this property is
+ * set, all other properties must not be set, and vice-versa.
+ *
+ * @template T The base structure for the component's properties.
+ * @template Keep Any specified keys to ensure is present for both the skeleton
+ * and content state.
  *
  * @example
  *
  * ```tsx
- *  export type ImageCardProps = SkeletalProps<{ url: string; alt: string }>;
+ * export type ImageCardProps = SkeletalProps<
+ *   {
+ *     url: string;
+ *     alt: string;
+ *     className?: string;
+ *   },
+ *   'className'
+ * >;
  *
- *  export function ImageCard(props: ImageCardProps): JSX.Element {
- *    if (props.skeleton) {
- *      return <Skeleton /* ... *\/ />;
- *    }
+ * export function ImageCard({ url, alt, className, skeleton }: ImageCardProps) {
+ *   if (skeleton) {
+ *     url; // not present
+ *     alt; // not present
  *
- *    return <img src={props.url} alt={props.alt} />;
- *  }
+ *     // skeleton state
+ *   } else {
+ *     url; // present
+ *     alt; // present
+ *
+ *     // actual content
+ *   }
+ * }
  * ```
  *
- * When we want to render a skeleton, we can do so as `<ImageCard skeleton />`,
- * which does not require the `url` and `alt` properties.
+ * When calling this component, the properties are dependent on whether if
+ * `skeleton` is given.
+ *
+ * ```tsx
+ * <ImageCard skeleton className='rounded' />;
+ * <ImageCard url='https://github.com/norviah' alt='norviah' className='rounded' />;
+ * ```
  */
-export type SkeletalProps<
-  RequiredProps extends Record<string, unknown>,
-  BaseProps extends Record<string, unknown> = Record<string, never>,
-> =
-  | (BaseProps extends Record<string, never>
-      ? { skeleton?: false } & RequiredProps
-      : {
-          skeleton?: false;
-        } & RequiredProps &
-          BaseProps)
-  | (BaseProps extends Record<string, never> ? { skeleton: true } : { skeleton: true } & BaseProps);
+export type SkeletalProps<T extends Record<string, unknown>, Keep extends keyof T | null = null> =
+  | ({ skeleton?: undefined } & T)
+  | ({ skeleton: true } & Partial<Record<Exclude<keyof T, Keep>, undefined>> &
+      Omit<T, Exclude<keyof T, Keep>>);
