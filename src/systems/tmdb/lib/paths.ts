@@ -18,3 +18,4 @@ export const BASE_PERSON_PATH = '/person' as const;
 export const BASE_SEARCH_PATH = '/search' as const;
 export const BASE_DISCOVER_PATH = '/discover' as const;
 export const BASE_GENRE_PATH = '/genre' as const;
+export const BASE_TRENDING_PATH = '/trending' as const;
