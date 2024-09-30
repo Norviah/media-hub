@@ -4,6 +4,8 @@ import { twMerge } from 'tailwind-merge';
 import type { ConstrainedRecord } from '@/types';
 import type { ClassValue } from 'clsx';
 import type { Route } from 'next';
+import type { ClassNameValue } from 'tailwind-merge';
+import type { RequireAtLeastOne } from 'type-fest';
 
 /**
  * A utility function that is a wrapper around the the `clsx` and
@@ -202,4 +204,50 @@ export function constructUrl<
   }
 
   return query.size > 0 ? (`${route}?${query.toString()}` as Route) : route;
+}
+
+export type ConstrictVisibilityArgs = {
+  index: number;
+} & RequireAtLeastOne<Record<'base' | 'sm' | 'md' | 'lg' | 'xl' | '2xl', number>>;
+
+/**
+ * A utility function to control the visibility of elements based on
+ * breakpoints.
+ *
+ * This function determines whether if an element should be rendered or hidden
+ * based on its index and the specified visiblity limits for each breakpoint. If
+ * an element's index is less than the value at a breakpoint, it will be
+ * visible; otherwise, it will be hidden.
+ *
+ * @example
+ *
+ * ```tsx
+ * <div className='flex flex-row justify-between gap-2'>
+ *   {Array.from({ length: 6 }).map((_, index) => (
+ *     <div
+ *       key={index}
+ *       className={cn(
+ *         'h-40 w-full animate-pulse rounded border border-border bg-muted',
+ *         constrictVisibility({ index, base: 4, sm: 5, md: 6, lg: 5, xl: 6 }),
+ *       )}
+ *     />
+ *   ))}
+ * </div>
+ * ```
+ */
+export function constrictVisibility({ index, ...breakpoints }: ConstrictVisibilityArgs) {
+  const lines: ClassNameValue[] = [];
+
+  for (const breakpoint in breakpoints) {
+    const key = breakpoint as keyof typeof breakpoints;
+
+    // @ts-expect-error `breakpoints` can't be undefined.
+    if (index < breakpoints[key]) {
+      lines.push(`${key === 'base' ? '' : `${key}:`}block`);
+    } else {
+      lines.push(`${key === 'base' ? '' : `${key}:`}hidden`);
+    }
+  }
+
+  return lines;
 }
