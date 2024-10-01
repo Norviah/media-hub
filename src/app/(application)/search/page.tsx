@@ -1,4 +1,4 @@
-import { MediaGrid, SearchInfiniteLoading, SearchState, TrendingPage } from '@/systems/search';
+import { Grid, SearchInfiniteLoading, SearchState, TrendingPage } from '@/systems/search';
 import { Suspense } from 'react';
 
 import { getContext, queryDiscoverEndpoint, querySearchEndpoint } from '@/systems/search';
@@ -23,10 +23,7 @@ export default async function SearchPage({ searchParams }: PageProps): Promise<J
   }
 
   return (
-    <Suspense
-      fallback={<MediaGrid layout={context.layout} skeleton />}
-      key={JSON.stringify(params)}
-    >
+    <Suspense fallback={<Grid layout={context.layout} skeleton />} key={JSON.stringify(params)}>
       {context.state === SearchState.PERSON_SEARCHING_NO_QUERY ? (
         <div>Search for someone.</div>
       ) : (

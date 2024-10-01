@@ -5,12 +5,12 @@ import { Skeleton } from '@/components/ui/Skeleton';
 import { cn } from '@/lib/utils';
 import { parseMedia } from '../../lib';
 
-import type { Movie, TVShow } from '@/tmdb';
+import type { Movie, PersonSearchResult, TVShow } from '@/tmdb';
 import type { SkeletalProps } from '@/types';
 
 type MediaImageCardProps = SkeletalProps<
   {
-    media: Movie | TVShow;
+    media: Movie | TVShow | PersonSearchResult;
     className?: string;
   },
   'className'
@@ -25,16 +25,16 @@ export function MediaImageCard(props: MediaImageCardProps) {
   const parsed = !props.skeleton ? parseMedia(props.media) : undefined;
 
   return (
-    <div className={cn('group space-y-2', classes.width, props.className)}>
+    <div className='space-y-2 group'>
       {parsed ? (
         <Link href={parsed.path}>
-          <div className={cn('relative')}>
+          <div className='relative'>
             <Image
               width={160}
               height={240}
               src={parsed.poster}
               alt={parsed.name}
-              className={cn('rounded-sm object-cover', classes.height, classes.width)}
+              className={cn('w-full rounded-sm object-cover', classes.height)}
             />
 
             <div
@@ -46,7 +46,7 @@ export function MediaImageCard(props: MediaImageCardProps) {
           </div>
         </Link>
       ) : (
-        <Skeleton className={classes.height} />
+        <Skeleton className={cn(classes.height, 'w-full')} />
       )}
 
       {parsed ? (

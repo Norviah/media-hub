@@ -1,7 +1,7 @@
 'use client';
 
 import { SearchContext } from '../lib/context';
-import { MediaGrid } from './ui';
+import { Grid } from './ui';
 
 import { useInfiniteLoading } from '@/hooks/useInfiniteLoading';
 import { use, useContext } from 'react';
@@ -36,5 +36,5 @@ export function SearchInfiniteLoading<T extends TVShow | Movie | PersonSearchRes
     return <p>No results found.</p>;
   }
 
-  return <MediaGrid data={data} state={state} layout={layout} viewRef={viewRef} />;
+  return <Grid data={data} state={state} layout={layout} viewRef={viewRef} />;
 }

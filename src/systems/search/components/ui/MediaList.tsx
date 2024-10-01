@@ -19,7 +19,7 @@ export const mediaListClasses = {
 } as const;
 
 export type MediaListProps = SkeletalProps<{
-  item: TVShow | Movie | PersonSearchResult;
+  media: TVShow | Movie | PersonSearchResult;
 }>;
 
 export function MediaList(props: MediaListProps) {
@@ -46,7 +46,7 @@ export function MediaList(props: MediaListProps) {
     );
   }
 
-  const { item } = props;
+  const { media: item } = props;
   const parsed = parseMedia(item);
 
   return (
