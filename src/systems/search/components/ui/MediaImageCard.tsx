@@ -17,8 +17,8 @@ type MediaImageCardProps = SkeletalProps<
 >;
 
 const classes = {
-  height: 'lg:h-[265px] md:h-[196.183px] sm:h-[160.85px] h-[180.7px]',
-  width: 'lg:w-[185px] md:w-[137.333px] sm:w-[112.6px] w-[126.5px]',
+  height: 'lg:h-[265px] md:h-[194.033px] h-[180.7px]',
+  width: 'lg:w-[185px] md:w-[135.833px]  w-[126.5px]',
 };
 
 export function MediaImageCard(props: MediaImageCardProps) {
