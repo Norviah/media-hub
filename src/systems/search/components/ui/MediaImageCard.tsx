@@ -24,38 +24,31 @@ const classes = {
 export function MediaImageCard(props: MediaImageCardProps) {
   const parsed = !props.skeleton ? parseMedia(props.media) : undefined;
 
-  return (
-    <div className='space-y-2 group'>
-      {parsed ? (
-        <Link href={parsed.path}>
-          <div className='relative'>
-            <Image
-              width={160}
-              height={240}
-              src={parsed.poster}
-              alt={parsed.name}
-              className={cn('w-full rounded-sm object-cover', classes.height)}
-            />
+  return parsed ? (
+    <Link href={parsed.path} className='group'>
+      <div className='relative'>
+        <Image
+          width={160}
+          height={240}
+          src={parsed.poster}
+          alt={parsed.name}
+          className={cn('w-full rounded object-cover', classes.height)}
+        />
 
-            <div
-              className={cn(
-                '-z-[1] absolute top-0 left-0 h-full w-full scale-90 rounded-sm bg-cover bg-no-repeat opacity-50 blur-2xl brightness-125 saturate-200 transition-all group-hover:opacity-100',
-              )}
-              style={{ backgroundImage: `url(${parsed.poster})` }}
-            />
-          </div>
-        </Link>
-      ) : (
-        <Skeleton className={cn(classes.height, 'w-full')} />
-      )}
+        <div
+          className={cn(
+            '-z-[1] absolute top-0 left-0 h-full w-full scale-90 rounded-sm bg-cover bg-no-repeat opacity-50 blur-2xl brightness-125 saturate-200 transition-all dark:opacity-30 group-hover:opacity-100',
+          )}
+          style={{ backgroundImage: `url(${parsed.poster})` }}
+        />
 
-      {parsed ? (
-        <p className='line-clamp-2 text-sm transition-colors group-hover:text-foreground'>
-          {parsed.name}
-        </p>
-      ) : (
-        <Skeleton className='h-[1.4em] w-full' />
-      )}
-    </div>
+        <div className='absolute inset-0 rounded bg-gradient-to-t from-black to-black/10' />
+        <div className='absolute bottom-4 px-4 text-white'>
+          <h2 className='font-bold'>{parsed.name}</h2>
+        </div>
+      </div>
+    </Link>
+  ) : (
+    <Skeleton className={cn(classes.height, 'w-full')} />
   );
 }

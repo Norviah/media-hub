@@ -25,7 +25,7 @@ export function Grid({ data, state, viewRef, layout, skeleton }: GridProps): JSX
   const className =
     layout.key === Layout.LIST
       ? 'space-y-4'
-      : 'grid grid-cols-4 gap-x-5 gap-y-10 md:grid-cols-5 sm:grid-cols-5 xl:grid-cols-6 sm:gap-x-8 xl:gap-x-8 xl:gap-y-10';
+      : 'grid grid-cols-3 sm:grid-cols-4 gap-x-5 gap-y-10 md:grid-cols-5 sm:grid-cols-4 xl:grid-cols-6 sm:gap-x-8 xl:gap-x-8 xl:gap-y-10';
 
   if (skeleton) {
     return (
