@@ -1,15 +1,21 @@
-import { endpoints } from '@/tmdb';
 import { TrendingSection } from './ui';
+import { Suspense } from 'react';
+
+import { endpoints } from '@/tmdb';
 
 export async function TrendingPage(): Promise<JSX.Element> {
-  const shows = await endpoints.trending.tv();
-  const movies = await endpoints.trending.movie();
+  const shows = endpoints.trending.tv();
+  const movies = endpoints.trending.movie();
 
   return (
     <div className='space-y-10'>
-      <TrendingSection header='Trending TV Shows' route='/search?type=tv' data={shows} />
+      <Suspense fallback={<TrendingSection header='Trending TV Shows' skeleton />}>
+        <TrendingSection header='Trending TV Shows' route='/search?type=tv' promise={shows} />
+      </Suspense>
 
-      <TrendingSection header='Trending Movies' route='/search?type=movie' data={movies} />
+      <Suspense fallback={<TrendingSection header='Trending Movies' skeleton />}>
+        <TrendingSection header='Trending Movies' route='/search?type=movie' promise={movies} />
+      </Suspense>
     </div>
   );
 }

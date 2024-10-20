@@ -13,12 +13,12 @@ export type TrendingSectionProps = SkeletalProps<
   {
     header: string;
     route: Route;
-    data: SearchResult<TVShow | Movie>;
+    promise: Promise<SearchResult<TVShow | Movie>>;
   },
   'header'
 >;
 
-export function TrendingSection({ skeleton, header, route, data }: TrendingSectionProps) {
+export async function TrendingSection({ skeleton, header, route, promise }: TrendingSectionProps) {
   return (
     <div className='space-y-5'>
       <div className='flex flex-row justify-between'>
@@ -45,7 +45,7 @@ export function TrendingSection({ skeleton, header, route, data }: TrendingSecti
                 className={cn(constrictVisibility({ index, base: 4, sm: 5, md: 6, lg: 5, xl: 6 }))}
               />
             ))
-          : data?.results.slice(0, 6).map((item, index) => {
+          : (await promise)?.results.slice(0, 6).map((item, index) => {
               return (
                 <MediaImageCard
                   media={item}
