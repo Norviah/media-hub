@@ -40,6 +40,7 @@ export default async function SearchPage({ searchParams }: PageProps): Promise<J
   return (
     <div className='space-y-7'>
       <SearchMenu {...context} />
+      {context.state !== SearchState.TRENDING && <SearchControls {...context} />}
 
       {context.state === SearchState.TRENDING ? (
         <TrendingPage />
@@ -49,8 +50,6 @@ export default async function SearchPage({ searchParams }: PageProps): Promise<J
           key={JSON.stringify(context.params)}
         >
           <ErrorBoundary errorComponent={ErrorHandler}>
-            <SearchControls {...context} />
-
             {context.state === SearchState.PERSON_SEARCHING_NO_QUERY ? (
               <div>Search for someone.</div>
             ) : (
