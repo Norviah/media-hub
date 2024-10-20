@@ -131,6 +131,19 @@ export const Keyword = z.object({
 
 export type Keyword = z.infer<typeof Keyword>;
 
+export const Collection = z.object({
+  id: z.number(),
+  backdrop_path: z.string().nullable(),
+  title: z.string(),
+  original_title: z.string(),
+  poster_path: z.string().nullable(),
+  media_type: z.literal('collection').default('collection'),
+  adult: z.boolean(),
+  original_language: z.string(),
+});
+
+export type Collection = z.infer<typeof Collection>;
+
 // ---
 // BASE
 // ---
@@ -266,7 +279,7 @@ export type PersonSearchResults = z.infer<typeof PersonSearchResults>;
 
 export const MultiSearchResults = z.object({
   page: z.number(),
-  results: z.array(z.union([Movie, TVShow, PersonSearchResult])),
+  results: z.array(z.union([Movie, TVShow, PersonSearchResult, Collection])),
   total_pages: z.number(),
   total_results: z.number(),
 });
