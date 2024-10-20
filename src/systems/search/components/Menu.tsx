@@ -1,16 +1,10 @@
-'use client';
-
 import { QuerySelector } from '@/components/QuerySelector';
 import { SearchQuery } from '@/components/SearchQuery';
 import { Header } from '@/components/ui/Header';
-import { SearchContext } from '../lib/context';
 
-import { years } from '@/systems/search';
-import { useContext } from 'react';
+import { type SearchQueriesParsed, years } from '@/systems/search';
 
-export function SearchMenu(): JSX.Element {
-  const { params, pickedGenres, genresList } = useContext(SearchContext);
-
+export function SearchMenu({ params, genresList, pickedGenres }: SearchQueriesParsed): JSX.Element {
   return (
     <div className='flex flex-row gap-5'>
       <div className='space-y-2'>

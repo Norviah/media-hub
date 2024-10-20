@@ -1,31 +1,32 @@
 'use client';
 
-import { SearchContext } from '../lib/context';
 import { Grid } from './ui';
 
 import { useInfiniteLoading } from '@/hooks/useInfiniteLoading';
-import { use, useContext } from 'react';
+import { use } from 'react';
 
 import type { InfiniteLoadingArgs } from '@/hooks/useInfiniteLoading';
 import type { Movie, PersonSearchResult, SearchResult, TVShow } from '@/tmdb';
+import type { LayoutItem } from '../lib';
 
 export type SearchInfiniteLoadingProps<T extends TVShow | Movie | PersonSearchResult> = Omit<
   InfiniteLoadingArgs<T>,
   'initialResults'
 > & {
   initialQuery: Promise<SearchResult<T>> | false;
+  layout: LayoutItem;
 };
 
 export function SearchInfiniteLoading<T extends TVShow | Movie | PersonSearchResult>({
   queryPage,
   initialQuery,
+  layout,
 }: SearchInfiniteLoadingProps<T>): JSX.Element | null {
   if (!initialQuery) {
     return null;
   }
 
   const initialResults = use(initialQuery);
-  const { layout } = useContext(SearchContext);
 
   const { data, state, viewRef } = useInfiniteLoading<T>({
     initialResults,

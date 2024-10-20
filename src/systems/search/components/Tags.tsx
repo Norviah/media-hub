@@ -1,19 +1,15 @@
 'use client';
 
 import { TagsIcon } from 'lucide-react';
-import { SearchContext } from '../lib/context';
 import { QueryBadge, QueryBadgeContainer } from './ui';
 
 import { constructUrl } from '@/lib/utils';
 import { usePathname, useRouter } from 'next/navigation';
-import { useContext } from 'react';
 
-import type { SearchParamsSchema } from '../lib';
+import type { SearchQueriesParsed, SearchParamsSchema } from '../lib';
 import type { QueryBadgeProps } from './ui';
 
-export function Tags(): JSX.Element {
-  const { params, pickedGenres } = useContext(SearchContext);
-
+export function Tags({ params, pickedGenres }: SearchQueriesParsed): JSX.Element {
   const router = useRouter();
   const pathname = usePathname();
 

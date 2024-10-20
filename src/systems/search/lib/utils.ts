@@ -103,7 +103,7 @@ export function getSearchState(params: SearchParamsSchema): SearchState {
   return SearchState.TRENDING;
 }
 
-export function getContext(searchParams: Record<string, unknown>) {
+export function getState(searchParams: Record<string, unknown>) {
   const params = SearchParamsSchema.parse(searchParams);
   const layout = layouts.find((layout) => layout.slug === params.layout) ?? defaultLayout;
 
@@ -115,3 +115,5 @@ export function getContext(searchParams: Record<string, unknown>) {
 
   return { params, layout, genresList, pickedGenres, pickedGenresIds, state };
 }
+
+export type SearchQueriesParsed = ReturnType<typeof getState>;
