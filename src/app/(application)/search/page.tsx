@@ -12,6 +12,7 @@ import { Suspense } from 'react';
 
 import { getState, queryDiscoverEndpoint, querySearchEndpoint } from '@/systems/search';
 
+import type { Collection, Movie, PersonSearchResult, SearchResult, TVShow } from '@/systems/tmdb';
 import type { PageProps } from '@/types';
 
 export default async function SearchPage({ searchParams }: PageProps): Promise<JSX.Element> {
@@ -22,11 +23,18 @@ export default async function SearchPage({ searchParams }: PageProps): Promise<J
 
     const { pickedGenresIds, params } = context;
 
+    let data: SearchResult<TVShow | Movie | PersonSearchResult | Collection>;
+
     if (context.state === SearchState.DISCOVER) {
-      return await queryDiscoverEndpoint({ page, pickedGenresIds, params });
+      data = await queryDiscoverEndpoint({ page, pickedGenresIds, params });
     }
 
-    return await querySearchEndpoint({ page, pickedGenresIds, params });
+    data = await querySearchEndpoint({ page, pickedGenresIds, params });
+
+    return {
+      ...data,
+      results: data.results.filter((result) => result.media_type !== 'collection'),
+    };
   }
 
   return (
