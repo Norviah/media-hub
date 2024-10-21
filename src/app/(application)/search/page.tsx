@@ -27,9 +27,9 @@ export default async function SearchPage({ searchParams }: PageProps): Promise<J
 
     if (context.state === SearchState.DISCOVER) {
       data = await queryDiscoverEndpoint({ page, pickedGenresIds, params });
+    } else {
+      data = await querySearchEndpoint({ page, pickedGenresIds, params });
     }
-
-    data = await querySearchEndpoint({ page, pickedGenresIds, params });
 
     return {
       ...data,
