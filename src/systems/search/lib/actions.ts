@@ -4,11 +4,13 @@ import { endpoints } from '@/tmdb';
 
 import type { discover, search } from '@/tmdb/endpoints';
 import type { SearchParamsSchema } from './schemas';
+import type { MovieSortOption, TVShowSortOption } from '@/systems/tmdb/endpoints/discover';
 
 type QueryArgs = {
   params: SearchParamsSchema;
   page: number;
   pickedGenresIds: number[];
+  sortOption?: MovieSortOption | TVShowSortOption;
 };
 
 export async function querySearchEndpoint({ params, page }: QueryArgs) {
@@ -25,7 +27,12 @@ export async function querySearchEndpoint({ params, page }: QueryArgs) {
   return await endpoints.search[params.type ?? 'multi'](options);
 }
 
-export async function queryDiscoverEndpoint({ params, pickedGenresIds, page }: QueryArgs) {
+export async function queryDiscoverEndpoint({
+  params,
+  pickedGenresIds,
+  page,
+  sortOption,
+}: QueryArgs) {
   const options: discover.DiscoverMovieQueryOptions | discover.DiscoverTVShowQueries = {
     page,
   };
@@ -36,6 +43,10 @@ export async function queryDiscoverEndpoint({ params, pickedGenresIds, page }: Q
 
   if (params.year && params.type === 'tv') {
     (options as discover.DiscoverTVShowQueries).first_air_date_year = params.year;
+  }
+
+  if (sortOption) {
+    options.sort_by = sortOption;
   }
 
   if (pickedGenresIds.length) {

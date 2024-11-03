@@ -21,12 +21,12 @@ export default async function SearchPage({ searchParams }: PageProps): Promise<J
   async function action(page: number) {
     'use server';
 
-    const { pickedGenresIds, params } = context;
+    const { pickedGenresIds, params, sortOption } = context;
 
     let data: SearchResult<TVShow | Movie | PersonSearchResult | Collection>;
 
     if (context.state === SearchState.DISCOVER) {
-      data = await queryDiscoverEndpoint({ page, pickedGenresIds, params });
+      data = await queryDiscoverEndpoint({ page, pickedGenresIds, params, sortOption });
     } else {
       data = await querySearchEndpoint({ page, pickedGenresIds, params });
     }

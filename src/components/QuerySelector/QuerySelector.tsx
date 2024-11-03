@@ -1,0 +1,144 @@
+'use client';
+
+import { Button } from '@/components/ui/Button';
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandList,
+  CommandSeparator,
+} from '@/components/ui/Command';
+import { PopoverArrow, PopoverContent, PopoverTrigger } from '@/components/ui/Popover';
+import { ScrollArea } from '@/components/ui/ScrollArea';
+import { Popover } from '@radix-ui/react-popover';
+import { Options, Sections } from './components';
+
+import { cn, constructUrl } from '@/lib/utils';
+import { usePathname, useRouter } from 'next/navigation';
+import { useState } from 'react';
+
+import type { QuerySelectorProps } from './types';
+
+export function QuerySelector<Schema extends Record<string, any>, Key extends keyof Schema>({
+  name,
+  params,
+  options,
+  sections,
+  picked,
+  multi,
+  forceReset,
+  classes,
+  searchPlaceholderText,
+  searchEmptyText,
+  arrow,
+  renderTrigger,
+  renderOption,
+  trigger: Trigger,
+}: QuerySelectorProps<Schema, Key>) {
+  const [open, setOpen] = useState(false);
+
+  const pathname = usePathname();
+  const router = useRouter();
+
+  function push(v: string, active: boolean) {
+    let value: string | string[] | null;
+
+    if (multi) {
+      value = active ? [...picked, v] : picked.filter((picked) => picked !== v);
+    } else {
+      value = active ? v : null;
+    }
+
+    const overrides = {
+      [name]: value,
+    } as Partial<Schema>;
+
+    if (forceReset) {
+      for (const key of forceReset) {
+        overrides[key] = undefined;
+      }
+    }
+
+    const href = constructUrl<Schema>({
+      route: pathname,
+      params,
+      overrides,
+    });
+
+    router.push(href);
+
+    if (!multi) {
+      setOpen(false);
+    }
+  }
+
+  return (
+    <Popover open={open} onOpenChange={setOpen}>
+      <PopoverTrigger asChild>
+        <div>
+          <Trigger
+            picked={picked}
+            multi={multi}
+            renderTrigger={renderTrigger}
+            open={open}
+            classes={classes}
+          />
+        </div>
+      </PopoverTrigger>
+
+      <PopoverContent className={cn('border-none p-0', classes?.content)}>
+        <Command>
+          <CommandInput placeholder={searchPlaceholderText} />
+          <CommandList>
+            <ScrollArea className={cn('h-72 pr-2', classes?.scrollArea)}>
+              <CommandEmpty>{searchEmptyText}</CommandEmpty>
+
+              {sections ? (
+                // @ts-ignore
+                <Sections
+                  sections={sections}
+                  push={push}
+                  renderOption={renderOption}
+                  multi={multi}
+                  picked={picked}
+                />
+              ) : (
+                <Options
+                  options={options}
+                  push={push}
+                  renderOption={renderOption}
+                  multi={multi}
+                  picked={picked}
+                />
+              )}
+
+              <CommandSeparator />
+
+              <CommandGroup>
+                <Button
+                  variant='ghost'
+                  disabled={multi ? picked.length === 0 : picked === null || picked === undefined}
+                  onClick={() => {
+                    const href = constructUrl({
+                      route: pathname,
+                      params,
+                      overrides: { [name]: null } as Partial<Schema>,
+                    });
+
+                    router.push(href);
+                  }}
+                  className='w-full justify-center rounded-sm text-center text-sm'
+                >
+                  Clear {multi ? 'all' : 'selection'}
+                </Button>
+              </CommandGroup>
+            </ScrollArea>
+          </CommandList>
+        </Command>
+
+        {arrow && <PopoverArrow className='fill-card' />}
+      </PopoverContent>
+    </Popover>
+  );
+}

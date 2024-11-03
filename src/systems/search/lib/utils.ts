@@ -1,11 +1,18 @@
+import { MovieSortOptions, TVShowSortOptions } from '@/tmdb/endpoints/discover';
 import { LayoutGridIcon, LayoutListIcon } from 'lucide-react';
 import { Layout, MediaType, SearchState } from './enums';
 import { SearchParamsSchema } from './schemas';
 
+import { capitalize } from '@/lib/utils';
 import { genres, getImagePath } from '@/systems/tmdb';
 
 import type { Movie, PersonSearchResult, TVShow } from '@/systems/tmdb';
-import type { MovieGenre, TVShowGenre } from '@/systems/tmdb/endpoints/discover';
+import type {
+  MovieGenre,
+  MovieSortOption,
+  TVShowGenre,
+  TVShowSortOption,
+} from '@/systems/tmdb/endpoints/discover';
 import type { LucideIcon } from 'lucide-react';
 import type { Route } from 'next';
 
@@ -63,7 +70,8 @@ export type Media = {
 
 export function parseMedia(item: Movie | TVShow | PersonSearchResult): Media {
   const name = item.media_type === MediaType.MOVIE ? item.title : item.name;
-  const imagePath = item.media_type === MediaType.PERSON ? item.profile_path : item.poster_path;
+  const posterPath = item.media_type === MediaType.PERSON ? item.profile_path : item.poster_path;
+
   const year =
     item.media_type === MediaType.PERSON
       ? undefined
@@ -74,7 +82,7 @@ export function parseMedia(item: Movie | TVShow | PersonSearchResult): Media {
   return {
     name,
     id: item.id,
-    poster: getImagePath({ path: imagePath, alt: name }),
+    poster: getImagePath({ path: posterPath, alt: name }),
     path: `/${item.media_type}/${item.id}` as const,
     type: item.media_type,
     year,
@@ -103,6 +111,34 @@ export function getSearchState(params: SearchParamsSchema): SearchState {
   return SearchState.TRENDING;
 }
 
+export type SortOptionItem<Source extends MovieSortOption | TVShowSortOption> = {
+  key: Source;
+  name: string;
+  direction: 'Ascending' | 'Descending';
+  fullName: string;
+};
+
+export function parseSortOption<T extends MovieSortOption | TVShowSortOption>(string: T) {
+  const [rawName, rawDirection] = string.split('.');
+
+  const direction = rawDirection.toLowerCase() === 'asc' ? 'Ascending' : 'Descending';
+  const name = capitalize(rawName.replace(/_/g, ' '));
+
+  return {
+    key: string,
+    name,
+    direction,
+    fullName: `${name} ${direction}`,
+  };
+}
+
+const defaultSortOption: MovieSortOption | TVShowSortOption = 'popularity.desc';
+
+const sortOptions = {
+  [MediaType.MOVIE]: Object.values(MovieSortOptions),
+  [MediaType.TV]: Object.values(TVShowSortOptions),
+};
+
 export function getState(searchParams: Record<string, unknown>) {
   const params = SearchParamsSchema.parse(searchParams);
   const layout = layouts.find((layout) => layout.slug === params.layout) ?? defaultLayout;
@@ -111,9 +147,22 @@ export function getState(searchParams: Record<string, unknown>) {
   const pickedGenres = genresList.filter((genre) => params.genres.includes(genre.name));
   const pickedGenresIds = pickedGenres.map((genre) => genre.id) as (TVShowGenre | MovieGenre)[];
 
+  const ssortOptions =
+    params.type && params.type !== MediaType.PERSON ? sortOptions[params.type] : [];
+  const sortOption = ssortOptions.find((option) => option === params.sort) ?? defaultSortOption;
+
   const state = getSearchState(params);
 
-  return { params, layout, genresList, pickedGenres, pickedGenresIds, state };
+  return {
+    params,
+    layout,
+    genresList,
+    pickedGenres,
+    pickedGenresIds,
+    state,
+    sortOption,
+    sortOptions: ssortOptions,
+  };
 }
 
 export type SearchQueriesParsed = ReturnType<typeof getState>;

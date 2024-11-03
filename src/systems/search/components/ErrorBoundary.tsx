@@ -27,7 +27,7 @@ export function ErrorHandler({ error, reset }: ErrorProps): JSX.Element {
         </div>
       </div>
 
-      <CodeBlock copy message={`message: ${error.message}\n\nstack: ${error.stack}`}>
+      <CodeBlock copy content={`message: ${error.message}\n\nstack: ${error.stack}`}>
         <p>{error.message}</p>
 
         <br />

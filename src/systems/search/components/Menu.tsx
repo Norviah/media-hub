@@ -1,4 +1,4 @@
-import { QuerySelector } from '@/components/QuerySelector';
+import { QuerySelector, QuerySelectorInfo } from '@/components/QuerySelector';
 import { SearchQuery } from '@/components/SearchQuery';
 import { Header } from '@/components/ui/Header';
 
@@ -17,16 +17,20 @@ export function SearchMenu({ params, genresList, pickedGenres }: SearchQueriesPa
         <Header type='h6'>Form</Header>
 
         <QuerySelector
+          params={params}
           name='type'
           options={['movie', 'tv', 'person']}
           picked={params.type}
-          searchEmptyText='No media types found.'
-          params={params}
           multi={false}
-          buttonClassName='w-[130px]'
-          popoverContentClassName='w-[130px]'
-          scrollAreaClassName='h-fit'
+          searchEmptyText='No media types found.'
+          classes={{
+            popover: 'w-40',
+            button: 'w-40',
+            content: 'w-40',
+            scrollArea: 'h-36',
+          }}
           forceReset={['genres']}
+          trigger={QuerySelectorInfo}
         />
       </div>
 
@@ -42,8 +46,11 @@ export function SearchMenu({ params, genresList, pickedGenres }: SearchQueriesPa
               searchEmptyText='No years found.'
               params={params}
               multi={false}
-              buttonClassName='w-[130px]'
-              popoverContentClassName='w-[130px]'
+              classes={{
+                button: 'w-[130px]',
+                content: 'w-[130px]',
+              }}
+              trigger={QuerySelectorInfo}
             />
           </div>
 
@@ -59,8 +66,11 @@ export function SearchMenu({ params, genresList, pickedGenres }: SearchQueriesPa
                   searchEmptyText='No genres found.'
                   params={params}
                   multi
-                  buttonClassName='min-w-[170px]'
-                  popoverContentClassName='w-[170px]'
+                  classes={{
+                    button: 'w-[170px]',
+                    content: 'w-[170px]',
+                  }}
+                  trigger={QuerySelectorInfo}
                 />
               </div>
             </>
