@@ -56,7 +56,7 @@ export function Tags({ params, pickedGenres }: SearchQueriesParsed): JSX.Element
 
   return (
     <div className='flex flex-row flex-wrap items-center gap-2'>
-      <TagsIcon className='h-5 w-5 text-foreground-lighter' />
+      <TagsIcon className='h-5 w-5 text-foreground-light' />
 
       {tags.map((tag) => (
         <QueryBadge
@@ -74,7 +74,7 @@ export function Tags({ params, pickedGenres }: SearchQueriesParsed): JSX.Element
             router.push(constructUrl({ route: pathname, params, keep: ['type', 'layout'] }));
           }}
         >
-          Clear All
+          <span className='transition-colors group-hover:text-foreground-dark'>Clear All</span>
         </QueryBadgeContainer>
       )}
     </div>

@@ -25,10 +25,10 @@ const buttonVariants = cva(
           'bg-success text-success-foreground hover:bg-success/85 active:bg-success/75 border border-strong shadow-sm',
         warn: 'bg-warn text-warn-foreground hover:bg-warn/70 active:bg-warn/60 border border-strong shadow-sm',
         secondary:
-          'bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/75 active:bg-secondary/60 border border-strong shadow-sm',
+          'bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary-accent border border-border shadow-sm',
         ghost: 'hover:bg-muted/70 active:bg-muted',
         outline:
-          'hover:bg-foreground/[.08] active:bg-foreground/[.1] bg-background text-foreground border border-strong',
+          'hover:bg-accent active:bg-accent bg-background text-foreground border border-border',
       },
       size: {
         default: 'h-9 px-2.5 py-1',

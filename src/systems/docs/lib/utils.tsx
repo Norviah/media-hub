@@ -61,7 +61,7 @@ export const components: Parameters<typeof MDXContent>[0]['components'] = {
   ),
 
   div: ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
-    <div className={cn('text-foreground-light', className)} {...props} />
+    <div className={cn('text-foreground', className)} {...props} />
   ),
 
   a: ({
@@ -76,14 +76,14 @@ export const components: Parameters<typeof MDXContent>[0]['components'] = {
     ...props
   }: React.DetailedHTMLProps<React.HTMLAttributes<HTMLParagraphElement>, HTMLParagraphElement>) => (
     <p
-      className={cn('text-foreground-light leading-7 [&:not(:first-child)]:mt-6', className)}
+      className={cn('text-foreground leading-7 [&:not(:first-child)]:mt-6', className)}
       {...props}
     />
   ),
 
   ul: (
     props: React.DetailedHTMLProps<React.HTMLAttributes<HTMLUListElement>, HTMLUListElement>,
-  ) => <UnorderedList className='text-foreground-light' {...props} />,
+  ) => <UnorderedList className='text-foreground' {...props} />,
 
   blockquote: (
     props: React.DetailedHTMLProps<React.HTMLAttributes<HTMLQuoteElement>, HTMLQuoteElement>,
@@ -136,16 +136,14 @@ export const components: Parameters<typeof MDXContent>[0]['components'] = {
     className,
     ...props
   }: React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>) => (
-    <span className='rounded bg-muted p-0.5 px-1 font-mono text-foreground-light'>
-      {props.children}
-    </span>
+    <span className='rounded bg-muted p-0.5 px-1 font-mono text-foreground'>{props.children}</span>
   ),
 
   strong: ({
     className,
     ...props
   }: React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>) => (
-    <strong className={cn('text-foreground', className)} {...props} />
+    <strong className={cn('text-foreground-dark', className)} {...props} />
   ),
 
   codeblock: ({

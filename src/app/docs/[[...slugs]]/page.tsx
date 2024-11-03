@@ -18,7 +18,7 @@ export default function DocsPage(props: SlugsPageProps): JSX.Element {
       <div className='space-y-3'>
         <Header type='h3'>{post.title}</Header>
         <div className='flex justify-between'>
-          <p className='text-foreground-lighter'>{post.summary}</p>
+          <p className='text-foreground-light'>{post.summary}</p>
         </div>
       </div>
 

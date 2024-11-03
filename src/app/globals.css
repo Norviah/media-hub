@@ -209,43 +209,41 @@
   }
 
   .light {
-    --background: 0 0% 97%;
-    --foreground-light: 0 0% 40%;
-    --foreground-lighter: 0 0% 60%;
-    --foreground: 0 0% 7%;
-    
-    --foreground: var(--neutral-600);
-    --foreground: 0 0% 32%;
-    --foreground: 0 0% 20%;
-    --foreground: 0 0% 15%;
+    --background: 60 9% 98%;
+        
+    --foreground-dark: 20 14% 4%;
+    --foreground: 0 0% 43%;
+    --foreground-light: 0 0% 65%;
+    --foreground-lighter: 0 0% 85%;
 
-    --foreground-light: var(--newspaper-light);
-    --foreground-light: 0 0% 43%;
-
-    /* --foreground-muted:var(--colors-gray-dark-900);
-    --foreground-lighter:var(--colors-gray-dark-1000);
-    --foreground-light:var(--colors-gray-dark-1100);
-    --foreground-default:var(--colors-gray-dark-1200); */
-
-    --foreground-muted:0deg 0% 69.8%;
-
-    --primary-foreground: 0 0% 98%;
-    --secondary: 240 4.8% 90.0%;
-    --secondary-foreground: 240 5.9% 10%;
-    --accent: 240 4.8% 95.9%;
-    --accent: 240 4.8% 94.0%;
-    --accent-foreground: 240 5.9% 10%;
-    --muted: 0 0% 90%;
-    --muted-foreground: var(--foreground-lighter);
     --card: 0 0% 100%;
-    --card-foreground: var(--foreground-light);
+    --card-foreground-dark: var(--foreground-dark);
+    --card-foreground: var(--foreground);
+    --card-foreground-light: var(--foreground-light);
+    --card-foreground-lighter: var(--foreground-lighter);
 
+    --accent: 60 5% 96%;
+    --accent-foreground-dark: var(--foreground-dark);
+    --accent-foreground: var(--foreground);
+    --accent-foreground-light: var(--foreground-light);
+    --accent-foreground-lighter: var(--foreground-lighter);
+
+    --muted: 60 4% 93%;
+    --muted-foreground: var(--foreground);
+    --muted-foreground-dark: var(--foreground-dark);
+    --muted-foreground-light: var(--foreground-light);
+    --muted-foreground-lighter: var(--foreground-lighter);
+
+    --primary-foreground: var(--background);
+    --secondary: 60 3% 94%;
+    --secondary-accent: 40 7% 92%;
+    --secondary-foreground: var(--foreground-dark);
     --destructive-foreground: var(--background);
     --info-foreground: var(--background);
-    --success-foreground: var(--foreground);
-    --warn-foreground: var(--foreground);
+    --success-foreground: var(--foreground-dark);
+    --warn-foreground: var(--foreground-dark);
 
-    --border: 0 0% 87%;
+    --border: 30 5% 91%;
     --input: 240 5.9% 90%;
     --ring: 240 5.9% 10%;
     --chart-1: 12 76% 61%;

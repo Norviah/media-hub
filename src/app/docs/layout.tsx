@@ -18,7 +18,7 @@ export default function DocsLayout({ children }: LayoutProps) {
           </div>
 
           <Link href='/'>
-            <IconButton size='small' className='text-foreground-light hover:text-foreground'>
+            <IconButton size='small' className='text-foreground hover:text-foreground-dark'>
               <HomeIcon className='size-4' />
             </IconButton>
           </Link>

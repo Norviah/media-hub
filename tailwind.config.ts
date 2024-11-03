@@ -29,7 +29,7 @@ const config = {
           DEFAULT: 'hsl(var(--foreground))',
           lighter: 'hsl(var(--foreground-lighter))',
           light: 'hsl(var(--foreground-light))',
-          muted: 'hsl(var(--foreground-muted))',
+          dark: 'hsl(var(--foreground-dark))',
         },
         primary: {
           DEFAULT: 'hsl(var(--primary))',
@@ -38,6 +38,7 @@ const config = {
         secondary: {
           DEFAULT: 'hsl(var(--secondary))',
           foreground: 'hsl(var(--secondary-foreground))',
+          accent: 'hsl(var(--secondary-accent))',
         },
         destructive: {
           DEFAULT: 'hsl(var(--destructive))',
@@ -61,15 +62,35 @@ const config = {
         },
         muted: {
           DEFAULT: 'hsl(var(--muted))',
+          'foreground-dark': 'hsl(var(--muted-foreground-dark))',
           foreground: 'hsl(var(--muted-foreground))',
+          'foreground-light': 'hsl(var(--muted-foreground-light))',
+          'foreground-lighter': 'hsl(var(--muted-foreground-lighter))',
         },
         accent: {
           DEFAULT: 'hsl(var(--accent))',
+          'foreground-dark': 'hsl(var(--accent-foreground-dark))',
           foreground: 'hsl(var(--accent-foreground))',
+          'foreground-light': 'hsl(var(--accent-foreground-light))',
+          'foreground-lighter': 'hsl(var(--accent-foreground-lighter))',
         },
         card: {
           DEFAULT: 'hsl(var(--card))',
+          'foreground-dark': 'hsl(var(--card-foreground-dark))',
           foreground: 'hsl(var(--card-foreground))',
+          'foreground-light': 'hsl(var(--card-foreground-light))',
+          'foreground-lighter': 'hsl(var(--card-foreground-lighter))',
+        },
+        nord: {
+          red: 'hsl(var(--nord-red))',
+          orange: 'hsl(var(--nord-orange))',
+          yellow: 'hsl(var(--nord-yellow))',
+          green: 'hsl(var(--nord-green))',
+          'blue-green': 'hsl(var(--nord-blue-green))',
+          'light-blue': 'hsl(var(--nord-light-blue))',
+          blue: 'hsl(var(--nord-blue))',
+          'dark-blue': 'hsl(var(--nord-dark-blue))',
+          purple: 'hsl(var(--nord-purple))',
         },
       },
       borderRadius: {

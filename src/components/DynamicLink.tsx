@@ -37,7 +37,7 @@ export function DynamicLink<Path extends string = string>({
   href,
   ...props
 }: DynamicLinkProps): JSX.Element {
-  const className = cn('text-foreground underline underline-offset-4', newClassName);
+  const className = cn('text-foreground-dark underline underline-offset-4', newClassName);
 
   if (href?.startsWith('/')) {
     return <Link href={href as Route<Path>} className={className} {...props} />;

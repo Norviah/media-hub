@@ -34,7 +34,7 @@ export function DocumentationSidebar({
       {categories.map((category) => (
         <div key={category.category} className='space-y-3 text-sm'>
           <div className='mb-2 flex space-x-3 font-normal'>
-            <span className='w-full text-foreground-lighter'>{category.category}</span>
+            <span className='w-full text-foreground-light'>{category.category}</span>
           </div>
 
           <div className='space-y-2'>

@@ -24,7 +24,7 @@ export function Category({ category, menu }: CategoryProps) {
       <Link
         className={cn(
           'block transition-colors',
-          active ? 'text-foreground' : 'text-foreground-light hover:text-foreground',
+          active ? 'text-foreground-dark' : 'text-foreground hover:text-foreground-dark',
         )}
         key={post.title}
         href={`/docs/${post.slug ?? ''}`}

@@ -34,7 +34,7 @@ export default function RootLayout(props: LayoutProps): JSX.Element {
         <link rel='icon' type='image/png' sizes='16x16' href='/favicon-16x16.png' />
       </head>
 
-      <body className={cn('min-h-screen text-foreground-light antialiased', overpass.className)}>
+      <body className={cn('min-h-screen text-foreground antialiased', overpass.className)}>
         <ThemeProvider
           attribute='class'
           defaultTheme='system'

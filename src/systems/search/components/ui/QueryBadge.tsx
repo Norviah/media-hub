@@ -19,10 +19,7 @@ export function QueryBadgeContainer({
   return (
     <Badge
       variant='muted'
-      className={cn(
-        'h-7 cursor-pointer text-foreground-lighter capitalize transition-colors hover:text-foreground',
-        className,
-      )}
+      className={cn('group h-7 cursor-pointer border border-border capitalize', className)}
       {...props}
     >
       {children}
@@ -47,11 +44,11 @@ export function QueryBadge<T extends ConstrainedRecord<T>>({
   return (
     <QueryBadgeContainer {...props}>
       <p className='space-x-2'>
-        {title && <span className='text-foreground-lighter'>{title}:</span>}
-        <span className='text-foreground'>{value}</span>
+        {title && <span className='text-muted-foreground'>{title}:</span>}
+        <span className='text-muted-foreground-dark'>{value}</span>
       </p>
 
-      <XIcon className='ml-2 h-4 w-4' />
+      <XIcon className='ml-2 h-4 w-4 transition-colors group-hover:text-muted-foreground-dark' />
     </QueryBadgeContainer>
   );
 }

@@ -3,7 +3,7 @@ import { cva } from 'class-variance-authority';
 
 import type { VariantProps } from 'class-variance-authority';
 
-export const headerVariants = cva('scroll-m-20 text-foreground', {
+export const headerVariants = cva('scroll-m-20 text-foreground-dark', {
   variants: {
     type: {
       h1: 'text-4xl font-extrabold lg:text-5xl',

@@ -17,7 +17,7 @@ function NavItem({ route }: { route: RouteItem }): JSX.Element {
       href={route.path}
       className={cn(
         'font-semibold text-foreground text-sm transition-colors',
-        isActive ? 'text-foreground' : 'text-foreground-lighter hover:text-foreground',
+        isActive ? 'text-foreground-dark' : 'text-foreground-light hover:text-foreground-dark',
       )}
     >
       {route.title}

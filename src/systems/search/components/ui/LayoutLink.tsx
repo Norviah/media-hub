@@ -23,7 +23,7 @@ export function LayoutLink({ item, params }: LayoutItemProps): JSX.Element {
       <Icon
         className={cn(
           'h-5 w-5 transition-colors',
-          item.slug === params.layout && 'fill-foreground-lighter',
+          item.slug === params.layout && 'fill-foreground-light',
         )}
       />
     </Link>

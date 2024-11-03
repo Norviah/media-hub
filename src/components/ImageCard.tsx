@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import { Fragment } from 'react';
+import { Card } from './ui/Card';
 import { Skeleton } from './ui/Skeleton';
 
 import { cn } from '@/lib/utils';
@@ -92,7 +93,7 @@ export function ImageCard<Path extends string = string>(props: ImageCardProps<Pa
   const ParentComponent = href ? Link : Fragment;
 
   return (
-    <div className={cn(baseClasses.container, classes?.container)}>
+    <Card className={cn(baseClasses.container, classes?.container)}>
       <div className={cn(baseClasses.imageContainer, classes?.imageContainer)}>
         {/* @ts-ignore */}
         <ParentComponent {...(href ? { href } : {})}>
@@ -106,6 +107,6 @@ export function ImageCard<Path extends string = string>(props: ImageCardProps<Pa
       </div>
 
       <div className={cn(baseClasses.content, classes?.content)}>{children}</div>
-    </div>
+    </Card>
   );
 }

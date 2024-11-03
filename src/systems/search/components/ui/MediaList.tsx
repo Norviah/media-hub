@@ -5,15 +5,15 @@ import { Badge } from '@/components/ui/Badge';
 import { Skeleton } from '@/components/ui/Skeleton';
 
 import { genres } from '@/tmdb';
+import { MediaType } from '../../lib';
 import { parseMedia } from '../../lib/utils';
 
 import type { Movie, PersonSearchResult, TVShow } from '@/tmdb';
 import type { SkeletalProps } from '@/types';
-import { MediaType } from '../../lib';
 
 export const mediaListClasses = {
   layout: 'space-y-4',
-  container: 'w-full shadow-md border border-border animate-in fade-in',
+  container: 'w-full border border-border animate-in fade-in',
   content: 'space-y-3 px-5 py-3 justify-between',
   image: 'w-[94px] min-h-[141px] rounded-none rounded-l object-cover',
 } as const;
@@ -52,17 +52,17 @@ export function MediaList(props: MediaListProps) {
   return (
     <ImageCard href={parsed.path} classes={mediaListClasses} src={parsed.poster} alt={parsed.name}>
       <div className='space-y-0.5'>
-        <div className='w-fit transition-colors hover:text-foreground'>
+        <div className='w-fit transition-colors hover:text-card-foreground'>
           <Link href={parsed.path}>
-            <p className='text-base'>{parsed.name}</p>
+            <p className='text-base text-card-foreground-dark'>{parsed.name}</p>
           </Link>
         </div>
 
-        <p className='text-foreground-lighter'>{parsed.year ?? 'N/A'}</p>
+        <p className='text-card-foreground-light'>{parsed.year ?? 'N/A'}</p>
       </div>
 
       {item.media_type !== MediaType.PERSON && (
-        <p className='line-clamp-2 text-foreground-light'>{item.overview ?? 'N/A'}</p>
+        <p className='line-clamp-2 text-card-foreground'>{item.overview ?? 'N/A'}</p>
       )}
 
       {item.media_type !== 'person' && (
