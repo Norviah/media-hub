@@ -14,12 +14,12 @@ type CodeBlockBaseProps = {
   copy?: boolean;
 } & CopyContentButtonProps;
 
-export type CodeBlockProps = DivProps & RequireAllOrNone<CodeBlockBaseProps, 'copy' | 'message'>;
+export type CodeBlockProps = DivProps & RequireAllOrNone<CodeBlockBaseProps, 'copy' | 'content'>;
 
 export function CodeBlock({
   copy,
   className,
-  message,
+  content: message,
   prompt,
   duration,
   ...props
@@ -27,7 +27,7 @@ export function CodeBlock({
   return (
     <div
       className={cn(
-        'rounded bg-muted p-5 font-mono font-semibold text-sm',
+        'whitespace-pre rounded border border-border bg-accent p-5 font-mono font-semibold text-sm',
         copy && 'relative',
         className,
       )}
@@ -35,7 +35,7 @@ export function CodeBlock({
     >
       {props.children}
 
-      {copy && <CopyContentButton message={message} prompt={prompt} duration={duration} />}
+      {copy && <CopyContentButton content={message} prompt={prompt} duration={duration} />}
     </div>
   );
 }

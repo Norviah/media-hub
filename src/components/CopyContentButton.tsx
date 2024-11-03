@@ -15,7 +15,7 @@ export type CopyContentButtonProps = {
   /**
    * The content to copy to the clipboard
    */
-  message: string;
+  content: string;
 
   /**
    * The prompt to display when the content is copied.
@@ -57,7 +57,7 @@ export type CopyContentButtonProps = {
  * ```
  */
 export function CopyContentButton({
-  message,
+  content,
   className,
   disabled,
   onClick,
@@ -86,7 +86,7 @@ export function CopyContentButton({
         className,
       )}
       onClick={() => {
-        navigator.clipboard.writeText(message);
+        navigator.clipboard.writeText(content);
         setCopied(true);
 
         toast.success(typeof prompt === 'string' ? prompt : prompt.title, {
