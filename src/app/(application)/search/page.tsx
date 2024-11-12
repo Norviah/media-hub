@@ -14,6 +14,11 @@ import { getState, queryDiscoverEndpoint, querySearchEndpoint } from '@/systems/
 
 import type { Collection, Movie, PersonSearchResult, SearchResult, TVShow } from '@/systems/tmdb';
 import type { PageProps } from '@/types';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Search',
+};
 
 export default async function SearchPage({ searchParams }: PageProps): Promise<JSX.Element> {
   const context = getState(searchParams);
