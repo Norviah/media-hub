@@ -1,6 +1,5 @@
 'use client';
 
-import { IconButton } from '@/components/ui/Button';
 import {
   CommandDialog,
   CommandEmpty,
@@ -9,7 +8,8 @@ import {
   CommandItem,
   CommandList,
   CommandSeparator,
-} from '@/components/ui/Command';
+  IconButton,
+} from '@/components/ui';
 import { LaptopIcon, MoonIcon, SearchIcon, SunMediumIcon } from 'lucide-react';
 
 import { routes } from '@/components/layout';
@@ -17,7 +17,7 @@ import { useTheme } from 'next-themes';
 import { useRouter } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
 
-import type { IconButtonProps } from '@/components/ui/Button';
+import type { IconButtonProps } from '@/components/ui';
 import type { RouteItem } from '@/types';
 
 export function CommandMenu(props: Omit<IconButtonProps, 'icon' | 'children'>): JSX.Element {

@@ -2,8 +2,8 @@
 
 import NextImage from 'next/image';
 
-import { Caption } from '@/components/Caption';
-import { Skeleton } from '@/components/ui/Skeleton';
+import { Caption } from '@/components';
+import { Skeleton } from '@/components/ui';
 
 import { cn } from '@/lib/utils';
 import {

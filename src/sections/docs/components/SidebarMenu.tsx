@@ -1,14 +1,12 @@
 'use client';
 
-import { IconButton } from '@/components/ui/Button';
-import { DialogTitle } from '@/components/ui/Dialog';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/Sheet';
+import { DialogTitle, IconButton, Sheet, SheetContent, SheetTrigger } from '@/components/ui';
 import { MenuIcon } from 'lucide-react';
 import { DocumentationSidebar } from './Sidebar';
 
 import { cn } from '@/lib/utils';
 
-import type { IconButtonProps } from '@/components/ui/Button';
+import type { IconButtonProps } from '@/components/ui';
 
 export type SidebarMenuProps = Omit<IconButtonProps, 'icon' | 'children'>;
 

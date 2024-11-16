@@ -1,4 +1,4 @@
-import { Header } from '@/components/ui/Header';
+import { Header } from '@/components/ui';
 import { MDXContent } from '@content-collections/mdx/react';
 
 import { components } from '@/sections/docs';

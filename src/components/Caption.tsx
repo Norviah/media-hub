@@ -30,8 +30,8 @@ type CaptionProps = {
  * ```tsx
  * import Image from 'next/image';
  *
- * import { Caption } from '@/components/Caption';
- * import { Card } from '@/components/ui/Card';
+ * import { Caption } from '@/components';
+ * import { Card } from '@/components/ui';
  *
  * export default function Home(): JSX.Element {
  *   return (

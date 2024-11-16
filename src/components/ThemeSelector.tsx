@@ -1,7 +1,12 @@
 'use client';
 
-import { IconButton } from '@/components/ui/Button';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/Tooltip';
+import {
+  IconButton,
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui';
 import { MoonIcon, SunIcon } from 'lucide-react';
 
 import { cn } from '@/lib/utils';

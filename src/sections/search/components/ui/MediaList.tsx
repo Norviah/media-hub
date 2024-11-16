@@ -1,8 +1,7 @@
 import Link from 'next/link';
 
-import { ImageCard } from '@/components/ImageCard';
-import { Badge } from '@/components/ui/Badge';
-import { Skeleton } from '@/components/ui/Skeleton';
+import { ImageCard } from '@/components';
+import { Badge, Skeleton } from '@/components/ui';
 
 import { genres } from '@/tmdb';
 import { MediaType } from '../../lib';

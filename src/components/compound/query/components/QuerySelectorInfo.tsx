@@ -1,7 +1,6 @@
 'use client';
 
-import { Badge } from '@/components/ui/Badge';
-import { Button } from '@/components/ui/Button';
+import { Badge, Button } from '@/components/ui';
 import { ChevronDownIcon } from 'lucide-react';
 
 import { cn } from '@/lib/utils';

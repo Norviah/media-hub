@@ -1,16 +1,18 @@
 'use client';
 
-import { Button } from '@/components/ui/Button';
 import {
+  Button,
   Command,
   CommandEmpty,
   CommandGroup,
   CommandInput,
   CommandList,
   CommandSeparator,
-} from '@/components/ui/Command';
-import { PopoverArrow, PopoverContent, PopoverTrigger } from '@/components/ui/Popover';
-import { ScrollArea } from '@/components/ui/ScrollArea';
+  PopoverArrow,
+  PopoverContent,
+  PopoverTrigger,
+  ScrollArea,
+} from '@/components/ui';
 import { Popover } from '@radix-ui/react-popover';
 import { Options, Sections } from './components';
 

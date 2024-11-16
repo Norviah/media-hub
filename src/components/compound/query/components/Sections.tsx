@@ -1,6 +1,6 @@
 'use client';
 
-import { CommandGroup, CommandItem } from '@/components/ui/Command';
+import { CommandGroup, CommandItem } from '@/components/ui';
 import { CheckIcon } from 'lucide-react';
 
 import { cn } from '@/lib/utils';

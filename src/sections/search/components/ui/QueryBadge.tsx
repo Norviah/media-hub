@@ -1,11 +1,11 @@
 'use client';
 
-import { Badge } from '@/components/ui/Badge';
+import { Badge } from '@/components/ui';
 import { XIcon } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
 
-import type { BadgeProps } from '@/components/ui/Badge';
+import type { BadgeProps } from '@/components/ui';
 import type { ConstrainedRecord, Primitive } from '@/types';
 import type { LucideIcon } from 'lucide-react';
 

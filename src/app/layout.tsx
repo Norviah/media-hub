@@ -1,6 +1,4 @@
-import { TailwindIndicator } from '@/components/TailwindIndicator';
-import { ThemeProvider } from '@/components/ThemeProvider';
-import { ToastProvider } from '@/components/ToastProvider';
+import { TailwindIndicator, ThemeProvider, ToastProvider } from '@/components';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 

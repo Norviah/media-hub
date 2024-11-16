@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import { IconButton } from '@/components/ui/Button';
+import { IconButton } from '@/components/ui';
 import { DocumentationSidebar, SidebarMenu } from '@/sections/docs';
 import { HomeIcon } from 'lucide-react';
 

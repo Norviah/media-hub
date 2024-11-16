@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 
-import { DialogClose } from '@/components/ui/Dialog';
+import { DialogClose } from '@/components/ui';
 import { cn } from '@/lib/utils';
 import { usePathname } from 'next/navigation';
 

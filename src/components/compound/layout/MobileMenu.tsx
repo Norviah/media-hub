@@ -2,15 +2,15 @@
 
 import Link from 'next/link';
 
-import { IconButton } from '@/components/ui/Button';
 import {
+  IconButton,
   Sheet,
   SheetClose,
   SheetContent,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from '@/components/ui/Sheet';
+} from '@/components/ui';
 import { MenuIcon } from 'lucide-react';
 
 import { siteConfig } from '@/lib/config';

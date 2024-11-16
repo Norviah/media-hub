@@ -1,7 +1,6 @@
 import Link from 'next/link';
 
-import { ThemeSelector } from '@/components/ThemeSelector';
-import { Logo } from '@/components/icons';
+import { Logo, ThemeSelector } from '@/components';
 import { MobileMenu } from './MobileMenu';
 import { NavItems } from './NavItems';
 

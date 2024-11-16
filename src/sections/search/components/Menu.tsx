@@ -1,5 +1,5 @@
 import { QuerySelector, QuerySelectorInfo, SearchQuery } from '@/components/query';
-import { Header } from '@/components/ui/Header';
+import { Header } from '@/components/ui';
 
 import { type SearchQueriesParsed, years } from '@/sections/search';
 

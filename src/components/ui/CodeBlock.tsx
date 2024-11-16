@@ -1,8 +1,8 @@
-import { CopyContentButton } from '@/components/CopyContentButton';
+import { CopyContentButton } from '@/components';
 
 import { cn } from '@/lib/utils';
 
-import type { CopyContentButtonProps } from '@/components/CopyContentButton';
+import type { CopyContentButtonProps } from '@/components';
 import type { RequireAllOrNone } from 'type-fest';
 
 type DivProps = JSX.IntrinsicElements['div'];

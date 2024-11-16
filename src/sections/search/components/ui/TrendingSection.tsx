@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import { Header } from '@/components/ui/Header';
+import { Header } from '@/components/ui';
 import { MediaImageCard } from './MediaImageCard';
 
 import { cn, constrictVisibility } from '@/lib/utils';

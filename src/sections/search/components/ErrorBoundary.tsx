@@ -1,9 +1,7 @@
 'use client';
 
-import { Button } from '@/components/ui/Button';
-import { CodeBlock } from '@/components/ui/CodeBlock';
-import { Header } from '@/components/ui/Header';
-import { DynamicLink } from '@/components/DynamicLink';
+import { DynamicLink } from '@/components';
+import { Button, CodeBlock, Header } from '@/components/ui';
 
 import type { ErrorProps } from '@/types';
 

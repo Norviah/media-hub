@@ -4,11 +4,11 @@ import { Tags } from './Tags';
 import { LayoutLink } from './ui';
 
 import { QuerySelector, Text } from '@/components/query';
-import { Separator } from '@/components/ui/Separator';
+import { Separator } from '@/components/ui';
 import { SearchState, layouts, parseSortOption } from '../lib';
 
-import type { SearchQueriesParsed } from '../lib';
 import type { MovieSortOption, TVShowSortOption } from '@/tmdb/endpoints/discover';
+import type { SearchQueriesParsed } from '../lib';
 
 export function SearchControls(props: SearchQueriesParsed): JSX.Element {
   const descending = props.sortOptions.filter((option) => option.includes('desc'));
