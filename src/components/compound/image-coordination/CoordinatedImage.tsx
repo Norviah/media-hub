@@ -88,6 +88,11 @@ export type ImageProps = Omit<NextImageProps, 'ref'> & {
    * a description.
    */
   caption?: React.ReactNode;
+
+  /**
+   * Classes to apply to specific sections of the component.
+   */
+  classes?: { container?: string; image?: string };
 };
 
 /**
@@ -144,6 +149,7 @@ export function CoordinatedImage({
   className,
   caption,
   fallback,
+  classes,
   group = DefaultImageGroup,
   ...props
 }: ImageProps) {
@@ -199,7 +205,7 @@ export function CoordinatedImage({
   // biome-ignore lint/correctness/useExhaustiveDependencies: only watch for specific dependencies.
   return useMemo(
     () => (
-      <div className={cn('relative inline-block', className)}>
+      <div className={cn('relative', className, classes?.container)}>
         <NextImage
           width='0'
           height='0'
@@ -207,7 +213,7 @@ export function CoordinatedImage({
           alt={alt}
           onLoad={onLoad}
           onError={onError}
-          className={cn(className, reveal ? 'fade-in animate-in' : 'opacity-0')}
+          className={cn(className, classes?.image, reveal ? 'fade-in animate-in' : 'opacity-0')}
           loading='eager'
           {...props}
           ref={imgRef}
@@ -224,10 +230,12 @@ export function CoordinatedImage({
         {caption && reveal && <Caption shadow text={caption} />}
 
         {state === 'loading' && !reveal && (
-          <Skeleton className={cn('absolute top-0 left-0 h-full w-full', className)} />
+          <Skeleton
+            className={cn('absolute top-0 left-0 h-full w-full', className, classes?.image)}
+          />
         )}
       </div>
     ),
-    [src, alt, className, onLoad, onError, reveal, caption, fallback],
+    [src, alt, className, onLoad, onError, reveal, caption, fallback, classes],
   );
 }
