@@ -6,11 +6,11 @@ import {
   SearchMenu,
   SearchState,
   TrendingPage,
-} from '@/systems/search';
+} from '@/sections/search';
 import { ErrorBoundary } from 'next/dist/client/components/error-boundary';
 import { Suspense } from 'react';
 
-import { getState, queryDiscoverEndpoint, querySearchEndpoint } from '@/systems/search';
+import { getState, queryDiscoverEndpoint, querySearchEndpoint } from '@/sections/search';
 
 import type { Collection, Movie, PersonSearchResult, SearchResult, TVShow } from '@/tmdb';
 import type { PageProps } from '@/types';

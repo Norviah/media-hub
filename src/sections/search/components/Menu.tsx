@@ -1,7 +1,7 @@
 import { QuerySelector, QuerySelectorInfo, SearchQuery } from '@/components/query';
 import { Header } from '@/components/ui/Header';
 
-import { type SearchQueriesParsed, years } from '@/systems/search';
+import { type SearchQueriesParsed, years } from '@/sections/search';
 
 export function SearchMenu({ params, genresList, pickedGenres }: SearchQueriesParsed): JSX.Element {
   return (

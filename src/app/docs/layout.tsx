@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 import { IconButton } from '@/components/ui/Button';
-import { DocumentationSidebar, SidebarMenu } from '@/systems/docs';
+import { DocumentationSidebar, SidebarMenu } from '@/sections/docs';
 import { HomeIcon } from 'lucide-react';
 
 import type { LayoutProps } from '@/types';

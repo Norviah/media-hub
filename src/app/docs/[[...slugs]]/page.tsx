@@ -1,7 +1,7 @@
 import { Header } from '@/components/ui/Header';
 import { MDXContent } from '@content-collections/mdx/react';
 
-import { components } from '@/docs';
+import { components } from '@/sections/docs';
 import { allPosts } from 'content-collections';
 
 import type { SlugsPageProps } from '@/types';
