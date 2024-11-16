@@ -213,7 +213,12 @@ export function CoordinatedImage({
           alt={alt}
           onLoad={onLoad}
           onError={onError}
-          className={cn(className, classes?.image, reveal ? 'fade-in animate-in' : 'opacity-0')}
+          className={cn(
+            className,
+            classes?.image,
+            'transition-opacity',
+            reveal ? 'opacity-100' : 'opacity-0',
+          )}
           loading='eager'
           {...props}
           ref={imgRef}
