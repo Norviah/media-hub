@@ -12,7 +12,7 @@ import { Suspense } from 'react';
 
 import { getState, queryDiscoverEndpoint, querySearchEndpoint } from '@/systems/search';
 
-import type { Collection, Movie, PersonSearchResult, SearchResult, TVShow } from '@/systems/tmdb';
+import type { Collection, Movie, PersonSearchResult, SearchResult, TVShow } from '@/tmdb';
 import type { PageProps } from '@/types';
 import type { Metadata } from 'next';
 

@@ -7,7 +7,7 @@ import { MediaList } from './MediaList';
 import { Layout } from '../../lib';
 import { LoadingState } from '@/hooks';
 
-import type { Movie, PersonSearchResult, TVShow } from '@/systems/tmdb';
+import type { Movie, PersonSearchResult, TVShow } from '@/tmdb';
 import type { SkeletalProps } from '@/types';
 import type { LayoutItem } from '../../lib';
 

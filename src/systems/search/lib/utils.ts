@@ -4,15 +4,15 @@ import { Layout, MediaType, SearchState } from './enums';
 import { SearchParamsSchema } from './schemas';
 
 import { capitalize } from '@/lib/utils';
-import { genres, getImagePath } from '@/systems/tmdb';
+import { genres, getImagePath } from '@/tmdb';
 
-import type { Movie, PersonSearchResult, TVShow } from '@/systems/tmdb';
+import type { Movie, PersonSearchResult, TVShow } from '@/tmdb';
 import type {
   MovieGenre,
   MovieSortOption,
   TVShowGenre,
   TVShowSortOption,
-} from '@/systems/tmdb/endpoints/discover';
+} from '@/tmdb/endpoints/discover';
 import type { LucideIcon } from 'lucide-react';
 import type { Route } from 'next';
 

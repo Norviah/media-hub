@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { toast } from 'sonner';
 
-import type { SearchResult } from '@/systems/tmdb';
+import type { SearchResult } from '@/tmdb';
 
 export const LoadingState = {
   /**

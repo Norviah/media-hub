@@ -4,7 +4,7 @@ import { endpoints } from '@/tmdb';
 
 import type { discover, search } from '@/tmdb/endpoints';
 import type { SearchParamsSchema } from './schemas';
-import type { MovieSortOption, TVShowSortOption } from '@/systems/tmdb/endpoints/discover';
+import type { MovieSortOption, TVShowSortOption } from '@/tmdb/endpoints/discover';
 
 type QueryArgs = {
   params: SearchParamsSchema;
