@@ -4,8 +4,7 @@ import { ToastProvider } from '@/components/ToastProvider';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 
-import { siteConfig } from '@/lib/config';
-import { overpass } from '@/lib/font';
+import { font, siteConfig } from '@/lib/config';
 import { cn } from '@/lib/utils';
 
 import type { LayoutProps } from '@/types';
@@ -34,7 +33,7 @@ export default function RootLayout(props: LayoutProps): JSX.Element {
         <link rel='icon' type='image/png' sizes='16x16' href='/favicon-16x16.png' />
       </head>
 
-      <body className={cn('min-h-screen text-foreground antialiased', overpass.className)}>
+      <body className={cn('min-h-screen text-foreground antialiased', font.className)}>
         <ThemeProvider
           attribute='class'
           defaultTheme='system'
@@ -46,7 +45,7 @@ export default function RootLayout(props: LayoutProps): JSX.Element {
         <TailwindIndicator />
         <Analytics />
         <SpeedInsights />
-        <ToastProvider className={overpass.className} />
+        <ToastProvider className={font.className} />
       </body>
     </html>
   );
