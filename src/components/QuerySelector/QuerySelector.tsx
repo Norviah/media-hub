@@ -16,7 +16,7 @@ import { Options, Sections } from './components';
 
 import { cn, constructUrl } from '@/lib/utils';
 import { usePathname, useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import type { QuerySelectorProps } from './types';
 
@@ -40,6 +40,20 @@ export function QuerySelector<Schema extends Record<string, any>, Key extends ke
 
   const pathname = usePathname();
   const router = useRouter();
+
+  const onScroll = useCallback(() => {
+    if (open) {
+      setOpen(false);
+    }
+  }, [open]);
+
+  useEffect(() => {
+    window.addEventListener('scroll', onScroll);
+
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+    };
+  }, [onScroll]);
 
   function push(v: string, active: boolean) {
     let value: string | string[] | null;
