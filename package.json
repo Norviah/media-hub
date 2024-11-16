@@ -5,7 +5,7 @@
     "build": "next build",
     "build:tmdb-docs": "typedoc --options typedoc.json",
     "build:changelog": "bump changelog generate --config .bumprc.json",
-    "biome": "biome check ./src",
+    "biome:check": "biome check ./src",
     "biome:write": "biome check ./src --write",
     "biome:unsafe": "biome check ./src --write --unsafe",
     "dev": "next dev --turbo",
