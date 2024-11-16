@@ -1,66 +1,14 @@
 ## Unreleased
 
-### UI
-
-- **systems/search**: render titles in the image card for grid layout <code>[5e9afbf](https://github.com/Norviah/media-hub/commit/5e9afbf006afa8a16954206565ffb775395570b7)</code>
-
-- **ui/Skeleton**: make skeletons have a border by default <code>[ea4d600](https://github.com/Norviah/media-hub/commit/ea4d600629589b3e353b3562981971dea6fe0514)</code>
-
-- **components/Button**: add a color to represent when the button is active <code>[8eeaea8](https://github.com/Norviah/media-hub/commit/8eeaea8de5f5885bec0268c2d214bf0c8e0913d1)</code>
-
-- **systems/search**: truncate descriptions for media lists to 2 lines <code>[fd449a2](https://github.com/Norviah/media-hub/commit/fd449a26643196b3dab7eec9658b93cd49488e4a)</code>
-
-- **systems/search**: update styles for rendering media in a list <code>[7cc71b2](https://github.com/Norviah/media-hub/commit/7cc71b283dbc8400ef0b9a7d4ec1bf13a3a594b4)</code>
-
-- **components/Button**: don't specify specific styles on dark mode for the outline variant <code>[755ee6c](https://github.com/Norviah/media-hub/commit/755ee6caa3f71f0fabbb38bb75a169f346d0dff6)</code>
-
-- **systems/search**: update text color to reflect the default global foreground color being lightened <code>[a2c39b6](https://github.com/Norviah/media-hub/commit/a2c39b644037a9ff8af2c8a9fd4549c1ed9e227b)</code>
-
-- **components/CodeBlock**: increase padding <code>[aca267c](https://github.com/Norviah/media-hub/commit/aca267c36a931bb69ada3e0b5786f5e5d3f8b2dc)</code>
-
-- lighten the default color for the foreground <code>[cde8d93](https://github.com/Norviah/media-hub/commit/cde8d93c7c44ecc73cc1e627adfabde2c5a54403)</code>
-
-- **docs**: set the content container to use all available width space <code>[1a9f99f](https://github.com/Norviah/media-hub/commit/1a9f99f9044ae4715a840433d34913923b9063f0)</code>
-
-- **docs**: set the sidebar to also be in a container <code>[3633ed6](https://github.com/Norviah/media-hub/commit/3633ed6e032a3cc413b115b225dfbb40dc2f7441)</code>
-
-- **search**: set the minimum height for the controls container <code>[ae223da](https://github.com/Norviah/media-hub/commit/ae223da2b976b9287b4f086e28db6768517c77e3)</code>
-
-- **theme**: update foreground colors for both themes <code>[6a279d1](https://github.com/Norviah/media-hub/commit/6a279d1f0cc437c804463c8d331bf031ebdd9af3)</code>
-
-- **components/Card**: set the default foreground color to the correct value <code>[e9c8f93](https://github.com/Norviah/media-hub/commit/e9c8f936586ff8b11915afdb820abca9f34c5b1e)</code>
-
-- **theme**: set the background color of highlighted text to the primary color <code>[ba19c4f](https://github.com/Norviah/media-hub/commit/ba19c4f03c8616d7927e1a1e409e978b93449727)</code>
-
-- update colors for toast notifications to give a clear distinction from title and description <code>[c3fba96](https://github.com/Norviah/media-hub/commit/c3fba96b8f7ecdc5376e1021f547755ce7fd278c)</code>
-
-- **systems/search**: don't set the max height for the tag container <code>[9ef75db](https://github.com/Norviah/media-hub/commit/9ef75dbec4af3bbc324b8517e2502eb2f0c333d1)</code>
-
-- **theme**: lighten `foreground-light` and `muted` for light them <code>[9522acd](https://github.com/Norviah/media-hub/commit/9522acdba763c7c0a15c88d13a4b6cda16f2593b)</code>
-
-- **components/Button**: provide proper visual feedback when disabled <code>[96261ae](https://github.com/Norviah/media-hub/commit/96261aea6df8afadb0e4bf93adf3829807d1bab1)</code>
-
-- **layout**: decrease the space between nav headers <code>[423caff](https://github.com/Norviah/media-hub/commit/423caffe69c4eb6615e9948d69742611a8bbe891)</code>
-
-- **components/QuerySelector**: capitalize all rendered text <code>[3921da4](https://github.com/Norviah/media-hub/commit/3921da4632caa6fcddb7584bdf321a07190c7e18)</code>
-
-- **theme**: update background and foreground colors <code>[809c540](https://github.com/Norviah/media-hub/commit/809c540c60676d63df46184d9804fc98e1f5f09b)</code>
-
-- **components/Badge**: add `muted` as a new variant <code>[107647b](https://github.com/Norviah/media-hub/commit/107647b59d88d3b5f089ad4b13b6dbd02fa7d356)</code>
-
-- **components/Button**: move specific class names to variants, rather than being default for all variants <code>[d85abe3](https://github.com/Norviah/media-hub/commit/d85abe33adc10a32cd5a4d14d185a14d18bf2b87)</code>
-
-- **components/Command**: fix the tailwind classes for disabled state <code>[666e508](https://github.com/Norviah/media-hub/commit/666e50897a53196608542b5d4c87baf803aaeee7)</code>
-
-- **components/Select**: mute the colors for unselected items in the dropdown <code>[7ed9bc7](https://github.com/Norviah/media-hub/commit/7ed9bc7e5b364b62a5cf60e85ebe24b730d82849)</code>
-
-- **components/Select**: set the placeholder text to muted <code>[7c958e4](https://github.com/Norviah/media-hub/commit/7c958e4c40e783fa86df061b1e68d3c43fa4d7b3)</code>
-
-- use the `border` color instead of `input` for input components <code>[cf36f9e](https://github.com/Norviah/media-hub/commit/cf36f9e8fd0b1c4492399d8f6f559be3a451a527)</code>
-
-- **theme**: update theme colors to be inspired/taken from supabase <code>[fc16111](https://github.com/Norviah/media-hub/commit/fc16111acd015899ede62078162b6b1846768e5f)</code>
-
 ### Refactors
+
+- move the `tmdb` directory to `src` <code>[d809718](https://github.com/Norviah/media-hub/commit/d809718af017974e095f312fcfa8bfdf58d3e3e5)</code>
+
+- move font files into `src/config` <code>[123d226](https://github.com/Norviah/media-hub/commit/123d226acb5b29b9803de4c4ded50be6fbf197d2)</code>
+
+- create the folder `src/components/compound` to contain multi-file components <code>[0eaa410](https://github.com/Norviah/media-hub/commit/0eaa410aaae5a81c3e8d49b2abdecec13d686b14)</code>
+
+- **font**: remove unused font imports <code>[d604058](https://github.com/Norviah/media-hub/commit/d604058995c8d66c46b127fe8faff610d08b9431)</code>
 
 - **search**: have the search results use the new cover component for grid layout <code>[db41f2d](https://github.com/Norviah/media-hub/commit/db41f2d53da7922cf1f07ca91eab6a80688ea506)</code>
 
@@ -126,6 +74,26 @@
 
 ### Features
 
+- **config**: simplify the app's description <code>[1bbd293](https://github.com/Norviah/media-hub/commit/1bbd293a84dc4c17c9bbc13867c95ba0c5447616)</code>
+
+- **components/QuerySelector**: close the dropdown if the user scrolls <code>[4c8101f](https://github.com/Norviah/media-hub/commit/4c8101f70270076de8e36b14c89cd040f092a417)</code>
+
+- **components/ImageCard**: add support for coordination <code>[57c1254](https://github.com/Norviah/media-hub/commit/57c1254b23426224f1d0fe7db3eb8644bd7756d9)</code>
+
+- **systems/search**: update search page to use coordinated images <code>[af6946b](https://github.com/Norviah/media-hub/commit/af6946ba6fdc277e49ba5a1f55ac201016633c33)</code>
+
+- **systems**: add a system to coordinate images <code>[f3d9e4b](https://github.com/Norviah/media-hub/commit/f3d9e4b53922f1f7c1925eac1b50d344370e7a5c)</code>
+
+- **components**: add a `Caption` component for displaying text within an element <code>[2a23136](https://github.com/Norviah/media-hub/commit/2a23136bb3d9fbc5f452abab1dfe7c87a436853b)</code>
+
+- **search**: add metadata to add "Search" title <code>[39ab9d1](https://github.com/Norviah/media-hub/commit/39ab9d19647f11db5b1e0454f12ce96112a62fa4)</code>
+
+- **pages**: add a selector for sorting <code>[e087d3f](https://github.com/Norviah/media-hub/commit/e087d3f70fdf4e547b6887d36b66623ae457c1a4)</code>
+
+- **tmdb**: add schema for collections <code>[bba0524](https://github.com/Norviah/media-hub/commit/bba052411b0b256c1705925de7803e2d7c6a169c)</code>
+
+- **search**: add a loading state for the trending page <code>[bfd9959](https://github.com/Norviah/media-hub/commit/bfd995998c5f06074d9a19c819dbbc7e5e2166a6)</code>
+
 - **routes/search**: add a trending section in the landing page <code>[dd22b7d](https://github.com/Norviah/media-hub/commit/dd22b7d5013bd0eaa47eecff3fd027d47436d07b)</code>
 
 - **systems/tmdb**: add `trending` endpoint <code>[4193f33](https://github.com/Norviah/media-hub/commit/4193f33f6616074c39e9fe81d6a37d8242379ab6)</code>
@@ -180,7 +148,81 @@
 
 - **systems**: add an api wrapper for TMDB's api <code>[15ca06b](https://github.com/Norviah/media-hub/commit/15ca06bf548895d7fcacfe7fbeddceca1f71c0cd)</code>
 
+### UI
+
+- **components/QuerySelector**: darken the text for active queries <code>[7408db2](https://github.com/Norviah/media-hub/commit/7408db2c9a613c1a8e4b1a35133341e0d4f3d513)</code>
+
+- **components/Command**: add a shadow under the root component <code>[c1a125f](https://github.com/Norviah/media-hub/commit/c1a125f979b96ee8517e86a46b1a834aa2413f8e)</code>
+
+- update foreground colors for background and cards <code>[beb20c1](https://github.com/Norviah/media-hub/commit/beb20c142c898f1d5fc04628595bead08c2f6ce1)</code>
+
+- **search**: increase height for image cards and change the column amount for breakpoints <code>[d70a0df](https://github.com/Norviah/media-hub/commit/d70a0dfbdb8f4a56529c0b43994833261b04910a)</code>
+
+- **systems/search**: render titles in the image card for grid layout <code>[5e9afbf](https://github.com/Norviah/media-hub/commit/5e9afbf006afa8a16954206565ffb775395570b7)</code>
+
+- **ui/Skeleton**: make skeletons have a border by default <code>[ea4d600](https://github.com/Norviah/media-hub/commit/ea4d600629589b3e353b3562981971dea6fe0514)</code>
+
+- **components/Button**: add a color to represent when the button is active <code>[8eeaea8](https://github.com/Norviah/media-hub/commit/8eeaea8de5f5885bec0268c2d214bf0c8e0913d1)</code>
+
+- **systems/search**: truncate descriptions for media lists to 2 lines <code>[fd449a2](https://github.com/Norviah/media-hub/commit/fd449a26643196b3dab7eec9658b93cd49488e4a)</code>
+
+- **systems/search**: update styles for rendering media in a list <code>[7cc71b2](https://github.com/Norviah/media-hub/commit/7cc71b283dbc8400ef0b9a7d4ec1bf13a3a594b4)</code>
+
+- **components/Button**: don't specify specific styles on dark mode for the outline variant <code>[755ee6c](https://github.com/Norviah/media-hub/commit/755ee6caa3f71f0fabbb38bb75a169f346d0dff6)</code>
+
+- **systems/search**: update text color to reflect the default global foreground color being lightened <code>[a2c39b6](https://github.com/Norviah/media-hub/commit/a2c39b644037a9ff8af2c8a9fd4549c1ed9e227b)</code>
+
+- **components/CodeBlock**: increase padding <code>[aca267c](https://github.com/Norviah/media-hub/commit/aca267c36a931bb69ada3e0b5786f5e5d3f8b2dc)</code>
+
+- lighten the default color for the foreground <code>[cde8d93](https://github.com/Norviah/media-hub/commit/cde8d93c7c44ecc73cc1e627adfabde2c5a54403)</code>
+
+- **docs**: set the content container to use all available width space <code>[1a9f99f](https://github.com/Norviah/media-hub/commit/1a9f99f9044ae4715a840433d34913923b9063f0)</code>
+
+- **docs**: set the sidebar to also be in a container <code>[3633ed6](https://github.com/Norviah/media-hub/commit/3633ed6e032a3cc413b115b225dfbb40dc2f7441)</code>
+
+- **search**: set the minimum height for the controls container <code>[ae223da](https://github.com/Norviah/media-hub/commit/ae223da2b976b9287b4f086e28db6768517c77e3)</code>
+
+- **theme**: update foreground colors for both themes <code>[6a279d1](https://github.com/Norviah/media-hub/commit/6a279d1f0cc437c804463c8d331bf031ebdd9af3)</code>
+
+- **components/Card**: set the default foreground color to the correct value <code>[e9c8f93](https://github.com/Norviah/media-hub/commit/e9c8f936586ff8b11915afdb820abca9f34c5b1e)</code>
+
+- **theme**: set the background color of highlighted text to the primary color <code>[ba19c4f](https://github.com/Norviah/media-hub/commit/ba19c4f03c8616d7927e1a1e409e978b93449727)</code>
+
+- update colors for toast notifications to give a clear distinction from title and description <code>[c3fba96](https://github.com/Norviah/media-hub/commit/c3fba96b8f7ecdc5376e1021f547755ce7fd278c)</code>
+
+- **systems/search**: don't set the max height for the tag container <code>[9ef75db](https://github.com/Norviah/media-hub/commit/9ef75dbec4af3bbc324b8517e2502eb2f0c333d1)</code>
+
+- **theme**: lighten `foreground-light` and `muted` for light them <code>[9522acd](https://github.com/Norviah/media-hub/commit/9522acdba763c7c0a15c88d13a4b6cda16f2593b)</code>
+
+- **components/Button**: provide proper visual feedback when disabled <code>[96261ae](https://github.com/Norviah/media-hub/commit/96261aea6df8afadb0e4bf93adf3829807d1bab1)</code>
+
+- **layout**: decrease the space between nav headers <code>[423caff](https://github.com/Norviah/media-hub/commit/423caffe69c4eb6615e9948d69742611a8bbe891)</code>
+
+- **components/QuerySelector**: capitalize all rendered text <code>[3921da4](https://github.com/Norviah/media-hub/commit/3921da4632caa6fcddb7584bdf321a07190c7e18)</code>
+
+- **theme**: update background and foreground colors <code>[809c540](https://github.com/Norviah/media-hub/commit/809c540c60676d63df46184d9804fc98e1f5f09b)</code>
+
+- **components/Badge**: add `muted` as a new variant <code>[107647b](https://github.com/Norviah/media-hub/commit/107647b59d88d3b5f089ad4b13b6dbd02fa7d356)</code>
+
+- **components/Button**: move specific class names to variants, rather than being default for all variants <code>[d85abe3](https://github.com/Norviah/media-hub/commit/d85abe33adc10a32cd5a4d14d185a14d18bf2b87)</code>
+
+- **components/Command**: fix the tailwind classes for disabled state <code>[666e508](https://github.com/Norviah/media-hub/commit/666e50897a53196608542b5d4c87baf803aaeee7)</code>
+
+- **components/Select**: mute the colors for unselected items in the dropdown <code>[7ed9bc7](https://github.com/Norviah/media-hub/commit/7ed9bc7e5b364b62a5cf60e85ebe24b730d82849)</code>
+
+- **components/Select**: set the placeholder text to muted <code>[7c958e4](https://github.com/Norviah/media-hub/commit/7c958e4c40e783fa86df061b1e68d3c43fa4d7b3)</code>
+
+- use the `border` color instead of `input` for input components <code>[cf36f9e](https://github.com/Norviah/media-hub/commit/cf36f9e8fd0b1c4492399d8f6f559be3a451a527)</code>
+
+- **theme**: update theme colors to be inspired/taken from supabase <code>[fc16111](https://github.com/Norviah/media-hub/commit/fc16111acd015899ede62078162b6b1846768e5f)</code>
+
 ### Bug Fixes
+
+- **search**: wrap calling the search endpoint in an else block <code>[dfb872e](https://github.com/Norviah/media-hub/commit/dfb872e664ea045287b3599e932383e9b2abc39f)</code>
+
+- **search**: always render search controls except for trending state <code>[e262e62](https://github.com/Norviah/media-hub/commit/e262e6241d9fbd1abc1c1cea1d1b47623b3ddf4b)</code>
+
+- **search**: ignore collections when rendering search results <code>[6eafe0f](https://github.com/Norviah/media-hub/commit/6eafe0f20d5520a78d6a2ec731d9ae8e94bf9467)</code>
 
 - **search**: wrap the layout in a suspense component <code>[2a0bc62](https://github.com/Norviah/media-hub/commit/2a0bc6201f19eaeb23ade84a81ca2eef0c9f13f4)</code>
 
@@ -191,6 +233,10 @@
 - **components/SearchQuery**: ensure that a search term is given before pushing the route <code>[848b639](https://github.com/Norviah/media-hub/commit/848b63924737b29ca70c07df906c0496fb61c751)</code>
 
 - **systems/tmdb**: fix relative path <code>[a6a39f4](https://github.com/Norviah/media-hub/commit/a6a39f45118c91c8167124a4f27569b9bafcfa4a)</code>
+
+### Reverted
+
+- **search**: don't use context to pass props <code>[22ca7d7](https://github.com/Norviah/media-hub/commit/22ca7d7a9e3d36c3ddfd5221eecbc99c1ffee19e)</code>
 
 ### styles
 
