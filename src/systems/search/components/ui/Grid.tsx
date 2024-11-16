@@ -1,9 +1,11 @@
 'use client';
 
-import { LoadingState } from '@/hooks';
-import { Layout } from '../../lib';
+import { ImageCoordinator } from '@/systems/image-coordination';
 import { MediaImageCard } from './MediaImageCard';
 import { MediaList } from './MediaList';
+
+import { Layout } from '../../lib';
+import { LoadingState } from '@/hooks';
 
 import type { Movie, PersonSearchResult, TVShow } from '@/systems/tmdb';
 import type { SkeletalProps } from '@/types';
@@ -25,7 +27,7 @@ export function Grid({ data, state, viewRef, layout, skeleton }: GridProps): JSX
   const className =
     layout.key === Layout.LIST
       ? 'space-y-4'
-      : 'grid gap-4 gap-x-5 sm:gap-x-5 grid-cols-4 sm:grid-cols-5 gap-y-5 md:grid-cols-6 lg:grid-cols-5 xl:grid-cols-6 xl:gap-x-8 xl:gap-y-10';
+      : 'grid gap-4 gap-x-5 sm:gap-x-5 grid-cols-4 sm:grid-cols-5 gap-y-5 md:grid-cols-6 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 xl:gap-x-8 xl:gap-y-10';
 
   if (skeleton) {
     return (
@@ -39,8 +41,8 @@ export function Grid({ data, state, viewRef, layout, skeleton }: GridProps): JSX
   }
 
   return (
-    <div className='space-y-5'>
-      <div className={className}>
+    <div className='space-y-20'>
+      <ImageCoordinator className={className}>
         {data.map((item) => (
           <RenderComponent key={item.id} media={item} />
         ))}
@@ -48,7 +50,7 @@ export function Grid({ data, state, viewRef, layout, skeleton }: GridProps): JSX
         {state === LoadingState.LOADING &&
           // biome-ignore lint/suspicious/noArrayIndexKey: skeleton.
           Array.from({ length: 20 }).map((_, i) => <RenderComponent key={i} skeleton />)}
-      </div>
+      </ImageCoordinator>
 
       {state === LoadingState.IDLE && <div ref={viewRef} />}
     </div>

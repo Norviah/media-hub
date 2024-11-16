@@ -13,7 +13,7 @@ import type { SkeletalProps } from '@/types';
 
 export const mediaListClasses = {
   layout: 'space-y-4',
-  container: 'w-full border border-border animate-in fade-in',
+  container: 'w-full border border-border animate-in fade-in h-[141px]',
   content: 'space-y-3 px-5 py-3 justify-between',
   image: 'w-[94px] min-h-[141px] rounded-none rounded-l object-cover',
 } as const;
@@ -50,7 +50,13 @@ export function MediaList(props: MediaListProps) {
   const parsed = parseMedia(item);
 
   return (
-    <ImageCard href={parsed.path} classes={mediaListClasses} src={parsed.poster} alt={parsed.name}>
+    <ImageCard
+      coordinated
+      href={parsed.path}
+      classes={mediaListClasses}
+      src={parsed.poster}
+      alt={parsed.name}
+    >
       <div className='space-y-0.5'>
         <div className='w-fit transition-colors hover:text-card-foreground'>
           <Link href={parsed.path}>

@@ -52,7 +52,6 @@ export async function TrendingSection({ skeleton, header, route, promise }: Tren
                   key={item.id}
                   className={cn(
                     constrictVisibility({ index, base: 4, sm: 5, md: 6, lg: 5, xl: 6 }),
-                    'h-fit 2xl:h-fit lg:h-fit md:h-fit sm:h-fit xl:h-fit',
                   )}
                 />
               );
