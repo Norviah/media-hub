@@ -3,7 +3,7 @@
 import Link from 'next/link';
 
 import { Skeleton } from '@/components/ui/Skeleton';
-import { CoordinatedImage } from '@/systems/image-coordination/CoordinatedImage';
+import { CoordinatedImage } from '@/components/image-coordination/CoordinatedImage';
 
 import { cn } from '@/lib/utils';
 import { parseMedia } from '../../lib';

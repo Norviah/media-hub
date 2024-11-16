@@ -1,7 +1,7 @@
 'use client';
 
+import { Input } from '@/components/ui/Input';
 import { SearchIcon, XIcon } from 'lucide-react';
-import { Input } from './ui/Input';
 
 import { useDebounce } from '@/hooks';
 import { cn, constructUrl } from '@/lib/utils';

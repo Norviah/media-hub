@@ -20,6 +20,7 @@
     ],
     "paths": {
       "@/*": ["./src/*", "./src/systems/*"],
+      "@/components/*": ["./src/components/*", "./src/components/compound/*"],
       "content-collections": ["./.content-collections/generated"]
     }
   },

@@ -3,7 +3,7 @@
 import { Tags } from './Tags';
 import { LayoutLink } from './ui';
 
-import { QuerySelector, Text } from '@/components/QuerySelector';
+import { QuerySelector, Text } from '@/components/query';
 import { Separator } from '@/components/ui/Separator';
 import { SearchState, layouts, parseSortOption } from '../lib';
 

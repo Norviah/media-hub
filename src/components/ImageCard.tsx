@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { CoordinatedImage } from '@/systems/image-coordination';
+import { CoordinatedImage } from '@/components/image-coordination';
 import { Fragment } from 'react';
 import { Card } from './ui/Card';
 import { Skeleton } from './ui/Skeleton';

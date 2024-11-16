@@ -1,6 +1,6 @@
 'use client';
 
-import { ImageCoordinator } from '@/systems/image-coordination';
+import { ImageCoordinator } from '@/components/image-coordination';
 import { MediaImageCard } from './MediaImageCard';
 import { MediaList } from './MediaList';
 

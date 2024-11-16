@@ -1,4 +1,4 @@
-import { ImageCoordinator } from '@/systems/image-coordination';
+import { ImageCoordinator } from '@/components/image-coordination';
 import { Suspense } from 'react';
 import { TrendingSection } from './ui';
 
