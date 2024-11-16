@@ -1,6 +1,9 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
 
+import { CoordinatedImage } from '@/systems/image-coordination';
 import { Fragment } from 'react';
 import { Card } from './ui/Card';
 import { Skeleton } from './ui/Skeleton';
@@ -21,6 +24,16 @@ const baseClasses = {
 type ImageCardProps<Path extends string = string> = SkeletalProps<
   {
     /**
+     * The source URL of the image to be displayed.
+     */
+    src: string;
+
+    /**
+     * An alternative text description of the image's content.
+     */
+    alt: string;
+
+    /**
      * The route to navigate to when the image is clicked.
      */
     href?: Route<Path>;
@@ -37,7 +50,12 @@ type ImageCardProps<Path extends string = string> = SkeletalProps<
      * other metadata.
      */
     children: React.ReactNode;
-  } & Omit<ImageProps, 'height' | 'width' | 'className' | 'children'>,
+
+    /**
+     * Whether if the image should be coordinated with other images.
+     */
+    coordinated?: boolean;
+  } & Omit<ImageProps, 'height' | 'width' | 'className' | 'children' | 'src' | 'alt'>,
   'children' | 'classes'
 >;
 
@@ -75,31 +93,41 @@ type ImageCardProps<Path extends string = string> = SkeletalProps<
  * </ImageCard>
  * ```
  **/
-export function ImageCard<Path extends string = string>(props: ImageCardProps<Path>): JSX.Element {
-  if (props.skeleton) {
+export function ImageCard<Path extends string = string>({
+  coordinated,
+  href,
+  classes,
+  children,
+  src,
+  skeleton,
+  alt,
+  ...imageProps
+}: ImageCardProps<Path>): JSX.Element {
+  if (skeleton) {
     return (
-      <div className={cn(baseClasses.container, props.classes?.container)}>
-        <div className={cn(baseClasses.imageContainer, props.classes?.imageContainer)}>
-          <Skeleton className={cn(baseClasses.image, props.classes?.image)} />
+      <Card className={cn(baseClasses.container, classes?.container)}>
+        <div className={cn(baseClasses.imageContainer, classes?.imageContainer)}>
+          <Skeleton className={cn(baseClasses.image, classes?.image)} />
         </div>
 
-        <div className={cn(baseClasses.content, props.classes?.content)}>{props.children}</div>
-      </div>
+        <div className={cn(baseClasses.content, classes?.content)}>{children}</div>
+      </Card>
     );
   }
 
-  const { classes, children, href, ...imageProps } = props;
-
   const ParentComponent = href ? Link : Fragment;
+  const ImageComponent = coordinated ? CoordinatedImage : Image;
 
   return (
     <Card className={cn(baseClasses.container, classes?.container)}>
       <div className={cn(baseClasses.imageContainer, classes?.imageContainer)}>
-        {/* @ts-ignore */}
-        <ParentComponent {...(href ? { href } : {})}>
-          <Image
+        {/* @ts-expect-error: if the `Link` component is used, then `href` isn't undefined. */}
+        <ParentComponent href={href}>
+          <ImageComponent
             width='0'
             height='0'
+            src={src}
+            alt={alt}
             className={cn(baseClasses.image, classes?.image)}
             {...imageProps}
           />
