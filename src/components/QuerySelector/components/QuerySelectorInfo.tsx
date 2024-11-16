@@ -13,6 +13,8 @@ function QuerySelectorInfoHelper<Schema extends Record<string, any>, Key extends
   picked,
   renderTrigger,
 }: Omit<TriggerProps<Schema, Key>, 'open'>) {
+  const className = 'rounded-sm px-1 font-normal text-muted-foreground-dark';
+
   if (!picked) {
     return <span className='text-card-foreground-light'>Any</span>;
   }
@@ -20,12 +22,12 @@ function QuerySelectorInfoHelper<Schema extends Record<string, any>, Key extends
   if (multi) {
     return picked.length > 0 ? (
       <div className='space-x-1'>
-        <Badge variant='muted' className='rounded-sm px-1 font-normal'>
+        <Badge variant='muted' className={className}>
           {renderTrigger ? renderTrigger(picked[0]) : picked[0]}
         </Badge>
 
         {picked.length > 1 && (
-          <Badge variant='muted' className='rounded-sm px-1 font-normal'>
+          <Badge variant='muted' className={className}>
             +{picked.length - 1}
           </Badge>
         )}
@@ -36,7 +38,7 @@ function QuerySelectorInfoHelper<Schema extends Record<string, any>, Key extends
   }
 
   return (
-    <Badge variant='muted' className='rounded-sm px-1 font-normal'>
+    <Badge variant='muted' className={className}>
       {renderTrigger ? renderTrigger(picked as string) : picked}
     </Badge>
   );
