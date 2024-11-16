@@ -1,15 +1,13 @@
 'use client';
 
-import { IconButton } from '@/components/ui/Button';
+import { IconButton } from '@/components/ui';
 import { CheckIcon, CopyIcon } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 
-import type { IconButtonProps as IconButtonBaseProps } from '@/components/ui/Button';
-
-export type IconButtonProps = Omit<IconButtonBaseProps, 'icon'>;
+import type { IconButtonProps as IconButtonBaseProps } from '@/components/ui';
 
 export type CopyContentButtonProps = {
   /**
@@ -43,7 +41,7 @@ export type CopyContentButtonProps = {
  * `page.tsx`
  *
  * ```tsx
- * import { CopyContentButton } from '@/components/CopyContentButton';
+ * import { CopyContentButton } from '@/components';
  *
  * export default function Page() {
  *   return (
@@ -64,7 +62,7 @@ export function CopyContentButton({
   prompt = 'Copied content to clipboard.',
   duration = 3000,
   ...props
-}: CopyContentButtonProps & IconButtonProps): JSX.Element {
+}: CopyContentButtonProps & Omit<IconButtonBaseProps, 'icon'>): JSX.Element {
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
