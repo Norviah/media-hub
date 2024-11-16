@@ -40,4 +40,4 @@ https://developer.themoviedb.org/reference/search-person
 
 ## Defined in
 
-src/tmdb/endpoints/search/person.ts:48
+[src/tmdb/endpoints/search/person.ts:48](https://github.com/Norviah/media-hub/blob/d809718af017974e095f312fcfa8bfdf58d3e3e5/src/tmdb/endpoints/search/person.ts#L48)

@@ -44,4 +44,4 @@ https://developer.themoviedb.org/reference/tv-season-details
 
 ## Defined in
 
-src/tmdb/endpoints/tv/seasons/details.ts:43
+[src/tmdb/endpoints/tv/seasons/details.ts:43](https://github.com/Norviah/media-hub/blob/d809718af017974e095f312fcfa8bfdf58d3e3e5/src/tmdb/endpoints/tv/seasons/details.ts#L43)

@@ -48,4 +48,4 @@ https://developer.themoviedb.org/reference/tv-series-details
 
 ## Defined in
 
-src/tmdb/endpoints/tv/details.ts:66
+[src/tmdb/endpoints/tv/details.ts:66](https://github.com/Norviah/media-hub/blob/d809718af017974e095f312fcfa8bfdf58d3e3e5/src/tmdb/endpoints/tv/details.ts#L66)

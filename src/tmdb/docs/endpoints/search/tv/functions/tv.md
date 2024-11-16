@@ -40,4 +40,4 @@ https://developer.themoviedb.org/reference/search-tv
 
 ## Defined in
 
-src/tmdb/endpoints/search/tv.ts:60
+[src/tmdb/endpoints/search/tv.ts:60](https://github.com/Norviah/media-hub/blob/d809718af017974e095f312fcfa8bfdf58d3e3e5/src/tmdb/endpoints/search/tv.ts#L60)

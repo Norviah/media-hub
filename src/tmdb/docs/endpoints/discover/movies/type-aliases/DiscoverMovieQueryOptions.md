@@ -164,4 +164,4 @@
 
 ## Defined in
 
-src/tmdb/endpoints/discover/movies.ts:67
+[src/tmdb/endpoints/discover/movies.ts:67](https://github.com/Norviah/media-hub/blob/d809718af017974e095f312fcfa8bfdf58d3e3e5/src/tmdb/endpoints/discover/movies.ts#L67)

@@ -38,4 +38,4 @@ https://developer.themoviedb.org/reference/genre-movie-list
 
 ## Defined in
 
-src/tmdb/endpoints/genres/tv.ts:33
+[src/tmdb/endpoints/genres/tv.ts:33](https://github.com/Norviah/media-hub/blob/d809718af017974e095f312fcfa8bfdf58d3e3e5/src/tmdb/endpoints/genres/tv.ts#L33)

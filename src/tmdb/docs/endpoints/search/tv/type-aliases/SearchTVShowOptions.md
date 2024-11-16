@@ -56,4 +56,4 @@ The first air date and all episode air dates.
 
 ## Defined in
 
-src/tmdb/endpoints/search/tv.ts:10
+[src/tmdb/endpoints/search/tv.ts:10](https://github.com/Norviah/media-hub/blob/d809718af017974e095f312fcfa8bfdf58d3e3e5/src/tmdb/endpoints/search/tv.ts#L10)

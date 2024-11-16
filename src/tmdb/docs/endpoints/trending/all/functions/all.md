@@ -40,4 +40,4 @@ https://developer.themoviedb.org/reference/trending-all
 
 ## Defined in
 
-src/tmdb/endpoints/trending/all.ts:39
+[src/tmdb/endpoints/trending/all.ts:39](https://github.com/Norviah/media-hub/blob/d809718af017974e095f312fcfa8bfdf58d3e3e5/src/tmdb/endpoints/trending/all.ts#L39)

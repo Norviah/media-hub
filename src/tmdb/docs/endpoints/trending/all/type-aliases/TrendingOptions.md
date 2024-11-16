@@ -30,4 +30,4 @@ The window of time to get the results for.
 
 ## Defined in
 
-src/tmdb/endpoints/trending/all.ts:11
+[src/tmdb/endpoints/trending/all.ts:11](https://github.com/Norviah/media-hub/blob/d809718af017974e095f312fcfa8bfdf58d3e3e5/src/tmdb/endpoints/trending/all.ts#L11)

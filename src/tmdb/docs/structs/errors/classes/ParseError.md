@@ -36,7 +36,7 @@ The path of the request that failed to parse.
 
 #### Defined in
 
-src/tmdb/structs/errors.ts:51
+[src/tmdb/structs/errors.ts:51](https://github.com/Norviah/media-hub/blob/d809718af017974e095f312fcfa8bfdf58d3e3e5/src/tmdb/structs/errors.ts#L51)
 
 ## Properties
 
@@ -90,7 +90,7 @@ The path of the request that failed to parse.
 
 #### Defined in
 
-src/tmdb/structs/errors.ts:51
+[src/tmdb/structs/errors.ts:51](https://github.com/Norviah/media-hub/blob/d809718af017974e095f312fcfa8bfdf58d3e3e5/src/tmdb/structs/errors.ts#L51)
 
 ***
 

@@ -37,7 +37,7 @@ The error message returned by the API.
 
 #### Defined in
 
-src/tmdb/structs/errors.ts:11
+[src/tmdb/structs/errors.ts:11](https://github.com/Norviah/media-hub/blob/d809718af017974e095f312fcfa8bfdf58d3e3e5/src/tmdb/structs/errors.ts#L11)
 
 ## Properties
 

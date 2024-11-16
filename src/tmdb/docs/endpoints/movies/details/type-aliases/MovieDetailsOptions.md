@@ -45,4 +45,4 @@ Any additional options to apply to the API request.
 
 ## Defined in
 
-src/tmdb/endpoints/movies/details.ts:30
+[src/tmdb/endpoints/movies/details.ts:30](https://github.com/Norviah/media-hub/blob/d809718af017974e095f312fcfa8bfdf58d3e3e5/src/tmdb/endpoints/movies/details.ts#L30)

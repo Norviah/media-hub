@@ -34,7 +34,7 @@ Initializes a new `RateLimitError` instance.
 
 #### Defined in
 
-src/tmdb/structs/errors.ts:37
+[src/tmdb/structs/errors.ts:37](https://github.com/Norviah/media-hub/blob/d809718af017974e095f312fcfa8bfdf58d3e3e5/src/tmdb/structs/errors.ts#L37)
 
 ## Properties
 

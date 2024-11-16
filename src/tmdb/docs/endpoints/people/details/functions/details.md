@@ -48,4 +48,4 @@ https://developer.themoviedb.org/reference/person-details
 
 ## Defined in
 
-src/tmdb/endpoints/people/details.ts:64
+[src/tmdb/endpoints/people/details.ts:64](https://github.com/Norviah/media-hub/blob/d809718af017974e095f312fcfa8bfdf58d3e3e5/src/tmdb/endpoints/people/details.ts#L64)
