@@ -86,15 +86,20 @@ export type ConstructUrlOptions<
   };
 
   /**
-   * The specific keys to keep in the query parameters.
+   * A set of query parameters to keep in the constructed URL.
    *
-   * When constructing a new URL, if `params` is provided, all keys will be
-   * included within the new URL, with `overrides` taking precedence.
-   *
-   * This property allows you to specify a subset of keys to keep from the
-   * existing parameters, all other keys will be removed from the URL.
+   * If specified, only the keys in this array will be kept in the constructed
+   * array, all other queries/keys will be removed.
    */
   keep?: Keys[];
+
+  /**
+   * A set of query parameters to remove from the constructed URL.
+   *
+   * Does the opposite of the `keep` property, each specified key is removed
+   * from the constructed URL.
+   */
+  reset?: Keys[];
 };
 
 /**
@@ -178,7 +183,7 @@ export function constructUrl<
   T extends ConstrainedRecord<T>,
   Keys extends keyof T = keyof T,
   Path extends string = string,
->({ route, params, overrides, keep }: ConstructUrlOptions<T, Keys, Path>): Route<Path> {
+>({ route, params, overrides, keep, reset }: ConstructUrlOptions<T, Keys, Path>): Route<Path> {
   if (!params) {
     return route;
   }
@@ -187,6 +192,10 @@ export function constructUrl<
 
   for (const key in params) {
     if (keep && !keep.includes(key as keyof T as Keys)) {
+      continue;
+    }
+
+    if (reset?.includes(key as keyof T as Keys)) {
       continue;
     }
 
