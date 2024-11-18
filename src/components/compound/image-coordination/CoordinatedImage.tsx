@@ -234,7 +234,7 @@ export function CoordinatedImage({
 
         {caption && reveal && <Caption shadow text={caption} />}
 
-        {state === 'loading' && !reveal && (
+        {!reveal && (
           <Skeleton
             className={cn('absolute top-0 left-0 h-full w-full', className, classes?.image)}
           />
