@@ -1,3 +1,5 @@
+'use client';
+
 import { Metadata } from 'next';
 import Image from 'next/image';
 
@@ -24,12 +26,8 @@ import { UserNav } from './components/user-nav';
 import { cn } from '@/lib/utils';
 import { Blockquote } from '@/components/ui/Blockquote';
 import { CodeBlock } from '@/components/ui/CodeBlock';
-import { CopyIcon } from 'lucide-react';
-
-export const metadata: Metadata = {
-  title: 'Dashboard',
-  description: 'Example dashboard app built using the components.',
-};
+import { CircleAlertIcon, CircleCheckIcon, CopyIcon, InfoIcon } from 'lucide-react';
+import { toast } from 'sonner';
 
 export default function DashboardPage() {
   return (
@@ -262,27 +260,102 @@ export default function DashboardPage() {
               </p>
             </div>
 
+            <div className='flex flex-row gap-5'>
+              <InfoIcon className='fill-nord-blue text-background' />
+              <CircleAlertIcon className='fill-nord-yellow text-background' />
+              <CircleAlertIcon className='fill-nord-red text-background' />
+              <CircleCheckIcon className='fill-nord-green text-background' />
+            </div>
+
             <div className='space-y-5'>
               <div className='flex w-full flex-row gap-2'>
-                <Button variant='default' className='w-full' size='lg'>
+                <Button
+                  variant='default'
+                  className='w-full'
+                  size='lg'
+                  onClick={() => {
+                    toast('Default');
+                  }}
+                >
                   Default
                 </Button>
-                <Button variant='primary' className='w-full' size='lg'>
+                <Button
+                  variant='primary'
+                  className='w-full'
+                  size='lg'
+                  onClick={() => {
+                    toast('Primary');
+                  }}
+                >
                   Primary
                 </Button>
-                <Button variant='secondary' className='w-full' size='lg'>
+                <Button
+                  variant='secondary'
+                  className='w-full'
+                  size='lg'
+                  onClick={() => {
+                    toast('Secondary');
+                  }}
+                >
                   Secondary
                 </Button>
-                <Button variant='destructive' className='w-full' size='lg'>
+                <Button
+                  variant='destructive'
+                  className='w-full'
+                  size='lg'
+                  onClick={() => {
+                    toast.error('Error', {
+                      description: 'Dolor qui id fugiat labore ea veniam id.',
+                    });
+                  }}
+                >
                   Destructive
                 </Button>
-                <Button variant='info' className='w-full' size='lg'>
+                <Button
+                  variant='info'
+                  className='w-full'
+                  size='lg'
+                  onClick={() => {
+                    toast.info('Info', {
+                      description: 'Id sit duis laborum proident veniam.',
+                      action: (
+                        <Button variant='default' className='w-28'>
+                          Undo
+                        </Button>
+                      ),
+                    });
+                  }}
+                >
                   Info
                 </Button>
-                <Button variant='success' className='w-full' size='lg'>
+                <Button
+                  variant='success'
+                  className='w-full'
+                  size='lg'
+                  onClick={() => {
+                    toast.success('Success', {
+                      description:
+                        'Ea voluptate incididunt veniam duis aliquip occaecat sunt proident duis ipsum laborum quis non.',
+                      action: (
+                        <Button variant='default' className='w-24'>
+                          Undo
+                        </Button>
+                      ),
+                    });
+                  }}
+                >
                   Success
                 </Button>
-                <Button variant='warn' className='w-full' size='lg'>
+                <Button
+                  variant='warn'
+                  className='w-full'
+                  size='lg'
+                  onClick={() => {
+                    toast.warning('Warn', {
+                      description: 'Nulla occaecat ad laborum dolore ea quis sint aute.',
+                    });
+                  }}
+                >
                   Warn
                 </Button>
                 <Button variant='ghost' className='w-full' size='lg'>
