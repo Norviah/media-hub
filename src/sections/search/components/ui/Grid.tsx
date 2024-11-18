@@ -27,7 +27,7 @@ export function Grid({ data, state, viewRef, layout, skeleton }: GridProps): JSX
   const className =
     layout.key === Layout.LIST
       ? 'space-y-4'
-      : 'grid gap-4 gap-x-5 sm:gap-x-5 grid-cols-4 sm:grid-cols-5 gap-y-5 md:grid-cols-6 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 xl:gap-x-8 xl:gap-y-10';
+      : 'grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 xl:grid-cols-6 gap-5';
 
   if (skeleton) {
     return (
@@ -41,7 +41,7 @@ export function Grid({ data, state, viewRef, layout, skeleton }: GridProps): JSX
   }
 
   return (
-    <div className='space-y-20'>
+    <>
       <ImageCoordinator className={className}>
         {data.map((item) => (
           <RenderComponent key={item.id} media={item} />
@@ -52,7 +52,7 @@ export function Grid({ data, state, viewRef, layout, skeleton }: GridProps): JSX
           Array.from({ length: 20 }).map((_, i) => <RenderComponent key={i} skeleton />)}
       </ImageCoordinator>
 
-      {state === LoadingState.IDLE && <div ref={viewRef} />}
-    </div>
+      {state === LoadingState.IDLE && <div ref={viewRef} className='mt-16' />}
+    </>
   );
 }

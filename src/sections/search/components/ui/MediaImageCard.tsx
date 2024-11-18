@@ -19,27 +19,32 @@ type MediaImageCardProps = SkeletalProps<
   'className'
 >;
 
-const classes = {
-  height: 'lg:h-[265px] md:h-[194.033px] h-[180.7px]',
-  width: 'lg:w-[185px] md:w-[135.833px]  w-[126.5px]',
-};
-
 export function MediaImageCard({ skeleton, media, className }: MediaImageCardProps) {
   const parsed = !skeleton ? parseMedia(media) : undefined;
 
   return (
-    <div className={cn(classes.height, 'rounded shadow-[rgba(0,0,0,.2)_0px_4px_16px]', className)}>
+    <div className={cn('group aspect-[2/3]', className)}>
       {parsed ? (
-        <Link href={parsed.path}>
-          <CoordinatedImage
-            src={parsed.poster}
-            alt={parsed.name}
-            className={cn('w-full rounded object-cover', classes.height, className)}
-            caption={media?.media_type === 'person' && media.name}
-          />
-        </Link>
+        <div className='aspect-[2/3] w-full space-y-2 rounded'>
+          <Link href={parsed.path} className='shadow-[rgba(0,0,0,.2)_0px_4px_16px]'>
+            <CoordinatedImage
+              src={parsed.poster}
+              alt={parsed.name}
+              className={cn('h-full w-full rounded', className)}
+              classes={{ image: 'shadow-[rgba(0,0,0,.2)_0px_4px_16px]' }}
+            />
+          </Link>
+
+          <p className='font-semibold text-xs transition-colors group-hover:text-foreground-dark'>
+            {parsed.name}
+          </p>
+        </div>
       ) : (
-        <Skeleton className={cn(classes.height, 'w-full')} />
+        <div className='aspect-[2/3] w-full space-y-2 rounded'>
+          <Skeleton className={cn('h-full w-full shadow-[rgba(0,0,0,.2)_0px_4px_16px]')} />
+
+          <Skeleton className='h-3 w-full' />
+        </div>
       )}
     </div>
   );

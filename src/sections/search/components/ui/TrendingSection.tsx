@@ -35,7 +35,7 @@ export async function TrendingSection({ skeleton, header, route, promise }: Tren
         )}
       </div>
 
-      <div className='flex flex-row justify-between gap-4'>
+      <div className='grid grid-cols-4 gap-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-5 xl:grid-cols-6'>
         {skeleton
           ? Array.from({ length: 6 }).map((_, index) => (
               <MediaImageCard
