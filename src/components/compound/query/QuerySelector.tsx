@@ -66,20 +66,13 @@ export function QuerySelector<Schema extends Record<string, any>, Key extends ke
       value = active ? v : null;
     }
 
-    const overrides = {
-      [name]: value,
-    } as Partial<Schema>;
-
-    if (forceReset) {
-      for (const key of forceReset) {
-        overrides[key] = undefined;
-      }
-    }
-
     const href = constructUrl<Schema>({
       route: pathname,
       params,
-      overrides,
+      reset: forceReset,
+      overrides: {
+        [name]: value,
+      } as Partial<Schema>,
     });
 
     router.push(href);
