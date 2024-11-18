@@ -19,7 +19,12 @@ export function SearchMenu({ params, genresList, pickedGenres }: SearchQueriesPa
         <div className='w-full space-y-2'>
           <Header type='h4'>Search</Header>
 
-          <SearchQuery name='q' params={params} placeholderText='Enter a query...' />
+          <SearchQuery
+            name='q'
+            params={params}
+            placeholderText='Enter a query...'
+            forceReset={['sort']}
+          />
         </div>
 
         {isMobile && (
