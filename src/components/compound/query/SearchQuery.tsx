@@ -43,6 +43,11 @@ export type SearchQueryProps<Schema extends ConstrainedRecord<Schema>, Key exten
   params: Schema;
 
   /**
+   * A list of query parameters to reset when the user submits a search term.
+   */
+  forceReset?: (keyof Schema)[];
+
+  /**
    * The class name for the search input.
    *
    * This property is used to apply custom styles to the search input field.
@@ -94,6 +99,7 @@ export function SearchQuery<Schema extends ConstrainedRecord<Schema>, Key extend
   params,
   placeholderText,
   className,
+  forceReset,
 }: SearchQueryProps<Schema, Key>): JSX.Element {
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -107,6 +113,7 @@ export function SearchQuery<Schema extends ConstrainedRecord<Schema>, Key extend
     const url = constructUrl<Schema>({
       route: pathname,
       params: params,
+      reset: forceReset,
       overrides: {
         [name]: query,
       } as Partial<Schema>,
