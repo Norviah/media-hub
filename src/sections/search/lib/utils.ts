@@ -132,7 +132,7 @@ export function parseSortOption<T extends MovieSortOption | TVShowSortOption>(st
   };
 }
 
-const defaultSortOption: MovieSortOption | TVShowSortOption = 'popularity.desc';
+export const defaultSortOption: MovieSortOption | TVShowSortOption = 'popularity.desc';
 
 const sortOptions = {
   [MediaType.MOVIE]: Object.values(MovieSortOptions),

@@ -33,6 +33,10 @@ export function Tags({
     tags.push({ title: 'Sort By', value: parseSortOption(sortOption).name, paramKey: 'sort' });
   }
 
+  if (params.layout) {
+    tags.push({ title: 'Layout', value: params.layout, paramKey: 'layout' });
+  }
+
   if (params.year) {
     tags.push({ title: 'Year', value: params.year, paramKey: 'year' });
   }
@@ -41,10 +45,6 @@ export function Tags({
     for (const genre of pickedGenres) {
       tags.push({ title: 'Genre', value: genre.name, paramKey: 'genres' });
     }
-  }
-
-  if (params.layout) {
-    tags.push({ title: 'Layout', value: params.layout, paramKey: 'layout' });
   }
 
   function remove(tag: QueryBadgeProps<SearchParamsSchema>) {
