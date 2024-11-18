@@ -5,11 +5,17 @@ import { QueryBadge, QueryBadgeContainer } from './ui';
 
 import { constructUrl } from '@/lib/utils';
 import { usePathname, useRouter } from 'next/navigation';
+import { SearchState, defaultSortOption, parseSortOption } from '../lib';
 
-import type { SearchQueriesParsed, SearchParamsSchema } from '../lib';
+import type { SearchParamsSchema, SearchQueriesParsed } from '../lib';
 import type { QueryBadgeProps } from './ui';
 
-export function Tags({ params, pickedGenres }: SearchQueriesParsed): JSX.Element {
+export function Tags({
+  params,
+  pickedGenres,
+  sortOption,
+  state,
+}: SearchQueriesParsed): JSX.Element {
   const router = useRouter();
   const pathname = usePathname();
 
@@ -21,6 +27,10 @@ export function Tags({ params, pickedGenres }: SearchQueriesParsed): JSX.Element
 
   if (params.type) {
     tags.push({ title: 'Type', value: params.type, paramKey: 'type' });
+  }
+
+  if (state === SearchState.DISCOVER && sortOption !== defaultSortOption) {
+    tags.push({ title: 'Sort By', value: parseSortOption(sortOption).name, paramKey: 'sort' });
   }
 
   if (params.year) {
